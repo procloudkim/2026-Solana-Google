@@ -1,0 +1,1075 @@
+{
+  "schema": "mandate-pool/evidence-export@1",
+  "kind": "order",
+  "expectation": "normal",
+  "verdict": "PASS",
+  "exportedAt": "2026-08-03T14:41:02.378Z",
+  "baseUrl": "http://127.0.0.1:18080",
+  "orderId": "ord_b6ab984c23334cb0a3f8480d4c12abf9",
+  "response": {
+    "path": "/api/v1/orders/ord_b6ab984c23334cb0a3f8480d4c12abf9",
+    "status": 200,
+    "body": {
+      "orderId": "ord_b6ab984c23334cb0a3f8480d4c12abf9",
+      "state": "FULFILLED",
+      "version": 13,
+      "createdAt": "2026-08-03T14:38:25.705Z",
+      "updatedAt": "2026-08-03T14:40:47.383Z",
+      "scenarioLabel": "submission-normal-2ac7eac",
+      "agent": {
+        "provider": "google-adk",
+        "model": "gemini-2.5-flash",
+        "startedAt": "2026-08-03T14:38:25.705Z",
+        "completedAt": "2026-08-03T14:38:40.115Z",
+        "selectedSkuId": "signaldesk-team-3"
+      },
+      "mandates": [
+        {
+          "buyerId": "A",
+          "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, API와 CSV가 모두 필요합니다.",
+          "mandateHash": "4da95f6157bf11701b750f6a0eaf4aafb50c4c45b160cfda83000465e25600aa",
+          "maxAmountAtomic": "400000",
+          "requiredFeatures": [
+            "api",
+            "csv"
+          ],
+          "forbiddenFeatures": [],
+          "validUntil": "2026-08-03T14:53:25.705Z",
+          "approvedAt": "2026-08-03T14:38:40.501Z",
+          "status": "APPROVED"
+        },
+        {
+          "buyerId": "B",
+          "naturalLanguage": "SignalDesk 공동 구매. 최대 0.34 USDC, API가 필요하고 자동갱신은 금지합니다.",
+          "mandateHash": "33f185202501e0123149ce09b19b8b9a9699fe8ae29abb6dc075d123d10286bc",
+          "maxAmountAtomic": "340000",
+          "requiredFeatures": [
+            "api"
+          ],
+          "forbiddenFeatures": [
+            "auto-renew"
+          ],
+          "validUntil": "2026-08-03T14:53:25.705Z",
+          "approvedAt": "2026-08-03T14:38:40.667Z",
+          "status": "APPROVED"
+        },
+        {
+          "buyerId": "C",
+          "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, 7일 동안 사용하는 일회성 상품만 허용합니다.",
+          "mandateHash": "1814e0e6c20b5cb6947f5643b5d657476a1adc38676641070548a5c58f98fe64",
+          "maxAmountAtomic": "400000",
+          "requiredFeatures": [],
+          "forbiddenFeatures": [
+            "auto-renew"
+          ],
+          "validUntil": "2026-08-03T14:53:25.705Z",
+          "approvedAt": "2026-08-03T14:38:40.777Z",
+          "status": "APPROVED"
+        }
+      ],
+      "selection": {
+        "skuId": "signaldesk-team-3",
+        "productName": "SignalDesk Team-3",
+        "rationale": "The 'signaldesk-team-3' SKU satisfies all required features (API, CSV, 7-day access) and avoids forbidden features (auto-renew). Its total cost of 1,000,000 atomic units, when split (A: 333334, B: 333333, C: 333333), is within each buyer's maximum budget.",
+        "totalAmountAtomic": "1000000",
+        "allocations": [
+          {
+            "buyerId": "A",
+            "amountAtomic": "333334"
+          },
+          {
+            "buyerId": "B",
+            "amountAtomic": "333333"
+          },
+          {
+            "buyerId": "C",
+            "amountAtomic": "333333"
+          }
+        ]
+      },
+      "policyChecks": [
+        {
+          "code": "EVALUATION_TIME_VALID",
+          "label": "EVALUATION_TIME_VALID",
+          "passed": true,
+          "detail": "Evaluation time is a valid ISO-compatible timestamp"
+        },
+        {
+          "code": "QUOTE_NOT_EXPIRED",
+          "label": "QUOTE_NOT_EXPIRED",
+          "passed": true,
+          "detail": "Quote expiry is valid and later than evaluation time"
+        },
+        {
+          "code": "MANDATE_BUYER_SET_EXACT",
+          "label": "MANDATE_BUYER_SET_EXACT",
+          "passed": true,
+          "detail": "There is exactly one mandate for each buyer A, B, and C"
+        },
+        {
+          "code": "APPROVAL_BUYER_SET_EXACT",
+          "label": "APPROVAL_BUYER_SET_EXACT",
+          "passed": true,
+          "detail": "There is exactly one human approval for each buyer A, B, and C"
+        },
+        {
+          "code": "ALLOCATION_BUYER_SET_EXACT",
+          "label": "ALLOCATION_BUYER_SET_EXACT",
+          "passed": true,
+          "detail": "There is exactly one quote allocation for each buyer A, B, and C"
+        },
+        {
+          "code": "ALLOCATION_TOTAL_MATCHES",
+          "label": "ALLOCATION_TOTAL_MATCHES",
+          "passed": true,
+          "detail": "Allocation base units sum exactly to the quoted total"
+        },
+        {
+          "code": "ALLOCATION_SPLIT_CANONICAL",
+          "label": "ALLOCATION_SPLIT_CANONICAL",
+          "passed": true,
+          "detail": "Allocation order and remainder follow the canonical buyer A, B, C split"
+        },
+        {
+          "code": "SKU_TOTAL_MATCHES",
+          "label": "SKU_TOTAL_MATCHES",
+          "passed": true,
+          "detail": "The quoted total exactly matches the immutable SKU snapshot"
+        },
+        {
+          "code": "CATALOG_SKU_CANONICAL",
+          "label": "CATALOG_SKU_CANONICAL",
+          "passed": true,
+          "detail": "The complete SKU snapshot exactly matches one canonical catalog entry"
+        },
+        {
+          "code": "MANDATE_NOT_EXPIRED",
+          "label": "A · MANDATE_NOT_EXPIRED",
+          "passed": true,
+          "detail": "Mandate expiry is valid and later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_TIME_VALID",
+          "label": "A · APPROVAL_TIME_VALID",
+          "passed": true,
+          "detail": "Human approval was recorded no later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_NOT_EXPIRED",
+          "label": "A · APPROVAL_NOT_EXPIRED",
+          "passed": true,
+          "detail": "Human approval expiry is valid and later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_MATCHES_MANDATE",
+          "label": "A · APPROVAL_MATCHES_MANDATE",
+          "passed": true,
+          "detail": "Human approval binds the current canonical mandate hash"
+        },
+        {
+          "code": "QUOTE_MATCHES_MANDATE",
+          "label": "A · QUOTE_MATCHES_MANDATE",
+          "passed": true,
+          "detail": "Quote binds the current canonical mandate hash"
+        },
+        {
+          "code": "SIGNER_MATCHES",
+          "label": "A · SIGNER_MATCHES",
+          "passed": true,
+          "detail": "Allocation authority matches the approved mandate signer"
+        },
+        {
+          "code": "SOURCE_ATA_MATCHES",
+          "label": "A · SOURCE_ATA_MATCHES",
+          "passed": true,
+          "detail": "Allocation source token account matches the approved mandate"
+        },
+        {
+          "code": "MINT_ALLOWED",
+          "label": "A · MINT_ALLOWED",
+          "passed": true,
+          "detail": "SKU mint matches the mandate allowlist"
+        },
+        {
+          "code": "MERCHANT_ALLOWED",
+          "label": "A · MERCHANT_ALLOWED",
+          "passed": true,
+          "detail": "SKU merchant owner is in the mandate allowlist"
+        },
+        {
+          "code": "AMOUNT_WITHIN_CAP",
+          "label": "A · AMOUNT_WITHIN_CAP",
+          "passed": true,
+          "detail": "Allocated token base units do not exceed the approved cap"
+        },
+        {
+          "code": "REQUIRED_FEATURES_PRESENT",
+          "label": "A · REQUIRED_FEATURES_PRESENT",
+          "passed": true,
+          "detail": "SKU contains every required feature"
+        },
+        {
+          "code": "FORBIDDEN_FEATURES_ABSENT",
+          "label": "A · FORBIDDEN_FEATURES_ABSENT",
+          "passed": true,
+          "detail": "SKU contains no forbidden feature"
+        },
+        {
+          "code": "ACCESS_DURATION_ALLOWED",
+          "label": "A · ACCESS_DURATION_ALLOWED",
+          "passed": true,
+          "detail": "SKU access duration satisfies the mandate minimum"
+        },
+        {
+          "code": "AUTO_RENEWAL_ALLOWED",
+          "label": "A · AUTO_RENEWAL_ALLOWED",
+          "passed": true,
+          "detail": "SKU does not enable renewal unless the mandate permits it"
+        },
+        {
+          "code": "MANDATE_NOT_EXPIRED",
+          "label": "B · MANDATE_NOT_EXPIRED",
+          "passed": true,
+          "detail": "Mandate expiry is valid and later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_TIME_VALID",
+          "label": "B · APPROVAL_TIME_VALID",
+          "passed": true,
+          "detail": "Human approval was recorded no later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_NOT_EXPIRED",
+          "label": "B · APPROVAL_NOT_EXPIRED",
+          "passed": true,
+          "detail": "Human approval expiry is valid and later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_MATCHES_MANDATE",
+          "label": "B · APPROVAL_MATCHES_MANDATE",
+          "passed": true,
+          "detail": "Human approval binds the current canonical mandate hash"
+        },
+        {
+          "code": "QUOTE_MATCHES_MANDATE",
+          "label": "B · QUOTE_MATCHES_MANDATE",
+          "passed": true,
+          "detail": "Quote binds the current canonical mandate hash"
+        },
+        {
+          "code": "SIGNER_MATCHES",
+          "label": "B · SIGNER_MATCHES",
+          "passed": true,
+          "detail": "Allocation authority matches the approved mandate signer"
+        },
+        {
+          "code": "SOURCE_ATA_MATCHES",
+          "label": "B · SOURCE_ATA_MATCHES",
+          "passed": true,
+          "detail": "Allocation source token account matches the approved mandate"
+        },
+        {
+          "code": "MINT_ALLOWED",
+          "label": "B · MINT_ALLOWED",
+          "passed": true,
+          "detail": "SKU mint matches the mandate allowlist"
+        },
+        {
+          "code": "MERCHANT_ALLOWED",
+          "label": "B · MERCHANT_ALLOWED",
+          "passed": true,
+          "detail": "SKU merchant owner is in the mandate allowlist"
+        },
+        {
+          "code": "AMOUNT_WITHIN_CAP",
+          "label": "B · AMOUNT_WITHIN_CAP",
+          "passed": true,
+          "detail": "Allocated token base units do not exceed the approved cap"
+        },
+        {
+          "code": "REQUIRED_FEATURES_PRESENT",
+          "label": "B · REQUIRED_FEATURES_PRESENT",
+          "passed": true,
+          "detail": "SKU contains every required feature"
+        },
+        {
+          "code": "FORBIDDEN_FEATURES_ABSENT",
+          "label": "B · FORBIDDEN_FEATURES_ABSENT",
+          "passed": true,
+          "detail": "SKU contains no forbidden feature"
+        },
+        {
+          "code": "ACCESS_DURATION_ALLOWED",
+          "label": "B · ACCESS_DURATION_ALLOWED",
+          "passed": true,
+          "detail": "SKU access duration satisfies the mandate minimum"
+        },
+        {
+          "code": "AUTO_RENEWAL_ALLOWED",
+          "label": "B · AUTO_RENEWAL_ALLOWED",
+          "passed": true,
+          "detail": "SKU does not enable renewal unless the mandate permits it"
+        },
+        {
+          "code": "MANDATE_NOT_EXPIRED",
+          "label": "C · MANDATE_NOT_EXPIRED",
+          "passed": true,
+          "detail": "Mandate expiry is valid and later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_TIME_VALID",
+          "label": "C · APPROVAL_TIME_VALID",
+          "passed": true,
+          "detail": "Human approval was recorded no later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_NOT_EXPIRED",
+          "label": "C · APPROVAL_NOT_EXPIRED",
+          "passed": true,
+          "detail": "Human approval expiry is valid and later than evaluation time"
+        },
+        {
+          "code": "APPROVAL_MATCHES_MANDATE",
+          "label": "C · APPROVAL_MATCHES_MANDATE",
+          "passed": true,
+          "detail": "Human approval binds the current canonical mandate hash"
+        },
+        {
+          "code": "QUOTE_MATCHES_MANDATE",
+          "label": "C · QUOTE_MATCHES_MANDATE",
+          "passed": true,
+          "detail": "Quote binds the current canonical mandate hash"
+        },
+        {
+          "code": "SIGNER_MATCHES",
+          "label": "C · SIGNER_MATCHES",
+          "passed": true,
+          "detail": "Allocation authority matches the approved mandate signer"
+        },
+        {
+          "code": "SOURCE_ATA_MATCHES",
+          "label": "C · SOURCE_ATA_MATCHES",
+          "passed": true,
+          "detail": "Allocation source token account matches the approved mandate"
+        },
+        {
+          "code": "MINT_ALLOWED",
+          "label": "C · MINT_ALLOWED",
+          "passed": true,
+          "detail": "SKU mint matches the mandate allowlist"
+        },
+        {
+          "code": "MERCHANT_ALLOWED",
+          "label": "C · MERCHANT_ALLOWED",
+          "passed": true,
+          "detail": "SKU merchant owner is in the mandate allowlist"
+        },
+        {
+          "code": "AMOUNT_WITHIN_CAP",
+          "label": "C · AMOUNT_WITHIN_CAP",
+          "passed": true,
+          "detail": "Allocated token base units do not exceed the approved cap"
+        },
+        {
+          "code": "REQUIRED_FEATURES_PRESENT",
+          "label": "C · REQUIRED_FEATURES_PRESENT",
+          "passed": true,
+          "detail": "SKU contains every required feature"
+        },
+        {
+          "code": "FORBIDDEN_FEATURES_ABSENT",
+          "label": "C · FORBIDDEN_FEATURES_ABSENT",
+          "passed": true,
+          "detail": "SKU contains no forbidden feature"
+        },
+        {
+          "code": "ACCESS_DURATION_ALLOWED",
+          "label": "C · ACCESS_DURATION_ALLOWED",
+          "passed": true,
+          "detail": "SKU access duration satisfies the mandate minimum"
+        },
+        {
+          "code": "AUTO_RENEWAL_ALLOWED",
+          "label": "C · AUTO_RENEWAL_ALLOWED",
+          "passed": true,
+          "detail": "SKU does not enable renewal unless the mandate permits it"
+        }
+      ],
+      "timeline": [
+        {
+          "sequence": 0,
+          "state": "DRAFT",
+          "label": "주문 초안 생성",
+          "at": "2026-08-03T14:38:25.705Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 1,
+          "state": "AWAITING_APPROVAL",
+          "label": "구매 조건 HITL 승인 대기",
+          "at": "2026-08-03T14:38:40.218Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 2,
+          "state": "AWAITING_APPROVAL",
+          "label": "구매 조건 HITL 승인 대기",
+          "at": "2026-08-03T14:38:40.501Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 3,
+          "state": "AWAITING_APPROVAL",
+          "label": "구매 조건 HITL 승인 대기",
+          "at": "2026-08-03T14:38:40.667Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 4,
+          "state": "APPROVED",
+          "label": "세 구매 조건 승인 완료",
+          "at": "2026-08-03T14:38:40.777Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 5,
+          "state": "PLANNED",
+          "label": "에이전트 상품 선택 완료",
+          "at": "2026-08-03T14:40:32.702Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 6,
+          "state": "RESERVED",
+          "label": "예산 및 quote 예약",
+          "at": "2026-08-03T14:40:32.844Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 7,
+          "state": "MESSAGE_BUILT",
+          "label": "Solana 메시지 생성·검증",
+          "at": "2026-08-03T14:40:33.990Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 8,
+          "state": "SIGNING",
+          "label": "네 signer가 동일 메시지 서명",
+          "at": "2026-08-03T14:40:34.044Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 9,
+          "state": "FULLY_SIGNED",
+          "label": "완전 서명 원본 보관",
+          "at": "2026-08-03T14:40:34.113Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 10,
+          "state": "SUBMISSION_STARTED",
+          "label": "동일 바이트 제출·조정",
+          "at": "2026-08-03T14:40:34.300Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 11,
+          "state": "FINALIZED_SUCCESS",
+          "label": "finalized 거래 독립 검증",
+          "at": "2026-08-03T14:40:47.257Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 12,
+          "state": "FULFILLING",
+          "label": "구매자별 이용권 발급",
+          "at": "2026-08-03T14:40:47.320Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 13,
+          "state": "FULFILLED",
+          "label": "이용권 3개 발급 완료",
+          "at": "2026-08-03T14:40:47.383Z",
+          "status": "complete"
+        }
+      ],
+      "evidence": {
+        "cluster": "solana-devnet",
+        "txSignature": "2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW",
+        "explorerUrl": "https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet",
+        "quoteHash": "2738aeb50f428d72f7cf8ba3ef70a74b7ed56b16433fb8756cb354b9733faad9",
+        "policyProofHash": "df10b8b6d8ffdc99e89767758258a49fceea3a23fadc0d3bfeb18ec620c4b2c0",
+        "messageHash": "02991fe143fb321ce52816423c79ded5b6abd8bdb674f3261dd044213f7b89b4",
+        "memo": "MP1:2738aeb50f428d72f7cf8ba3ef70a74b7ed56b16433fb8756cb354b9733faad9:df10b8b6d8ffdc99e89767758258a49fceea3a23fadc0d3bfeb18ec620c4b2c0",
+        "transferCount": 3,
+        "requiredSignerCount": 4,
+        "commitment": "finalized",
+        "metaError": null,
+        "slot": "480936920",
+        "rawTransactionHash": "d12c07e9193ea4c2dc009659f7678fa1e6a75399b588a7b89dddb28ac5e0a7d2",
+        "mint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+        "sourceDebits": [
+          {
+            "buyerId": "A",
+            "sourceAta": "7EQmXHZbgDvib1ETZqPr4zipGvwDGMTxnPKpoGdTteMY",
+            "preAmountAtomic": "20000000",
+            "postAmountAtomic": "19666666",
+            "debitAtomic": "333334"
+          },
+          {
+            "buyerId": "B",
+            "sourceAta": "7vQVj92mQ3u1w3jEUTb9YsEAX1Ct3Qz3AmMq6xGPkc33",
+            "preAmountAtomic": "20000000",
+            "postAmountAtomic": "19666667",
+            "debitAtomic": "333333"
+          },
+          {
+            "buyerId": "C",
+            "sourceAta": "Fzqkcx731vFpDPHXW9wrqkYRqfRMcWokjAMWCmToesVE",
+            "preAmountAtomic": "20000000",
+            "postAmountAtomic": "19666667",
+            "debitAtomic": "333333"
+          }
+        ],
+        "destinationAta": "5UeNvj4JGQrB4fDmJgZ9q9yMgary6Kom8yDwSbs1XgKN",
+        "destinationPreAmountAtomic": "0",
+        "destinationPostAmountAtomic": "1000000",
+        "destinationCreditAtomic": "1000000"
+      },
+      "entitlementCount": 3
+    }
+  },
+  "order": {
+    "orderId": "ord_b6ab984c23334cb0a3f8480d4c12abf9",
+    "state": "FULFILLED",
+    "version": 13,
+    "createdAt": "2026-08-03T14:38:25.705Z",
+    "updatedAt": "2026-08-03T14:40:47.383Z",
+    "scenarioLabel": "submission-normal-2ac7eac",
+    "agent": {
+      "provider": "google-adk",
+      "model": "gemini-2.5-flash",
+      "startedAt": "2026-08-03T14:38:25.705Z",
+      "completedAt": "2026-08-03T14:38:40.115Z",
+      "selectedSkuId": "signaldesk-team-3"
+    },
+    "mandates": [
+      {
+        "buyerId": "A",
+        "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, API와 CSV가 모두 필요합니다.",
+        "mandateHash": "4da95f6157bf11701b750f6a0eaf4aafb50c4c45b160cfda83000465e25600aa",
+        "maxAmountAtomic": "400000",
+        "requiredFeatures": [
+          "api",
+          "csv"
+        ],
+        "forbiddenFeatures": [],
+        "validUntil": "2026-08-03T14:53:25.705Z",
+        "approvedAt": "2026-08-03T14:38:40.501Z",
+        "status": "APPROVED"
+      },
+      {
+        "buyerId": "B",
+        "naturalLanguage": "SignalDesk 공동 구매. 최대 0.34 USDC, API가 필요하고 자동갱신은 금지합니다.",
+        "mandateHash": "33f185202501e0123149ce09b19b8b9a9699fe8ae29abb6dc075d123d10286bc",
+        "maxAmountAtomic": "340000",
+        "requiredFeatures": [
+          "api"
+        ],
+        "forbiddenFeatures": [
+          "auto-renew"
+        ],
+        "validUntil": "2026-08-03T14:53:25.705Z",
+        "approvedAt": "2026-08-03T14:38:40.667Z",
+        "status": "APPROVED"
+      },
+      {
+        "buyerId": "C",
+        "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, 7일 동안 사용하는 일회성 상품만 허용합니다.",
+        "mandateHash": "1814e0e6c20b5cb6947f5643b5d657476a1adc38676641070548a5c58f98fe64",
+        "maxAmountAtomic": "400000",
+        "requiredFeatures": [],
+        "forbiddenFeatures": [
+          "auto-renew"
+        ],
+        "validUntil": "2026-08-03T14:53:25.705Z",
+        "approvedAt": "2026-08-03T14:38:40.777Z",
+        "status": "APPROVED"
+      }
+    ],
+    "selection": {
+      "skuId": "signaldesk-team-3",
+      "productName": "SignalDesk Team-3",
+      "rationale": "The 'signaldesk-team-3' SKU satisfies all required features (API, CSV, 7-day access) and avoids forbidden features (auto-renew). Its total cost of 1,000,000 atomic units, when split (A: 333334, B: 333333, C: 333333), is within each buyer's maximum budget.",
+      "totalAmountAtomic": "1000000",
+      "allocations": [
+        {
+          "buyerId": "A",
+          "amountAtomic": "333334"
+        },
+        {
+          "buyerId": "B",
+          "amountAtomic": "333333"
+        },
+        {
+          "buyerId": "C",
+          "amountAtomic": "333333"
+        }
+      ]
+    },
+    "policyChecks": [
+      {
+        "code": "EVALUATION_TIME_VALID",
+        "label": "EVALUATION_TIME_VALID",
+        "passed": true,
+        "detail": "Evaluation time is a valid ISO-compatible timestamp"
+      },
+      {
+        "code": "QUOTE_NOT_EXPIRED",
+        "label": "QUOTE_NOT_EXPIRED",
+        "passed": true,
+        "detail": "Quote expiry is valid and later than evaluation time"
+      },
+      {
+        "code": "MANDATE_BUYER_SET_EXACT",
+        "label": "MANDATE_BUYER_SET_EXACT",
+        "passed": true,
+        "detail": "There is exactly one mandate for each buyer A, B, and C"
+      },
+      {
+        "code": "APPROVAL_BUYER_SET_EXACT",
+        "label": "APPROVAL_BUYER_SET_EXACT",
+        "passed": true,
+        "detail": "There is exactly one human approval for each buyer A, B, and C"
+      },
+      {
+        "code": "ALLOCATION_BUYER_SET_EXACT",
+        "label": "ALLOCATION_BUYER_SET_EXACT",
+        "passed": true,
+        "detail": "There is exactly one quote allocation for each buyer A, B, and C"
+      },
+      {
+        "code": "ALLOCATION_TOTAL_MATCHES",
+        "label": "ALLOCATION_TOTAL_MATCHES",
+        "passed": true,
+        "detail": "Allocation base units sum exactly to the quoted total"
+      },
+      {
+        "code": "ALLOCATION_SPLIT_CANONICAL",
+        "label": "ALLOCATION_SPLIT_CANONICAL",
+        "passed": true,
+        "detail": "Allocation order and remainder follow the canonical buyer A, B, C split"
+      },
+      {
+        "code": "SKU_TOTAL_MATCHES",
+        "label": "SKU_TOTAL_MATCHES",
+        "passed": true,
+        "detail": "The quoted total exactly matches the immutable SKU snapshot"
+      },
+      {
+        "code": "CATALOG_SKU_CANONICAL",
+        "label": "CATALOG_SKU_CANONICAL",
+        "passed": true,
+        "detail": "The complete SKU snapshot exactly matches one canonical catalog entry"
+      },
+      {
+        "code": "MANDATE_NOT_EXPIRED",
+        "label": "A · MANDATE_NOT_EXPIRED",
+        "passed": true,
+        "detail": "Mandate expiry is valid and later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_TIME_VALID",
+        "label": "A · APPROVAL_TIME_VALID",
+        "passed": true,
+        "detail": "Human approval was recorded no later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_NOT_EXPIRED",
+        "label": "A · APPROVAL_NOT_EXPIRED",
+        "passed": true,
+        "detail": "Human approval expiry is valid and later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_MATCHES_MANDATE",
+        "label": "A · APPROVAL_MATCHES_MANDATE",
+        "passed": true,
+        "detail": "Human approval binds the current canonical mandate hash"
+      },
+      {
+        "code": "QUOTE_MATCHES_MANDATE",
+        "label": "A · QUOTE_MATCHES_MANDATE",
+        "passed": true,
+        "detail": "Quote binds the current canonical mandate hash"
+      },
+      {
+        "code": "SIGNER_MATCHES",
+        "label": "A · SIGNER_MATCHES",
+        "passed": true,
+        "detail": "Allocation authority matches the approved mandate signer"
+      },
+      {
+        "code": "SOURCE_ATA_MATCHES",
+        "label": "A · SOURCE_ATA_MATCHES",
+        "passed": true,
+        "detail": "Allocation source token account matches the approved mandate"
+      },
+      {
+        "code": "MINT_ALLOWED",
+        "label": "A · MINT_ALLOWED",
+        "passed": true,
+        "detail": "SKU mint matches the mandate allowlist"
+      },
+      {
+        "code": "MERCHANT_ALLOWED",
+        "label": "A · MERCHANT_ALLOWED",
+        "passed": true,
+        "detail": "SKU merchant owner is in the mandate allowlist"
+      },
+      {
+        "code": "AMOUNT_WITHIN_CAP",
+        "label": "A · AMOUNT_WITHIN_CAP",
+        "passed": true,
+        "detail": "Allocated token base units do not exceed the approved cap"
+      },
+      {
+        "code": "REQUIRED_FEATURES_PRESENT",
+        "label": "A · REQUIRED_FEATURES_PRESENT",
+        "passed": true,
+        "detail": "SKU contains every required feature"
+      },
+      {
+        "code": "FORBIDDEN_FEATURES_ABSENT",
+        "label": "A · FORBIDDEN_FEATURES_ABSENT",
+        "passed": true,
+        "detail": "SKU contains no forbidden feature"
+      },
+      {
+        "code": "ACCESS_DURATION_ALLOWED",
+        "label": "A · ACCESS_DURATION_ALLOWED",
+        "passed": true,
+        "detail": "SKU access duration satisfies the mandate minimum"
+      },
+      {
+        "code": "AUTO_RENEWAL_ALLOWED",
+        "label": "A · AUTO_RENEWAL_ALLOWED",
+        "passed": true,
+        "detail": "SKU does not enable renewal unless the mandate permits it"
+      },
+      {
+        "code": "MANDATE_NOT_EXPIRED",
+        "label": "B · MANDATE_NOT_EXPIRED",
+        "passed": true,
+        "detail": "Mandate expiry is valid and later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_TIME_VALID",
+        "label": "B · APPROVAL_TIME_VALID",
+        "passed": true,
+        "detail": "Human approval was recorded no later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_NOT_EXPIRED",
+        "label": "B · APPROVAL_NOT_EXPIRED",
+        "passed": true,
+        "detail": "Human approval expiry is valid and later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_MATCHES_MANDATE",
+        "label": "B · APPROVAL_MATCHES_MANDATE",
+        "passed": true,
+        "detail": "Human approval binds the current canonical mandate hash"
+      },
+      {
+        "code": "QUOTE_MATCHES_MANDATE",
+        "label": "B · QUOTE_MATCHES_MANDATE",
+        "passed": true,
+        "detail": "Quote binds the current canonical mandate hash"
+      },
+      {
+        "code": "SIGNER_MATCHES",
+        "label": "B · SIGNER_MATCHES",
+        "passed": true,
+        "detail": "Allocation authority matches the approved mandate signer"
+      },
+      {
+        "code": "SOURCE_ATA_MATCHES",
+        "label": "B · SOURCE_ATA_MATCHES",
+        "passed": true,
+        "detail": "Allocation source token account matches the approved mandate"
+      },
+      {
+        "code": "MINT_ALLOWED",
+        "label": "B · MINT_ALLOWED",
+        "passed": true,
+        "detail": "SKU mint matches the mandate allowlist"
+      },
+      {
+        "code": "MERCHANT_ALLOWED",
+        "label": "B · MERCHANT_ALLOWED",
+        "passed": true,
+        "detail": "SKU merchant owner is in the mandate allowlist"
+      },
+      {
+        "code": "AMOUNT_WITHIN_CAP",
+        "label": "B · AMOUNT_WITHIN_CAP",
+        "passed": true,
+        "detail": "Allocated token base units do not exceed the approved cap"
+      },
+      {
+        "code": "REQUIRED_FEATURES_PRESENT",
+        "label": "B · REQUIRED_FEATURES_PRESENT",
+        "passed": true,
+        "detail": "SKU contains every required feature"
+      },
+      {
+        "code": "FORBIDDEN_FEATURES_ABSENT",
+        "label": "B · FORBIDDEN_FEATURES_ABSENT",
+        "passed": true,
+        "detail": "SKU contains no forbidden feature"
+      },
+      {
+        "code": "ACCESS_DURATION_ALLOWED",
+        "label": "B · ACCESS_DURATION_ALLOWED",
+        "passed": true,
+        "detail": "SKU access duration satisfies the mandate minimum"
+      },
+      {
+        "code": "AUTO_RENEWAL_ALLOWED",
+        "label": "B · AUTO_RENEWAL_ALLOWED",
+        "passed": true,
+        "detail": "SKU does not enable renewal unless the mandate permits it"
+      },
+      {
+        "code": "MANDATE_NOT_EXPIRED",
+        "label": "C · MANDATE_NOT_EXPIRED",
+        "passed": true,
+        "detail": "Mandate expiry is valid and later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_TIME_VALID",
+        "label": "C · APPROVAL_TIME_VALID",
+        "passed": true,
+        "detail": "Human approval was recorded no later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_NOT_EXPIRED",
+        "label": "C · APPROVAL_NOT_EXPIRED",
+        "passed": true,
+        "detail": "Human approval expiry is valid and later than evaluation time"
+      },
+      {
+        "code": "APPROVAL_MATCHES_MANDATE",
+        "label": "C · APPROVAL_MATCHES_MANDATE",
+        "passed": true,
+        "detail": "Human approval binds the current canonical mandate hash"
+      },
+      {
+        "code": "QUOTE_MATCHES_MANDATE",
+        "label": "C · QUOTE_MATCHES_MANDATE",
+        "passed": true,
+        "detail": "Quote binds the current canonical mandate hash"
+      },
+      {
+        "code": "SIGNER_MATCHES",
+        "label": "C · SIGNER_MATCHES",
+        "passed": true,
+        "detail": "Allocation authority matches the approved mandate signer"
+      },
+      {
+        "code": "SOURCE_ATA_MATCHES",
+        "label": "C · SOURCE_ATA_MATCHES",
+        "passed": true,
+        "detail": "Allocation source token account matches the approved mandate"
+      },
+      {
+        "code": "MINT_ALLOWED",
+        "label": "C · MINT_ALLOWED",
+        "passed": true,
+        "detail": "SKU mint matches the mandate allowlist"
+      },
+      {
+        "code": "MERCHANT_ALLOWED",
+        "label": "C · MERCHANT_ALLOWED",
+        "passed": true,
+        "detail": "SKU merchant owner is in the mandate allowlist"
+      },
+      {
+        "code": "AMOUNT_WITHIN_CAP",
+        "label": "C · AMOUNT_WITHIN_CAP",
+        "passed": true,
+        "detail": "Allocated token base units do not exceed the approved cap"
+      },
+      {
+        "code": "REQUIRED_FEATURES_PRESENT",
+        "label": "C · REQUIRED_FEATURES_PRESENT",
+        "passed": true,
+        "detail": "SKU contains every required feature"
+      },
+      {
+        "code": "FORBIDDEN_FEATURES_ABSENT",
+        "label": "C · FORBIDDEN_FEATURES_ABSENT",
+        "passed": true,
+        "detail": "SKU contains no forbidden feature"
+      },
+      {
+        "code": "ACCESS_DURATION_ALLOWED",
+        "label": "C · ACCESS_DURATION_ALLOWED",
+        "passed": true,
+        "detail": "SKU access duration satisfies the mandate minimum"
+      },
+      {
+        "code": "AUTO_RENEWAL_ALLOWED",
+        "label": "C · AUTO_RENEWAL_ALLOWED",
+        "passed": true,
+        "detail": "SKU does not enable renewal unless the mandate permits it"
+      }
+    ],
+    "timeline": [
+      {
+        "sequence": 0,
+        "state": "DRAFT",
+        "label": "주문 초안 생성",
+        "at": "2026-08-03T14:38:25.705Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 1,
+        "state": "AWAITING_APPROVAL",
+        "label": "구매 조건 HITL 승인 대기",
+        "at": "2026-08-03T14:38:40.218Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 2,
+        "state": "AWAITING_APPROVAL",
+        "label": "구매 조건 HITL 승인 대기",
+        "at": "2026-08-03T14:38:40.501Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 3,
+        "state": "AWAITING_APPROVAL",
+        "label": "구매 조건 HITL 승인 대기",
+        "at": "2026-08-03T14:38:40.667Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 4,
+        "state": "APPROVED",
+        "label": "세 구매 조건 승인 완료",
+        "at": "2026-08-03T14:38:40.777Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 5,
+        "state": "PLANNED",
+        "label": "에이전트 상품 선택 완료",
+        "at": "2026-08-03T14:40:32.702Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 6,
+        "state": "RESERVED",
+        "label": "예산 및 quote 예약",
+        "at": "2026-08-03T14:40:32.844Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 7,
+        "state": "MESSAGE_BUILT",
+        "label": "Solana 메시지 생성·검증",
+        "at": "2026-08-03T14:40:33.990Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 8,
+        "state": "SIGNING",
+        "label": "네 signer가 동일 메시지 서명",
+        "at": "2026-08-03T14:40:34.044Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 9,
+        "state": "FULLY_SIGNED",
+        "label": "완전 서명 원본 보관",
+        "at": "2026-08-03T14:40:34.113Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 10,
+        "state": "SUBMISSION_STARTED",
+        "label": "동일 바이트 제출·조정",
+        "at": "2026-08-03T14:40:34.300Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 11,
+        "state": "FINALIZED_SUCCESS",
+        "label": "finalized 거래 독립 검증",
+        "at": "2026-08-03T14:40:47.257Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 12,
+        "state": "FULFILLING",
+        "label": "구매자별 이용권 발급",
+        "at": "2026-08-03T14:40:47.320Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 13,
+        "state": "FULFILLED",
+        "label": "이용권 3개 발급 완료",
+        "at": "2026-08-03T14:40:47.383Z",
+        "status": "complete"
+      }
+    ],
+    "evidence": {
+      "cluster": "solana-devnet",
+      "txSignature": "2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW",
+      "explorerUrl": "https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet",
+      "quoteHash": "2738aeb50f428d72f7cf8ba3ef70a74b7ed56b16433fb8756cb354b9733faad9",
+      "policyProofHash": "df10b8b6d8ffdc99e89767758258a49fceea3a23fadc0d3bfeb18ec620c4b2c0",
+      "messageHash": "02991fe143fb321ce52816423c79ded5b6abd8bdb674f3261dd044213f7b89b4",
+      "memo": "MP1:2738aeb50f428d72f7cf8ba3ef70a74b7ed56b16433fb8756cb354b9733faad9:df10b8b6d8ffdc99e89767758258a49fceea3a23fadc0d3bfeb18ec620c4b2c0",
+      "transferCount": 3,
+      "requiredSignerCount": 4,
+      "commitment": "finalized",
+      "metaError": null,
+      "slot": "480936920",
+      "rawTransactionHash": "d12c07e9193ea4c2dc009659f7678fa1e6a75399b588a7b89dddb28ac5e0a7d2",
+      "mint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+      "sourceDebits": [
+        {
+          "buyerId": "A",
+          "sourceAta": "7EQmXHZbgDvib1ETZqPr4zipGvwDGMTxnPKpoGdTteMY",
+          "preAmountAtomic": "20000000",
+          "postAmountAtomic": "19666666",
+          "debitAtomic": "333334"
+        },
+        {
+          "buyerId": "B",
+          "sourceAta": "7vQVj92mQ3u1w3jEUTb9YsEAX1Ct3Qz3AmMq6xGPkc33",
+          "preAmountAtomic": "20000000",
+          "postAmountAtomic": "19666667",
+          "debitAtomic": "333333"
+        },
+        {
+          "buyerId": "C",
+          "sourceAta": "Fzqkcx731vFpDPHXW9wrqkYRqfRMcWokjAMWCmToesVE",
+          "preAmountAtomic": "20000000",
+          "postAmountAtomic": "19666667",
+          "debitAtomic": "333333"
+        }
+      ],
+      "destinationAta": "5UeNvj4JGQrB4fDmJgZ9q9yMgary6Kom8yDwSbs1XgKN",
+      "destinationPreAmountAtomic": "0",
+      "destinationPostAmountAtomic": "1000000",
+      "destinationCreditAtomic": "1000000"
+    },
+    "entitlementCount": 3
+  }
+}

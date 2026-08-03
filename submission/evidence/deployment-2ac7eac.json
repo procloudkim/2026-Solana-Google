@@ -1,0 +1,87 @@
+{
+  "schema": "mandate-pool/deployment-evidence@1",
+  "kind": "cloud-run-deployment",
+  "observedAt": "2026-08-03T14:44:16Z",
+  "claim": "The same source commit and container digest are ready on the public off-chain judge fixture and the private Solana Devnet live service.",
+  "method": {
+    "serviceAndRevisionInspection": "Read-only gcloud run services describe and gcloud run revisions describe calls in project project-682bea5f-ac81-4a36-8a1, region asia-northeast3.",
+    "iamInspection": "Read-only gcloud run services get-iam-policy calls checked the allUsers roles/run.invoker binding in both directions.",
+    "readinessInspection": "The judge fixture was queried directly with its published demo access value. The live service was queried through an authenticated local Cloud Run proxy; the preserved response is live-preflight-2ac7eac.json.",
+    "privateBoundaryInspection": "An unauthenticated GET to the live service /health endpoint returned HTTP 403."
+  },
+  "observation": {
+    "projectId": "project-682bea5f-ac81-4a36-8a1",
+    "region": "asia-northeast3",
+    "sourceCommit": "2ac7eac17ea803b4537b630234ac6507523e5325",
+    "imageDigest": "asia-northeast3-docker.pkg.dev/project-682bea5f-ac81-4a36-8a1/cloud-run-source-deploy/mandate-pool-judge@sha256:5d22c850b5fb113eaff07d653368b1cfac6e8a00d49b5e1a2ebaa9a586f0b995",
+    "serviceAccounts": {
+      "build": "mandate-pool-build@project-682bea5f-ac81-4a36-8a1.iam.gserviceaccount.com",
+      "judgeRuntime": "mandate-pool-fixture@project-682bea5f-ac81-4a36-8a1.iam.gserviceaccount.com",
+      "liveRuntime": "mandate-pool-runtime@project-682bea5f-ac81-4a36-8a1.iam.gserviceaccount.com"
+    },
+    "judge": {
+      "service": "mandate-pool-judge",
+      "revision": "mandate-pool-judge-00004-kxd",
+      "revisionReady": true,
+      "url": "https://mandate-pool-judge-x7id33dnyq-du.a.run.app",
+      "sourceCommitLabel": "2ac7eac17ea803b4537b630234ac6507523e5325",
+      "imageDigest": "asia-northeast3-docker.pkg.dev/project-682bea5f-ac81-4a36-8a1/cloud-run-source-deploy/mandate-pool-judge@sha256:5d22c850b5fb113eaff07d653368b1cfac6e8a00d49b5e1a2ebaa9a586f0b995",
+      "runtimeServiceAccount": "mandate-pool-fixture@project-682bea5f-ac81-4a36-8a1.iam.gserviceaccount.com",
+      "access": {
+        "allUsersRunInvoker": true,
+        "applicationHeader": "X-Demo-Key",
+        "publishedAccessValueDocumented": true,
+        "classification": "Published judge-fixture access value; intentionally public and not a production secret."
+      },
+      "runtime": {
+        "mode": "fixture",
+        "cluster": "fixture",
+        "onChain": false,
+        "label": "FIXTURE · NOT ON-CHAIN"
+      },
+      "readiness": {
+        "ready": true,
+        "checks": {
+          "domain": true,
+          "stateRepository": true,
+          "settlement": true,
+          "agentConfiguration": true
+        }
+      }
+    },
+    "live": {
+      "service": "mandate-pool-live",
+      "revision": "mandate-pool-live-00005-4tb",
+      "revisionReady": true,
+      "url": "https://mandate-pool-live-x7id33dnyq-du.a.run.app",
+      "sourceCommitLabel": "2ac7eac17ea803b4537b630234ac6507523e5325",
+      "imageDigest": "asia-northeast3-docker.pkg.dev/project-682bea5f-ac81-4a36-8a1/cloud-run-source-deploy/mandate-pool-judge@sha256:5d22c850b5fb113eaff07d653368b1cfac6e8a00d49b5e1a2ebaa9a586f0b995",
+      "runtimeServiceAccount": "mandate-pool-runtime@project-682bea5f-ac81-4a36-8a1.iam.gserviceaccount.com",
+      "firestoreNamespace": "submission-2ac7eac",
+      "allUsersRunInvoker": false,
+      "unauthenticatedHealthStatus": 403,
+      "runtime": {
+        "mode": "live",
+        "cluster": "solana-devnet",
+        "onChain": true,
+        "label": "LIVE · SOLANA DEVNET · TEST TOKENS"
+      },
+      "authenticatedReadiness": {
+        "ready": true,
+        "checks": {
+          "domain": true,
+          "stateRepository": true,
+          "settlement": true,
+          "agentConfiguration": true
+        },
+        "sourceReceipt": "live-preflight-2ac7eac.json"
+      }
+    }
+  },
+  "verdict": "PASS",
+  "limitations": [
+    "The judge service is a deterministic off-chain fixture and is not evidence of a Solana transaction.",
+    "The live readiness response proves dependency readiness at observation time; the normal-order receipt and finalized balance snapshot are the transaction-specific evidence.",
+    "All token amounts in the linked live evidence are Solana Devnet test USDC, not Mainnet assets or real money."
+  ]
+}

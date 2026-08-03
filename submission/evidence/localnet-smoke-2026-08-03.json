@@ -1,0 +1,111 @@
+{
+  "schema": "mandate-pool/localnet-smoke-receipt@1",
+  "status": "PASS",
+  "generatedAt": "2026-08-03T13:59:41.124Z",
+  "validator": {
+    "binary": "/tmp/agave-install-data/active_release/bin/solana-test-validator",
+    "version": "solana-test-validator 4.1.1 (src:6a8c724a; feat:c763ae0a, client:Agave)",
+    "rpcUrl": "http://127.0.0.1:18899",
+    "genesisHash": "RDoihSGDfVJLmTDxsYJ1gtJvjRAD2NGSZ11ndyh3roP"
+  },
+  "safety": {
+    "localLoopbackOnly": true,
+    "disposableKeysAndMint": true,
+    "devnetGenesisRejected": true,
+    "devnetMintRejected": true,
+    "secretSources": "none",
+    "productionGuardModified": false,
+    "temporaryLedgerRemoved": true
+  },
+  "setup": {
+    "airdropSignature": "22kkuWvqkgyYu5eXVAGAKXaW1Ls5diJ15oonx6Za6XtKFP4rXYpCRAFFoDHFkQURzZBcQiaaSA2kgoUfmZ4tW5J9",
+    "transactionSignatures": [
+      "C55g9d8AXTRpZnXcpBMgAhGHPTpKX6gZmaBUxXPKr5kKcrczXFbB1g1d9yUxjYzubDyVC76CJcLrin4ZttB4pD3",
+      "3FsuyJpCKUzw47zsTRqz1Gcam5YB1uYtyhPy1HBo4SHgRArSQHcBYzBBpCXVtzRv8S9uaVbdYjE7fF4FkhtjRtKG",
+      "5P98R2RrPdtrTmoBBw3e7ytXC3dgiBVQWwYLNEH1xRNfyHoq9wBNFWRwLzdxFbYsLdvpBgBHH6Sf6uPLq6tns72w",
+      "3RsXVJ1eiZXrkN1TJ7zj7Ljeb7912kFr9rLfRftgKvZ5MjwUW4KxQNZ8ER4kexWZdXRK1eP4aqNWyoYwa3uvYaWi",
+      "KSNuxhcRCgzZgmGbKyNtdUqBBVm7A66JsBFsKE7NirPZkzPMub7GaypLSGNwdGcygGfsNxZGD1Xtxv7meGMWRnB"
+    ],
+    "mint": "9anKFMQTtjNnaqm6FRjobocEeL3gjVgMXwJ1kuf5Rh9s",
+    "sponsor": "36FGmGEhfoy9f5nbgZDMGU7Vj4jiva6cQBrmTzE7zE5z",
+    "buyers": {
+      "A": {
+        "owner": "DHv8vkZ9nzHEFF7oyCMfaKgwdjaSQ3pwhDQCLeuYvy2t",
+        "ata": "5agLUB8fS2H9AsJGPwEAXAToa4qj1BPbkZTjrE5CWCBz",
+        "initialAmountAtomic": "1000000"
+      },
+      "B": {
+        "owner": "8tmYJctfrTd5VzD7EGeDyW5Kpk4NyosGwTcBH5kSjZhW",
+        "ata": "2n3aZjnVcEaSfWme4DJLLTkKerUVW55i56bhvSM5EmBH",
+        "initialAmountAtomic": "1000000"
+      },
+      "C": {
+        "owner": "Apy8KvqmhRwZKQzxBMCYvrueVV5W23BnWCDLJPFzkNSk",
+        "ata": "3WQDQTh6jpnBbrHFHhuy9qY3PDrNQt2TeV2SjR4VsmJb",
+        "initialAmountAtomic": "1000000"
+      }
+    },
+    "merchant": {
+      "owner": "JDNsbCr3T5ApCL1AE9o6HEDcssjcuM5TnTva5wvXXzAz",
+      "ata": "C8ZmtvYmJYQ5Gau7LxypsjP4PUsR4ys94WXEbaGzqDHi",
+      "initialAmountAtomic": "0"
+    }
+  },
+  "rejection": {
+    "decision": "NO_BUY",
+    "buyerId": "B",
+    "capAtomic": "300000",
+    "requiredAtomic": "333333",
+    "reasonCodes": [
+      "AMOUNT_WITHIN_CAP:B"
+    ],
+    "rejectedProofBuilderRefused": true,
+    "transactionBuilt": false,
+    "rawTransactionBase64": null,
+    "signature": null
+  },
+  "settlement": {
+    "transactionCount": 1,
+    "version": 0,
+    "instructionCount": 4,
+    "transferCheckedCount": 3,
+    "transferAmountsAtomic": [
+      "333334",
+      "333333",
+      "333333"
+    ],
+    "memo": "MP1:7796f65ca21cf29655c46dabe6fdb6e846c7749e3aa5c48f2acd5dfa842c1599:d40a635a46ab596fadbae91e89cca788712ad5964e0104907bbeeec6f13b560d",
+    "signature": "37VQ6zyZTS2EwSqYqLH36an6XkDYPBVMmwNHamtEEyuUMLpFnxAXVgLGXJgPLHe8T9cbtRpF6VsUC3vamafHmGzh",
+    "finalizedSlot": "193",
+    "messageHash": "a2636690143458b51a61e694e8c33691800902fcf6348fe46ee61792f0106484",
+    "rawTransactionHash": "21f71fff70251604ef074550674912416c7a894dd067b6684893d5ccd48531a3",
+    "rawTransactionMatchesPreparedBytes": true,
+    "sourceDebits": [
+      {
+        "buyerId": "A",
+        "sourceAta": "5agLUB8fS2H9AsJGPwEAXAToa4qj1BPbkZTjrE5CWCBz",
+        "preAmountAtomic": "1000000",
+        "postAmountAtomic": "666666",
+        "debitAtomic": "333334"
+      },
+      {
+        "buyerId": "B",
+        "sourceAta": "2n3aZjnVcEaSfWme4DJLLTkKerUVW55i56bhvSM5EmBH",
+        "preAmountAtomic": "1000000",
+        "postAmountAtomic": "666667",
+        "debitAtomic": "333333"
+      },
+      {
+        "buyerId": "C",
+        "sourceAta": "3WQDQTh6jpnBbrHFHhuy9qY3PDrNQt2TeV2SjR4VsmJb",
+        "preAmountAtomic": "1000000",
+        "postAmountAtomic": "666667",
+        "debitAtomic": "333333"
+      }
+    ],
+    "destinationAta": "C8ZmtvYmJYQ5Gau7LxypsjP4PUsR4ys94WXEbaGzqDHi",
+    "destinationPreAmountAtomic": "0",
+    "destinationPostAmountAtomic": "1000000",
+    "destinationCreditAtomic": "1000000"
+  }
+}

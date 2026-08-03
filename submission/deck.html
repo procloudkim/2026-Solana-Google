@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mandate Pool — 6-slide submission deck</title>
+  <style>
+    :root {
+      --ink: #102033;
+      --muted: #58677a;
+      --paper: #f4f1e9;
+      --white: #ffffff;
+      --navy: #0b1729;
+      --navy-2: #122744;
+      --teal: #19a88b;
+      --teal-soft: #dff5ef;
+      --orange: #ff8a42;
+      --orange-soft: #fff0e6;
+      --red: #b94745;
+      --line: #d8dee7;
+      --shadow: 0 18px 45px rgba(16, 32, 51, 0.13);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ccd2d9;
+      color: var(--ink);
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body { counter-reset: slide; }
+
+    .slide {
+      counter-increment: slide;
+      position: relative;
+      width: 1280px;
+      height: 720px;
+      margin: 24px auto;
+      padding: 52px 64px 46px;
+      overflow: hidden;
+      background: var(--paper);
+      break-after: page;
+      page-break-after: always;
+      box-shadow: var(--shadow);
+    }
+
+    .slide:last-child {
+      break-after: auto;
+      page-break-after: auto;
+    }
+
+    .slide::after {
+      content: counter(slide) " / 6";
+      position: absolute;
+      right: 64px;
+      bottom: 22px;
+      color: #738093;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 15px;
+      color: #506078;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--orange);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 13px; font-size: 44px; line-height: 1.16; letter-spacing: -0.045em; }
+    h2 { margin-bottom: 10px; font-size: 28px; line-height: 1.24; letter-spacing: -0.035em; }
+    h3 { margin-bottom: 8px; font-size: 19px; line-height: 1.3; letter-spacing: -0.02em; }
+    p { font-size: 18px; line-height: 1.62; }
+
+    .subtitle {
+      max-width: 990px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--teal-soft);
+      color: #06715e;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .tag.warn { background: var(--orange-soft); color: #a34a16; }
+    .tag.dark { background: rgba(255,255,255,0.11); color: #e9f3ff; border: 1px solid rgba(255,255,255,0.17); }
+
+    .mono, .placeholder {
+      font-family: Consolas, "SFMono-Regular", monospace;
+      overflow-wrap: anywhere;
+    }
+
+    .placeholder {
+      color: #a84c16;
+      font-weight: 800;
+    }
+
+    .footer-note {
+      position: absolute;
+      left: 64px;
+      bottom: 21px;
+      color: #738093;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .cover {
+      color: var(--white);
+      background:
+        radial-gradient(circle at 88% 16%, rgba(25, 168, 139, 0.23), transparent 25%),
+        radial-gradient(circle at 69% 95%, rgba(255, 138, 66, 0.18), transparent 28%),
+        var(--navy);
+    }
+
+    .cover::after { color: rgba(255,255,255,0.62); }
+    .cover .footer-note { color: rgba(255,255,255,0.62); }
+    .cover .eyebrow { color: #a9bdd4; }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      height: 575px;
+    }
+
+    .cover h1 {
+      margin-bottom: 17px;
+      font-size: 68px;
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+    }
+
+    .cover .lead {
+      margin-bottom: 22px;
+      color: #d6e2ef;
+      font-size: 27px;
+      line-height: 1.38;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+    }
+
+    .cover .thesis {
+      max-width: 590px;
+      margin-bottom: 23px;
+      padding-left: 17px;
+      border-left: 4px solid var(--orange);
+      color: #b9c8d8;
+      font-size: 17px;
+      line-height: 1.58;
+    }
+
+    .status-slot {
+      display: inline-block;
+      max-width: 565px;
+      padding: 10px 13px;
+      border: 1px dashed rgba(255, 171, 103, 0.86);
+      border-radius: 10px;
+      background: rgba(255, 138, 66, 0.1);
+      color: #ffd3b5;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .coalition-visual {
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 25px;
+      background: rgba(255,255,255,0.055);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.24);
+    }
+
+    .buyer-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+    .buyer {
+      padding: 17px 12px;
+      border-radius: 14px;
+      background: var(--navy-2);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .buyer strong { display: block; margin-bottom: 6px; color: #f6fbff; font-size: 20px; }
+    .buyer span { color: #9fb3c8; font-size: 13px; }
+
+    .visual-arrow { padding: 13px 0; color: #7ee1ce; text-align: center; font-size: 28px; font-weight: 900; }
+
+    .tx-card {
+      padding: 19px 20px;
+      border-radius: 15px;
+      background: linear-gradient(115deg, #13a184, #087965);
+      text-align: center;
+      color: white;
+    }
+
+    .tx-card strong { display: block; margin-bottom: 5px; font-size: 22px; }
+    .tx-card span { font-size: 14px; opacity: 0.88; }
+
+    .decision-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 13px;
+    }
+
+    .decision {
+      padding: 13px 10px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      background: rgba(25,168,139,0.15);
+      color: #83e3d0;
+    }
+
+    .decision.stop { background: rgba(255,138,66,0.13); color: #ffc49c; }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .risk-card {
+      min-height: 198px;
+      padding: 24px 23px;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--orange);
+      border-radius: 16px;
+      background: var(--white);
+    }
+
+    .risk-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 16px;
+      border-radius: 50%;
+      background: var(--orange-soft);
+      color: #a44c18;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .risk-card p { margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.55; }
+
+    .principle {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 24px;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #29405a;
+    }
+
+    .principle div { padding: 17px 18px; background: var(--navy-2); color: #e8f0fa; font-size: 15px; line-height: 1.45; }
+    .principle b { color: #72ddc8; }
+    .principle .stop b { color: #ffb27f; }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 21px;
+    }
+
+    .scenario {
+      padding: 23px 25px 21px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--white);
+    }
+
+    .scenario.ok { border-top: 6px solid var(--teal); }
+    .scenario.no { border-top: 6px solid var(--orange); }
+
+    .scenario-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 17px; }
+    .scenario-head h2 { margin: 0; font-size: 24px; }
+
+    .condition-list { display: grid; gap: 8px; margin-bottom: 17px; }
+    .condition { display: flex; justify-content: space-between; padding: 9px 12px; border-radius: 9px; background: #f4f6f9; font-size: 14px; }
+    .condition b { font-size: 15px; }
+
+    .allocation {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #d8eee9;
+    }
+
+    .allocation div { padding: 11px 8px; text-align: center; color: #075f50; font-size: 13px; font-weight: 800; border-right: 1px solid rgba(7,95,80,0.16); }
+    .allocation div:last-child { border-right: 0; }
+
+    .reject-math {
+      padding: 15px;
+      border-radius: 10px;
+      background: var(--orange-soft);
+      color: #8b3c11;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .outcome {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.52;
+    }
+
+    .atomic-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 20px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: white;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .atomic-bar .plus { color: #85a0bb; }
+    .atomic-bar .equals { color: #6ee0c9; }
+
+    .pipeline {
+      display: flex;
+      align-items: stretch;
+      margin-top: 25px;
+    }
+
+    .pipe-step {
+      flex: 1;
+      min-width: 0;
+      padding: 18px 12px 16px;
+      border: 1px solid #d6dde6;
+      border-radius: 13px;
+      background: white;
+      text-align: center;
+    }
+
+    .pipe-step .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      margin: 0 auto 10px;
+      border-radius: 11px;
+      background: var(--teal-soft);
+      color: #06715e;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .pipe-step:nth-of-type(5) .icon,
+    .pipe-step:nth-of-type(7) .icon { background: var(--orange-soft); color: #9b4717; }
+    .pipe-step strong { display: block; margin-bottom: 6px; font-size: 14px; line-height: 1.35; }
+    .pipe-step span { display: block; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .pipe-arrow { display: flex; align-items: center; justify-content: center; width: 26px; flex: 0 0 26px; color: #8291a3; font-size: 21px; font-weight: 900; }
+
+    .authority-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      margin-top: 22px;
+    }
+
+    .authority {
+      padding: 16px 16px 14px;
+      border-radius: 12px;
+      background: var(--navy-2);
+      color: white;
+    }
+
+    .authority strong { display: block; margin-bottom: 6px; color: #77e0cb; font-size: 14px; }
+    .authority span { color: #b9c7d6; font-size: 12px; line-height: 1.5; }
+
+    .stop-strip {
+      margin-top: 17px;
+      padding: 12px 16px;
+      border-left: 5px solid var(--orange);
+      border-radius: 7px;
+      background: var(--orange-soft);
+      color: #7d3811;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .proof-card {
+      height: 420px;
+      padding: 21px 22px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: white;
+    }
+
+    .proof-card.reject { border-top: 6px solid var(--orange); }
+    .proof-card.normal { border-top: 6px solid var(--teal); }
+    .proof-head { display: flex; justify-content: space-between; align-items: center; }
+    .proof-head h2 { margin: 0; font-size: 23px; }
+
+    .image-slot {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 95px;
+      margin: 15px 0;
+      padding: 10px;
+      border: 2px dashed #f0a16e;
+      border-radius: 12px;
+      background: #fff8f3;
+      color: #9d4617;
+      text-align: center;
+    }
+
+    .image-slot small { margin-bottom: 7px; font-size: 10px; font-weight: 900; letter-spacing: 0.13em; }
+    .image-slot code { font-size: 12px; font-weight: 900; }
+
+    .evidence-list { display: grid; gap: 7px; }
+    .evidence-row { display: grid; grid-template-columns: 128px 1fr; gap: 9px; padding-bottom: 6px; border-bottom: 1px solid #edf0f4; font-size: 12px; line-height: 1.4; }
+    .evidence-row b { color: #617084; }
+    .evidence-row strong { color: #11253d; }
+    .evidence-row .placeholder { font-size: 11px; }
+
+    .proof-rule {
+      margin-top: 15px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .limits-grid {
+      display: grid;
+      grid-template-columns: 0.94fr 1.06fr;
+      gap: 30px;
+      margin-top: 19px;
+    }
+
+    .limit-panel, .link-panel {
+      min-height: 430px;
+      padding: 23px 24px;
+      border-radius: 17px;
+      background: white;
+      border: 1px solid var(--line);
+    }
+
+    .limit-list { display: grid; gap: 12px; margin-top: 17px; }
+    .limit-item { display: grid; grid-template-columns: 29px 1fr; gap: 10px; align-items: start; color: #425268; font-size: 14px; line-height: 1.46; }
+    .limit-item .mark { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 7px; background: var(--orange-soft); color: #a04a18; font-size: 12px; font-weight: 900; }
+
+    .link-list { display: grid; gap: 9px; margin-top: 15px; }
+    .link-row { padding: 11px 13px; border-radius: 10px; background: #f3f6f8; }
+    .link-row b { display: block; margin-bottom: 4px; color: #1c3855; font-size: 12px; }
+    .link-row a, .link-row span { color: #4e6076; font-size: 11px; line-height: 1.35; text-decoration: none; overflow-wrap: anywhere; }
+    .link-row a { color: #087762; text-decoration: underline; }
+
+    .final-thesis {
+      margin-top: 16px;
+      padding: 13px 17px;
+      border-radius: 11px;
+      background: linear-gradient(110deg, var(--navy), #173a55);
+      color: white;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    @page { size: 13.333333in 7.5in; margin: 0; }
+
+    @media print {
+      html, body { width: 1280px; background: white; }
+      .slide { margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Slide 1 -->
+  <section class="slide cover">
+    <div class="cover-grid">
+      <div>
+        <div class="eyebrow">Google Cloud × Solana · Agentic Commerce</div>
+        <h1>Mandate<br>Pool</h1>
+        <div class="lead">세 사람의 조건이 모두 맞을 때만,<br>세 결제를 하나로.</div>
+        <div class="thesis">AI가 결제 권한을 갖는 것이 아니라, 사람이 위임한 mandate 안에서만 제안합니다. 결정론적 정책과 하나의 원자 거래가 그 권한을 끝까지 보존합니다.</div>
+        <div class="status-slot">증거 상태 · <span>검증 완료 · Solana Devnet 테스트 토큰</span></div>
+      </div>
+      <div class="coalition-visual" aria-label="세 구매자에서 하나의 Solana 거래로 이어지는 개념도">
+        <div class="buyer-row">
+          <div class="buyer"><strong>Buyer A</strong><span>API + CSV<br>≤ 0.400000</span></div>
+          <div class="buyer"><strong>Buyer B</strong><span>API · no renew<br>≤ 0.340000</span></div>
+          <div class="buyer"><strong>Buyer C</strong><span>7 days · one-off<br>≤ 0.400000</span></div>
+        </div>
+        <div class="visual-arrow">↓</div>
+        <div class="tx-card"><strong>ONE SOLANA TRANSACTION</strong><span>TransferChecked × 3 · Sponsor + A + B + C</span></div>
+        <div class="decision-row">
+          <div class="decision">교집합 있음 → finalized 검증</div>
+          <div class="decision stop">교집합 없음 → 거래 0건</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-note">SOLANA DEVNET · TEST TOKENS · NOT REAL MONEY</div>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="slide">
+    <div class="eyebrow">Why</div>
+    <h1>함께 쓰는 돈은 추천보다 권한 보존이 어렵다</h1>
+    <p class="subtitle">세 에이전트가 한 상품을 공동 구매할 때는 “무엇을 살까?”보다 세 가지 실패를 먼저 막아야 합니다.</p>
+
+    <div class="risk-grid">
+      <article class="risk-card">
+        <div class="risk-num">01</div>
+        <h2>조건 충돌</h2>
+        <p>세 사람의 필수 기능, 금지 조건, 기간과 개인 한도가 모두 유지됐는가?</p>
+      </article>
+      <article class="risk-card">
+        <div class="risk-num">02</div>
+        <h2>일부 결제</h2>
+        <p>한 구매자의 전송만 성공하고 나머지가 실패하는 중간 상태가 생기지 않는가?</p>
+      </article>
+      <article class="risk-card">
+        <div class="risk-num">03</div>
+        <h2>중복·변조</h2>
+        <p>승인 뒤 금액이나 수취인이 바뀌거나, 불명확한 응답 때문에 다시 결제되지 않는가?</p>
+      </article>
+    </div>
+
+    <div class="principle">
+      <div><b>PASS</b><br>공통 조건이 있으면 한 번에 결제하고 결과까지 검증</div>
+      <div class="stop"><b>NO_BUY</b><br>공통 조건이 없으면 거래를 만들지 않고 이유를 보존</div>
+      <div class="stop"><b>UNCLEAR</b><br>결과가 불명확하면 새 결제 없이 조정 단계에서 중단</div>
+    </div>
+    <div class="footer-note">제품 원칙 · 허용된 권한만 실행하고, 거부도 증거로 남긴다</div>
+  </section>
+
+  <!-- Slide 3 -->
+  <section class="slide">
+    <div class="eyebrow">What</div>
+    <h1>세 mandate의 교집합만 공동 구매한다</h1>
+    <p class="subtitle">API·CSV 데이터 7일 이용권을 고정 데모 상품으로 삼아, 정상과 한도 초과 반례를 같은 규칙으로 판정합니다.</p>
+
+    <div class="compare-grid">
+      <article class="scenario ok">
+        <div class="scenario-head"><h2>정상 · 공동 구매</h2><span class="tag">EXPECTED PASS</span></div>
+        <div class="condition-list">
+          <div class="condition"><span>Buyer A · API + CSV</span><b>≤ 400000</b></div>
+          <div class="condition"><span>Buyer B · API · no renew</span><b>≤ 340000</b></div>
+          <div class="condition"><span>Buyer C · 7 days · one-off</span><b>≤ 400000</b></div>
+        </div>
+        <div class="allocation">
+          <div>A · 333334</div><div>B · 333333</div><div>C · 333333</div>
+        </div>
+        <div class="outcome"><b>수용 기준:</b> 하나의 Devnet transaction이 finalized되고 원문·잔액을 검증한 뒤 이용권 3개를 발급</div>
+      </article>
+
+      <article class="scenario no">
+        <div class="scenario-head"><h2>거부 · 한도 초과</h2><span class="tag warn">EXPECTED NO_BUY</span></div>
+        <div class="condition-list">
+          <div class="condition"><span>Buyer B의 변경된 한도</span><b>300000</b></div>
+          <div class="condition"><span>Buyer B에게 필요한 분담</span><b>333333</b></div>
+        </div>
+        <div class="reject-math">300000 &lt; 333333</div>
+        <div class="outcome"><b>수용 기준:</b> <span class="mono">state=NO_BUY</span>, transaction bytes·signature 없음, entitlement 0, 네 ATA 잔액 불변</div>
+      </article>
+    </div>
+
+    <div class="atomic-bar"><span>A 333334</span><span class="plus">+</span><span>B 333333</span><span class="plus">+</span><span>C 333333</span><span class="equals">= Merchant 1000000 atomic</span></div>
+    <div class="footer-note">금액은 소수 연산이 아니라 decimals=6의 정수 atomic unit으로 계산</div>
+  </section>
+
+  <!-- Slide 4 -->
+  <section class="slide">
+    <div class="eyebrow">How</div>
+    <h1>AI의 제안과 결제 권한을 분리한다</h1>
+    <p class="subtitle">모델은 자연어 작업만 담당하고, 결제 권한은 사람이 확인한 mandate와 결정론적 코드가 통제합니다.</p>
+
+    <div class="pipeline" aria-label="Mandate Pool 실행 파이프라인">
+      <div class="pipe-step"><div class="icon">01</div><strong>자연어 조건</strong><span>기능·한도·기간</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="icon">02</div><strong>ADK · Gemini</strong><span>정규화·후보 제안</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="icon">03</div><strong>운영자 HITL</strong><span>hash·nonce 확인</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="icon">04</div><strong>정책 엔진</strong><span>권한·금액 재계산</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="icon">05</div><strong>Solana tx</strong><span>3 transfers · 4 signers</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step"><div class="icon">06</div><strong>Finalized 검증</strong><span>원문·instruction·delta</span></div>
+    </div>
+
+    <div class="authority-grid">
+      <div class="authority"><strong>Gemini의 한계</strong><span>signer와 RPC 도구가 없다. 출력은 비권위적 제안이다.</span></div>
+      <div class="authority"><strong>Firestore의 역할</strong><span>version CAS, idempotency, 감사 hash chain을 보존한다.</span></div>
+      <div class="authority"><strong>Signer guard</strong><span>승인된 quote에서 파생된 같은 message만 네 signer가 서명한다.</span></div>
+      <div class="authority"><strong>Fulfillment gate</strong><span>finalized 원문과 정확한 debit·credit이 맞을 때만 이용권을 만든다.</span></div>
+    </div>
+
+    <div class="stop-strip">응답 유실 · blockhash 만료 · finality 불명확 → 자동 재결제 금지 · <span class="mono">RECONCILIATION_REQUIRED</span></div>
+    <div class="footer-note">custom Solana atomic settlement · x402 구현이라고 주장하지 않음</div>
+  </section>
+
+  <!-- Slide 5 -->
+  <section class="slide">
+    <div class="eyebrow">Proof</div>
+    <h1>“결제함”과 “결제하지 않음”을 함께 증명한다</h1>
+
+    <div class="proof-grid">
+      <article class="proof-card reject">
+        <div class="proof-head"><h2>거부 경로 · 거래 0건</h2><span class="tag warn">REJECT PROOF</span></div>
+        <div class="image-slot"><small>VERIFIED REJECT RECEIPT</small><code>NO_BUY · 0 TX · 0 ENTITLEMENT</code></div>
+        <div class="evidence-list">
+          <div class="evidence-row"><b>Order</b><span>ord_82ac0530d4744e098f181aa5460e6027</span></div>
+          <div class="evidence-row"><b>Decision</b><strong>state=NO_BUY</strong></div>
+          <div class="evidence-row"><b>Reason</b><strong>NO_COMMON_PRODUCT</strong></div>
+          <div class="evidence-row"><b>Transaction</b><strong>evidence · bytes · signature 없음</strong></div>
+          <div class="evidence-row"><b>Result</b><strong>entitlement 0 · pre/post 잔액 불변</strong></div>
+          <div class="evidence-row"><b>Receipt</b><span>evidence/reject-order-2ac7eac.json</span></div>
+        </div>
+      </article>
+
+      <article class="proof-card normal">
+        <div class="proof-head"><h2>정상 경로 · Devnet 1건</h2><span class="tag">FINALIZED PROOF</span></div>
+        <div class="image-slot"><small>VERIFIED DEVNET RECEIPT</small><code>FINALIZED · 1,000,000 ATOMIC</code></div>
+        <div class="evidence-list">
+          <div class="evidence-row"><b>Order</b><span>ord_b6ab984c23334cb0a3f8480d4c12abf9</span></div>
+          <div class="evidence-row"><b>Signature</b><span>2JMWb2wc4GTt…wDt2jaMy2ZAW</span></div>
+          <div class="evidence-row"><b>Finality</b><span>finalized · slot 480936920</span></div>
+          <div class="evidence-row"><b>Token delta</b><strong>A −333334 · B/C −333333 · Merchant +1000000</strong></div>
+          <div class="evidence-row"><b>Result</b><strong>state=FULFILLED · entitlement 3</strong></div>
+          <div class="evidence-row"><b>Explorer</b><span>explorer.solana.com · devnet</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="proof-rule">두 receipt가 같은 제출 commit · Cloud Run revision과 연결되기 전에는 실행 성공을 주장하지 않는다.</div>
+    <div class="footer-note">증거 슬롯이 남아 있으면 PDF를 외부 제출하지 않음</div>
+  </section>
+
+  <!-- Slide 6 -->
+  <section class="slide">
+    <div class="eyebrow">Limitations &amp; Links</div>
+    <h1>증명한 범위와 아직 증명하지 않은 범위를 함께 공개한다</h1>
+
+    <div class="limits-grid">
+      <article class="limit-panel">
+        <h2>현재 프로토타입의 경계</h2>
+        <div class="limit-list">
+          <div class="limit-item"><span class="mark">1</span><span>HITL은 실제 세 사용자의 독립 서명이 아니라 <b>운영자 A/B/C 역할 시뮬레이션</b>이다.</span></div>
+          <div class="limit-item"><span class="mark">2</span><span>Devnet 테스트 키는 서버가 보관한다. 비수탁 지갑 제품을 증명하지 않는다.</span></div>
+          <div class="limit-item"><span class="mark">3</span><span>custom Solana atomic settlement이며 x402 구현이라고 주장하지 않는다.</span></div>
+          <div class="limit-item"><span class="mark">4</span><span>Devnet USDC는 금전 가치가 없고 실제 달러로 담보되지 않는 테스트 토큰이다.</span></div>
+          <div class="limit-item"><span class="mark">5</span><span>Mainnet · 실자산 · 상용 운영 안정성은 이번 프로토타입의 범위 밖이다.</span></div>
+        </div>
+      </article>
+
+      <article class="link-panel">
+        <h2>검증 가능한 링크</h2>
+        <div class="link-list">
+          <div class="link-row"><b>GitHub · 배포 소스</b><a href="https://github.com/procloudkim/2026-Solana-Google">github.com/procloudkim/2026-Solana-Google</a><br><span>2ac7eac17ea803b4537b630234ac6507523e5325</span></div>
+          <div class="link-row"><b>현재 소스 실행 안내</b><a href="https://github.com/procloudkim/2026-Solana-Google/blob/2ac7eac17ea803b4537b630234ac6507523e5325/product/mandate-pool/README.md">commit 고정 README</a></div>
+          <div class="link-row"><b>Cloud Run · 공개 fixture</b><a href="https://mandate-pool-judge-x7id33dnyq-du.a.run.app">mandate-pool-judge</a><br><span>FIXTURE · NOT ON-CHAIN · demo key: judge-fixture-key-v1</span></div>
+          <div class="link-row"><b>정상 거래 · evidence</b><a href="https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet">Solana Devnet Explorer</a><br><a href="https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/evidence/normal-order-2ac7eac.json">redacted receipt</a></div>
+          <div class="link-row"><b>제출 manifest</b><a href="https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/manifest.md">submission-v1 manifest</a></div>
+          <div class="link-row"><b>공식 행사</b><a href="https://www.gcp-solana-ai-agentic-hacks-kr.xyz/">gcp-solana-ai-agentic-hacks-kr.xyz</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="final-thesis">모두의 권한을 만족하면 하나의 거래로 · 한 명이라도 벗어나면 거래 없이 끝낸다</div>
+  </section>
+</body>
+</html>

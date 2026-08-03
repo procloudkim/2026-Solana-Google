@@ -7,6 +7,8 @@
 - 대상 제품: [Mandate Pool](../../product/mandate-pool/README.md)
 - 현재 상태의 단일 기준: 이 문서의 체크박스와 연결된 evidence receipt
 
+> **2026-08-03 23:40 KST 실행 갱신:** 이 런북이 계획하던 localnet, Cloud Run 재배포, 거부 주문과 정상 Devnet 거래 1회는 완료됐다. 최종 식별자와 receipt는 [제출 manifest](../../submission/manifest.md)가 단일 기준이다. 아래 P0~P6 명령과 미체크 항목은 실행 당시의 절차·중단 조건을 보존한 기록이며, 추가 결제를 지시하지 않는다. 남은 사람 작업은 영상 녹화·업로드, 로그인 폼 확인, 최종 제출뿐이다.
+
 ## 이 문서를 사용하는 방법
 
 이 런북은 마감 당일의 운영자와 Codex를 위한 문서입니다. 처음부터 모든 설명을 읽을 필요는 없습니다.

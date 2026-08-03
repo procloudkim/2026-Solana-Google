@@ -1,0 +1,245 @@
+{
+  "schema": "mandate-pool/evidence-export@1",
+  "kind": "order",
+  "expectation": "reject",
+  "verdict": "PASS",
+  "exportedAt": "2026-08-03T14:41:02.882Z",
+  "baseUrl": "http://127.0.0.1:18080",
+  "orderId": "ord_82ac0530d4744e098f181aa5460e6027",
+  "response": {
+    "path": "/api/v1/orders/ord_82ac0530d4744e098f181aa5460e6027",
+    "status": 200,
+    "body": {
+      "orderId": "ord_82ac0530d4744e098f181aa5460e6027",
+      "state": "NO_BUY",
+      "version": 6,
+      "createdAt": "2026-08-03T14:39:55.903Z",
+      "updatedAt": "2026-08-03T14:40:20.643Z",
+      "scenarioLabel": "submission-reject-2ac7eac",
+      "agent": {
+        "provider": "google-adk",
+        "model": "gemini-2.5-flash",
+        "startedAt": "2026-08-03T14:39:55.903Z",
+        "completedAt": "2026-08-03T14:40:19.966Z",
+        "selectedSkuId": "NO_BUY"
+      },
+      "mandates": [
+        {
+          "buyerId": "A",
+          "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, API와 CSV가 모두 필요합니다.",
+          "mandateHash": "c8d519f1cfdf14bdb53f6424cb62b358d87ea72a0f93478e3891d7af0befaf12",
+          "maxAmountAtomic": "400000",
+          "requiredFeatures": [
+            "api",
+            "csv"
+          ],
+          "forbiddenFeatures": [],
+          "validUntil": "2026-08-03T14:54:55.903Z",
+          "approvedAt": "2026-08-03T14:40:20.235Z",
+          "status": "APPROVED"
+        },
+        {
+          "buyerId": "B",
+          "naturalLanguage": "SignalDesk 공동 구매. 최대 0.3 USDC, API가 필요하고 자동갱신은 금지합니다.",
+          "mandateHash": "2c9428c80bc7ebbec4a52c80000160dffe8088236fc0c3b5ba05c5f615b4db1e",
+          "maxAmountAtomic": "300000",
+          "requiredFeatures": [
+            "api"
+          ],
+          "forbiddenFeatures": [
+            "auto-renew"
+          ],
+          "validUntil": "2026-08-03T14:54:55.903Z",
+          "approvedAt": "2026-08-03T14:40:20.362Z",
+          "status": "APPROVED"
+        },
+        {
+          "buyerId": "C",
+          "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, 7일 동안 사용하는 일회성 상품만 허용합니다.",
+          "mandateHash": "2d1a3032256292154aa4ee9351b7861f790690375257b5055d68b36c2a641173",
+          "maxAmountAtomic": "400000",
+          "requiredFeatures": [],
+          "forbiddenFeatures": [
+            "auto-renew"
+          ],
+          "validUntil": "2026-08-03T14:54:55.903Z",
+          "approvedAt": "2026-08-03T14:40:20.484Z",
+          "status": "APPROVED"
+        }
+      ],
+      "policyChecks": [],
+      "timeline": [
+        {
+          "sequence": 0,
+          "state": "DRAFT",
+          "label": "주문 초안 생성",
+          "at": "2026-08-03T14:39:55.903Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 1,
+          "state": "AWAITING_APPROVAL",
+          "label": "구매 조건 HITL 승인 대기",
+          "at": "2026-08-03T14:40:20.064Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 2,
+          "state": "AWAITING_APPROVAL",
+          "label": "구매 조건 HITL 승인 대기",
+          "at": "2026-08-03T14:40:20.235Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 3,
+          "state": "AWAITING_APPROVAL",
+          "label": "구매 조건 HITL 승인 대기",
+          "at": "2026-08-03T14:40:20.362Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 4,
+          "state": "APPROVED",
+          "label": "세 구매 조건 승인 완료",
+          "at": "2026-08-03T14:40:20.484Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 5,
+          "state": "PLANNED",
+          "label": "에이전트 상품 선택 완료",
+          "at": "2026-08-03T14:40:20.601Z",
+          "status": "complete"
+        },
+        {
+          "sequence": 6,
+          "state": "NO_BUY",
+          "label": "공통 조건 상품 없음",
+          "at": "2026-08-03T14:40:20.643Z",
+          "status": "complete"
+        }
+      ],
+      "entitlementCount": 0,
+      "failure": {
+        "code": "NO_COMMON_PRODUCT",
+        "message": "No SKU satisfies all buyer mandates: 'signaldesk-api-basic' lacks 'csv' for A; 'signaldesk-team-3' exceeds B's budget; 'signaldesk-pro-month' has auto-renew, forbidden by B and C."
+      }
+    }
+  },
+  "order": {
+    "orderId": "ord_82ac0530d4744e098f181aa5460e6027",
+    "state": "NO_BUY",
+    "version": 6,
+    "createdAt": "2026-08-03T14:39:55.903Z",
+    "updatedAt": "2026-08-03T14:40:20.643Z",
+    "scenarioLabel": "submission-reject-2ac7eac",
+    "agent": {
+      "provider": "google-adk",
+      "model": "gemini-2.5-flash",
+      "startedAt": "2026-08-03T14:39:55.903Z",
+      "completedAt": "2026-08-03T14:40:19.966Z",
+      "selectedSkuId": "NO_BUY"
+    },
+    "mandates": [
+      {
+        "buyerId": "A",
+        "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, API와 CSV가 모두 필요합니다.",
+        "mandateHash": "c8d519f1cfdf14bdb53f6424cb62b358d87ea72a0f93478e3891d7af0befaf12",
+        "maxAmountAtomic": "400000",
+        "requiredFeatures": [
+          "api",
+          "csv"
+        ],
+        "forbiddenFeatures": [],
+        "validUntil": "2026-08-03T14:54:55.903Z",
+        "approvedAt": "2026-08-03T14:40:20.235Z",
+        "status": "APPROVED"
+      },
+      {
+        "buyerId": "B",
+        "naturalLanguage": "SignalDesk 공동 구매. 최대 0.3 USDC, API가 필요하고 자동갱신은 금지합니다.",
+        "mandateHash": "2c9428c80bc7ebbec4a52c80000160dffe8088236fc0c3b5ba05c5f615b4db1e",
+        "maxAmountAtomic": "300000",
+        "requiredFeatures": [
+          "api"
+        ],
+        "forbiddenFeatures": [
+          "auto-renew"
+        ],
+        "validUntil": "2026-08-03T14:54:55.903Z",
+        "approvedAt": "2026-08-03T14:40:20.362Z",
+        "status": "APPROVED"
+      },
+      {
+        "buyerId": "C",
+        "naturalLanguage": "SignalDesk 공동 구매. 최대 0.4 USDC, 7일 동안 사용하는 일회성 상품만 허용합니다.",
+        "mandateHash": "2d1a3032256292154aa4ee9351b7861f790690375257b5055d68b36c2a641173",
+        "maxAmountAtomic": "400000",
+        "requiredFeatures": [],
+        "forbiddenFeatures": [
+          "auto-renew"
+        ],
+        "validUntil": "2026-08-03T14:54:55.903Z",
+        "approvedAt": "2026-08-03T14:40:20.484Z",
+        "status": "APPROVED"
+      }
+    ],
+    "policyChecks": [],
+    "timeline": [
+      {
+        "sequence": 0,
+        "state": "DRAFT",
+        "label": "주문 초안 생성",
+        "at": "2026-08-03T14:39:55.903Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 1,
+        "state": "AWAITING_APPROVAL",
+        "label": "구매 조건 HITL 승인 대기",
+        "at": "2026-08-03T14:40:20.064Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 2,
+        "state": "AWAITING_APPROVAL",
+        "label": "구매 조건 HITL 승인 대기",
+        "at": "2026-08-03T14:40:20.235Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 3,
+        "state": "AWAITING_APPROVAL",
+        "label": "구매 조건 HITL 승인 대기",
+        "at": "2026-08-03T14:40:20.362Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 4,
+        "state": "APPROVED",
+        "label": "세 구매 조건 승인 완료",
+        "at": "2026-08-03T14:40:20.484Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 5,
+        "state": "PLANNED",
+        "label": "에이전트 상품 선택 완료",
+        "at": "2026-08-03T14:40:20.601Z",
+        "status": "complete"
+      },
+      {
+        "sequence": 6,
+        "state": "NO_BUY",
+        "label": "공통 조건 상품 없음",
+        "at": "2026-08-03T14:40:20.643Z",
+        "status": "complete"
+      }
+    ],
+    "entitlementCount": 0,
+    "failure": {
+      "code": "NO_COMMON_PRODUCT",
+      "message": "No SKU satisfies all buyer mandates: 'signaldesk-api-basic' lacks 'csv' for A; 'signaldesk-team-3' exceeds B's budget; 'signaldesk-pro-month' has auto-renew, forbidden by B and C."
+    }
+  }
+}

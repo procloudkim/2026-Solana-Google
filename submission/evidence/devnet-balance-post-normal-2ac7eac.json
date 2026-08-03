@@ -1,0 +1,35 @@
+{
+  "schema": "mandate-pool/devnet-balance-snapshot@1",
+  "kind": "post-normal-finalized",
+  "capturedAt": "2026-08-03T14:41:18.8000014Z",
+  "orderId": "ord_b6ab984c23334cb0a3f8480d4c12abf9",
+  "txSignature": "2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW",
+  "commitment": "finalized",
+  "contextSlot": "480937002",
+  "accounts": [
+    {
+      "label": "A",
+      "ata": "7EQmXHZbgDvib1ETZqPr4zipGvwDGMTxnPKpoGdTteMY",
+      "amountAtomic": "19666666",
+      "decimals": 6
+    },
+    {
+      "label": "B",
+      "ata": "7vQVj92mQ3u1w3jEUTb9YsEAX1Ct3Qz3AmMq6xGPkc33",
+      "amountAtomic": "19666667",
+      "decimals": 6
+    },
+    {
+      "label": "C",
+      "ata": "Fzqkcx731vFpDPHXW9wrqkYRqfRMcWokjAMWCmToesVE",
+      "amountAtomic": "19666667",
+      "decimals": 6
+    },
+    {
+      "label": "MERCHANT",
+      "ata": "5UeNvj4JGQrB4fDmJgZ9q9yMgary6Kom8yDwSbs1XgKN",
+      "amountAtomic": "1000000",
+      "decimals": 6
+    }
+  ]
+}

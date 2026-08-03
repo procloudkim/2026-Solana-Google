@@ -2,13 +2,27 @@
 
 Mandate Pool은 세 구매자의 조건을 하나의 공동 구매로 조정하되, 사람의 확인과 결정론적 정책을 모두 통과한 경우에만 총 1 Devnet 테스트 USDC를 하나의 Solana 거래로 결제하는 해커톤 프로토타입입니다.
 
-**현재 증거 기준은 2026-08-03 KST입니다.** 로컬 fixture와 코드 검증, Agave 4.1.1 localnet 정상·거부 smoke, 비공개 Cloud Run 의존성 readiness, Devnet 지갑 준비는 끝났습니다. 현재 1 USDC 소스의 새 Cloud Run revision과 실제 제품 Devnet transaction은 아직 없으므로 구현 상태와 end-to-end 실행 증거를 구분해야 합니다.
+**현재 증거 기준은 2026-08-03 KST입니다.** commit `2ac7eac17ea803b4537b630234ac6507523e5325`에서 로컬 검증, Agave 4.1.1 localnet gate, Cloud Run live readiness, 정상 Devnet 결제와 한도 초과 거절을 확인했습니다. 아래 receipt는 제품 릴리스의 실행 증거이지만, 최종 제출 폼이나 데모 영상 제출 완료를 증명하지 않습니다.
 
 이 문서는 세 질문에 답합니다.
 
 1. 이 제품은 어떤 Agentic Commerce 문제를 해결하는가?
 2. AI·사람·정책 엔진·블록체인의 권한은 어떻게 분리되는가?
 3. fixture와 Live Devnet을 어떻게 실행하고 무엇을 증거로 인정하는가?
+
+## 검증된 릴리스
+
+이 릴리스는 공개 fixture와 비공개 live 서비스를 용도별로 분리합니다. 공개 fixture는 심사자가 제품 흐름을 반복해 볼 수 있지만 온체인 증거가 아닙니다. 실제 Devnet 주문은 Secret Manager signer와 인증이 적용된 비공개 live revision에서 한 번 실행하고 redacted receipt로 보존했습니다.
+
+| 구간 | 검증된 식별자와 결과 | 근거 |
+|---|---|---|
+| 소스 | `2ac7eac17ea803b4537b630234ac6507523e5325` | 이 commit을 배포·실행 기준으로 고정 |
+| 공개 fixture | revision `mandate-pool-judge-00004-kxd` | 반복 가능한 UI·workflow 데모이며 `NOT ON-CHAIN` |
+| 비공개 live | revision `mandate-pool-live-00005-4tb`, image digest `sha256:5d22c850b5fb113eaff07d653368b1cfac6e8a00d49b5e1a2ebaa9a586f0b995` | [preflight receipt](../../submission/evidence/live-preflight-2ac7eac.json)의 `domain`, `stateRepository`, `settlement`, `agentConfiguration`이 모두 `true` |
+| 정상 주문 | `ord_b6ab984c23334cb0a3f8480d4c12abf9` → `FULFILLED`; slot `480936920`; A/B/C debit `333334/333333/333333`; Merchant credit `1000000`; entitlement 3개 | [normal order receipt](../../submission/evidence/normal-order-2ac7eac.json), [post-finalized balance snapshot](../../submission/evidence/devnet-balance-post-normal-2ac7eac.json) |
+| 거절 주문 | `ord_82ac0530d4744e098f181aa5460e6027` → `NO_BUY`; settlement evidence 없음; entitlement 0개 | [reject order receipt](../../submission/evidence/reject-order-2ac7eac.json) |
+
+정상 transaction은 Solana Devnet의 [`2JMW…2ZAW`](https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet)이며 finalized slot은 `480936920`입니다. 이 signature와 token delta는 테스트 네트워크 실행을 증명할 뿐 Mainnet 가치 이전이나 실제 달러 결제를 증명하지 않습니다.
 
 ## 제품 IDEA: Why · What · How
 
@@ -160,6 +174,8 @@ SOLANA_TEST_VALIDATOR_BIN=/path/to/solana-test-validator \
 
 Live는 실제 Solana **Devnet**에 기록된다는 뜻이지 실제 돈을 쓴다는 뜻이 아닙니다. Circle은 testnet USDC와 native test token에 금전 가치가 없고 실제 달러 담보도 없다고 명시합니다. [Circle USDC testnet 안내](https://developers.circle.com/stablecoins/usdc-contract-addresses)
 
+현재 검증 기준은 위의 [검증된 릴리스](#검증된-릴리스)입니다. 공개 fixture revision은 시연 전용이고, 비공개 live revision `mandate-pool-live-00005-4tb`에서 readiness와 정상·거절 주문을 검증했습니다. 추가 결제는 새 증거가 필요한 별도 실행으로 취급하며 자동으로 반복하지 않습니다.
+
 운영진 전달본은 pay.sh 사용 경로에는 pay.sh sandbox, 직접 Solana blockchain을 사용하는 경로에는 localnet을 먼저 권장한 뒤 Devnet 확인으로 진행하라고 안내합니다. Mandate Pool은 pay.sh가 아니라 custom Solana settlement이므로 적용되는 선행 경로는 `solana-test-validator` localnet입니다. Fixture는 localnet이 아니며, 위 receipt가 이 선행 gate의 현재 증거입니다. [운영진 안내 기록](../../research/decision-report/evidence/organizer-devnet-guidance-2026-08-03.md)
 
 계정·IAM·지갑·배포의 정확한 현재 상태와 순서별 명령은 [해커톤 실행 런북](../../research/decision-report/hackathon-environment-codex-runbook.md)을 따릅니다. 이 절은 애플리케이션이 요구하는 계약만 설명합니다.
@@ -230,7 +246,7 @@ Live runtime은 최초 제출 뒤 최대 45초 동안 1초 간격으로 같은 s
 
 ## Live 증거 receipt 계약
 
-정상 거래를 실행한 뒤에는 다음 값을 같은 order ID 아래 redacted receipt로 묶어야 E3 증거로 인정합니다.
+정상 거래는 다음 값을 같은 order ID 아래 redacted receipt로 묶어야 E3 증거로 인정합니다. 현재 [normal order receipt](../../submission/evidence/normal-order-2ac7eac.json)가 이 계약의 finalized signature·원문·정확한 잔액 변화·이용권 결과를 함께 보존합니다.
 
 | 구간 | 필수 증거 |
 |---|---|
@@ -306,8 +322,9 @@ npm run build
 ## 알려진 한계와 제출 전 행동
 
 - 실제 사용자 세 명의 독립 승인이 아니라 operator simulation입니다.
-- fixture, transaction build/verify test, 실제 local validator 정상·거부 receipt가 통과했습니다. 이는 Devnet 실행 증거를 대체하지 않습니다.
-- 현재 Cloud Run 서비스는 비공개이며, 총 1 USDC 코드가 반영된 새 revision과 실제 제품 transaction receipt가 아직 필요합니다.
-- 정상 경로 실행은 사람의 명시적 HITL 뒤 한 번만 수행하고, 전후 잔액·signature·Explorer·ADK trace를 함께 보존합니다.
-- 거부 경로에서는 signature가 없다는 사실과 정책 reason code를 함께 보존합니다.
-- 공개 접근, Mainnet, 실제 자산, 최종 제출은 이 프로토타입의 자동 실행 범위가 아닙니다.
+- fixture와 localnet은 별도 증거 수준입니다. 실제 Devnet 정상 주문은 위 signature와 receipt 한 건으로 검증했으며, Mainnet 또는 상용 결제 안전성을 증명하지 않습니다.
+- 비공개 live revision의 readiness와 정상·거절 주문은 검증했지만, 심사자 접근 방식과 공개 fixture 사용 안내를 최종 제출 링크에서 다시 확인해야 합니다.
+- 추가 정상 경로 실행은 새로운 사람 승인과 새 receipt가 필요한 별도 거래입니다. 영상 촬영이나 UI 재현을 위해 기존 결제를 반복하지 않습니다.
+- 거절 경로의 현재 receipt는 `NO_BUY`, settlement evidence 부재, entitlement 0개를 보존합니다.
+- 최종 제출 폼과 데모 영상은 아직 완료됐다고 주장하지 않습니다.
+- 비공개 live 서비스의 공개 전환, Mainnet, 실제 자산, 최종 제출은 이 프로토타입의 자동 실행 범위가 아닙니다.

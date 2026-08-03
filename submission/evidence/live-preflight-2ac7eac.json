@@ -1,0 +1,39 @@
+{
+  "schema": "mandate-pool/evidence-export@1",
+  "kind": "preflight",
+  "verdict": "PASS",
+  "exportedAt": "2026-08-03T14:41:01.218Z",
+  "baseUrl": "http://127.0.0.1:18080",
+  "responses": {
+    "health": {
+      "path": "/health",
+      "status": 200,
+      "body": {
+        "ok": true
+      }
+    },
+    "readiness": {
+      "path": "/readyz",
+      "status": 200,
+      "body": {
+        "ready": true,
+        "checks": {
+          "domain": true,
+          "stateRepository": true,
+          "settlement": true,
+          "agentConfiguration": true
+        }
+      }
+    },
+    "runtime": {
+      "path": "/api/v1/runtime",
+      "status": 200,
+      "body": {
+        "mode": "live",
+        "cluster": "solana-devnet",
+        "onChain": true,
+        "label": "LIVE · SOLANA DEVNET · TEST TOKENS"
+      }
+    }
+  }
+}

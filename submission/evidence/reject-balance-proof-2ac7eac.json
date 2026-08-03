@@ -1,0 +1,35 @@
+{
+  "schema": "mandate-pool/reject-balance-proof@1",
+  "cluster": "solana-devnet",
+  "commitment": "finalized",
+  "orderId": "ord_82ac0530d4744e098f181aa5460e6027",
+  "decisionCompletedAt": "2026-08-03T14:40:20.643Z",
+  "method": "A finalized account snapshot before the rejected order is compared with the pre-token balances independently returned for the next finalized normal transaction. The rejected order receipt contains no settlement evidence, signature, or entitlement.",
+  "before": {
+    "observedAt": "2026-08-03T14:27:11.8119934Z",
+    "contextSlot": "480934698",
+    "accounts": {
+      "A": "20000000",
+      "B": "20000000",
+      "C": "20000000",
+      "MERCHANT": "0"
+    }
+  },
+  "afterRejectBeforeNormalTransfer": {
+    "source": "normal-order-2ac7eac.json order.evidence pre-token balances",
+    "finalizedTransactionSlot": "480936920",
+    "accounts": {
+      "A": "20000000",
+      "B": "20000000",
+      "C": "20000000",
+      "MERCHANT": "0"
+    }
+  },
+  "deltaAtomic": {
+    "A": "0",
+    "B": "0",
+    "C": "0",
+    "MERCHANT": "0"
+  },
+  "verdict": "UNCHANGED"
+}
