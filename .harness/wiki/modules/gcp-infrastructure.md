@@ -1,6 +1,8 @@
 # GCP Infrastructure
 
-Google Cloud deployment, events, data, and managed AI infrastructure.
+Google Cloud 배포, event, data, managed AI infrastructure 자료를 찾기 위한 주제 색인입니다.
+
+> **사용 범위:** 아래 목록은 원문 탐색용 분류입니다. `enriched`·`transcribed`는 추출 방식이지 사실 검증 판정이 아닙니다. 현재 제품 결정은 [실행 런북](../../../research/decision-report/hackathon-environment-codex-runbook.md), 외부 주장은 [Official Docs Wiki](../../../research/official-docs-wiki/index.md)를 확인하세요.
 
 ## Related modules
 
@@ -8,7 +10,7 @@ Google Cloud deployment, events, data, and managed AI infrastructure.
 - [AP2/x402 Payment Protocols](payment-protocols.md)
 - [Google ADK](google-adk.md)
 
-## References
+## Source inventory
 
 - [2026-07-21 19-56-58.mp4](../raw_references/2026-07-21-19-56-58-c96826ade9.md) — `transcribed`; SHA-256 `cc050df2696cacb257f63f56a2828664c1ad463c86f92a09a28352c6cfb9cbca`
 - [Google X Solana AI Agentic Hackathon Intro Deck (1).pdf](../raw_references/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md) — `enriched`; SHA-256 `4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7`

@@ -41,6 +41,9 @@ FACTS_PATH = CONTROL_PATH / "facts.json"
 OPERATIONS_PATH = Path(".harness/wiki/operations")
 SUBMISSION_PATH = Path(".harness/submission")
 OFFICIAL_PATH = Path("research/official-docs-wiki")
+CURRENT_RUNBOOK_LINK = "../../../research/decision-report/hackathon-environment-codex-runbook.md"
+CURRENT_PRODUCT_LINK = "../../../product/mandate-pool/README.md"
+CURRENT_EVIDENCE_LINK = "../../../research/decision-report/evidence/"
 
 STATE_ORDER = (
     "DISCOVERY",
@@ -1014,6 +1017,15 @@ def _markdown_table(headers: Sequence[str], rows: Iterable[Sequence[Any]]) -> st
     return "\n".join(lines)
 
 
+def _projection_notice() -> str:
+    return (
+        "> **현재성 경계:** 이 페이지는 `.harness/control/execution_ledger.jsonl`에 "
+        "기록된 event와 receipt만 반영하는 보조 projection입니다. 저장소의 현재 "
+        "Mandate Pool 구현·배포 상태를 자동으로 발견하지 않습니다. 현재 상태와 다음 "
+        f"실행은 [실행 런북]({CURRENT_RUNBOOK_LINK})을 canonical source로 사용합니다.\n\n"
+    )
+
+
 def _render_status(state: Mapping[str, Any]) -> str:
     gate_rows = []
     for gate_id, gate in state.get("gates", {}).items():
@@ -1026,14 +1038,15 @@ def _render_status(state: Mapping[str, Any]) -> str:
             )
         )
     return (
-        "# Hackathon Readiness Status\n\n"
-        "이 문서는 append-only 실행 원장에서 결정적으로 생성된다.\n\n"
-        f"- 상태: `{state.get('state')}`\n"
-        f"- 오버레이: `{state.get('overlay') or 'none'}`\n"
-        f"- 다음 작업: `{state.get('next_action')}`\n"
-        f"- 차단 요소: `{', '.join(state.get('blockers', [])) or 'none'}`\n"
-        f"- 생성 시각: `{state.get('derived_at')}`\n\n"
-        "## Gates\n\n"
+        "# Hackathon Readiness Ledger Projection\n\n"
+        + _projection_notice()
+        + "이 페이지는 append-only 실행 원장만으로 계산한 gate 상태와 원장 갱신 작업을 보여줍니다. 아래 `다음 작업`은 제품 전체의 다음 행동이 아니라 ledger를 전진시키는 작업입니다.\n\n"
+        f"- Ledger 상태: `{state.get('state')}`\n"
+        f"- Ledger 오버레이: `{state.get('overlay') or 'none'}`\n"
+        f"- Ledger 다음 작업: `{state.get('next_action')}`\n"
+        f"- Ledger 차단 요소: `{', '.join(state.get('blockers', [])) or 'none'}`\n"
+        f"- Projection 생성 시각: `{state.get('derived_at')}`\n\n"
+        "## Ledger gates\n\n"
         + _markdown_table(("Gate", "책임", "상태", "누락"), gate_rows)
         + "\n\n## 운영 페이지\n\n"
         "- [행사 계약](01-event-contract.md)\n"
@@ -1060,8 +1073,9 @@ def _render_event_contract(
             f"- 검증 digest: `{knowledge.get('digest')}`"
         )
     return (
-        "# Event Contract\n\n"
-        "공식 행사 계약은 로컬 전사·OCR보다 우선한다.\n\n"
+        "# Event Contract Ledger Projection\n\n"
+        + _projection_notice()
+        + "이 페이지는 ledger에 마지막으로 기록된 공식 지식 검증 receipt를 설명합니다. 행사 규칙을 판단할 때는 로컬 전사·OCR보다 아래 canonical research를 우선하고, 현재 제품 적용 상태는 실행 런북에서 확인합니다.\n\n"
         f"{details}\n\n"
         "## Canonical research\n\n"
         "- [Official Docs Wiki](../../../research/official-docs-wiki/index.md)\n"
@@ -1075,8 +1089,10 @@ def _render_candidates(state: Mapping[str, Any]) -> str:
     evaluation = state.get("candidate_evaluation")
     if not isinstance(evaluation, Mapping):
         body = (
-            "후보가 없다. 승인된 agent가 정확히 세 후보를 JSON으로 생성한 뒤 "
-            "`harness ideate --input <path>`를 실행한다."
+            "Ledger에 `candidates_evaluated` event가 없다. 이는 현재 제품 후보가 없다는 "
+            f"뜻이 아니다. 현재 선택된 Mandate Pool의 맥락은 [제품 README]({CURRENT_PRODUCT_LINK})와 "
+            f"[실행 런북]({CURRENT_RUNBOOK_LINK})에서 확인한다. Ledger도 현재화하려면 검증된 "
+            "후보 JSON을 준비한 뒤 저장소 루트에서 `./harness.sh ideate --input <path>`를 실행한다."
         )
     else:
         rows = [
@@ -1094,8 +1110,9 @@ def _render_candidates(state: Mapping[str, Any]) -> str:
             + _markdown_table(("후보", "주 트랙", "내부 점수"), rows)
         )
     return (
-        "# Candidate Selection\n\n"
-        "내부 점수는 공식 심사 점수가 아니며 세 후보 비교에만 사용한다.\n\n"
+        "# Candidate Selection Ledger Projection\n\n"
+        + _projection_notice()
+        + "이 페이지의 내부 점수는 공식 심사 점수가 아니며 ledger에 기록된 세 후보의 비교에만 사용합니다.\n\n"
         f"{body}\n"
     )
 
@@ -1104,8 +1121,11 @@ def _render_product_contract(state: Mapping[str, Any]) -> str:
     contract = state.get("product_contract")
     if not isinstance(contract, Mapping):
         return (
-            "# Product Contract\n\n"
-            "제품 계약이 잠기지 않았다. 후보가 잠긴 후 명시적 계약 JSON을 기록한다.\n"
+            "# Product Contract Ledger Projection\n\n"
+            + _projection_notice()
+            + "Ledger에 `product_contract` event가 없다. 이는 Mandate Pool 제품 계약이나 구현이 없다는 뜻이 아니다. "
+            f"현재 제품 계약은 [제품 README]({CURRENT_PRODUCT_LINK})와 [실행 런북]({CURRENT_RUNBOOK_LINK})에서 확인한다. "
+            "Ledger를 현재화하려면 검증된 contract JSON을 저장소 루트에서 `./harness.sh record --kind product-contract --input <path>`로 기록한다.\n"
         )
     rows = [
         ("제품", contract.get("title")),
@@ -1118,7 +1138,8 @@ def _render_product_contract(state: Mapping[str, Any]) -> str:
         ("GCP 경로", contract.get("gcp_path")),
     ]
     return (
-        "# Product Contract\n\n"
+        "# Product Contract Ledger Projection\n\n"
+        + _projection_notice()
         + _markdown_table(("항목", "잠긴 값"), rows)
         + "\n\n## 제외 기능\n\n"
         + "\n".join(f"- {item}" for item in contract.get("excluded_features", []))
@@ -1129,7 +1150,10 @@ def _render_product_contract(state: Mapping[str, Any]) -> str:
 def _render_architecture(state: Mapping[str, Any]) -> str:
     contract = state.get("product_contract")
     if not isinstance(contract, Mapping):
-        path = "제품 계약 이후 생성된다."
+        path = (
+            "Ledger에 product contract가 없어 실행 경로를 projection할 수 없다. "
+            f"현재 구현 아키텍처는 [제품 README]({CURRENT_PRODUCT_LINK})를 확인한다."
+        )
     else:
         path = (
             f"`{contract.get('agent_decision')}` → "
@@ -1137,9 +1161,11 @@ def _render_architecture(state: Mapping[str, Any]) -> str:
             f"`{contract.get('network')}` → `{contract.get('gcp_path')}`"
         )
     return (
-        "# Execution Architecture\n\n"
-        f"{path}\n\n"
-        "## Required proof chain\n\n"
+        "# Execution Architecture Ledger Projection\n\n"
+        + _projection_notice()
+        + f"{path}\n\n"
+        "## 목표 proof chain\n\n"
+        "아래 순서는 제출 증거가 연결돼야 하는 acceptance target이며, 각 단계의 성공 receipt가 이미 있다는 뜻이 아닙니다.\n\n"
         "```text\n"
         "Gemini decision trace\n"
         "  -> bounded authorization\n"
@@ -1179,12 +1205,14 @@ def _render_security(state: Mapping[str, Any], config: Mapping[str, Any]) -> str
         else "기록된 위험행위 승인이 없다."
     )
     return (
-        "# Security and Budget\n\n"
-        f"- 기본 네트워크: `{policy.get('default_network')}`\n"
+        "# Security and Budget Ledger Projection\n\n"
+        + _projection_notice()
+        + f"- 기본 네트워크: `{policy.get('default_network')}`\n"
         f"- Mainnet 활성화: `{policy.get('mainnet_enabled')}`\n"
         "- 비밀값은 Wiki·ledger·receipt에 저장하지 않는다.\n"
         "- credential, 지갑 서명, 배포, 유료 호출, 공개·제출은 사람 승인 대상이다.\n\n"
-        "## Hardening evidence\n\n"
+        "## Ledger hardening receipts\n\n"
+        "`MISSING`은 해당 pass receipt가 ledger에 없다는 뜻이며, 제품 테스트가 존재하지 않거나 실패했다는 뜻이 아닙니다. 현재 검증 결과는 실행 런북과 evidence 문서를 확인하세요.\n\n"
         + _markdown_table(("검증", "상태"), rows)
         + "\n\n## Human approvals\n\n"
         + approval_table
@@ -1206,12 +1234,14 @@ def _render_evidence(state: Mapping[str, Any]) -> str:
     table = (
         _markdown_table(("Receipt", "종류", "환경", "결과", "시각"), rows)
         if rows
-        else "아직 기록된 실행 receipt가 없다."
+        else "Ledger에 기록된 실행 receipt가 없다."
     )
     return (
         "# Evidence Ledger Projection\n\n"
-        "이 페이지는 receipt 요약만 표시한다. credential이나 private key는 기록하지 않는다.\n\n"
+        + _projection_notice()
+        + "이 페이지는 ledger receipt 요약만 표시하며 credential이나 private key를 기록하지 않습니다. Ledger가 비어 있어도 저장소의 별도 검증 기록이 없다는 뜻은 아닙니다.\n\n"
         f"{table}\n"
+        f"\n## 현재 검증 기록\n\n- [Evidence 문서 모음]({CURRENT_EVIDENCE_LINK})\n- [실행 런북]({CURRENT_RUNBOOK_LINK})\n"
     )
 
 
@@ -1229,7 +1259,9 @@ def _render_submission(state: Mapping[str, Any]) -> str:
         ("외부 제출", "PASS" if state.get("state") == "SUBMITTED" else "NOT SUBMITTED"),
     ]
     return (
-        "# Submission Readiness\n\n"
+        "# Submission Readiness Ledger Projection\n\n"
+        + _projection_notice()
+        + "표의 `MISSING`은 제출 요소 자체의 부재가 아니라 해당 validation receipt가 ledger에 없다는 뜻입니다. 실제 제출 준비도와 실행 순서는 canonical 실행 런북에서 확인합니다.\n\n"
         + _markdown_table(("제출 요소", "상태"), rows)
         + "\n\n"
         "라이브 URL은 권장 사항이며 제출 당시 공식 계약을 다시 확인한다.\n"

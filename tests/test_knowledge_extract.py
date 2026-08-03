@@ -140,6 +140,19 @@ class KnowledgeExtractTests(unittest.TestCase):
             index = (wiki / "index.md").read_text(encoding="utf-8")
             for category in knowledge_extract.CATEGORIES:
                 self.assertIn(category, index)
+            self.assertIn("현재성 경계", index)
+            self.assertIn(
+                "../../research/decision-report/hackathon-environment-codex-runbook.md",
+                index,
+            )
+            self.assertIn("원문 추출 상태와 현재 제품의 구현·배포 상태", index)
+            for module_name in expected_modules:
+                module = (wiki / "modules" / module_name).read_text(encoding="utf-8")
+                self.assertIn("추출 방식이지 사실 검증 판정이 아닙니다", module)
+                self.assertIn(
+                    "../../../research/decision-report/hackathon-environment-codex-runbook.md",
+                    module,
+                )
 
     def test_manifest_and_generated_paths_are_deterministic(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

@@ -1,6 +1,8 @@
 # Google ADK
 
-Google Agent Development Kit, Agents CLI, Gemini, and agent construction.
+Google ADK, Agents CLI, Gemini, agent 구성 자료를 찾기 위한 주제 색인입니다.
+
+> **사용 범위:** 아래 목록은 원문 탐색용 분류입니다. `enriched`·`transcribed`는 추출 방식이지 사실 검증 판정이 아닙니다. 현재 제품 결정은 [실행 런북](../../../research/decision-report/hackathon-environment-codex-runbook.md), 외부 주장은 [Official Docs Wiki](../../../research/official-docs-wiki/index.md)를 확인하세요.
 
 ## Related modules
 
@@ -8,7 +10,7 @@ Google Agent Development Kit, Agents CLI, Gemini, and agent construction.
 - [GCP Infrastructure](gcp-infrastructure.md)
 - [AP2/x402 Payment Protocols](payment-protocols.md)
 
-## References
+## Source inventory
 
 - [Google X Solana AI Agentic Hackathon Intro Deck (1).pdf](../raw_references/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md) — `enriched`; SHA-256 `4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7`
 - [Google X Solana AI Agentic Hackathon Intro Deck.pdf](../raw_references/google-x-solana-ai-agentic-hackathon-intro-deck-27c7a978bb.md) — `duplicate`; SHA-256 `4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7`

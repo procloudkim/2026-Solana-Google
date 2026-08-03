@@ -3,8 +3,8 @@
   "manifest": {
     "version": 1,
     "surface": "report",
-    "title": "한 번 묻고, 그다음은 자율 실행",
-    "description": "필수 HITL을 권한·판단·감독·차단으로 구분하고 Stanford d.school 디자인씽킹으로 Agentic Commerce 기회를 다시 선별한 의사결정 보고서.",
+    "title": "HITL 기회 재선별 — 2026-08-02 역사적 스냅샷",
+    "description": "Mandate Pool 채택 전에 Just-Enough RPC Rescue를 선두 가설로 검토한 2026-08-02 HITL·디자인씽킹 의사결정 기록. 현재 제품과 실행 상태는 Mandate Pool README와 해커톤 실행 런북을 따른다.",
     "generatedAt": "2026-08-02T05:17:36Z",
     "charts": [
       {
@@ -125,6 +125,7 @@
     ],
     "sources": [
       {"id": "official_event", "label": "Official Solana × Google Cloud Agentic Hackathon site", "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"},
+      {"id": "current_execution_runbook", "label": "Current hackathon execution checklist", "path": "hackathon-environment-codex-runbook.md"},
       {"id": "stanford_bootleg", "label": "Stanford d.school Design Thinking Bootleg", "href": "https://dschool.stanford.edu/tools/design-thinking-bootleg"},
       {"id": "stanford_method_cards", "label": "Stanford d.school Method Cards", "href": "https://dschool.stanford.edu/s/METHODCARDS-v3-slim.pdf"},
       {"id": "ap2_spec", "label": "AP2 v0.2 specification", "href": "https://ap2-protocol.org/ap2/specification/"},
@@ -207,7 +208,12 @@
       {
         "id": "title",
         "type": "markdown",
-        "body": "# 한 번 묻고, 그다음은 자율 실행"
+        "body": "# HITL 기회 재선별 — 2026-08-02 역사적 스냅샷\n\nJust-Enough RPC Rescue를 선두 가설로 검토한 당시 의사결정 기록"
+      },
+      {
+        "id": "historical_status",
+        "type": "markdown",
+        "body": "## 먼저 읽기: 이 보고서는 현재안이 아니다\n\n**상태:** 이 문서는 2026-08-02 당시 `Just-Enough RPC Rescue`를 선두 가설로 검토한 HITL·디자인씽킹 의사결정 스냅샷이다. 이후 검증과 아이디어 전환을 거쳐 현재 출품 제품은 **Mandate Pool**로 바뀌었다.\n\n현재 제품의 Why·What·How, 기술 계약, 실행 방법은 [product/mandate-pool/README.md](../../product/mandate-pool/README.md)를 따른다. 계정·배포·Devnet·제출의 현재 체크리스트는 [research/decision-report/hackathon-environment-codex-runbook.md](hackathon-environment-codex-runbook.md)를 따른다. 아래 기회 목록·HITL 분류·acceptance test·판정은 당시 판단 근거를 보존한 역사 자료이며, 현재 제품 추천이나 실행 지시로 사용하지 않는다."
       },
       {
         "id": "executive_summary",
@@ -371,6 +377,7 @@
   },
   "sources": [
     {"id": "official_event", "label": "Official Solana × Google Cloud Agentic Hackathon site", "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"},
+    {"id": "current_execution_runbook", "label": "Current hackathon execution checklist", "path": "hackathon-environment-codex-runbook.md"},
     {"id": "stanford_bootleg", "label": "Stanford d.school Design Thinking Bootleg", "href": "https://dschool.stanford.edu/tools/design-thinking-bootleg"},
     {"id": "stanford_method_cards", "label": "Stanford d.school Method Cards", "href": "https://dschool.stanford.edu/s/METHODCARDS-v3-slim.pdf"},
     {"id": "ap2_spec", "label": "AP2 v0.2 specification", "href": "https://ap2-protocol.org/ap2/specification/"},

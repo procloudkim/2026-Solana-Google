@@ -1,6 +1,8 @@
 # AP2/x402 Payment Protocols
 
-Agentic commerce and payment protocols including AP2, x402, and pay.sh.
+AP2, x402, pay.sh 등 Agentic Commerce 결제 protocol 자료를 찾기 위한 주제 색인입니다.
+
+> **사용 범위:** 아래 목록은 원문 탐색용 분류입니다. `enriched`·`transcribed`는 추출 방식이지 사실 검증 판정이 아닙니다. 현재 제품 결정은 [실행 런북](../../../research/decision-report/hackathon-environment-codex-runbook.md), 외부 주장은 [Official Docs Wiki](../../../research/official-docs-wiki/index.md)를 확인하세요.
 
 ## Related modules
 
@@ -8,7 +10,7 @@ Agentic commerce and payment protocols including AP2, x402, and pay.sh.
 - [GCP Infrastructure](gcp-infrastructure.md)
 - [Google ADK](google-adk.md)
 
-## References
+## Source inventory
 
 - [2026-07-21 19-08-24.mp4](../raw_references/2026-07-21-19-08-24-044ccd9e02.md) — `transcribed`; SHA-256 `9862a35a2cbf2f6d99605d649449081d8c2cada90034a88540ff070763624c52`
 - [2026-07-21 19-56-58.mp4](../raw_references/2026-07-21-19-56-58-c96826ade9.md) — `transcribed`; SHA-256 `cc050df2696cacb257f63f56a2828664c1ad463c86f92a09a28352c6cfb9cbca`

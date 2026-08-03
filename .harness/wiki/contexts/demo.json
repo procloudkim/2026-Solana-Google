@@ -16,7 +16,7 @@
   ],
   "matched_query": true,
   "max_nodes": 64,
-  "available_node_count": 458,
+  "available_node_count": 459,
   "selected_node_count": 64,
   "truncated": true,
   "nodes": [
@@ -554,11 +554,12 @@
       "path": ".harness/control/state.json",
       "availability": "present",
       "state": "DISCOVERY",
-      "next_action": "ideate",
+      "overlay": "PIVOT_REQUIRED",
+      "next_action": "apply_pivot",
       "blockers": [
         "candidate_set"
       ],
-      "derived_at": "2026-07-23T23:08:29.823105+09:00",
+      "derived_at": "2026-08-03T21:36:59.639926+09:00",
       "event_count": 1
     },
     {

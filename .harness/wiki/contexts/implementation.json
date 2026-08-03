@@ -16,7 +16,7 @@
   ],
   "matched_query": true,
   "max_nodes": 64,
-  "available_node_count": 458,
+  "available_node_count": 459,
   "selected_node_count": 64,
   "truncated": true,
   "nodes": [
@@ -351,11 +351,12 @@
       "path": ".harness/control/state.json",
       "availability": "present",
       "state": "DISCOVERY",
-      "next_action": "ideate",
+      "overlay": "PIVOT_REQUIRED",
+      "next_action": "apply_pivot",
       "blockers": [
         "candidate_set"
       ],
-      "derived_at": "2026-07-23T23:08:29.823105+09:00",
+      "derived_at": "2026-08-03T21:36:59.639926+09:00",
       "event_count": 1
     },
     {
@@ -467,13 +468,13 @@
       "line": 117
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@344",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@373",
       "type": "python_symbol",
       "label": "ReadinessTests.test_duplicate_receipt_id_is_rejected",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_duplicate_receipt_id_is_rejected",
-      "line": 344
+      "line": 373
     },
     {
       "id": "symbol:tests/test_readiness.py::ReadinessTests.test_prepare_builds_state_and_operational_wiki@320",
@@ -521,31 +522,31 @@
       "line": 204
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@368",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@397",
       "type": "python_symbol",
       "label": "ReadinessTests.test_status_command_is_read_only",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_status_command_is_read_only",
-      "line": 368
+      "line": 397
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@405",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@434",
       "type": "python_symbol",
       "label": "ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation",
-      "line": 405
+      "line": 434
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@390",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@419",
       "type": "python_symbol",
       "label": "ReadinessTests.test_submission_pack_refuses_before_hardening",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_submission_pack_refuses_before_hardening",
-      "line": 390
+      "line": 419
     },
     {
       "id": "symbol:tests/test_readiness.py::ReadinessTests@116",
@@ -2771,16 +2772,16 @@
       ]
     },
     {
-      "id": "edge:499627a46e867575",
+      "id": "edge:f58cec7533fdc267",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@344",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@373",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 344
+          "line": 373
         }
       ]
     },
@@ -2855,44 +2856,44 @@
       ]
     },
     {
-      "id": "edge:736cdb95ef3c2735",
+      "id": "edge:85a8f8f1836d044c",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@368",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@397",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 368
+          "line": 397
         }
       ]
     },
     {
-      "id": "edge:2f9d06e2d3934369",
+      "id": "edge:c9aedcd9afdba8b3",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@405",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@434",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 405
+          "line": 434
         }
       ]
     },
     {
-      "id": "edge:d18547911efa61d3",
+      "id": "edge:d48be39625ed7647",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@390",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@419",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 390
+          "line": 419
         }
       ]
     }

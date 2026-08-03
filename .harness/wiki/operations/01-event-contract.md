@@ -1,6 +1,8 @@
-# Event Contract
+# Event Contract Ledger Projection
 
-공식 행사 계약은 로컬 전사·OCR보다 우선한다.
+> **현재성 경계:** 이 페이지는 `.harness/control/execution_ledger.jsonl`에 기록된 event와 receipt만 반영하는 보조 projection입니다. 저장소의 현재 Mandate Pool 구현·배포 상태를 자동으로 발견하지 않습니다. 현재 상태와 다음 실행은 [실행 런북](../../../research/decision-report/hackathon-environment-codex-runbook.md)을 canonical source로 사용합니다.
+
+이 페이지는 ledger에 마지막으로 기록된 공식 지식 검증 receipt를 설명합니다. 행사 규칙을 판단할 때는 로컬 전사·OCR보다 아래 canonical research를 우선하고, 현재 제품 적용 상태는 실행 런북에서 확인합니다.
 
 - 공식 기준일: `2026-07-23T00:00:00+09:00`
 - 공식 출처: `26`

@@ -3,8 +3,8 @@
   "manifest": {
     "version": 1,
     "surface": "report",
-    "title": "Agentic Commerce: What to Build Now",
-    "description": "Solana × Google Cloud 해커톤의 7개 후보를 점수 없이 선택·포기·반증 조건으로 좁힌 전략 의사결정 보고서.",
+    "title": "Agentic Commerce — 2026-08-01 역사 스냅샷",
+    "description": "Mandate Pool 채택 전에 RPC Lifeboat을 조건부 선두로 검토한 2026-08-01 의사결정 기록. 현재 제품과 실행 상태는 Mandate Pool README와 해커톤 실행 런북을 따른다.",
     "generatedAt": "2026-08-01T07:31:27Z",
     "charts": [
       {
@@ -119,6 +119,11 @@
         "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"
       },
       {
+        "id": "current_execution_runbook",
+        "label": "Current hackathon execution checklist",
+        "path": "hackathon-environment-codex-runbook.md"
+      },
+      {
         "id": "decision_ledger",
         "label": "Candidate evidence and decision ledger",
         "path": "source-notes.md"
@@ -183,7 +188,12 @@
       {
         "id": "title",
         "type": "markdown",
-        "body": "# Agentic Commerce: What to Build Now\n\nSolana × Google Cloud 해커톤 7개 후보 전략 의사결정 보고서 · 2026-08-01 KST"
+        "body": "# Agentic Commerce — 2026-08-01 역사 스냅샷\n\nSolana × Google Cloud 해커톤 7개 후보를 검토한 당시 의사결정 기록"
+      },
+      {
+        "id": "historical_status",
+        "type": "markdown",
+        "body": "## 먼저 읽기: 이 보고서는 현재안이 아니다\n\n**상태:** 이 문서는 2026-08-01 당시 `RPC Lifeboat`을 조건부 선두로 검토한 의사결정 스냅샷이다. 이후 검증과 아이디어 전환을 거쳐 현재 출품 제품은 **Mandate Pool**로 바뀌었다.\n\n현재 제품의 Why·What·How, 기술 계약, 실행 방법은 [product/mandate-pool/README.md](../../product/mandate-pool/README.md)를 따른다. 계정·배포·Devnet·제출의 현재 체크리스트는 [research/decision-report/hackathon-environment-codex-runbook.md](hackathon-environment-codex-runbook.md)를 따른다. 아래 후보표·시간표·gate·한계는 당시 판단 근거를 보존한 역사 자료이며, 현재 우선순위나 실행 지시로 사용하지 않는다."
       },
       {
         "id": "executive_summary",
@@ -383,6 +393,11 @@
       "id": "official_event",
       "label": "Official Solana × Google Cloud Agentic Hackathon site",
       "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"
+    },
+    {
+      "id": "current_execution_runbook",
+      "label": "Current hackathon execution checklist",
+      "path": "hackathon-environment-codex-runbook.md"
     },
     {
       "id": "decision_ledger",

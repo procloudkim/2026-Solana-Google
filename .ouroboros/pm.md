@@ -1,17 +1,24 @@
-# Just-Enough RPC Rescue
+# Just-Enough RPC Rescue · 역사적 Technical PRD
 
-## Product Requirements Document v0
+> **상태: 2026-08-03에 Mandate Pool로 대체된 보존 문서. 현재 구현 또는 제출 계약으로 사용하지 않습니다.**
+
+이 문서는 RPC 장애 중 유료 조회 한 번으로 중복 payout을 막는 후보를 구현 가능한 수준까지 검토한 기록입니다. live paid fulfillment와 사용자 수요를 검증하지 못해 이 안을 중단했고, 현재 제품은 [Mandate Pool](../product/mandate-pool/README.md)입니다. 현재 실행 상태와 다음 행동은 [해커톤 실행 런북](../research/decision-report/hackathon-environment-codex-runbook.md)을 따릅니다.
+
+## 문서 맥락과 활용 방법
+
+- **보존 이유:** one-field HITL, single-sign, response-loss reconciliation 등 이후 설계에도 유효한 안전 원칙을 추적합니다.
+- **사용하지 않을 것:** 이 문서의 QuickNode·x402 구조, endpoint, acceptance test를 Mandate Pool 구현 명세로 해석하지 않습니다.
+- **재개 조건:** 실제 사용자의 최근 RPC incident와 QuickNode의 payment→settlement→RPC fulfillment가 검증될 때만 후보를 다시 평가합니다.
+- **읽는 순서:** 제품 판단은 §1–5와 §14–17, 상세 상태·API·보안 계약은 §6–13을 봅니다.
+
+문서가 작성됐을 때의 메타데이터:
 
 - 제품 부제: Duplicate Payout Guard
-- 문서 상태: **구현 계약 후보**
-- 증거 상태: **Share with caveats — 제품 수요와 live paid fulfillment 미검증**
+- 당시 상태: 구현 계약 후보, 제품 수요와 live paid fulfillment 미검증
 - 대상 행사: 2026 Google Cloud × Solana AI Agentic Hackathon
-- 제출 마감: 2026-08-03 23:59 KST
-- 최종 갱신: 2026-08-02 KST
+- 작성·검증 기준일: 2026-08-02 KST
 
-**읽는 순서:** 심사·제품 의사결정의 핵심은 §1–5와 §14–17이다. §6–13은 핵심 결정을 구현 가능한 상태·API·보안 계약으로 내린 **implementation appendix**다.
-
-제출용 decision surface: [`research/decision-report/rpc-rescue-core-prd.md`](../research/decision-report/rpc-rescue-core-prd.md)
+요약 decision surface: [RPC Rescue Core PRD](../research/decision-report/rpc-rescue-core-prd.md)
 
 ## 1. Executive decision
 

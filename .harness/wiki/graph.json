@@ -1248,11 +1248,12 @@
       "path": ".harness/control/state.json",
       "availability": "present",
       "state": "DISCOVERY",
-      "next_action": "ideate",
+      "overlay": "PIVOT_REQUIRED",
+      "next_action": "apply_pivot",
       "blockers": [
         "candidate_set"
       ],
-      "derived_at": "2026-07-23T23:08:29.823105+09:00",
+      "derived_at": "2026-08-03T21:36:59.639926+09:00",
       "event_count": 1
     },
     {
@@ -1400,13 +1401,13 @@
       "line": 534
     },
     {
-      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_inventory_files@688",
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_inventory_files@700",
       "type": "python_symbol",
       "label": "_inventory_files",
       "symbol_kind": "function",
       "path": ".harness/workflows/01_knowledge_extract.py",
       "qualified_name": "_inventory_files",
-      "line": 688
+      "line": 700
     },
     {
       "id": "symbol:.harness/workflows/01_knowledge_extract.py::_iter_mp4_boxes@318",
@@ -1481,49 +1482,49 @@
       "line": 592
     },
     {
-      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_render_module@660",
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_render_module@670",
       "type": "python_symbol",
       "label": "_render_module",
       "symbol_kind": "function",
       "path": ".harness/workflows/01_knowledge_extract.py",
       "qualified_name": "_render_module",
-      "line": 660
+      "line": 670
     },
     {
-      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_resolve_argument@828",
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_resolve_argument@840",
       "type": "python_symbol",
       "label": "_resolve_argument",
       "symbol_kind": "function",
       "path": ".harness/workflows/01_knowledge_extract.py",
       "qualified_name": "_resolve_argument",
-      "line": 828
+      "line": 840
     },
     {
-      "id": "symbol:.harness/workflows/01_knowledge_extract.py::build_parser@833",
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::build_parser@845",
       "type": "python_symbol",
       "label": "build_parser",
       "symbol_kind": "function",
       "path": ".harness/workflows/01_knowledge_extract.py",
       "qualified_name": "build_parser",
-      "line": 833
+      "line": 845
     },
     {
-      "id": "symbol:.harness/workflows/01_knowledge_extract.py::main@858",
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::main@870",
       "type": "python_symbol",
       "label": "main",
       "symbol_kind": "function",
       "path": ".harness/workflows/01_knowledge_extract.py",
       "qualified_name": "main",
-      "line": 858
+      "line": 870
     },
     {
-      "id": "symbol:.harness/workflows/01_knowledge_extract.py::run_ingestion@699",
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::run_ingestion@711",
       "type": "python_symbol",
       "label": "run_ingestion",
       "symbol_kind": "function",
       "path": ".harness/workflows/01_knowledge_extract.py",
       "qualified_name": "run_ingestion",
-      "line": 699
+      "line": 711
     },
     {
       "id": "symbol:.harness/workflows/02_graphify_code.py::GraphBuilder.__init__@247",
@@ -2705,490 +2706,499 @@
       "line": 615
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::ReadinessError@171",
+      "id": "symbol:.harness/workflows/06_readiness.py::ReadinessError@174",
       "type": "python_symbol",
       "label": "ReadinessError",
       "symbol_kind": "class",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "ReadinessError",
-      "line": 171
+      "line": 174
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_approval_map@584",
+      "id": "symbol:.harness/workflows/06_readiness.py::_approval_map@587",
       "type": "python_symbol",
       "label": "_approval_map",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_approval_map",
-      "line": 584
+      "line": 587
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_artifact_digest@1477",
+      "id": "symbol:.harness/workflows/06_readiness.py::_artifact_digest@1509",
       "type": "python_symbol",
       "label": "_artifact_digest",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_artifact_digest",
-      "line": 1477
+      "line": 1509
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_canonical_json@216",
+      "id": "symbol:.harness/workflows/06_readiness.py::_canonical_json@219",
       "type": "python_symbol",
       "label": "_canonical_json",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_canonical_json",
-      "line": 216
+      "line": 219
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_digest_values@220",
+      "id": "symbol:.harness/workflows/06_readiness.py::_digest_values@223",
       "type": "python_symbol",
       "label": "_digest_values",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_digest_values",
-      "line": 220
+      "line": 223
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_fact_domain@931",
+      "id": "symbol:.harness/workflows/06_readiness.py::_fact_domain@934",
       "type": "python_symbol",
       "label": "_fact_domain",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_fact_domain",
-      "line": 931
+      "line": 934
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_iso@179",
+      "id": "symbol:.harness/workflows/06_readiness.py::_iso@182",
       "type": "python_symbol",
       "label": "_iso",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_iso",
-      "line": 179
+      "line": 182
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_latest_event@538",
+      "id": "symbol:.harness/workflows/06_readiness.py::_latest_event@541",
       "type": "python_symbol",
       "label": "_latest_event",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_latest_event",
-      "line": 538
+      "line": 541
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_ledger_lock@490",
+      "id": "symbol:.harness/workflows/06_readiness.py::_ledger_lock@493",
       "type": "python_symbol",
       "label": "_ledger_lock",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_ledger_lock",
-      "line": 490
+      "line": 493
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_load_input@1568",
+      "id": "symbol:.harness/workflows/06_readiness.py::_load_input@1600",
       "type": "python_symbol",
       "label": "_load_input",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_load_input",
-      "line": 1568
+      "line": 1600
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_markdown_table@1006",
+      "id": "symbol:.harness/workflows/06_readiness.py::_markdown_table@1009",
       "type": "python_symbol",
       "label": "_markdown_table",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_markdown_table",
-      "line": 1006
+      "line": 1009
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_missing@594",
+      "id": "symbol:.harness/workflows/06_readiness.py::_missing@597",
       "type": "python_symbol",
       "label": "_missing",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_missing",
-      "line": 594
+      "line": 597
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_now@175",
+      "id": "symbol:.harness/workflows/06_readiness.py::_now@178",
       "type": "python_symbol",
       "label": "_now",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_now",
-      "line": 175
+      "line": 178
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_parse_date_or_datetime@198",
+      "id": "symbol:.harness/workflows/06_readiness.py::_parse_date_or_datetime@201",
       "type": "python_symbol",
       "label": "_parse_date_or_datetime",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_parse_date_or_datetime",
-      "line": 198
+      "line": 201
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_parse_datetime@185",
+      "id": "symbol:.harness/workflows/06_readiness.py::_parse_datetime@188",
       "type": "python_symbol",
       "label": "_parse_datetime",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_parse_datetime",
-      "line": 185
+      "line": 188
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_passed_kinds@556",
+      "id": "symbol:.harness/workflows/06_readiness.py::_passed_kinds@559",
       "type": "python_symbol",
       "label": "_passed_kinds",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_passed_kinds",
-      "line": 556
+      "line": 559
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_read_json@207",
+      "id": "symbol:.harness/workflows/06_readiness.py::_projection_notice@1020",
+      "type": "python_symbol",
+      "label": "_projection_notice",
+      "symbol_kind": "function",
+      "path": ".harness/workflows/06_readiness.py",
+      "qualified_name": "_projection_notice",
+      "line": 1020
+    },
+    {
+      "id": "symbol:.harness/workflows/06_readiness.py::_read_json@210",
       "type": "python_symbol",
       "label": "_read_json",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_read_json",
-      "line": 207
+      "line": 210
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_receipt_map@546",
+      "id": "symbol:.harness/workflows/06_readiness.py::_receipt_map@549",
       "type": "python_symbol",
       "label": "_receipt_map",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_receipt_map",
-      "line": 546
+      "line": 549
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_architecture@1129",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_architecture@1150",
       "type": "python_symbol",
       "label": "_render_architecture",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_architecture",
-      "line": 1129
+      "line": 1150
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_candidates@1074",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_candidates@1088",
       "type": "python_symbol",
       "label": "_render_candidates",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_candidates",
-      "line": 1074
+      "line": 1088
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_event_contract@1049",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_event_contract@1062",
       "type": "python_symbol",
       "label": "_render_event_contract",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_event_contract",
-      "line": 1049
+      "line": 1062
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_evidence@1195",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_evidence@1223",
       "type": "python_symbol",
       "label": "_render_evidence",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_evidence",
-      "line": 1195
+      "line": 1223
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_product_contract@1103",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_product_contract@1120",
       "type": "python_symbol",
       "label": "_render_product_contract",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_product_contract",
-      "line": 1103
+      "line": 1120
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_security@1153",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_security@1179",
       "type": "python_symbol",
       "label": "_render_security",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_security",
-      "line": 1153
+      "line": 1179
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_status@1017",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_status@1029",
       "type": "python_symbol",
       "label": "_render_status",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_status",
-      "line": 1017
+      "line": 1029
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_render_submission@1218",
+      "id": "symbol:.harness/workflows/06_readiness.py::_render_submission@1248",
       "type": "python_symbol",
       "label": "_render_submission",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_render_submission",
-      "line": 1218
+      "line": 1248
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_require_mapping@228",
+      "id": "symbol:.harness/workflows/06_readiness.py::_require_mapping@231",
       "type": "python_symbol",
       "label": "_require_mapping",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_require_mapping",
-      "line": 228
+      "line": 231
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_require_sequence@234",
+      "id": "symbol:.harness/workflows/06_readiness.py::_require_sequence@237",
       "type": "python_symbol",
       "label": "_require_sequence",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_require_sequence",
-      "line": 234
+      "line": 237
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_require_text@240",
+      "id": "symbol:.harness/workflows/06_readiness.py::_require_text@243",
       "type": "python_symbol",
       "label": "_require_text",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_require_text",
-      "line": 240
+      "line": 243
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_resolve@246",
+      "id": "symbol:.harness/workflows/06_readiness.py::_resolve@249",
       "type": "python_symbol",
       "label": "_resolve",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_resolve",
-      "line": 246
+      "line": 249
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_state_at_least@598",
+      "id": "symbol:.harness/workflows/06_readiness.py::_state_at_least@601",
       "type": "python_symbol",
       "label": "_state_at_least",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_state_at_least",
-      "line": 598
+      "line": 601
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_validate_score@267",
+      "id": "symbol:.harness/workflows/06_readiness.py::_validate_score@270",
       "type": "python_symbol",
       "label": "_validate_score",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_validate_score",
-      "line": 267
+      "line": 270
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_walk_for_secrets@357",
+      "id": "symbol:.harness/workflows/06_readiness.py::_walk_for_secrets@360",
       "type": "python_symbol",
       "label": "_walk_for_secrets",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_walk_for_secrets",
-      "line": 357
+      "line": 360
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::_write_ideation_request@1572",
+      "id": "symbol:.harness/workflows/06_readiness.py::_write_ideation_request@1604",
       "type": "python_symbol",
       "label": "_write_ideation_request",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "_write_ideation_request",
-      "line": 1572
+      "line": 1604
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::append_event@509",
+      "id": "symbol:.harness/workflows/06_readiness.py::append_event@512",
       "type": "python_symbol",
       "label": "append_event",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "append_event",
-      "line": 509
+      "line": 512
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::apply_pivot@1449",
+      "id": "symbol:.harness/workflows/06_readiness.py::apply_pivot@1481",
       "type": "python_symbol",
       "label": "apply_pivot",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "apply_pivot",
-      "line": 1449
+      "line": 1481
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::build_fact_catalog@946",
+      "id": "symbol:.harness/workflows/06_readiness.py::build_fact_catalog@949",
       "type": "python_symbol",
       "label": "build_fact_catalog",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "build_fact_catalog",
-      "line": 946
+      "line": 949
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::build_parser@1601",
+      "id": "symbol:.harness/workflows/06_readiness.py::build_parser@1633",
       "type": "python_symbol",
       "label": "build_parser",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "build_parser",
-      "line": 1601
+      "line": 1633
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::build_submission_pack@1485",
+      "id": "symbol:.harness/workflows/06_readiness.py::build_submission_pack@1517",
       "type": "python_symbol",
       "label": "build_submission_pack",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "build_submission_pack",
-      "line": 1485
+      "line": 1517
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::load_config@250",
+      "id": "symbol:.harness/workflows/06_readiness.py::load_config@253",
       "type": "python_symbol",
       "label": "load_config",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "load_config",
-      "line": 250
+      "line": 253
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::main@1631",
+      "id": "symbol:.harness/workflows/06_readiness.py::main@1663",
       "type": "python_symbol",
       "label": "main",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "main",
-      "line": 1631
+      "line": 1663
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::prepare_workspace@1278",
+      "id": "symbol:.harness/workflows/06_readiness.py::prepare_workspace@1310",
       "type": "python_symbol",
       "label": "prepare_workspace",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "prepare_workspace",
-      "line": 1278
+      "line": 1310
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::read_events@457",
+      "id": "symbol:.harness/workflows/06_readiness.py::read_events@460",
       "type": "python_symbol",
       "label": "read_events",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "read_events",
-      "line": 457
+      "line": 460
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::record_input@1306",
+      "id": "symbol:.harness/workflows/06_readiness.py::record_input@1338",
       "type": "python_symbol",
       "label": "record_input",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "record_input",
-      "line": 1306
+      "line": 1338
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::refresh_state@1267",
+      "id": "symbol:.harness/workflows/06_readiness.py::refresh_state@1299",
       "type": "python_symbol",
       "label": "refresh_state",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "refresh_state",
-      "line": 1267
+      "line": 1299
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::replay_events@602",
+      "id": "symbol:.harness/workflows/06_readiness.py::replay_events@605",
       "type": "python_symbol",
       "label": "replay_events",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "replay_events",
-      "line": 602
+      "line": 605
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::score_candidate@292",
+      "id": "symbol:.harness/workflows/06_readiness.py::score_candidate@295",
       "type": "python_symbol",
       "label": "score_candidate",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "score_candidate",
-      "line": 292
+      "line": 295
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::select_candidate@319",
+      "id": "symbol:.harness/workflows/06_readiness.py::select_candidate@322",
       "type": "python_symbol",
       "label": "select_candidate",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "select_candidate",
-      "line": 319
+      "line": 322
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::validate_approval@429",
+      "id": "symbol:.harness/workflows/06_readiness.py::validate_approval@432",
       "type": "python_symbol",
       "label": "validate_approval",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "validate_approval",
-      "line": 429
+      "line": 432
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::validate_candidate@276",
+      "id": "symbol:.harness/workflows/06_readiness.py::validate_candidate@279",
       "type": "python_symbol",
       "label": "validate_candidate",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "validate_candidate",
-      "line": 276
+      "line": 279
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::validate_official_research@819",
+      "id": "symbol:.harness/workflows/06_readiness.py::validate_official_research@822",
       "type": "python_symbol",
       "label": "validate_official_research",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "validate_official_research",
-      "line": 819
+      "line": 822
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::validate_product_contract@411",
+      "id": "symbol:.harness/workflows/06_readiness.py::validate_product_contract@414",
       "type": "python_symbol",
       "label": "validate_product_contract",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "validate_product_contract",
-      "line": 411
+      "line": 414
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::validate_receipt@373",
+      "id": "symbol:.harness/workflows/06_readiness.py::validate_receipt@376",
       "type": "python_symbol",
       "label": "validate_receipt",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "validate_receipt",
-      "line": 373
+      "line": 376
     },
     {
-      "id": "symbol:.harness/workflows/06_readiness.py::write_state_and_wiki@1239",
+      "id": "symbol:.harness/workflows/06_readiness.py::write_state_and_wiki@1271",
       "type": "python_symbol",
       "label": "write_state_and_wiki",
       "symbol_kind": "function",
       "path": ".harness/workflows/06_readiness.py",
       "qualified_name": "write_state_and_wiki",
-      "line": 1239
+      "line": 1271
     },
     {
       "id": "symbol:.harness/workflows/common.py::atomic_write_json@98",
@@ -3686,40 +3696,40 @@
       "line": 69
     },
     {
-      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_manifest_and_generated_paths_are_deterministic@144",
+      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_manifest_and_generated_paths_are_deterministic@157",
       "type": "python_symbol",
       "label": "KnowledgeExtractTests.test_manifest_and_generated_paths_are_deterministic",
       "symbol_kind": "function",
       "path": "tests/test_knowledge_extract.py",
       "qualified_name": "KnowledgeExtractTests.test_manifest_and_generated_paths_are_deterministic",
-      "line": 144
+      "line": 157
     },
     {
-      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_mp4_duration_metadata_is_read_without_decoding_streams@182",
+      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_mp4_duration_metadata_is_read_without_decoding_streams@195",
       "type": "python_symbol",
       "label": "KnowledgeExtractTests.test_mp4_duration_metadata_is_read_without_decoding_streams",
       "symbol_kind": "function",
       "path": "tests/test_knowledge_extract.py",
       "qualified_name": "KnowledgeExtractTests.test_mp4_duration_metadata_is_read_without_decoding_streams",
-      "line": 182
+      "line": 195
     },
     {
-      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_pdf_without_optional_dependency_is_auditable_metadata_only@164",
+      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_pdf_without_optional_dependency_is_auditable_metadata_only@177",
       "type": "python_symbol",
       "label": "KnowledgeExtractTests.test_pdf_without_optional_dependency_is_auditable_metadata_only",
       "symbol_kind": "function",
       "path": "tests/test_knowledge_extract.py",
       "qualified_name": "KnowledgeExtractTests.test_pdf_without_optional_dependency_is_auditable_metadata_only",
-      "line": 164
+      "line": 177
     },
     {
-      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_sha_matched_media_enrichment_is_attached_and_stale_data_is_ignored@202",
+      "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_sha_matched_media_enrichment_is_attached_and_stale_data_is_ignored@215",
       "type": "python_symbol",
       "label": "KnowledgeExtractTests.test_sha_matched_media_enrichment_is_attached_and_stale_data_is_ignored",
       "symbol_kind": "function",
       "path": "tests/test_knowledge_extract.py",
       "qualified_name": "KnowledgeExtractTests.test_sha_matched_media_enrichment_is_attached_and_stale_data_is_ignored",
-      "line": 202
+      "line": 215
     },
     {
       "id": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests@38",
@@ -3848,13 +3858,13 @@
       "line": 117
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@344",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@373",
       "type": "python_symbol",
       "label": "ReadinessTests.test_duplicate_receipt_id_is_rejected",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_duplicate_receipt_id_is_rejected",
-      "line": 344
+      "line": 373
     },
     {
       "id": "symbol:tests/test_readiness.py::ReadinessTests.test_prepare_builds_state_and_operational_wiki@320",
@@ -3902,31 +3912,31 @@
       "line": 204
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@368",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@397",
       "type": "python_symbol",
       "label": "ReadinessTests.test_status_command_is_read_only",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_status_command_is_read_only",
-      "line": 368
+      "line": 397
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@405",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@434",
       "type": "python_symbol",
       "label": "ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation",
-      "line": 405
+      "line": 434
     },
     {
-      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@390",
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@419",
       "type": "python_symbol",
       "label": "ReadinessTests.test_submission_pack_refuses_before_hardening",
       "symbol_kind": "function",
       "path": "tests/test_readiness.py",
       "qualified_name": "ReadinessTests.test_submission_pack_refuses_before_hardening",
-      "line": 390
+      "line": 419
     },
     {
       "id": "symbol:tests/test_readiness.py::ReadinessTests@116",
@@ -4475,16 +4485,16 @@
       ]
     },
     {
-      "id": "edge:0698367659ae3016",
+      "id": "edge:624b2e055c97991b",
       "source": "file:.harness/workflows/01_knowledge_extract.py",
-      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_inventory_files@688",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_inventory_files@700",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/01_knowledge_extract.py",
-          "line": 688
+          "line": 700
         }
       ]
     },
@@ -4601,72 +4611,72 @@
       ]
     },
     {
-      "id": "edge:2ab7b0c421ca2653",
+      "id": "edge:d925eacdb91e88b8",
       "source": "file:.harness/workflows/01_knowledge_extract.py",
-      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_render_module@660",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_render_module@670",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/01_knowledge_extract.py",
-          "line": 660
+          "line": 670
         }
       ]
     },
     {
-      "id": "edge:d367b5e84d07854e",
+      "id": "edge:ff7fe2e62c97bede",
       "source": "file:.harness/workflows/01_knowledge_extract.py",
-      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_resolve_argument@828",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_resolve_argument@840",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/01_knowledge_extract.py",
-          "line": 828
+          "line": 840
         }
       ]
     },
     {
-      "id": "edge:755b9bbd18a3b9c4",
+      "id": "edge:2572d8f947e81944",
       "source": "file:.harness/workflows/01_knowledge_extract.py",
-      "target": "symbol:.harness/workflows/01_knowledge_extract.py::build_parser@833",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::build_parser@845",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/01_knowledge_extract.py",
-          "line": 833
+          "line": 845
         }
       ]
     },
     {
-      "id": "edge:f144b5ad40aec4b9",
+      "id": "edge:554f66b1279bb98d",
       "source": "file:.harness/workflows/01_knowledge_extract.py",
-      "target": "symbol:.harness/workflows/01_knowledge_extract.py::main@858",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::main@870",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/01_knowledge_extract.py",
-          "line": 858
+          "line": 870
         }
       ]
     },
     {
-      "id": "edge:11b7052087c5b88f",
+      "id": "edge:ef5523fc53692448",
       "source": "file:.harness/workflows/01_knowledge_extract.py",
-      "target": "symbol:.harness/workflows/01_knowledge_extract.py::run_ingestion@699",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::run_ingestion@711",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/01_knowledge_extract.py",
-          "line": 699
+          "line": 711
         }
       ]
     },
@@ -7393,758 +7403,772 @@
       ]
     },
     {
-      "id": "edge:7f374f8dd1d6deb7",
+      "id": "edge:acb50606f4689ea7",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::ReadinessError@171",
+      "target": "symbol:.harness/workflows/06_readiness.py::ReadinessError@174",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 171
+          "line": 174
         }
       ]
     },
     {
-      "id": "edge:80c2a9831148eb93",
+      "id": "edge:be5085ccfa46bf0d",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_approval_map@584",
+      "target": "symbol:.harness/workflows/06_readiness.py::_approval_map@587",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 584
+          "line": 587
         }
       ]
     },
     {
-      "id": "edge:621af6951b582ea2",
+      "id": "edge:ce71c388f957da9f",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_artifact_digest@1477",
+      "target": "symbol:.harness/workflows/06_readiness.py::_artifact_digest@1509",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1477
+          "line": 1509
         }
       ]
     },
     {
-      "id": "edge:67e62137e9cd9c1e",
+      "id": "edge:e3477794e645e804",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_canonical_json@216",
+      "target": "symbol:.harness/workflows/06_readiness.py::_canonical_json@219",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 216
+          "line": 219
         }
       ]
     },
     {
-      "id": "edge:8e43102138acee9d",
+      "id": "edge:40f6d99bca302e15",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_digest_values@220",
+      "target": "symbol:.harness/workflows/06_readiness.py::_digest_values@223",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 220
+          "line": 223
         }
       ]
     },
     {
-      "id": "edge:e2673431ef045e27",
+      "id": "edge:72383acf71b2115c",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_fact_domain@931",
+      "target": "symbol:.harness/workflows/06_readiness.py::_fact_domain@934",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 931
+          "line": 934
         }
       ]
     },
     {
-      "id": "edge:6977c33de1af129b",
+      "id": "edge:913d3b628c22ed46",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_iso@179",
+      "target": "symbol:.harness/workflows/06_readiness.py::_iso@182",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 179
+          "line": 182
         }
       ]
     },
     {
-      "id": "edge:e719b456ee980247",
+      "id": "edge:2cf90f974b26c592",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_latest_event@538",
+      "target": "symbol:.harness/workflows/06_readiness.py::_latest_event@541",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 538
+          "line": 541
         }
       ]
     },
     {
-      "id": "edge:089591b7dacb96e6",
+      "id": "edge:9effabc79294d62f",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_ledger_lock@490",
+      "target": "symbol:.harness/workflows/06_readiness.py::_ledger_lock@493",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 490
+          "line": 493
         }
       ]
     },
     {
-      "id": "edge:6d385654470749c6",
+      "id": "edge:4a5b2e4df34b31eb",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_load_input@1568",
+      "target": "symbol:.harness/workflows/06_readiness.py::_load_input@1600",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1568
+          "line": 1600
         }
       ]
     },
     {
-      "id": "edge:a3fe17d6ba035051",
+      "id": "edge:e43e8f14848b27f8",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_markdown_table@1006",
+      "target": "symbol:.harness/workflows/06_readiness.py::_markdown_table@1009",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1006
+          "line": 1009
         }
       ]
     },
     {
-      "id": "edge:70781617312d1797",
+      "id": "edge:07ec6c240c10e620",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_missing@594",
+      "target": "symbol:.harness/workflows/06_readiness.py::_missing@597",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 594
+          "line": 597
         }
       ]
     },
     {
-      "id": "edge:82dd42f786aba421",
+      "id": "edge:807218353e688817",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_now@175",
+      "target": "symbol:.harness/workflows/06_readiness.py::_now@178",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 175
+          "line": 178
         }
       ]
     },
     {
-      "id": "edge:be7e126dadaefd53",
+      "id": "edge:4b6f4b1f960640ae",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_parse_date_or_datetime@198",
+      "target": "symbol:.harness/workflows/06_readiness.py::_parse_date_or_datetime@201",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 198
+          "line": 201
         }
       ]
     },
     {
-      "id": "edge:7588f7531220ca6a",
+      "id": "edge:16786f8ccd140a28",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_parse_datetime@185",
+      "target": "symbol:.harness/workflows/06_readiness.py::_parse_datetime@188",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 185
+          "line": 188
         }
       ]
     },
     {
-      "id": "edge:b298a6c21a28ac2e",
+      "id": "edge:ddc420d157f36ce2",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_passed_kinds@556",
+      "target": "symbol:.harness/workflows/06_readiness.py::_passed_kinds@559",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 556
+          "line": 559
         }
       ]
     },
     {
-      "id": "edge:8ec3d43bc4946a34",
+      "id": "edge:52e55da79cea26ef",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_read_json@207",
+      "target": "symbol:.harness/workflows/06_readiness.py::_projection_notice@1020",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 207
+          "line": 1020
         }
       ]
     },
     {
-      "id": "edge:a8c02909775c42d2",
+      "id": "edge:da7d89c832e47e42",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_receipt_map@546",
+      "target": "symbol:.harness/workflows/06_readiness.py::_read_json@210",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 546
+          "line": 210
         }
       ]
     },
     {
-      "id": "edge:6973e438b151cf76",
+      "id": "edge:9e68f2c7df427107",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_architecture@1129",
+      "target": "symbol:.harness/workflows/06_readiness.py::_receipt_map@549",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1129
+          "line": 549
         }
       ]
     },
     {
-      "id": "edge:f289a1a3c579fdef",
+      "id": "edge:b3938a30cbfe82b1",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_candidates@1074",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_architecture@1150",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1074
+          "line": 1150
         }
       ]
     },
     {
-      "id": "edge:cf37c52d0deccbb3",
+      "id": "edge:d63a17701af11c2f",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_event_contract@1049",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_candidates@1088",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1049
+          "line": 1088
         }
       ]
     },
     {
-      "id": "edge:fae1ed84cde9bde1",
+      "id": "edge:87a56517b5627a08",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_evidence@1195",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_event_contract@1062",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1195
+          "line": 1062
         }
       ]
     },
     {
-      "id": "edge:9d8a51f7192096d0",
+      "id": "edge:21b796038c7aa477",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_product_contract@1103",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_evidence@1223",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1103
+          "line": 1223
         }
       ]
     },
     {
-      "id": "edge:f3cff30c0eae3102",
+      "id": "edge:8b9df28ca03daab0",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_security@1153",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_product_contract@1120",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1153
+          "line": 1120
         }
       ]
     },
     {
-      "id": "edge:4b1bb6ed80f18c54",
+      "id": "edge:3121f11401ce8b39",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_status@1017",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_security@1179",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1017
+          "line": 1179
         }
       ]
     },
     {
-      "id": "edge:3308dfb480eccf42",
+      "id": "edge:9d0c80d9936734b2",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_render_submission@1218",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_status@1029",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1218
+          "line": 1029
         }
       ]
     },
     {
-      "id": "edge:a52a8a6dacb3966b",
+      "id": "edge:e9b8c16b2324d8e2",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_require_mapping@228",
+      "target": "symbol:.harness/workflows/06_readiness.py::_render_submission@1248",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 228
+          "line": 1248
         }
       ]
     },
     {
-      "id": "edge:30c90cc03056ea93",
+      "id": "edge:f091c32107960243",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_require_sequence@234",
+      "target": "symbol:.harness/workflows/06_readiness.py::_require_mapping@231",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 234
+          "line": 231
         }
       ]
     },
     {
-      "id": "edge:48eff24a1537b295",
+      "id": "edge:b31331ed53817fd9",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_require_text@240",
+      "target": "symbol:.harness/workflows/06_readiness.py::_require_sequence@237",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 240
+          "line": 237
         }
       ]
     },
     {
-      "id": "edge:af26e5a23db7bc10",
+      "id": "edge:a5e6b99975d8372a",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_resolve@246",
+      "target": "symbol:.harness/workflows/06_readiness.py::_require_text@243",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 246
+          "line": 243
         }
       ]
     },
     {
-      "id": "edge:5a425f86bab93272",
+      "id": "edge:762e3032717613d7",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_state_at_least@598",
+      "target": "symbol:.harness/workflows/06_readiness.py::_resolve@249",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 598
+          "line": 249
         }
       ]
     },
     {
-      "id": "edge:92439bb1bf47d624",
+      "id": "edge:6dc938a2771aa596",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_validate_score@267",
+      "target": "symbol:.harness/workflows/06_readiness.py::_state_at_least@601",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 267
+          "line": 601
         }
       ]
     },
     {
-      "id": "edge:4c6c203aa38e80b6",
+      "id": "edge:f8365147daa9091b",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_walk_for_secrets@357",
+      "target": "symbol:.harness/workflows/06_readiness.py::_validate_score@270",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 357
+          "line": 270
         }
       ]
     },
     {
-      "id": "edge:1dfe2fadace6477d",
+      "id": "edge:bb8b53b6d8de1d29",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::_write_ideation_request@1572",
+      "target": "symbol:.harness/workflows/06_readiness.py::_walk_for_secrets@360",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1572
+          "line": 360
         }
       ]
     },
     {
-      "id": "edge:703de8b23d9f60a3",
+      "id": "edge:1676b44df371e774",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::append_event@509",
+      "target": "symbol:.harness/workflows/06_readiness.py::_write_ideation_request@1604",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 509
+          "line": 1604
         }
       ]
     },
     {
-      "id": "edge:96be950cd187d696",
+      "id": "edge:34d9e4bd667963ec",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::apply_pivot@1449",
+      "target": "symbol:.harness/workflows/06_readiness.py::append_event@512",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1449
+          "line": 512
         }
       ]
     },
     {
-      "id": "edge:1330fdfe56ea8f2c",
+      "id": "edge:b52e8c7c94e4da1e",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::build_fact_catalog@946",
+      "target": "symbol:.harness/workflows/06_readiness.py::apply_pivot@1481",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 946
+          "line": 1481
         }
       ]
     },
     {
-      "id": "edge:443ef1b687518ec5",
+      "id": "edge:daff31fb6a16547f",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::build_parser@1601",
+      "target": "symbol:.harness/workflows/06_readiness.py::build_fact_catalog@949",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1601
+          "line": 949
         }
       ]
     },
     {
-      "id": "edge:65260243473349ed",
+      "id": "edge:a87e6e346addfb01",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::build_submission_pack@1485",
+      "target": "symbol:.harness/workflows/06_readiness.py::build_parser@1633",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1485
+          "line": 1633
         }
       ]
     },
     {
-      "id": "edge:dc0dd33cbc31a633",
+      "id": "edge:f89b150c5deda8cb",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::load_config@250",
+      "target": "symbol:.harness/workflows/06_readiness.py::build_submission_pack@1517",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 250
+          "line": 1517
         }
       ]
     },
     {
-      "id": "edge:fec118995fc40eee",
+      "id": "edge:b9545037237a1529",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::main@1631",
+      "target": "symbol:.harness/workflows/06_readiness.py::load_config@253",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1631
+          "line": 253
         }
       ]
     },
     {
-      "id": "edge:9c33346b1a530083",
+      "id": "edge:aa2d76cb43b9383c",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::prepare_workspace@1278",
+      "target": "symbol:.harness/workflows/06_readiness.py::main@1663",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1278
+          "line": 1663
         }
       ]
     },
     {
-      "id": "edge:86c1b623b6bd8496",
+      "id": "edge:be4e2606ce27fa78",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::read_events@457",
+      "target": "symbol:.harness/workflows/06_readiness.py::prepare_workspace@1310",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 457
+          "line": 1310
         }
       ]
     },
     {
-      "id": "edge:f3c27491f5454ce3",
+      "id": "edge:2dc6c42172c30fc1",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::record_input@1306",
+      "target": "symbol:.harness/workflows/06_readiness.py::read_events@460",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1306
+          "line": 460
         }
       ]
     },
     {
-      "id": "edge:1694b75f0a0250ed",
+      "id": "edge:f44b9245da4f4bfc",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::refresh_state@1267",
+      "target": "symbol:.harness/workflows/06_readiness.py::record_input@1338",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1267
+          "line": 1338
         }
       ]
     },
     {
-      "id": "edge:a977f64a06544e76",
+      "id": "edge:3d13f620419caf9a",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::replay_events@602",
+      "target": "symbol:.harness/workflows/06_readiness.py::refresh_state@1299",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 602
+          "line": 1299
         }
       ]
     },
     {
-      "id": "edge:9f29ff0d837c0b8d",
+      "id": "edge:d1a43cf5d83bdfba",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::score_candidate@292",
+      "target": "symbol:.harness/workflows/06_readiness.py::replay_events@605",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 292
+          "line": 605
         }
       ]
     },
     {
-      "id": "edge:d78bfb7e44874736",
+      "id": "edge:36f279c7763bcc95",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::select_candidate@319",
+      "target": "symbol:.harness/workflows/06_readiness.py::score_candidate@295",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 319
+          "line": 295
         }
       ]
     },
     {
-      "id": "edge:0aa753d2d1f37fb8",
+      "id": "edge:155639fcf775a5d6",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::validate_approval@429",
+      "target": "symbol:.harness/workflows/06_readiness.py::select_candidate@322",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 429
+          "line": 322
         }
       ]
     },
     {
-      "id": "edge:65564e9ec74b49e9",
+      "id": "edge:eaa1421efcbf3f80",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::validate_candidate@276",
+      "target": "symbol:.harness/workflows/06_readiness.py::validate_approval@432",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 276
+          "line": 432
         }
       ]
     },
     {
-      "id": "edge:2ea1e0c4b876db9e",
+      "id": "edge:a3573dba56eb4be9",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::validate_official_research@819",
+      "target": "symbol:.harness/workflows/06_readiness.py::validate_candidate@279",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 819
+          "line": 279
         }
       ]
     },
     {
-      "id": "edge:7ee5d3345ec570c8",
+      "id": "edge:c87172a43489f66a",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::validate_product_contract@411",
+      "target": "symbol:.harness/workflows/06_readiness.py::validate_official_research@822",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 411
+          "line": 822
         }
       ]
     },
     {
-      "id": "edge:403810b3d1da2605",
+      "id": "edge:5cdba5de46f4ac64",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::validate_receipt@373",
+      "target": "symbol:.harness/workflows/06_readiness.py::validate_product_contract@414",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 373
+          "line": 414
         }
       ]
     },
     {
-      "id": "edge:ab50c448358c6da7",
+      "id": "edge:6404656b6bf7c36a",
       "source": "file:.harness/workflows/06_readiness.py",
-      "target": "symbol:.harness/workflows/06_readiness.py::write_state_and_wiki@1239",
+      "target": "symbol:.harness/workflows/06_readiness.py::validate_receipt@376",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": ".harness/workflows/06_readiness.py",
-          "line": 1239
+          "line": 376
+        }
+      ]
+    },
+    {
+      "id": "edge:95496af6bcb81a71",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "symbol:.harness/workflows/06_readiness.py::write_state_and_wiki@1271",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 1271
         }
       ]
     },
@@ -13151,58 +13175,58 @@
       ]
     },
     {
-      "id": "edge:9f7f58f5b32994b9",
+      "id": "edge:d86ad6040acff3b0",
       "source": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests@38",
-      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_manifest_and_generated_paths_are_deterministic@144",
+      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_manifest_and_generated_paths_are_deterministic@157",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_knowledge_extract.py",
-          "line": 144
+          "line": 157
         }
       ]
     },
     {
-      "id": "edge:804c45b93e746b3b",
+      "id": "edge:5bdaaa43a3d411db",
       "source": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests@38",
-      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_mp4_duration_metadata_is_read_without_decoding_streams@182",
+      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_mp4_duration_metadata_is_read_without_decoding_streams@195",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_knowledge_extract.py",
-          "line": 182
+          "line": 195
         }
       ]
     },
     {
-      "id": "edge:752e324c89036bcd",
+      "id": "edge:47f39e54b62a288d",
       "source": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests@38",
-      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_pdf_without_optional_dependency_is_auditable_metadata_only@164",
+      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_pdf_without_optional_dependency_is_auditable_metadata_only@177",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_knowledge_extract.py",
-          "line": 164
+          "line": 177
         }
       ]
     },
     {
-      "id": "edge:3c58554b0c346b4f",
+      "id": "edge:b499f813da788a27",
       "source": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests@38",
-      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_sha_matched_media_enrichment_is_attached_and_stale_data_is_ignored@202",
+      "target": "symbol:tests/test_knowledge_extract.py::KnowledgeExtractTests.test_sha_matched_media_enrichment_is_attached_and_stale_data_is_ignored@215",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_knowledge_extract.py",
-          "line": 202
+          "line": 215
         }
       ]
     },
@@ -13347,16 +13371,16 @@
       ]
     },
     {
-      "id": "edge:499627a46e867575",
+      "id": "edge:f58cec7533fdc267",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@344",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@373",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 344
+          "line": 373
         }
       ]
     },
@@ -13431,44 +13455,44 @@
       ]
     },
     {
-      "id": "edge:736cdb95ef3c2735",
+      "id": "edge:85a8f8f1836d044c",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@368",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@397",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 368
+          "line": 397
         }
       ]
     },
     {
-      "id": "edge:2f9d06e2d3934369",
+      "id": "edge:c9aedcd9afdba8b3",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@405",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@434",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 405
+          "line": 434
         }
       ]
     },
     {
-      "id": "edge:d18547911efa61d3",
+      "id": "edge:d48be39625ed7647",
       "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
-      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@390",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@419",
       "relationship": "declares",
       "status": "observed",
       "evidence": [
         {
           "kind": "python_ast",
           "path": "tests/test_readiness.py",
-          "line": 390
+          "line": 419
         }
       ]
     },
@@ -14127,8 +14151,8 @@
     "python_parse_errors": []
   },
   "stats": {
-    "node_count": 458,
-    "edge_count": 672,
+    "node_count": 459,
+    "edge_count": 673,
     "node_types": {
       "architecture_domain": 8,
       "execution_ledger": 1,
@@ -14139,7 +14163,7 @@
       "operational_wiki": 8,
       "python_file": 20,
       "python_module": 37,
-      "python_symbol": 302,
+      "python_symbol": 303,
       "readiness_gate": 2,
       "readiness_state": 1,
       "wiki_category": 4,
@@ -14152,7 +14176,7 @@
       "derived": 13,
       "extracted": 115,
       "inferred": 37,
-      "observed": 483,
+      "observed": 484,
       "proposed": 9
     }
   }

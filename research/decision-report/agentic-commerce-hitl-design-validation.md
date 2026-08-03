@@ -1,71 +1,89 @@
-# HITL·디자인씽킹 의사결정 보고서 검증 메모
+# Mandate Pool HITL 설계 검증 메모
 
-- 검증 시각: 2026-08-02 14:34 KST
-- 검증 대상: `agentic-commerce-hitl-design-decision.artifact.json`, 렌더링 HTML, 원문 Markdown, live probe 기록
-- 최종 판정: **Share with caveats**
+- 기준일: 2026-08-03 KST
+- 검증 대상: [HITL 설계 의사결정](agentic-commerce-hitl-design-decision.md), [제품 README](../../product/mandate-pool/README.md), 현재 코드와 실행 증거.
+- 판정: **구현·제출 준비에는 사용 가능, 제품·온체인 검증 완료 주장은 금지.**
 
-보고서의 의사결정 구조와 출처 추적성은 공유 가능한 수준이다. 다만 선두 제품은 아직 target-user 문제 증거와 실제 `payment → settlement → fulfillment` 폐쇄루프를 통과하지 않았으므로 **validated product**나 **winner**로 표현하면 안 된다. 현재 정확한 상태는 **시간 제한이 있는 선두 가설**이다.
+## 독자가 알아야 할 판정
 
-## 1. 요청 충족성
+HITL 설계는 현재 v0의 코드 경계와 일치한다. 세 역할의 승인이 모두 있어야 실행할 수 있고, Gemini/ADK 출력은 결제 권한이 아니며, 정책과 거래 원문을 결정론적 코드가 다시 검사한다. 결과가 불명확하면 새 결제를 만들지 않는다는 안전 원칙도 상태 머신에 반영돼 있다.
 
-| 요청 | 확인 결과 | 판정 |
+그러나 다음 두 사실 때문에 “실제 다자간 공동구매가 검증됐다”고 말할 수 없다.
+
+1. v0의 A/B/C 승인은 한 명의 데모 운영자가 세 역할을 순서대로 확인하는 simulation이다.
+2. 총 1 Devnet 테스트 USDC의 정상 finalized 거래와 거부 receipt는 [실행 런북](hackathon-environment-codex-runbook.md)상 아직 남은 제출 증거다.
+
+## 검증 질문과 결과
+
+| 질문 | 확인 결과 | 판정 |
 |---|---|---|
-| 필수 HITL 검증·구분 | `H-PRE`, `A-NORMAL`, `H-EXC`, `H-DOMAIN`, `H-POST`, `D-DENY`, `X-NOGO` 7개 모드와 이유코드를 분리했다. | 통과 |
-| Stanford 디자인씽킹 기반 재선별 | Empathize·Define·Ideate·Prototype·Test별 증거와 공백을 명시하고 POV/HMW를 다시 만들었다. | 통과, 단 Empathize는 desk evidence |
-| 기존 후보 재선별 | standalone Mandate Repair와 ReproPay를 탈락시키고 lead·switch·park 세 lane으로 축소했다. | 통과 |
-| 새로운 기회 발굴 | 기존 목록 대비 신작 또는 문제 중심이 달라진 기회 16개를 기록했다. | 통과 |
-| HITL 검증 가능성 | 9개 acceptance test와 네 데모 경로의 `0·0·1·0` prompt 계약을 사전 등록했다. | 통과 |
+| 사람이 어디에서 필요한가? | A/B/C canonical mandate 확인, 결과 불명 조정, 사후 감사로 구분돼 있다. | 통과 |
+| 정상 경로마다 승인 팝업을 요구하는가? | 세 사전 승인 뒤 Agent가 후보를 제안하고 정책·정산을 진행한다. | 통과 |
+| LLM이 금액이나 지갑을 통제하는가? | signer/RPC 도구가 없고 서버 allowlist·정책·거래 verifier가 재검사한다. | 통과 |
+| 한 사람의 조건이 무시될 수 있는가? | exact buyer set, buyer별 approval, cap·feature·expiry·allocation 검사가 모두 필요하다. | 통과 |
+| 부분 결제가 가능한가? | 한 v0 message에 세 `TransferChecked`를 넣고 네 signer가 같은 메시지에 서명한다. | 설계 통과, live 증거 대기 |
+| 재시도로 새 결제가 생길 수 있는가? | fully signed bytes를 내구 저장하고 같은 bytes만 재제출하며 불명 결과는 조정 상태로 멈춘다. | 설계 통과, live fault 증거 대기 |
+| fulfillment가 거래보다 먼저 가능한가? | finalized 거래 원문과 token 증감을 확인한 뒤에만 이용권 상태로 전이한다. | 통과 |
+| 실제 세 사용자의 승인을 증명하는가? | 승인 method가 `demo_operator`이고 buyer별 외부 서명은 없다. | 미통과·공개된 한계 |
+| AP2를 구현했는가? | AP2의 mandate·deterministic verification 원칙을 참고했지만 전체 역할/JWT flow는 구현하지 않았다. | 적합성 주장 금지 |
+| x402를 구현했는가? | custom multi-signer atomic settlement다. | x402 주장 금지 |
 
-## 2. 근거·방법 검증
+## 코드와 문서의 일치
 
-| 항목 | 확인 | 남는 위험 |
+| 계약 | 구현 위치 | 독자가 확인할 내용 |
 |---|---|---|
-| 해커톤 요구 | 공식 사이트와 배포 asset을 직접 확인해 one-track, autonomous payment, Gemini/GCP, Solana integration, live transaction/log 기준과 2026-08-03 23:59 KST 마감을 사용했다. | 제출 직전 변경 여부 재확인 필요 |
-| 디자인씽킹 방법 | Stanford d.school Bootleg과 Method Cards의 5 modes, POV/HMW, 저해상도 prototype, user test 원칙을 사용했다. | 사용자 인터뷰를 했다는 주장은 금지 |
-| HITL 통제 | AP2의 human-present/not-present, mandate constraint, verification·receipt 원칙과 NIST의 역할·감독 구분을 비교했다. | full AP2 conformance는 아님 |
-| 공급자 availability | QuickNode와 BigQuery에서 실제 HTTP 402 offer를 관측했다. Document AI는 같은 날 HTTP 500을 관측했다. | offer 관측은 결제·정산·결과 성공이 아님 |
-| 후보 판정 | 사용자·심사·운영·안전·사업 렌즈를 독립 판정하고 평균 점수로 불확실성을 숨기지 않았다. | 사용자·사업 렌즈는 여전히 Unclear |
+| A/B/C exact set와 승인 binding | [service](../../product/mandate-pool/src/service/mandate-pool-service.ts), [policy](../../product/mandate-pool/src/domain/policy.ts) | buyer별 mandate hash·approval nonce·만료 |
+| 1 USDC canonical split | [atomic split](../../product/mandate-pool/src/domain/atomic.ts), [catalog](../../product/mandate-pool/src/domain/catalog.ts), [policy](../../product/mandate-pool/src/domain/policy.ts) | `333334 + 333333 + 333333 = 1000000` base units |
+| transaction 원문 검증 | [Solana intent](../../product/mandate-pool/src/solana/intent.ts), [runtime](../../product/mandate-pool/src/runtime/solana-kit.ts) | instruction, signer, ATA, mint, amount, memo exact match |
+| idempotency와 예산 reservation | [state machine](../../product/mandate-pool/src/workflow/state-machine.ts), [persistence](../../product/mandate-pool/src/persistence/index.ts) | CAS, one-time key, consumed/released state |
+| 결과 불명 안전 정지 | [state machine](../../product/mandate-pool/src/workflow/state-machine.ts), runtime | `RECONCILIATION_REQUIRED`, 새 결제 금지 |
+| finalized 이후 fulfillment | [service](../../product/mandate-pool/src/service/mandate-pool-service.ts) | transaction decode·잔액 변화 검증 뒤 entitlement 발급 |
 
-선두를 바꿀 수 있는 반증도 보존했다. QuickNode fulfillment가 닫히지 않으면 RPC vertical을 버리고 `Query-to-Act` 한 번만 확인한다. Document AI는 endpoint와 실제 AP authority가 회복되기 전까지 보류한다.
+코드가 source of truth인 구현 세부와 달리, 현재 배포·실행 상태는 [실행 런북](hackathon-environment-codex-runbook.md)을 우선한다.
 
-## 3. 데이터·논리 spot check
+## 필수 acceptance matrix
 
-- artifact JSON parse: 통과.
-- 보고서 구성: blocks 20, charts 1, tables 5, sources 18.
-- snapshot row count: opportunities 16, HITL modes 7, demo paths 4, Prism lenses 5, shortlist lanes 3, acceptance tests 9.
-- 모든 정상 in-mandate 경로는 동기 승인 0회다. 누락 authority field만 1회 질문한다.
-- invalid signature/hash, replay, expiry·revocation은 사람에게 올리지 않고 hard deny한다.
-- 외부 권리·seller authority·재고 진실이 없으면 일반 HITL로 가장하지 않고 no-go한다.
-- 후보별 우승 확률이나 품질 점수는 관측 데이터가 없으므로 계산하지 않았다.
-- `ReproPay`는 검증 격리·게임 가능성·마감 위험 때문에 backup에서도 제거되었다.
+| 경로 | 기대 결과 | 제출 증거 |
+|---|---|---|
+| 정상 | 총 1 Devnet 테스트 USDC, A/B/C `333334/333333/333333`, finalized, entitlement 3개 | transaction signature, Explorer, quote/policy/message hash, agent trace, fulfillment receipt |
+| cap 거부 | B cap `300000`, transaction 0건, entitlement 0개 | `NO_BUY` 또는 policy rejection trace |
+| 승인 누락 | 실행 거부, transaction 0건 | API error와 order timeline |
+| 무결성 변조 | 서명 전 차단 | 실패한 policy/verifier check와 transaction 0건 |
+| 응답 유실·재시도 | 새 transaction 생성 없이 동일 bytes만 재제출 | predicted signature, submission history, payment count |
+| 결과 불명 | `RECONCILIATION_REQUIRED`, entitlement 0개 | 상태·원장 조회·수동 조정 기록 |
 
-## 4. 시각화·렌더링 QA
+fixture 시나리오는 기능 검증에 유용하지만 온체인 proof 열에 넣지 않는다. `fixture · NOT ON-CHAIN` 라벨과 live Devnet 증거를 분리한다.
 
-유일한 차트는 후보 점수표가 아니라 네 데모 경로의 **사전 등록 acceptance contract**다. `human_prompts` 값은 `0, 0, 1, 0`이며 관측 성과로 표시하지 않았다. 후보 우열을 보여 주는 수치 차트는 데이터가 없어 의도적으로 제외했다.
+## 외부 사실 검증
 
-최종 HTML은 원본 JSON과 대조해 검증했다.
+| 주장 | 판정 | 공식 근거와 경계 |
+|---|---|---|
+| 해커톤은 Solana 기반 Agentic Commerce 단일 트랙이며 Gemini/GCP, Solana 연동, live 거래·로그를 본다. | 확인 | [공식 행사 페이지](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/). 공개 criterion 간 가중치는 확인되지 않았다. |
+| AP2 autonomous mode는 사용자 제약 승인 뒤 Agent가 closed mandate를 구성할 수 있다. | 확인 | [AP2 v0.2](https://ap2-protocol.org/ap2/specification/). Mandate Pool의 AP2 적합성을 뜻하지 않는다. |
+| 검증·처리를 LLM에 맡겨도 AP2 원칙에 맞는다. | 반증 | AP2는 validation/processing을 결정론적 코드에서 수행하도록 명시한다. |
+| Solana Devnet USDC는 실제 1달러 가치의 자산이다. | 반증 | [Circle](https://developers.circle.com/stablecoins/usdc-contract-addresses)은 testnet 토큰에 금전 가치가 없고 실제 달러 담보가 없다고 명시한다. |
+| x402가 이 제품의 필수 rail이다. | 미확인·설계상 제외 | [Solana x402](https://solana.com/x402/what-is-x402)는 API·디지털 자원의 HTTP 402 결제 흐름을 설명한다. 현재 제품의 다중 payer·단일 원자 거래 요구와 동일하지 않다. |
 
-- 데스크톱 1440px와 모바일 390px: 통과
-- horizontal overflow: 통과
-- source dialog와 keyboard semantic interaction: 통과
-- embedded blocks·chart·tables 개수 대조: 통과
-- 외부 runtime/network 의존 없는 단일 HTML: 통과
+## 과거 산출물의 상태
 
-초기 빌드에서 공용 reader의 `100vw` top bar가 세로 스크롤바 폭만큼 overflow를 만들었다. 산출물 내부에 범위를 제한한 `width: 100%` override를 추가한 뒤 같은 verifier를 재실행해 통과했다. 보고서 내용·embedded artifact는 변경하지 않았다.
+동일 이름의 `.artifact.json`과 `.html`은 RPC Rescue가 선두였던 2026-08-02 시점의 렌더링 snapshot이다. 현재 제품 결정의 source of truth로 사용하지 않는다. 새 독자는 이 Markdown, 제품 README, 실행 런북 순서로 읽는다. 역사적 RPC 계약은 [보류된 RPC PRD](rpc-rescue-core-prd.md)에 보존한다.
 
-## 5. 공유 시 필수 caveat
+## 출시 전 gate
 
-1. “우승 후보 확정”이 아니라 “현재 증거에서 가장 먼저 닫아야 할 선두 가설”이라고 말한다.
-2. 사용자 수요는 마지막 실제 incident 인터뷰와 카드 분류 전까지 미검증이다.
-3. QuickNode·BigQuery는 402 offer까지만 관측했으며 실제 payment·fulfillment 성공을 주장하지 않는다.
-4. `0·0·1·0`은 기대 성능이 아니라 실패를 판정할 계약이다.
-5. API와 해커톤 페이지는 제출 직전에 다시 확인한다.
+- [ ] 최신 code revision으로 private live Cloud Run을 배포한다.
+- [ ] A/B/C 세 operator-simulated approval을 명시적으로 수행한다.
+- [ ] 총 1 Devnet 테스트 USDC 정상 거래를 finalized까지 확인한다.
+- [ ] 같은 revision에서 B cap 0.3 거부 경로가 transaction을 만들지 않았음을 확인한다.
+- [ ] transaction, policy, message, ADK trace, entitlement receipt를 같은 order ID로 연결한다.
+- [ ] 화면·영상·문서에서 fixture, live Devnet, 실제 자산을 혼동하지 않는다.
+- [ ] private key, Secret Manager payload, `.env`, credential 파일이 Git과 로그에 없음을 재검사한다.
 
-## 6. 출시 게이트
+체크박스의 현재 상태와 실행 명령은 이 메모에 중복 기록하지 않고 [실행 런북](hackathon-environment-codex-runbook.md)에서 갱신한다.
 
-다음 두 증거가 모두 생기기 전에는 제품 후보를 동결하지 않는다.
+## 공유 문구
 
-1. target user가 자신의 마지막 자동화 결제 사건을 제시하고, `묻지 말고 실행 / 반드시 질문 / 무조건 차단` 카드 분류에서 one-field patch를 선택한다.
-2. QuickNode Solana Devnet에서 실제 `402 → payment → settlement/session → valid RPC result`와 연결된 tx·receipt·fulfillment trace가 생성된다.
+안전한 설명은 다음과 같다.
 
-둘 중 하나라도 실패하면 실패 원인을 숨기기 위해 HITL을 늘리지 않는다. RPC 가설을 폐기하거나 authority 경계를 다시 정의한다.
+> Mandate Pool은 세 자연어 구매 조건을 Gemini/ADK로 구조화하고 역할별 HITL 확인과 결정론적 정책을 거친 뒤, 총 1 Devnet 테스트 USDC의 세 전송을 한 Solana 거래로 묶도록 설계한 프로토타입입니다. 현재 v0의 HITL은 한 운영자의 역할 simulation이며, Devnet 토큰은 금전 가치가 없습니다. 최종 온체인 성공은 공개 transaction과 연결된 receipt로만 주장합니다.
+
+“실제 세 사용자가 승인했다”, “실제 1달러가 결제됐다”, “AP2/x402 표준을 구현했다”, “Mainnet 안전성이 검증됐다”는 표현은 현재 증거를 넘는다.

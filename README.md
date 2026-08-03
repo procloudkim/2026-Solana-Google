@@ -1,200 +1,165 @@
-# Solana x Google Cloud Agentic Harness
+# Mandate Pool
 
-This repository is a local, evidence-producing harness for the 2026 Solana x
-Google Cloud Agentic Hackathon. The harness turns the material in
-`참고레퍼런스/` into a bounded wiki, builds a structural code/architecture
-graph, and runs one scored local research iteration. Generated application
-code lives under `src/`; orchestration and evidence live under `.harness/`.
-The readiness control plane additionally reconciles official requirements,
-product decisions, runtime receipts, gates, and submission artifacts.
+> 세 구매자의 자연어 조건을 사람의 확인과 결정론적 정책으로 잠근 뒤, 총 1 Devnet 테스트 USDC를 하나의 Solana 거래로 공동 결제하는 Agentic Commerce 프로토타입
 
-## Prerequisites
+이 저장소는 Google Cloud × Solana AI Agentic Hackathon 출품작을 구현하고, 그 주장을 재현 가능한 증거로 관리합니다. 처음 방문한 심사자는 이 문서에서 제품의 이유와 현재 증거 수준을 확인할 수 있고, 개발자는 [제품 README](product/mandate-pool/README.md)에서 로컬 실행을 시작할 수 있으며, 운영자는 [제출 런북](research/decision-report/hackathon-environment-codex-runbook.md)에서 남은 작업을 이어갈 수 있습니다.
 
-- Python 3.11 or newer
-- GNU Make for the `make` entrypoints (optional on Windows)
+상태 표기는 **2026-08-03 KST의 현재 소스와 연결된 receipt 기준**입니다. 제품 코드는 구현됐지만, 이 소스의 실제 Mandate Pool 결제 transaction은 아직 실행하지 않았습니다. 따라서 아래의 “구현 완료”와 “Devnet 실행 증거 확보”를 같은 뜻으로 읽으면 안 됩니다.
 
-Install the one optional document-extraction dependency before the first sync:
+## 한눈에 보는 현재 상태
+
+| 영역 | 현재 사실 | 다음 행동 |
+|---|---|---|
+| 제품 코드 | 현재 소스에 정상·거부 흐름, 정책, 상태 저장, Solana 거래 구성·검증을 구현했습니다. | 변경 후 typecheck·test·build를 다시 통과시킵니다. |
+| 로컬 증거 | 제품 테스트 87개와 루트 하네스 테스트 37개가 통과했습니다. fixture는 온체인 증거가 아닙니다. | 정상·거부 화면을 데모 영상에 담습니다. |
+| Google Cloud | Vertex AI·Firestore·Secret Manager를 사용하는 비공개 Cloud Run live 서비스의 readiness를 확인했습니다. | 총 1 USDC 코드가 반영된 새 revision을 배포합니다. |
+| Solana | transaction build/verify test와 Devnet 전용 지갑·ATA·테스트 SOL·USDC를 준비했습니다. `solana-test-validator` localnet 실행은 아직 하지 않았습니다. | 전용 localnet smoke를 통과한 뒤 명시적 HITL로 Devnet 정상 거래를 한 번만 실행합니다. |
+| 제출 | 저장소는 현재 비공개이며 공식 폼의 로그인 후 필드는 아직 잠그지 못했습니다. | 심사 접근 방식과 폼 필드를 확인한 뒤 제출합니다. |
+
+`Devnet USDC`는 테스트 토큰입니다. 금전 가치가 없고 실제 달러로 담보되지 않습니다. 이 프로젝트는 Mainnet 또는 실제 자산을 사용하지 않습니다. [Circle의 testnet 안내](https://developers.circle.com/stablecoins/usdc-contract-addresses)
+
+**아직 없는 핵심 증거:** 현재 총액 1 USDC 소스로 만든 새 Cloud Run revision, 그 revision이 실행한 finalized 제품 transaction, 그리고 정상·거부 경로를 연결한 제출용 receipt입니다.
+
+## IDEA: 에이전트의 추천이 아니라 결제 권한을 설계한다
+
+이 프로젝트에서 Agentic Commerce는 “AI가 알아서 돈을 쓴다”는 뜻이 아닙니다. 사람이 미리 정한 mandate 안에서 에이전트가 후보를 찾고 조정하되, 결제는 검증 가능한 승인·예산·거래 불변식을 모두 만족할 때만 실행된다는 제품 원칙입니다.
+
+### Why
+
+여러 사람을 대신하는 에이전트가 공동 구매를 진행하면 추천 품질만으로는 부족합니다. 각 구매자의 한도와 금지 조건이 유지됐는지, 일부 사용자만 결제되는 실패가 없는지, 네트워크 재시도 때문에 중복 결제가 생기지 않는지를 설명하고 증명해야 합니다.
+
+### What
+
+Mandate Pool은 세 구매자의 자연어 구매 조건을 구조화하고, 프로토타입 운영자가 각 역할의 조건을 확인한 뒤, 모든 조건의 교집합을 만족하는 고정 데모 상품 `SignalDesk Team-3` 7일 이용권 세 개를 공동 구매합니다. 각 Buyer의 Devnet USDC ATA에서 한 Merchant ATA로 분담액을 보내고, Sponsor는 SOL network fee만 냅니다. 한 명의 조건이라도 맞지 않으면 거래를 만들지 않습니다. 이용권은 온체인 토큰이 아니라 결제 검증 뒤 애플리케이션이 발급하는 7일 접근 token입니다.
+
+### How
+
+Google ADK와 Gemini는 자연어를 정규화하고 후보를 제안합니다. 결정론적 정책 엔진은 승인·상품·예산·만료·정확한 분담액을 다시 계산합니다. 통과한 경우에만 Solana version-0 transaction 하나에 세 개의 `TransferChecked`를 넣습니다. 같은 runtime의 후속 verifier가 저장된 quote에서 기대한 원문과 finalized transaction·잔액 증감을 다시 대조한 뒤에만 이용권을 발급합니다. 별도 검증 서비스가 있다는 뜻은 아닙니다.
+
+## 데모가 답해야 하는 질문
+
+정상 경로와 거부 경로를 나란히 보여줘야 제품 주장이 성립합니다.
+
+- **정상:** 총 `1.000000` Devnet USDC를 A `0.333334`, B `0.333333`, C `0.333333`으로 정확히 나누고, 한 거래가 finalized된 뒤에만 이용권 세 개를 발급합니다.
+- **거부:** B의 한도를 `0.300000`으로 낮추면 정책이 `NO_BUY`를 반환하며 거래 bytes와 signature를 만들지 않습니다.
+
+```mermaid
+flowchart LR
+    M[세 사람의 구매 mandate] --> A[ADK·Gemini가 조건 정규화]
+    A --> H{운영자가 A/B/C 조건을 각각 확인했나?}
+    H -- 아니오 --> X[거래 생성 금지]
+    H -- 예 --> P{결정론적 정책을 통과했나?}
+    P -- 아니오 --> X
+    P -- 예 --> T[세 전송을 한 Solana 거래로 구성]
+    T --> V[서명 전 거래 원문 검증]
+    V --> S[동일 메시지에 Sponsor+A+B+C 서명]
+    S --> F{finalized 거래·토큰 증감 일치?}
+    F -- 아니오/불명 --> R[자동 재결제 금지·수동 조정]
+    F -- 예 --> E[이용권 세 개 발급]
+```
+
+## 누가 무엇을 결정하는가
+
+| 주체 | 할 수 있는 일 | 할 수 없는 일 |
+|---|---|---|
+| Gemini·ADK | 자연어 조건 정규화, 상품 후보 제안 | 서명, RPC 호출, 정책 승인 |
+| 데모 운영자 | A/B/C 역할의 조건을 순서대로 확인 | 정책 불일치 우회 |
+| 정책 엔진 | 승인·예산·상품·만료·분담액 재계산 | 자연어 의미 추측 |
+| 애플리케이션 signer guard | 승인된 quote에서 원문 구성·서명·제출 | 저장된 quote와 다른 거래 허용 |
+| Solana runtime | 세 token instruction을 원자적으로 실행 또는 rollback | 오프체인 정책이나 이용권 발급 |
+| 애플리케이션 finalized verifier | 메시지, instruction, debit·credit 검증 | 결과가 불명확할 때 자동 재결제 |
+
+현재 HITL은 실제 세 사용자가 각자 지갑으로 승인하는 구조가 아니라, 한 명의 데모 운영자가 세 역할을 재현하는 **operator simulation**입니다. 실제 다자간 제품으로 확장하려면 buyer별 승인 서명과 외부 wallet/co-signer가 필요합니다.
+
+따라서 v0가 증명하는 범위는 **서버가 보관한 Devnet 테스트 키로 세 승인 단계를 재현했을 때도 mandate hash·nonce·정책·거래 원문이 서로 묶여 우회되지 않는가**입니다. 실제 사용자 세 명의 독립 동의나 비수탁 보안을 증명하지 않습니다. 여기서 “v0 데모”는 제품 버전이고, “Solana version-0 transaction”은 transaction message 형식입니다.
+
+## 5분 로컬 실행
+
+전제 조건은 Node.js 22 이상과 npm입니다. 다음 fixture는 네트워크나 실제 온체인 거래를 사용하지 않습니다.
+
+```bash
+cd product/mandate-pool
+npm ci --omit=peer
+npm run typecheck
+npm test
+npm run build
+APP_MODE=fixture DEMO_KEY=local-demo-key-1234 npm run dev
+```
+
+브라우저에서 `http://localhost:8080`을 열고 운영 키에 `local-demo-key-1234`를 입력합니다. `정상 결제` 또는 `한도 초과 거부`를 고른 뒤 `새 주문 만들기` → A/B/C의 `이 조건을 승인` → `검증 및 결제 실행` 순서로 진행합니다. 화면의 `fixture · NOT ON-CHAIN` 표시는 이 결과가 Solana 거래 증거가 아님을 뜻합니다. 정확한 판정값과 Live Devnet 구성은 [제품 README](product/mandate-pool/README.md#fixture-실행-제품-흐름만-빠르게-확인)에서 이어집니다.
+
+## 기술 구조
 
 ```text
+Browser / HTTP API
+        |
+        v
+Live: Google ADK + Gemini -> 제안과 자연어 정규화만 수행
+Fixture: deterministic adapter -> AI·network 호출 없이 흐름 재현
+        |
+        v
+Deterministic policy -----> 승인·예산·상품·분담·만료 검증
+        |
+        v
+Firestore workflow -------> 상태 CAS·idempotency·감사 hash-chain
+        |
+        v
+Solana transaction -------> 3 transfers + memo + 4 signers
+        |
+        v
+Finalized verifier -------> 원문·instruction·잔액 증감 검증 후 fulfillment
+```
+
+- `product/mandate-pool/src/agents/`: ADK/Gemini adapter와 결정론적 fixture
+- `product/mandate-pool/src/domain/`: canonical 계약, atomic amount, catalog, 정책
+- `product/mandate-pool/src/workflow/`, `src/persistence/`: 상태 머신, CAS, 감사 원장
+- `product/mandate-pool/src/solana/`, `src/runtime/`: 거래 의도와 Solana Kit 실행·검증
+- `product/mandate-pool/src/service/`: 주문부터 fulfillment까지 orchestration
+- `product/mandate-pool/src/http/`, `public/`: Cloud Run API와 한국어 데모 UI
+
+## 증거를 읽는 순서
+
+| 독자 질문 | 문서 | 문서의 역할 |
+|---|---|---|
+| 제품을 어떻게 실행하고 검증하나? | [제품 README](product/mandate-pool/README.md) | 데모 계약, 로컬·Live 실행, 무결성 경계 |
+| 지금 당장 무엇을 해야 하나? | [제출 런북](research/decision-report/hackathon-environment-codex-runbook.md) | 현재 상태, 사람/Codex 역할, 순서별 체크리스트 |
+| 행사 규칙과 기술 주장의 출처는 무엇인가? | [Official Docs Wiki](research/official-docs-wiki/README.md) | 공식 출처, claim verdict, 프로젝트 적용점 |
+| 실제로 무엇을 실행했나? | [Evidence receipts](research/decision-report/evidence/) | 방법, 관찰 결과, 한계, 재현 조건 |
+| 왜 이 아이디어를 선택했나? | [아이디어 선별 보고서](research/decision-report/mece-hackathon-idea-selection.md) | 후보의 계보와 현재 선택 이유 |
+| 이전 RPC Rescue 안은 왜 중단했나? | [RPC Rescue Core PRD](research/decision-report/rpc-rescue-core-prd.md) | 폐기·보류된 가설과 재개 조건 |
+
+`참고레퍼런스/`, `.harness/enrichment/`, `.harness/wiki/raw_references/`는 원문 또는 기계 추출 증거입니다. 문장 품질보다 원문 보존과 provenance가 우선이므로 직접 윤문하지 않습니다. `.harness/wiki/operations/`는 append-only readiness ledger에서 생성되는 보조 projection이며, 현재 실행 상태의 단일 기준은 제출 런북입니다.
+
+## 증거 수준과 금지된 주장
+
+- fixture 성공은 UI·정책·상태 흐름의 로컬 증거일 뿐 온체인 증거가 아닙니다.
+- readiness 성공은 Vertex·Firestore·Solana 의존성 연결을 증명하지만 제품 주문의 성공을 증명하지 않습니다.
+- Devnet signature와 Explorer 링크는 테스트 네트워크 실행 증거이며 실제 금액 결제 증거가 아닙니다.
+- 정상 경로만으로는 안전성을 주장하지 않습니다. 거부 경로에서 거래가 생성되지 않았다는 증거가 함께 필요합니다.
+- x402는 조사한 결제 프로토콜이지만 Mandate Pool v0의 결제 rail은 custom Solana atomic settlement입니다. x402 호환을 주장하지 않습니다.
+
+## 용어
+
+- **mandate:** 구매자가 허용한 mint·판매자·기능·기간·개인 분담 한도·만료 조건의 구조화된 계약
+- **HITL:** Human-in-the-Loop. 결제 경로 중 사람이 조건을 확인하는 단계
+- **ATA:** Associated Token Account. 각 owner와 mint에 대응하는 SPL token 계정
+- **quote:** 선택 상품, 세 분담액, 승인된 mandate hash, 수취인을 고정한 결제 의도
+- **CAS:** Compare-and-swap. 읽은 version이 그대로일 때만 상태와 예산을 갱신하는 동시성 제어
+- **fulfillment:** finalized 결제를 검증한 뒤 애플리케이션 이용권을 발급하는 단계
+
+## 비밀정보와 비용 경계
+
+지갑 개인키, API key, credential payload, `.env` 파일은 Git과 제출 자료에 넣지 않습니다. Devnet signer는 GCP Secret Manager에서 Cloud Run revision으로 주입하고, 저장소에는 공개 주소·ATA와 Secret Manager 리소스 이름만 둡니다. Mainnet 전환, 실제 자산 사용, 공개 Cloud Run 접근, 온체인 정상 거래, 최종 제출은 사람의 명시적 승인이 필요합니다.
+
+## 보조 리서치 하네스
+
+루트의 Python 하네스는 원문을 provenance와 함께 동기화하고, 코드·문서 graph와 bounded context pack을 생성하는 보조 도구입니다. 제품 runtime은 `product/mandate-pool/`의 TypeScript 앱이며 하네스와 구분합니다.
+
+```bash
 python -m pip install -r requirements-harness.txt
-```
-
-For local MP4 transcription plus PDF OCR/QR extraction, create the isolated
-Python 3.12 environment once (the ambient harness Python remains unchanged):
-
-```powershell
-uv venv .venv-media --python 3.12
-uv pip install -p .venv-media -r requirements-media.txt
-.\harness.ps1 media
-```
-
-The media command writes SHA-matched derived evidence under
-`.harness/enrichment/`, then refreshes the wiki and graph. Interrupted files
-resume from JSONL checkpoints; completed files are skipped unless their source
-hash or adapter settings change.
-
-## Three harness commands
-
-Run these commands from the repository root, in order:
-
-```text
 make harness-sync
 make harness-graph
-make harness-loop
+make test
 ```
 
-On Windows without GNU Make, the exact PowerShell equivalents are:
-
-```powershell
-.\harness.ps1 sync
-.\harness.ps1 graph
-.\harness.ps1 loop
-```
-
-Use `.\harness.ps1 media` (or `make harness-media`) for the intentionally
-separate, CPU-intensive media pass.
-
-On POSIX shells, `./harness.sh sync`, `./harness.sh graph`, and
-`./harness.sh loop` provide the same entrypoints. Use `make test` (or
-`.\harness.ps1 test`) for focused tests and `make all` (or
-`.\harness.ps1 all`) for sync, graph, one loop iteration, and tests.
-
-## Hackathon readiness commands
-
-Prepare the source-governed execution Wiki and inspect the single next action:
-
-```powershell
-.\harness.ps1 prepare
-.\harness.ps1 status --json
-```
-
-Candidate generation is an explicit, credential-gated handoff. Give an
-approved external agent `.harness/control/ideation-request.json`, save its
-three-candidate JSON locally, then evaluate it deterministically:
-
-```powershell
-.\harness.ps1 ideate --input .harness/control/candidates.input.json
-```
-
-Record a locked product contract or redacted evidence receipt without
-executing the external action:
-
-```powershell
-.\harness.ps1 record --kind product-contract --input product-contract.json
-.\harness.ps1 record --kind approval --input approval.json
-.\harness.ps1 record --kind receipt --input receipt.json
-.\harness.ps1 gate
-.\harness.ps1 pack
-```
-
-Templates and the approval policy are documented in
-`.harness/control/README.md`; concrete implementation receipts are in
-`.harness/control/EXECUTION.md`. The append-only execution ledger owns history;
-`state.json` and `.harness/wiki/operations/` are derived projections and must
-not be edited by hand.
-
-For the deadline-day account, GCP, Solana Devnet, Codex automation, and
-submission-evidence checklist, see the
-[hackathon environment and Codex runbook](research/decision-report/hackathon-environment-codex-runbook.md).
-
-## Architecture
-
-```text
-.harness/
-  workflows/       deterministic ingestion, graph, research, and generation
-  enrichment/      SHA-matched transcripts, OCR, QR payloads, and provenance
-  control/          readiness policy, schemas, append-only events, state
-  wiki/             derived Markdown, graph, role contexts, readiness views
-  evaluations/      research run ledgers, candidates, and scorecards
-  submission/       generated submission drafts and evidence index
-research/
-  agentic-commerce-50-ideas.md 50 product hypotheses and hard-gate flow
-  decision-report/    seven-candidate strategic decision report and evidence
-  official-docs-wiki/ current official sources and claim-level verdicts
-src/
-  agents/           generated agent templates
-  protocols/        typed, non-executing payment contracts
-  cloud/            typed, non-executing cloud event contracts
-참고레퍼런스/        immutable local source material
-```
-
-`harness-sync` extracts supported text references into
-`.harness/wiki/raw_references/`, records provenance in `manifest.json`, and
-rebuilds `index.md` plus the four concept modules. PDF text extraction uses
-`pypdf`; when it is unavailable, the manifest explicitly records the reduced
-metadata-only result rather than pretending that extraction succeeded.
-When a completed media enrichment artifact has the same SHA-256 as its source,
-the sync attaches it and records the adapter/settings provenance.
-
-`harness-graph` rebuilds `.harness/wiki/graph.json`, `graph.dot`, and the
-bounded `context_pack.json` from native Python AST facts, local and official
-wiki manifests, readiness gates, product contracts, and evidence receipts.
-It also emits role-specific packs for ideation, architecture, implementation,
-security, demo, and submission. `harness-loop` performs exactly one bounded
-hypothesis, candidate-generation, test, scoring, and keep/reject iteration by
-default, then refreshes the graph after any promotion.
-
-The readiness state machine is:
-
-```text
-DISCOVERY -> CANDIDATES_READY -> PRODUCT_LOCKED -> CONTRACT_READY
--> LOCAL_SLICE_PASSED -> DEVNET_PROVEN -> HARDENED
--> SUBMISSION_READY -> SUBMITTED
-```
-
-Sandbox evidence can satisfy the local integration gate but never the Devnet
-runtime gate. The runtime gate requires separate Gemini, Solana Devnet, and GCP
-runtime receipts. If that gate remains incomplete after 2026-07-30 23:59 KST,
-the control plane reports `PIVOT_REQUIRED`.
-
-## Verification and proof boundaries
-
-- The graph output is native generic graph/context JSON plus DOT in a
-  Graphify-style workflow. No external Graphify schema compatibility is
-  claimed, and a successful graph run does not prove that an external
-  Graphify runtime was invoked.
-- The default agent builder is a deterministic local template generator. Its
-  output is not proof of Gemini, Google ADK, or `agents-cli` runtime execution.
-  Any external generator path requires explicit opt-in and separate runtime
-  evidence. Its argv is intentionally unconfigured until matched to a current
-  installed `agents-cli` contract.
-- Without `harness-media`, MP4 inputs remain metadata-only and PDFs use their
-  embedded text layer. A successful media pass adds faster-whisper transcripts
-  and PaddleOCR/OpenCV QR evidence; it does not prove verbatim transcription,
-  speaker diarization, or perfect OCR.
-- Candidate directories provide cooperative write isolation, not an operating
-  system security sandbox. External generators must be treated as trusted code.
-- `src/protocols/payment.py` and `src/cloud/events.py` define serializable
-  contracts and dispatch plans only. They perform no payment, RPC, HTTP, cloud,
-  credential, or other network action.
-- Passing local tests proves deterministic scaffold behavior only. It does not
-  prove deployed Cloud Run/Eventarc infrastructure, live Solana transactions,
-  or end-to-end ADK behavior.
-- The readiness workflow records and validates already-produced receipts. It
-  never reads secrets, signs transactions, deploys, spends, publishes, or
-  submits. Those actions require explicit human approval and separate evidence.
-- Candidate scores are internal prioritization heuristics, not official judging
-  scores. Ambiguous results are blocked rather than auto-promoted.
-
-The original material under `참고레퍼런스/` remains the source evidence. Wiki,
-graph, and evaluation outputs are derived artifacts and should retain their
-manifest/run provenance when used in a claim.
-
-### Repository evidence policy
-
-Reference PDFs and text files, derived transcripts/OCR, claim ledgers, and
-redacted runtime receipts are versioned. The three raw MP4 recordings remain
-local because each exceeds GitHub's regular 100 MiB file limit; their
-SHA-matched derived evidence remains under `.harness/enrichment/`. The duplicate
-`Google X Solana AI Agentic Hackathon Intro Deck (1).pdf` is also local-only;
-the byte-identical canonical copy without ` (1)` is versioned. Credentials,
-wallet private keys, `.env` files, dependency directories, and build outputs
-must never be committed.
-
-## Implemented product prototype
-
-The selected prototype now lives in [`product/mandate-pool/`](product/mandate-pool/README.md).
-It implements a three-buyer HITL mandate flow, a deterministic payment policy,
-one atomic Solana transaction, Firestore-backed workflow state, Google ADK
-normalization, and a Cloud Run-ready demo. Its default fixture is explicitly
-not on-chain; the product README documents the separate Devnet proof boundary.
+Windows에서는 `make` 대신 `./harness.ps1 sync`, `./harness.ps1 graph`, `./harness.ps1 test`를 사용합니다. MP4 전사와 PDF OCR은 별도의 무거운 작업이며 `requirements-media.txt`와 `harness.ps1 media`를 사용합니다. 자동 생성 산출물은 직접 편집하지 않고 generator 또는 source of truth를 고친 뒤 다시 생성합니다.

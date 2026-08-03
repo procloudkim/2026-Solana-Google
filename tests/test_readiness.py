@@ -340,6 +340,35 @@ class ReadinessTests(unittest.TestCase):
             self.assertTrue(
                 (root / ".harness/wiki/operations/07-submission.md").is_file()
             )
+            operations = root / ".harness/wiki/operations"
+            for page in sorted(operations.glob("*.md")):
+                content = page.read_text(encoding="utf-8")
+                self.assertIn("현재성 경계", content)
+                self.assertIn(
+                    "../../../research/decision-report/hackathon-environment-codex-runbook.md",
+                    content,
+                )
+            status_page = (operations / "00-status.md").read_text(encoding="utf-8")
+            self.assertIn("Ledger 상태: `DISCOVERY`", status_page)
+            self.assertIn("제품 전체의 다음 행동이 아니라", status_page)
+            candidates_page = (operations / "02-candidates.md").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("현재 제품 후보가 없다는 뜻이 아니다", candidates_page)
+            self.assertIn("./harness.sh ideate --input <path>", candidates_page)
+            product_page = (operations / "03-product-contract.md").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("Mandate Pool 제품 계약이나 구현이 없다는 뜻이 아니다", product_page)
+            evidence_page = (operations / "06-evidence.md").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("Ledger가 비어 있어도", evidence_page)
+            self.assertIn("../../../research/decision-report/evidence/", evidence_page)
+            submission_page = (operations / "07-submission.md").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("제출 요소 자체의 부재가 아니라", submission_page)
 
     def test_duplicate_receipt_id_is_rejected(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:

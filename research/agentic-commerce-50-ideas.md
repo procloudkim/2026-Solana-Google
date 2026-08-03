@@ -1,8 +1,20 @@
-# Agentic Commerce 아이디어 50선
+# Agentic Commerce 아이디어 지도: 50개 가설에서 Mandate Pool까지
 
-- 작성 기준일: 2026-08-01 KST
-- 목적: 아이디어를 조기에 하나로 잠그지 않고, 서로 다른 경제적 의사결정을 발산한 뒤 근거와 실험으로 좁힌다.
-- 상태: 시장·사용자 검증 전 가설. 이 문서의 아이디어 수나 순서는 순위가 아니다.
+- 최초 작성: 2026-08-01 KST
+- 현재화: 2026-08-03 KST
+- 독자: 탐색 범위, 아이디어 계보, 선택 근거를 빠르게 이해하려는 제품·기술·심사 담당자.
+- 문서 역할: 50개 가설을 보존하는 발산 지도다. 현재 구현 백로그나 후보 순위가 아니다.
+- 현재 제품: **Mandate Pool**. `#45 Threshold Cart`의 다중 구매자 구조를 mandate 교집합과 원자적 정산 문제로 다시 정의한 후속안이다.
+
+## 먼저 읽을 결론
+
+이 목록은 “50개 중 가장 멋진 이름을 고르기” 위해 만든 것이 아니다. 서로 다른 사용자 순간과 경제적 결정을 넓게 펼친 뒤, 외부 의존성·HITL·실제 거래·fulfillment를 증거로 좁히기 위해 만들었다.
+
+현재 제출 제품은 목록에 원래 이름으로 없던 **Mandate Pool**이다. 세 구매자 Agent의 자연어 조건을 Gemini/ADK로 구조화하고 역할별 HITL 확인과 결정론적 정책을 거친 뒤, 공통 조건을 만족할 때만 총 1 Devnet 테스트 USDC를 하나의 Solana v0 거래로 공동 결제한다. A는 `0.333334`, B/C는 각각 `0.333333`을 부담한다. 한 명의 cap이라도 부족하면 거래를 만들지 않는다.
+
+선택 과정에서 `RPC Lifeboat → Duplicate Payout Guard`, `NeedlePass/Onchain Risk Buyer → Query-to-Act`도 검토했지만 사용자 사건과 결제 후 외부 fulfillment가 닫히지 않아 보류했다. 상세 처분은 [아이디어 선택 보고서](decision-report/mece-hackathon-idea-selection.md), 현재 구현은 [Mandate Pool README](../product/mandate-pool/README.md), 실행 상태는 [환경 런북](decision-report/hackathon-environment-codex-runbook.md)을 따른다.
+
+이 문서의 50개 항목은 모두 시장·사용자 검증 전 가설이다. 번호와 표의 위치는 순위나 우승 확률이 아니다.
 
 ## 우리가 사용하는 정의
 
@@ -169,7 +181,7 @@ mindmap
 | 49 **Microwork Quorum Payout** | D | 라벨링·현장점검 같은 다수 작업 결과를 정산해야 하는 순간 | consensus, gold question, 담합 신호, rate, batch 시점 | 검증 통과 작업자에게 batch payout; artifact, 품질 trace, 수취인별 tx | 작업자 담합, 노동·KYC 규정, 편향된 verifier |
 | 50 **Milestone Escrow** | D | 외주 결과물이 객관적 milestone을 통과해 대금을 해제할 순간 | test·schema·checksum·기한 조건, 부분지급, 예외 전환 | escrow 또는 지급 release; spec/artifact hash, test log, tx | 디자인·보안처럼 정성적 품질에는 부적합 |
 
-## 점수 없이 줄이는 의사결정 흐름
+## 점수 없이 줄인 의사결정 흐름
 
 ```mermaid
 flowchart TD
@@ -185,55 +197,58 @@ flowchart TD
     G5 -->|아니오| R5["관측·idempotency부터 설계"]
     G5 -->|예| G6{"정상 구매·no-buy·정책 차단·<br/>실패 복구를 짧게 시연할 수 있는가?"}
     G6 -->|아니오| R6["기능이 아니라 시나리오를 더 줄인다"]
-    G6 -->|예| H["HITL 사용자 문제 인터뷰"]
-    H --> V{"실제 반복 빈도 또는<br/>지불의사 증거가 있는가?"}
-    V -->|아니오| P["보류하고 다음 가설 검증"]
-    V -->|예| F["최종 후보"]
+    G6 -->|예| H["사용자·기술 증거 gate"]
+    H --> V{"이번 해커톤 안에 핵심 진실을<br/>정직하게 닫을 수 있는가?"}
+    V -->|아니오| P["보류하고 학습만 보존"]
+    V -->|예| F["제품 후보"]
+    F --> M["현재 선택<br/>Mandate Pool"]
 ```
 
-## 다음 검증 대기열
+## 과거 shortlist와 현재 처분
 
-아래는 우승 순위가 아니라, 서로 다른 강점을 가장 빨리 확인하기 위한 첫 실험 묶음이다.
+아래 표는 당시 무엇을 먼저 반증하려 했는지와 현재 결정을 함께 보여 준다. “탈락”은 장기 사업 가치가 없다는 뜻이 아니라 이번 제출에서 핵심 증거를 닫지 못했다는 뜻이다.
 
-| 후보 | 먼저 검증할 한 가지 | 살아남으면 강한 이유 | 즉시 중단 조건 |
+| 계보 | 당시 먼저 검증하려던 것 | 현재 처분 | 결정적 이유 |
 |---|---|---|---|
-| **01 NeedlePass** | 실제로 결제 가능한 유료 endpoint 한 곳과 한 건 지불의사 | Agent가 정보를 사는 이유와 x402 폐쇄루프가 가장 직접적 | 유료 데이터가 무료 대안보다 낫다는 사례를 만들지 못함 |
-| **13 RPC Lifeboat** | 장애 시 유료 RPC 전환이 SLO를 회복시키는 재현 실험 | Solana-native 문제, 판단과 효과가 수치로 보임 | Devnet에서 실제 유료 endpoint 또는 신뢰 가능한 판매자 흐름이 없음 |
-| **26 Three-Way Match Pay** | PO·입고·송장 네 세트로 지급·차단 재현 | 기업 pain과 결정적 정책, 지급 증거가 명확 | Solana 지급이 단순 장식이라는 인터뷰 반응 |
-| **31 ClipLicense** | 기계 판독형 license JSON을 받아줄 크리에이터 한 명 | 시각적 데모와 결제 이유가 직관적 | 권리 provenance를 정직하게 설명할 수 없음 |
-| **44 ExpiryDeal Duel** | seller/buyer Agent의 reserve price 협상과 재고 감소 | Multi-Agent Commerce가 화면에서 즉시 보임 | 합성 시장 외 실제 사용자 문제를 찾지 못함 |
-| **48 ReproPay** | 동일 버그에 성공·중복·gaming 재현 테스트 세트 | 기존 bug-fix bounty보다 검증 범위가 좁고 객관적 | CI 테스트만으로 유용한 재현을 구분하지 못함 |
-| **29 SLA Refund Collector** | 하나의 SLA 공식과 환불 거래를 끝까지 재현 | 돈을 쓰는 Agent가 아닌 돈을 회수하는 참신한 폐쇄루프 | seller 협조 없이 데모가 일방적 주장으로 끝남 |
+| `#45 Threshold Cart` → **Mandate Pool** | 세 buyer의 서로 다른 조건을 한 원자 거래로 보존할 수 있는가 | **현재 제출 제품** | 외부 유료 merchant 없이도 mandate→정책→Solana→fulfillment를 검증 가능 |
+| `#13 RPC Lifeboat` → Duplicate Payout Guard | 402→유료 RPC 결과가 실제 replacement payout을 거부하는가 | 보류 | 사용자 사건과 결제 후 valid RPC fulfillment 미완료 |
+| `#01 NeedlePass + #04 Onchain Risk Buyer` → Query-to-Act | 유료 Solana 이력이 payout allow/block을 바꾸는가 | 보류 | exact query·유료 결과·달라진 downstream action 미완료 |
+| `#26 Three-Way Match Pay` | PO·입고·송장 일치가 실제 지급을 허용·차단하는가 | 이번 제출 제외 | 실제 문서·supplier·지급 authority 없음 |
+| `#31 ClipLicense` | 기계 판독형 license와 실제 권리자를 연결할 수 있는가 | 제외 | 권리 provenance를 정직하게 닫지 못함 |
+| `#44 ExpiryDeal Duel` | 실제 소멸 재고와 buyer/seller 협상을 닫을 수 있는가 | 제외 | 실제 재고·hold·refund 경계 없음 |
+| `#48 ReproPay` | 유용한 재현과 duplicate/gaming을 자동 구분할 수 있는가 | 제외 | untrusted code·appeal 범위가 마감 대비 큼 |
+| `#29 SLA Refund Collector` | seller가 인정하는 증거로 실제 refund를 만들 수 있는가 | 제외 | telemetry·refund authority 없음 |
 
-## 구현 전에 지켜야 할 증거 계약
+## 현재 제품에 적용한 증거 계약
 
-각 후보는 최소 네 가지 경로를 같은 UI와 로그에서 보여야 한다.
+모든 후보에 요구했던 네 경로를 Mandate Pool에서는 다음처럼 구체화했다.
 
-1. 조건을 만족해 Agent가 실제 구매한다.
-2. 가치가 가격보다 낮아 `no-buy`를 선택한다.
-3. 금액·판매자·기간 정책 위반을 결정적 코드가 차단한다.
-4. 결제 또는 결과 전달 실패 뒤 중복 지급 없이 재시도·환불·중단한다.
+1. **정상:** A cap 0.4, B 0.34, C 0.4에서 총 1 Devnet 테스트 USDC를 `333334/333333/333333` base units로 결제하고 이용권 세 개를 발급한다.
+2. **no-buy/거부:** B cap 0.3에서는 거래와 이용권이 모두 0건이다.
+3. **정책·무결성 차단:** 승인, 금액, merchant, mint, expiry, instruction, signer가 다르면 서명 전에 차단한다.
+4. **실패 복구:** fully signed bytes만 재제출하고 결과가 불명확하면 새 결제 없이 `RECONCILIATION_REQUIRED`로 멈춘다.
 
 필수 trace:
 
 ```text
-user intent + mandate/policy
-  -> observed context and alternatives
-  -> Gemini decision with reason
-  -> deterministic policy result
-  -> order/payment requirement
-  -> Solana transaction signature and confirmation
-  -> product/service result hash
-  -> receipt, final state, and failure history
+natural-language conditions A/B/C
+  -> Gemini/ADK normalized mandates and selection
+  -> role-by-role operator-simulated approval
+  -> deterministic policy proof and quote
+  -> exact Solana v0 message and four signatures
+  -> transaction signature and finalized verification
+  -> token deltas and entitlement receipt
+  -> final state and failure history
 ```
 
-merchant simulator를 쓰는 것은 가능하지만 `simulated merchant + real Devnet settlement`라고 표시한다. sandbox 성공이나 mock tx id를 실제 온체인 증거로 표현하지 않는다.
+merchant와 상품은 데모용임을 밝히고 fixture에는 `NOT ON-CHAIN`을 표시한다. sandbox·fixture 성공이나 mock signature를 실제 온체인 증거로 표현하지 않는다. Devnet USDC는 금전 가치가 없으므로 “실제 1달러 결제”라고 말하지 않는다.
 
 ## 근거
 
-- [공식 해커톤 홈페이지](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/): 단일 트랙, 네 가지 선택적 시작점, 실제 트랜잭션·로그 요구
+- [공식 해커톤 홈페이지](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/): 단일 트랙, 선택적 시작점, 실제 트랜잭션·로그 요구
 - [로컬 행사 규칙](official-docs-wiki/modules/event-rules.md): 현재 제출 계약과 최소 증거 묶음
 - [AP2 v0.2](https://ap2-protocol.org/ap2/specification/): human-present/autonomous mode, mandate, deterministic verification
 - [Google Agent Protocol Guide](https://developers.googleblog.com/en/developers-guide-to-ai-agent-protocols/): UCP와 AP2의 역할 분리
 - [Solana x402](https://solana.com/x402/what-is-x402): Agent의 API·데이터·compute 구매와 Solana settlement
 - [Solana Kora x402 Guide](https://solana.com/docs/tools/kora/guides/x402): 402 → verify → settle → resource/receipt 실행 흐름
+- [Circle testnet USDC](https://developers.circle.com/stablecoins/usdc-contract-addresses): Solana Devnet mint와 테스트 토큰의 금전 가치 없음
