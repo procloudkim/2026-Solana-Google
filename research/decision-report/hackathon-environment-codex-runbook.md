@@ -14,12 +14,11 @@ GCP_PROJECT_ID=project-682bea5f-ac81-4a36-8a1
 
 ## 결론
 
-제출 전 닫아야 할 병목은 네 가지다.
+제출 전 닫아야 할 병목은 세 가지다.
 
 1. Google 계정으로 공식 폼에 로그인해 실제 제출 필드를 확인한다.
 2. 비공개 GitHub 저장소를 공개하거나 심사위원 접근 방법을 확정한다.
-3. 비공개 live Cloud Run revision에서 readiness를 통과한다.
-4. 실제 Devnet 결제, Gemini/ADK 실행, Cloud Run revision을 제출 증거로 남긴다.
+3. 명시적 HITL 뒤 실제 Devnet 정상 결제와 거부 경로를 실행해 Gemini/ADK trace와 receipt를 제출 증거로 남긴다.
 
 Codex CLI는 저장소 초기화, 도구 설치, GCP 구성, 지갑·ATA 준비, 테스트, 배포, 증거 수집을 승인 기반으로 자동화할 수 있다. 계정 생성, 결제수단·약관 동의, OAuth/MFA, CAPTCHA, 공개 배포 승인, 최종 제출 확인은 사람이 담당한다.
 
@@ -73,7 +72,7 @@ pay.sh sandbox 또는 Solana localnet에서 먼저 테스트
 | Node.js / npm | Node 22.20.0, npm 10.9.3 | 제품의 Node 22 이상 조건 충족 |
 | Codex CLI | 0.146.0, ChatGPT 로그인 완료 | 준비됨 |
 | GitHub CLI | `procloudkim` 로그인과 `repo` 권한 확인 | private 원격 `procloudkim/2026-Solana-Google` 연결 완료; 심사 접근성 결정 필요 |
-| Git | 2.43.0 설치됨 | `main` 초기 commit `8c394212387690d76bcd446db8c4af058e658409`과 원격 일치 |
+| Git | 2.43.0 설치됨 | `main`이 `origin/main`을 추적하며 직전 자금 증거 commit `847baa1`의 원격 반영 확인 |
 | Google Cloud SDK | Windows SDK 578.0.0 설치·CLI 로그인 완료 | 기본 프로젝트 `project-682bea5f-ac81-4a36-8a1` 설정 완료. WSL에서는 Windows SDK를 PowerShell로 호출한다. |
 | GCP ADC | Windows ADC 생성 및 quota project 연결 완료 | WSL Node 실행 시 Windows ADC 파일을 `GOOGLE_APPLICATION_CREDENTIALS`로 명시한다. credential 파일은 저장소에 복사하거나 커밋하지 않는다. |
 | Docker | CLI 29.6.2 설치됨 | 현재 세션에서 daemon 접근 불가. Cloud Run source deploy에는 로컬 daemon 불필요 |
@@ -81,10 +80,10 @@ pay.sh sandbox 또는 Solana localnet에서 먼저 테스트
 | Solana Devnet 지갑 | Sponsor·Buyer A/B/C·Merchant 5개 생성·검증 완료 | 개인키는 Secret Manager version 1에만 보관, 공개 manifest만 저장소에 둠 |
 | Devnet 자금·ATA | Sponsor 4.991837880 SOL, Buyer A/B/C 각 20 USDC, Merchant 0 USDC; ATA 4개 finalized | live readiness와 제품 결제 전 잔액 준비 완료 |
 | 제품 검증 | lockfile 기준 `npm ci --omit=peer`, typecheck, 87 tests, build 성공 | 루트 하네스 37 tests 및 production audit high/critical gate 통과 |
-| Live 환경 파일 | `.env` 없음 | 비밀 미커밋은 정상. 필수 6개 runtime secret은 생성됐고 live Cloud Run binding이 남음 |
-| 실제 실행 증거 | Vertex 호출, ATA 생성 tx, 비공개 Cloud Run fixture revision 확보 | 제품 결제 tx, ADK trace, private live revision은 아직 확보해야 한다. |
+| Live 환경 파일 | `.env` 없음 | 비밀 미커밋은 정상. 필수 6개 runtime secret을 private live revision에 version 1로 연결 완료 |
+| 실제 실행 증거 | Vertex 호출, ATA 생성 tx, 비공개 fixture와 live Cloud Run revision 확보 | 제품 결제 tx, ADK trace, 정상·거부 경로 receipt는 아직 확보해야 한다. |
 
-현재 실행 차단 요소는 `GitHub 심사 접근성 미확정`, `Cloud Run live revision 미배포`, `Live receipt 없음`이다. Git 원격 동기화, GCP, Devnet 지갑·SOL·USDC·ATA 준비는 완료됐다.
+현재 실행 차단 요소는 `공식 폼 세부 계약 미확인`, `GitHub 심사 접근성 미확정`, `Live 결제·거부 receipt 없음`이다. Git 원격 동기화, GCP, Devnet 지갑·SOL·USDC·ATA, private live readiness는 완료됐다.
 
 ## 로컬 개발 환경
 
@@ -155,7 +154,7 @@ Vertex AI 공식 quickstart의 선행조건은 Google 계정, 프로젝트, Bill
 - 최소 생성: 응답 `VERTEX_READY`, `finishReason=STOP`
 - 제품 로컬 검증: typecheck 성공, 9개 test file의 87개 test 성공, build 성공
 
-첫 호출과 최소 생성은 실제 Vertex endpoint에서 성공했다. 이후 제품과 동일한 5초 `countTokens` timeout으로 반복한 요청 한 번은 `AbortError`가 발생했다. 따라서 인증·API 활성화는 통과했지만, 배포 전에는 readiness timeout/retry 정책과 Cloud Run 환경에서의 반복 성공을 다시 검증한다. 이 영수증은 제품 ADK 전체 흐름이나 Cloud Run 배포 증거를 대신하지 않는다.
+첫 호출과 최소 생성은 실제 Vertex endpoint에서 성공했다. 이후 제품과 동일한 5초 `countTokens` timeout으로 반복한 로컬 요청 한 번은 `AbortError`가 발생했다. private live Cloud Run startup과 인증된 `/readyz`에서는 같은 Vertex probe가 다시 성공했다. 이 결과는 연결 준비를 입증하지만 제품 ADK 주문 흐름의 성공 증거를 대신하지 않는다.
 
 ### 2026-08-03 서울 리전 인프라 영수증
 
@@ -168,7 +167,7 @@ Vertex AI 공식 quickstart의 선행조건은 Google 계정, 프로젝트, Bill
 - 런타임 최소 역할: `roles/aiplatform.user`, `roles/datastore.user`
 - `roles/secretmanager.secretAccessor`는 runtime identity에 필요한 six runtime secret별로만 부여했다. Merchant 복구용 secret에는 부여하지 않았다.
 
-후속 단계에서 runtime secret 여섯 개와 전용 build identity를 만들고 비공개 Cloud Run fixture를 배포했다. revision, IAM, endpoint 결과와 증거 경계는 [GCP 비공개 fixture 배포 영수증](evidence/gcp-private-fixture-deploy-2026-08-03.md)에 고정했다. 공개 접근과 제품 결제 흐름은 아직 실행하지 않았다.
+후속 단계에서 runtime secret 여섯 개와 전용 build identity를 만들고 비공개 fixture와 live 서비스를 분리해 배포했다. fixture 결과는 [GCP 비공개 fixture 배포 영수증](evidence/gcp-private-fixture-deploy-2026-08-03.md), live revision·IAM·readiness·온체인 불변 확인은 [GCP 비공개 live 배포 영수증](evidence/gcp-private-live-deploy-2026-08-03.md)에 고정했다. 공개 접근과 제품 결제 흐름은 아직 실행하지 않았다.
 
 ### 런타임 서비스 계정
 
@@ -390,7 +389,7 @@ Google은 Agent가 Cloud Run을 조작할 수 있는 공식 MCP server를 제공
 - [x] 필요한 API를 활성화한다.
 - [x] Firestore `(default)`를 생성한다.
 - [x] 전용 Cloud Run service account와 최소 IAM을 구성한다.
-- [x] 6개 필수 runtime secret을 만들고 version 1을 고정한다. live Cloud Run 연결은 P4에서 수행한다.
+- [x] 6개 필수 runtime secret을 만들고 private live Cloud Run에 version 1로 고정한다.
 
 ### P3. Devnet
 
@@ -406,9 +405,9 @@ Google은 Agent가 Cloud Run을 조작할 수 있는 공식 MCP server를 제공
 - [x] lockfile 기준 `npm ci --omit=peer`, typecheck, 87 tests, build를 통과한다. 루트 하네스 37 tests와 production audit high/critical gate도 통과했다.
 - [x] 비공개 fixture를 전용 service identity로 배포한다.
 - [x] 인증된 `/health`가 200이고 무인증 요청이 403인지 확인한다. Cloud Run에서는 일부 `z` 종결 경로가 예약되므로 `/healthz`를 외부 probe로 사용하지 않는다.
-- [ ] 비공개 live revision을 전용 service identity로 배포한다.
-- [ ] `/readyz`의 Vertex, Firestore, Solana 검사가 모두 성공하는지 확인한다.
-- [ ] `/api/v1/runtime`이 `mode: live`, `onChain: true`인지 확인한다.
+- [x] 비공개 `mandate-pool-live-00001-n99` revision을 전용 service identity로 배포한다.
+- [x] 인증된 `/readyz`에서 Vertex, Firestore, Solana 검사가 모두 성공하는지 확인한다.
+- [x] `/api/v1/runtime`이 `mode: live`, `onChain: true`인지 확인하고 무인증 요청이 403인지 재확인한다.
 
 ### P5. 제출 증거
 
@@ -416,7 +415,7 @@ Google은 Agent가 Cloud Run을 조작할 수 있는 공식 MCP server를 제공
 - [ ] 거부 경로에서 거래가 생성되지 않았음을 보인다.
 - [ ] transaction signature와 Explorer URL을 저장한다.
 - [ ] Gemini/ADK trace와 Agent decision trace를 저장한다.
-- [ ] Cloud Run URL과 revision identifier를 저장한다.
+- [x] Cloud Run live URL과 revision identifier를 [배포 영수증](evidence/gcp-private-live-deploy-2026-08-03.md)에 저장한다.
 - [ ] 데모 영상을 녹화하고 소개서와 README의 claim을 증거와 대조한다.
 - [ ] 공식 폼 제출 완료 화면과 시각을 보존한다.
 
@@ -462,7 +461,8 @@ Fixture 화면, 임의 transaction id, sandbox 성공, 로컬 테스트만으로
 GCP_PROJECT_ID=project-682bea5f-ac81-4a36-8a1
 GCP_REGION=asia-northeast3
 GITHUB_REPOSITORY=procloudkim/2026-Solana-Google
-CLOUD_RUN_SERVICE_NAME=mandate-pool
+CLOUD_RUN_FIXTURE_SERVICE_NAME=mandate-pool
+CLOUD_RUN_LIVE_SERVICE_NAME=mandate-pool-live
 ```
 
 이메일, Google credential, API token, Solana private key는 채팅으로 전달하지 않는다.
