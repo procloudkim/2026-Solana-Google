@@ -17,7 +17,7 @@ GCP_PROJECT_ID=project-682bea5f-ac81-4a36-8a1
 제출 전 닫아야 할 병목은 네 가지다.
 
 1. Google 계정으로 공식 폼에 로그인해 실제 제출 필드를 확인한다.
-2. Buyer A/B/C에 Circle Devnet USDC를 지급한다.
+2. 비공개 GitHub 저장소를 공개하거나 심사위원 접근 방법을 확정한다.
 3. 비공개 live Cloud Run revision에서 readiness를 통과한다.
 4. 실제 Devnet 결제, Gemini/ADK 실행, Cloud Run revision을 제출 증거로 남긴다.
 
@@ -72,19 +72,19 @@ pay.sh sandbox 또는 Solana localnet에서 먼저 테스트
 | OS | WSL2, Ubuntu 24.04.4 LTS | 준비됨 |
 | Node.js / npm | Node 22.20.0, npm 10.9.3 | 제품의 Node 22 이상 조건 충족 |
 | Codex CLI | 0.146.0, ChatGPT 로그인 완료 | 준비됨 |
-| GitHub CLI | `procloudkim` 로그인과 `repo` 권한 확인 | 원격 `procloudkim/2026-Solana-Google` 연결 완료 |
-| Git | 2.43.0 설치됨 | `main` 저장소 초기화 완료 |
+| GitHub CLI | `procloudkim` 로그인과 `repo` 권한 확인 | private 원격 `procloudkim/2026-Solana-Google` 연결 완료; 심사 접근성 결정 필요 |
+| Git | 2.43.0 설치됨 | `main` 초기 commit `8c394212387690d76bcd446db8c4af058e658409`과 원격 일치 |
 | Google Cloud SDK | Windows SDK 578.0.0 설치·CLI 로그인 완료 | 기본 프로젝트 `project-682bea5f-ac81-4a36-8a1` 설정 완료. WSL에서는 Windows SDK를 PowerShell로 호출한다. |
 | GCP ADC | Windows ADC 생성 및 quota project 연결 완료 | WSL Node 실행 시 Windows ADC 파일을 `GOOGLE_APPLICATION_CREDENTIALS`로 명시한다. credential 파일은 저장소에 복사하거나 커밋하지 않는다. |
 | Docker | CLI 29.6.2 설치됨 | 현재 세션에서 daemon 접근 불가. Cloud Run source deploy에는 로컬 daemon 불필요 |
 | Solana CLI / SPL Token CLI | 설치되지 않음 | 앱의 기존 Solana Kit로 키 생성·검증 완료. ATA 생성도 같은 SDK로 수행해 전체 toolchain 설치를 피한다. |
 | Solana Devnet 지갑 | Sponsor·Buyer A/B/C·Merchant 5개 생성·검증 완료 | 개인키는 Secret Manager version 1에만 보관, 공개 manifest만 저장소에 둠 |
-| Devnet 자금·ATA | Sponsor 최초 5 SOL, ATA 생성 후 4.991837880 SOL; ATA 4개 finalized | Buyer A/B/C의 Circle Devnet USDC 지급만 남음 |
+| Devnet 자금·ATA | Sponsor 4.991837880 SOL, Buyer A/B/C 각 20 USDC, Merchant 0 USDC; ATA 4개 finalized | live readiness와 제품 결제 전 잔액 준비 완료 |
 | 제품 검증 | lockfile 기준 `npm ci --omit=peer`, typecheck, 87 tests, build 성공 | 루트 하네스 37 tests 및 production audit high/critical gate 통과 |
 | Live 환경 파일 | `.env` 없음 | 비밀 미커밋은 정상. 필수 6개 runtime secret은 생성됐고 live Cloud Run binding이 남음 |
 | 실제 실행 증거 | Vertex 호출, ATA 생성 tx, 비공개 Cloud Run fixture revision 확보 | 제품 결제 tx, ADK trace, private live revision은 아직 확보해야 한다. |
 
-현재 실행 차단 요소는 `Buyer USDC 없음`, `Cloud Run live revision 미배포`, `Live receipt 없음`이다. Git·GCP·Sponsor SOL과 Buyer A/B/C·Merchant의 USDC ATA 준비는 완료됐다.
+현재 실행 차단 요소는 `GitHub 심사 접근성 미확정`, `Cloud Run live revision 미배포`, `Live receipt 없음`이다. Git 원격 동기화, GCP, Devnet 지갑·SOL·USDC·ATA 준비는 완료됐다.
 
 ## 로컬 개발 환경
 
@@ -236,9 +236,9 @@ Circle Devnet USDC mint: 4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU
 - Sponsor는 [Solana Devnet Faucet](https://faucet.solana.com/)으로 최초 5 SOL을 받았고 ATA 생성 뒤 finalized 잔액 `4.991837880 SOL`을 확인했다.
 - Sponsor가 Buyer A/B/C와 Merchant의 classic-token ATA 네 개를 하나의 idempotent transaction으로 생성했다.
 - ATA transaction은 finalized됐으며 각 account의 classic Token Program, owner, mint, decimals 6, initialized 상태를 검증했다.
-- 남은 HITL은 [Circle Faucet](https://faucet.circle.com/)에서 `USDC`와 `Solana Devnet`을 선택하고 Buyer A/B/C의 **owner 주소** 각각에 요청하는 것이다. ATA 주소를 입력하지 않는다.
+- [Circle Faucet](https://faucet.circle.com/)에서 `USDC`와 `Solana Devnet`을 선택하고 Buyer A/B/C의 **owner 주소** 각각에 요청했다. ATA 주소를 입력하지 않았다.
 - Circle 공개 Faucet은 계정 없이 사용할 수 있지만 reCAPTCHA가 필요하다. 현재 공식 한도는 주소·체인별 2시간마다 20 USDC 한 번이다.
-- 지급 뒤 Buyer별 잔액이 최소 3 USDC인지 다시 검증한다.
+- Buyer A/B/C의 finalized 잔액은 각각 20 USDC이며 owner, Circle mint, decimals 6, initialized 상태를 검증했다. Merchant는 0 USDC다.
 - Buyer의 수수료는 Sponsor가 지불하므로 Buyer의 SOL은 필수가 아니다.
 
 [Solana CLI 설치](https://solana.com/docs/intro/installation), [Circle Solana USDC quickstart](https://developers.circle.com/stablecoins/quickstart-transfer-10-usdc-on-solana), [Circle USDC addresses](https://developers.circle.com/stablecoins/usdc-contract-addresses)
@@ -382,7 +382,8 @@ Google은 Agent가 Cloud Run을 조작할 수 있는 공식 MCP server를 제공
 - [x] Windows Google Cloud SDK를 WSL에서 호출하는 실행 경로를 확인한다.
 - [x] CLI 로그인, 기본 프로젝트 설정, ADC 로그인을 완료한다.
 - [x] `main` Git 저장소를 초기화하고 GitHub 원격 `procloudkim/2026-Solana-Google`을 연결한다.
-- [ ] 초기 commit을 push하고 심사 관점에서 원격 파일 접근을 확인한다.
+- [x] 초기 commit을 `main`에 push하고 로컬·원격 SHA 일치를 확인한다.
+- [ ] 현재 private 저장소를 공개하거나 심사위원 접근 방법을 확정한다.
 
 ### P2. GCP와 비밀
 
@@ -395,10 +396,10 @@ Google은 Agent가 Cloud Run을 조작할 수 있는 공식 MCP server를 제공
 
 - [x] Sponsor, Buyer A/B/C, Merchant의 Devnet 키를 만들고 공개주소·ATA 파생·Secret Manager round-trip을 검증한다.
 - [x] Sponsor 5 SOL을 확보하고 finalized 잔액을 검증한다.
-- [ ] Buyer A/B/C 각각 최소 3 Devnet USDC를 확보한다.
+- [x] Buyer A/B/C 각각 20 Devnet USDC를 확보한다.
 - [x] Buyer·Merchant ATA를 생성하고 transaction finality를 확인한다.
 - [x] Devnet genesis, mint, owner, decimals, account 상태를 검증한다.
-- [ ] Buyer A/B/C의 USDC 잔액을 검증한다.
+- [x] Buyer A/B/C의 USDC 잔액과 owner, mint, decimals, account 상태를 finalized로 검증한다.
 
 ### P4. 검증과 배포
 

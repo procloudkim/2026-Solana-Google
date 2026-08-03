@@ -44,11 +44,22 @@
 - transaction signature: [`2ySPjnbRFmsFZLJDxvJvoG3mkF26L6GTH51u2z69ANbm3biRP2yTD3H3sFvWBWPShySEt84RVQRUzNGCC5e1uwjs`](https://explorer.solana.com/tx/2ySPjnbRFmsFZLJDxvJvoG3mkF26L6GTH51u2z69ANbm3biRP2yTD3H3sFvWBWPShySEt84RVQRUzNGCC5e1uwjs?cluster=devnet)
 - transaction은 finalized됐고 ATA 네 개 모두 classic Token Program, 기대 owner·mint, initialized 상태임을 RPC에서 검증했다.
 - ATA 생성 뒤 Sponsor 잔액은 `4,991,837,880` lamports다.
-- 남은 HITL은 [Circle Faucet](https://faucet.circle.com/)에서 사람과 CAPTCHA가 Buyer A/B/C owner 주소 각각에 Devnet USDC를 요청하는 것이다. [Circle Solana USDC quickstart](https://developers.circle.com/stablecoins/quickstart-transfer-10-usdc-on-solana)
+- [Circle Faucet](https://faucet.circle.com/)에서 사람이 CAPTCHA를 완료하고 Buyer A/B/C owner 주소 각각에 20 Devnet USDC를 요청했다. [Circle Solana USDC quickstart](https://developers.circle.com/stablecoins/quickstart-transfer-10-usdc-on-solana)
+
+## Circle USDC finalized 증거
+
+2026-08-03 20:11 KST, finalized slot `480902417`에서 네 ATA를 한 번에 읽어 classic SPL Token program, Circle Devnet mint, 기대 owner, decimals 6, initialized 상태와 잔액을 검증했다.
+
+| 역할 | finalized 잔액 | Faucet 입금 signature | slot · 시각 |
+|---|---:|---|---|
+| Buyer A | 20 USDC | [`jMkExVbLyeKGhweRU1rRfm3BqPHVUuJttDKX9v2geKRHbvS686Y7AymjVxJ669AEkzwQjbP3wdoo35X92N2eGfU`](https://explorer.solana.com/tx/jMkExVbLyeKGhweRU1rRfm3BqPHVUuJttDKX9v2geKRHbvS686Y7AymjVxJ669AEkzwQjbP3wdoo35X92N2eGfU?cluster=devnet) | `480902232` · 20:08:48 KST |
+| Buyer B | 20 USDC | [`33yKUavJiZzWcKzATQvx315CN25t4Wfk61knJzaVsasLryhw63GQdW4SSujhMHUjs1XYPtza6MJgtbANCNkhy2qY`](https://explorer.solana.com/tx/33yKUavJiZzWcKzATQvx315CN25t4Wfk61knJzaVsasLryhw63GQdW4SSujhMHUjs1XYPtza6MJgtbANCNkhy2qY?cluster=devnet) | `480902288` · 20:09:08 KST |
+| Buyer C | 20 USDC | [`5baRHTeno6PbHNf5MURxud4aCqU3MCGHUVFppJHpCP1aRJr343oE6YATSY4PshefJ6fQ5wGycWTAXr3WDS8jCEhj`](https://explorer.solana.com/tx/5baRHTeno6PbHNf5MURxud4aCqU3MCGHUVFppJHpCP1aRJr343oE6YATSY4PshefJ6fQ5wGycWTAXr3WDS8jCEhj?cluster=devnet) | `480902319` · 20:09:19 KST |
+| Merchant | 0 USDC | 해당 없음 | 동일 조회 slot |
 
 ## 증거 경계
 
 - 공개 manifest의 Buyer A/B/C와 Merchant ATA 네 개는 온체인 생성과 finalized 상태 검증을 완료했다.
-- Sponsor SOL과 ATA는 검증됐지만 Buyer USDC 지급 및 잔액은 아직 미검증이다.
+- Sponsor SOL, ATA 네 개, Buyer A/B/C의 각 20 USDC 잔액을 finalized로 검증했다.
 - 어떤 Mainnet 키나 자산도 사용하지 않았다.
-- 생성·서명·전송한 transaction은 위 Devnet ATA 생성 transaction 한 건뿐이다.
+- 이 프로젝트가 직접 생성·서명·전송한 transaction은 위 Devnet ATA 생성 transaction 한 건뿐이다. Faucet 입금 세 건은 Circle Faucet이 생성한 외부 transaction이다.
