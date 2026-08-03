@@ -21,6 +21,7 @@ import {
   quoteHash,
   settlementKey,
   settlementMemo,
+  splitAtomicAmount,
   type CatalogSkuV1,
   type HumanApprovalV1,
   type MandateV1,
@@ -941,24 +942,29 @@ export class MandatePoolService implements MandatePoolHttpService {
         '에이전트가 canonical catalog 밖의 상품을 선택했습니다.',
       );
     }
-    const total = BigInt(selected.totalAmountAtomic);
-    if (total % 3n !== 0n) {
-      throw new Error('The v0 equal split requires a price divisible by three');
-    }
-    const share = atomicAmount((total / 3n).toString());
     const mandates = exactBuyerSet(context.mandates);
+    const allocationAmounts = splitAtomicAmount(
+      selected.totalAmountAtomic,
+      mandates.length,
+    );
     return {
       schema: 'mandate-pool/quote@1',
       quoteId: `${orderId}-quote-1`,
       orderId,
       clusterGenesisHash: DEVNET_GENESIS_HASH,
       sku: selected,
-      allocations: mandates.map((mandate) => ({
-        buyerId: mandate.buyerId,
-        signerAddress: mandate.signerAddress,
-        sourceAta: mandate.sourceAta,
-        amountAtomic: share,
-      })),
+      allocations: mandates.map((mandate, index) => {
+        const amountAtomic = allocationAmounts[index];
+        if (amountAtomic === undefined) {
+          throw new Error('Canonical allocation is missing a buyer amount');
+        }
+        return {
+          buyerId: mandate.buyerId,
+          signerAddress: mandate.signerAddress,
+          sourceAta: mandate.sourceAta,
+          amountAtomic,
+        };
+      }),
       totalAmountAtomic: selected.totalAmountAtomic,
       mandateHashes: {
         A: mandateHash(mandates[0] as MandateV1),
@@ -1249,12 +1255,26 @@ export class MandatePoolService implements MandatePoolHttpService {
     const context = contextOf(order);
     const audit = await this.#repository.listAuditEvents(order.orderId);
     const approvals = context.approvals;
-    const selectedSku =
+    const selectedSku = context.quote?.sku ?? (
       context.agentTrace.selection.skuId === 'NO_BUY'
         ? undefined
         : this.#catalog.find(
             (sku) => sku.skuId === context.agentTrace.selection.skuId,
-          );
+          )
+    );
+    const selectionAmounts = selectedSku === undefined
+      ? []
+      : context.quote === undefined
+        ? splitAtomicAmount(selectedSku.totalAmountAtomic, BUYER_IDS.length)
+        : BUYER_IDS.map((buyerId) => {
+            const allocation = context.quote?.allocations.find(
+              (candidate) => candidate.buyerId === buyerId,
+            );
+            if (allocation === undefined) {
+              throw new Error(`Stored quote is missing buyer ${buyerId}`);
+            }
+            return allocation.amountAtomic;
+          });
     const snapshot: OrderSnapshotView = {
       orderId: order.orderId,
       state: order.state,
@@ -1296,9 +1316,10 @@ export class MandatePoolService implements MandatePoolHttpService {
               productName: selectedSku.name,
               rationale: context.agentTrace.selection.rationale,
               totalAmountAtomic: selectedSku.totalAmountAtomic,
-              shareAmountAtomic: (
-                BigInt(selectedSku.totalAmountAtomic) / 3n
-              ).toString(),
+              allocations: selectionAmounts.map((amountAtomic, index) => ({
+                buyerId: BUYER_IDS[index] as BuyerId,
+                amountAtomic,
+              })),
             },
           }),
       policyChecks: (context.policyProof?.checks ?? []).map((check) => ({

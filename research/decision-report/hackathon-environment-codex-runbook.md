@@ -18,7 +18,7 @@ GCP_PROJECT_ID=project-682bea5f-ac81-4a36-8a1
 
 1. Google 계정으로 공식 폼에 로그인해 실제 제출 필드를 확인한다.
 2. 비공개 GitHub 저장소를 공개하거나 심사위원 접근 방법을 확정한다.
-3. 명시적 HITL 뒤 실제 Devnet 정상 결제와 거부 경로를 실행해 Gemini/ADK trace와 receipt를 제출 증거로 남긴다.
+3. 명시적 HITL 뒤 총 1 Devnet 테스트 USDC의 정상 온체인 거래와 거부 경로를 실행해 Gemini/ADK trace와 receipt를 제출 증거로 남긴다.
 
 Codex CLI는 저장소 초기화, 도구 설치, GCP 구성, 지갑·ATA 준비, 테스트, 배포, 증거 수집을 승인 기반으로 자동화할 수 있다. 계정 생성, 결제수단·약관 동의, OAuth/MFA, CAPTCHA, 공개 배포 승인, 최종 제출 확인은 사람이 담당한다.
 
@@ -81,9 +81,9 @@ pay.sh sandbox 또는 Solana localnet에서 먼저 테스트
 | Devnet 자금·ATA | Sponsor 4.991837880 SOL, Buyer A/B/C 각 20 USDC, Merchant 0 USDC; ATA 4개 finalized | live readiness와 제품 결제 전 잔액 준비 완료 |
 | 제품 검증 | lockfile 기준 `npm ci --omit=peer`, typecheck, 87 tests, build 성공 | 루트 하네스 37 tests 및 production audit high/critical gate 통과 |
 | Live 환경 파일 | `.env` 없음 | 비밀 미커밋은 정상. 필수 6개 runtime secret을 private live revision에 version 1로 연결 완료 |
-| 실제 실행 증거 | Vertex 호출, ATA 생성 tx, 비공개 fixture와 live Cloud Run revision 확보 | 제품 결제 tx, ADK trace, 정상·거부 경로 receipt는 아직 확보해야 한다. |
+| 온체인 실행 증거 | Vertex 호출, ATA 생성 tx, 비공개 fixture와 live Cloud Run revision 확보 | 제품의 1 Devnet 테스트 USDC tx, ADK trace, 정상·거부 경로 receipt는 아직 확보해야 한다. |
 
-현재 실행 차단 요소는 `공식 폼 세부 계약 미확인`, `GitHub 심사 접근성 미확정`, `Live 결제·거부 receipt 없음`이다. Git 원격 동기화, GCP, Devnet 지갑·SOL·USDC·ATA, private live readiness는 완료됐다.
+현재 실행 차단 요소는 `공식 폼 세부 계약 미확인`, `GitHub 심사 접근성 미확정`, `1 USDC live revision과 정상·거부 receipt 없음`이다. Git 원격 동기화, GCP, Devnet 지갑·SOL·USDC·ATA, 기존 private live readiness는 완료됐다.
 
 ## 로컬 개발 환경
 
@@ -214,9 +214,9 @@ roles/run.builder
 | 역할 | 키 필요 여부 | 자금 |
 |---|---|---|
 | Fee sponsor | 런타임 개인키 필요 | 수수료와 ATA 생성용 Devnet SOL |
-| Buyer A | 런타임 개인키 필요 | 최소 3 Devnet USDC |
-| Buyer B | 런타임 개인키 필요 | 최소 3 Devnet USDC |
-| Buyer C | 런타임 개인키 필요 | 최소 3 Devnet USDC |
+| Buyer A | 런타임 개인키 필요 | 정상 거래 `0.333334` Devnet USDC, readiness 최소 `0.4` |
+| Buyer B | 런타임 개인키 필요 | 정상 거래 `0.333333` Devnet USDC, readiness 최소 `0.4` |
+| Buyer C | 런타임 개인키 필요 | 정상 거래 `0.333333` Devnet USDC, readiness 최소 `0.4` |
 | Merchant | 런타임에는 owner 공개키와 USDC ATA만 필요 | 수취용 ATA |
 
 모든 키는 Mainnet과 분리된 일회성 Devnet 전용 키로 만든다. 앱에 넣는 signer secret은 64-byte JSON 배열 또는 64-byte로 디코딩되는 base64여야 한다.
@@ -408,10 +408,11 @@ Google은 Agent가 Cloud Run을 조작할 수 있는 공식 MCP server를 제공
 - [x] 비공개 `mandate-pool-live-00001-n99` revision을 전용 service identity로 배포한다.
 - [x] 인증된 `/readyz`에서 Vertex, Firestore, Solana 검사가 모두 성공하는지 확인한다.
 - [x] `/api/v1/runtime`이 `mode: live`, `onChain: true`인지 확인하고 무인증 요청이 403인지 재확인한다.
+- [ ] 총 1 Devnet 테스트 USDC와 canonical A/B/C 분담을 적용한 새 live revision을 배포하고 같은 검사를 반복한다.
 
 ### P5. 제출 증거
 
-- [ ] 정상 경로에서 finalized Devnet transaction을 만든다.
+- [ ] 정상 경로에서 총 1 Devnet 테스트 USDC의 finalized transaction을 만든다.
 - [ ] 거부 경로에서 거래가 생성되지 않았음을 보인다.
 - [ ] transaction signature와 Explorer URL을 저장한다.
 - [ ] Gemini/ADK trace와 Agent decision trace를 저장한다.
@@ -429,7 +430,7 @@ Google은 Agent가 Cloud Run을 조작할 수 있는 공식 MCP server를 제공
   + 소개서와 데모영상
   + Cloud Run live URL
   + Vertex/Firestore/Solana readiness 통과
-  + 정상 finalized Devnet tx와 Explorer
+  + 총 1 Devnet 테스트 USDC의 정상 finalized tx와 Explorer
   + 거부 경로 no-transaction 증거
   + Agent decision/ADK trace
   + Cloud Run revision receipt

@@ -96,15 +96,15 @@ function createService(): MandatePoolService {
 const happyMandates = [
   {
     buyerId: 'A' as const,
-    naturalLanguage: '최대 4 USDC, API와 CSV가 모두 필요합니다.',
+    naturalLanguage: '최대 0.4 USDC, API와 CSV가 모두 필요합니다.',
   },
   {
     buyerId: 'B' as const,
-    naturalLanguage: '최대 3 USDC, API가 필요하고 자동갱신 금지입니다.',
+    naturalLanguage: '최대 0.34 USDC, API가 필요하고 자동갱신 금지입니다.',
   },
   {
     buyerId: 'C' as const,
-    naturalLanguage: '최대 4 USDC, 7일 일회성만 허용합니다.',
+    naturalLanguage: '최대 0.4 USDC, 7일 일회성만 허용합니다.',
   },
 ];
 
@@ -138,6 +138,14 @@ describe('Mandate Pool service integration', () => {
 
     const approved = await approveAll(service, created);
     expect(approved.state).toBe('APPROVED');
+    expect(approved.selection).toMatchObject({
+      totalAmountAtomic: '1000000',
+      allocations: [
+        {buyerId: 'A', amountAtomic: '333334'},
+        {buyerId: 'B', amountAtomic: '333333'},
+        {buyerId: 'C', amountAtomic: '333333'},
+      ],
+    });
 
     const fulfilled = await service.runOrder(created.orderId);
     expect(fulfilled.state).toBe('FULFILLED');
@@ -146,6 +154,7 @@ describe('Mandate Pool service integration', () => {
     expect(fulfilled.evidence?.cluster).toMatch(/NOT ON-CHAIN/);
     expect(fulfilled.evidence?.transferCount).toBe(3);
     expect(fulfilled.evidence?.requiredSignerCount).toBe(4);
+    expect(fulfilled.selection).toEqual(approved.selection);
 
     const publicSnapshot = await service.getOrder(created.orderId);
     expect(publicSnapshot?.entitlements).toBeUndefined();
@@ -155,11 +164,11 @@ describe('Mandate Pool service integration', () => {
     expect(resource.authorized).toBe(true);
   });
 
-  it('returns NO_BUY with no settlement when B cap is 2.5 USDC', async () => {
+  it('returns NO_BUY with no settlement when B cap is 0.3 USDC', async () => {
     const service = createService();
     const mandates = happyMandates.map((mandate) =>
       mandate.buyerId === 'B'
-        ? {...mandate, naturalLanguage: '최대 2.5 USDC, API, 자동갱신 금지'}
+        ? {...mandate, naturalLanguage: '최대 0.3 USDC, API, 자동갱신 금지'}
         : mandate,
     );
     const created = await service.createOrder({

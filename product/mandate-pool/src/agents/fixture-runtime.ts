@@ -7,11 +7,12 @@ import {
   type NaturalLanguageMandate,
   type NormalizedMandateProposal,
 } from "./contracts.js";
+import {splitAtomicAmount} from "../domain/atomic.js";
 
 const DEFAULT_CAPS: Readonly<Record<(typeof BUYER_IDS)[number], bigint>> = {
-  A: 4_000_000n,
-  B: 3_000_000n,
-  C: 4_000_000n,
+  A: 400_000n,
+  B: 340_000n,
+  C: 400_000n,
 };
 
 function parseCapAtomic(mandate: NaturalLanguageMandate): string {
@@ -56,13 +57,16 @@ function normalizeFixture(input: AgentPlanInput, mandate: NaturalLanguageMandate
 }
 
 function productMatches(product: AgentCatalogItem, proposals: NormalizedMandateProposal[]): boolean {
-  const total = BigInt(product.totalAmountAtomic);
-  if (total % BigInt(proposals.length) !== 0n) {
+  let allocations: readonly string[];
+  try {
+    allocations = splitAtomicAmount(product.totalAmountAtomic, proposals.length);
+  } catch {
     return false;
   }
-  const share = total / BigInt(proposals.length);
 
-  return proposals.every((proposal) => {
+  return proposals.every((proposal, index) => {
+    const allocation = allocations[index];
+    if (allocation === undefined) return false;
     const hasRequired = proposal.requiredFeatures.every((feature) => {
       if (feature === "7-day-access") {
         return product.durationDays >= 7;
@@ -75,7 +79,7 @@ function productMatches(product: AgentCatalogItem, proposals: NormalizedMandateP
       }
       return product.forbiddenCharacteristics.includes(feature) || product.features.includes(feature);
     });
-    return hasRequired && !hasForbidden && share <= BigInt(proposal.maxAmountAtomic);
+    return hasRequired && !hasForbidden && BigInt(allocation) <= BigInt(proposal.maxAmountAtomic);
   });
 }
 

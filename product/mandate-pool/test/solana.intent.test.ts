@@ -147,6 +147,11 @@ describe('signer-safe settlement intent verifier', () => {
       DEMO_ADDRESSES.buyerC,
     ]);
     expect(expected.transfers.map((transfer) => transfer.buyerId)).toEqual(['A', 'B', 'C']);
+    expect(expected.transfers.map((transfer) => transfer.amountAtomic)).toEqual([
+      '333334',
+      '333333',
+      '333333',
+    ]);
   });
 
   const mutations: readonly [

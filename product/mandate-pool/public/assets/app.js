@@ -3,19 +3,19 @@ const TERMINAL_STATES = new Set(["NO_BUY", "POLICY_REJECTED", "FINALIZED_FAILED"
 
 const scenarios = {
   happy: {
-    label: "정상 결제 · 각 3 USDC",
+    label: "정상 결제 · 총 1 Devnet USDC",
     mandates: [
-      {buyerId: "A", naturalLanguage: "SignalDesk 공동 구매. 최대 4 USDC, API와 CSV가 모두 필요합니다."},
-      {buyerId: "B", naturalLanguage: "최대 3 USDC. API가 필요하고 자동갱신은 금지합니다."},
-      {buyerId: "C", naturalLanguage: "최대 4 USDC. 7일 동안 쓰는 일회성 상품만 허용합니다."},
+      {buyerId: "A", naturalLanguage: "SignalDesk 공동 구매. 최대 0.4 USDC, API와 CSV가 모두 필요합니다."},
+      {buyerId: "B", naturalLanguage: "최대 0.34 USDC. API가 필요하고 자동갱신은 금지합니다."},
+      {buyerId: "C", naturalLanguage: "최대 0.4 USDC. 7일 동안 쓰는 일회성 상품만 허용합니다."},
     ],
   },
   "cap-low": {
-    label: "거부 검증 · B 한도 2.5 USDC",
+    label: "거부 검증 · B 한도 0.3 USDC",
     mandates: [
-      {buyerId: "A", naturalLanguage: "SignalDesk 공동 구매. 최대 4 USDC, API와 CSV가 모두 필요합니다."},
-      {buyerId: "B", naturalLanguage: "최대 2.5 USDC. API가 필요하고 자동갱신은 금지합니다."},
-      {buyerId: "C", naturalLanguage: "최대 4 USDC. 7일 동안 쓰는 일회성 상품만 허용합니다."},
+      {buyerId: "A", naturalLanguage: "SignalDesk 공동 구매. 최대 0.4 USDC, API와 CSV가 모두 필요합니다."},
+      {buyerId: "B", naturalLanguage: "최대 0.3 USDC. API가 필요하고 자동갱신은 금지합니다."},
+      {buyerId: "C", naturalLanguage: "최대 0.4 USDC. 7일 동안 쓰는 일회성 상품만 허용합니다."},
     ],
   },
 };
@@ -120,8 +120,11 @@ function renderMandates(mandates = []) {
 
 function renderPolicy(order) {
   if (order.selection) {
+    const allocationText = order.selection.allocations
+      .map((allocation) => `${allocation.buyerId} ${displayUsdc(allocation.amountAtomic)}`)
+      .join(" · ");
     ui.selection.className = "selection-card";
-    ui.selection.innerHTML = `<span>SELECTED PRODUCT</span><strong>${text(order.selection.productName)}</strong><p>${text(order.selection.rationale)} · 총 ${text(displayUsdc(order.selection.totalAmountAtomic))}, 각 ${text(displayUsdc(order.selection.shareAmountAtomic))}</p>`;
+    ui.selection.innerHTML = `<span>SELECTED PRODUCT</span><strong>${text(order.selection.productName)}</strong><p>${text(order.selection.rationale)} · 총 ${text(displayUsdc(order.selection.totalAmountAtomic))} · 분담 ${text(allocationText)}</p>`;
   } else {
     ui.selection.className = "selection-card muted";
     ui.selection.innerHTML = `<span>SELECTED PRODUCT</span><strong>선택 없음</strong><p>${text(order.failure?.message || "정책 판단을 기다리고 있습니다.")}</p>`;
@@ -319,12 +322,12 @@ async function loadRuntime() {
     if (runtime.mode !== "fixture" && runtime.mode !== "live") throw new Error("알 수 없는 runtime mode");
     state.runtimeMode = runtime.mode;
     const live = runtime.mode === "live";
-    ui.runtimePill.innerHTML = `<span class="pulse"></span> ${live ? "Solana Devnet · LIVE" : "Fixture · NOT ON-CHAIN"}`;
+    ui.runtimePill.innerHTML = `<span class="pulse"></span> ${live ? "Solana Devnet · TEST" : "Fixture · NOT ON-CHAIN"}`;
     ui.runtimeBanner.textContent = live
-      ? "LIVE · SOLANA DEVNET · SERVER-HELD DEMO KEYS · OPERATOR-SIMULATED HITL"
+      ? "SOLANA DEVNET · TEST TOKENS · 실제 금전 가치 없음 · OPERATOR-SIMULATED HITL"
       : "FIXTURE · NOT ON-CHAIN · OPERATOR-SIMULATED HITL · Solana 거래 증거 아님";
     ui.runtimeBanner.className = `runtime-banner ${live ? "runtime-live" : "runtime-fixture"}`;
-    ui.runtimeFooter.textContent = live ? "SOLANA DEVNET · NOT USER CUSTODY" : "FIXTURE · NOT ON-CHAIN";
+    ui.runtimeFooter.textContent = live ? "SOLANA DEVNET TEST TOKENS · NOT USER CUSTODY" : "FIXTURE · NOT ON-CHAIN";
     ui.evidenceHeading.textContent = live ? "온체인 증거" : "Fixture 실행 증거";
     ui.accessProofCopy.textContent = live
       ? "독립 검증된 finalized 거래로 발급된 이용권만 보호 리소스를 열 수 있습니다."

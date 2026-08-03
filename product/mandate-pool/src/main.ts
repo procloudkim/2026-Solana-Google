@@ -17,6 +17,8 @@ import {
   DEMO_ADDRESSES,
   SIGNAL_DESK_CATALOG,
   USDC_DECIMALS,
+  parseAtomicAmount,
+  splitAtomicAmount,
   type CatalogSkuV1,
 } from './domain/index.js';
 import {createHttpApp} from './http/index.js';
@@ -32,7 +34,12 @@ import {
   LiveSolanaSettlementRuntime,
 } from './service/settlement-runtime.js';
 
-const MINIMUM_BUYER_BALANCE_ATOMIC = 3_000_000n;
+const MINIMUM_BUYER_BALANCE_ATOMIC = SIGNAL_DESK_CATALOG
+  .flatMap((sku) => splitAtomicAmount(sku.totalAmountAtomic, 3))
+  .reduce((maximum, amount) => {
+    const value = parseAtomicAmount(amount);
+    return value > maximum ? value : maximum;
+  }, 0n);
 const MINIMUM_SPONSOR_LAMPORTS = 50_000n;
 
 interface ApplicationComposition {

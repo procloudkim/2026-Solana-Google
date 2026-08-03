@@ -1,4 +1,4 @@
-import {atomicAmount} from './atomic.js';
+import {atomicAmount, splitAtomicAmount} from './atomic.js';
 import {mandateHash} from './canonical.js';
 import {DEMO_ADDRESSES, DEVNET_USDC_MINT, signalDeskSku} from './catalog.js';
 import type {BuyerId, HumanApprovalV1, MandateV1, QuoteV1} from './types.js';
@@ -30,7 +30,7 @@ function buildMandates(buyerBMaxAtomic: string): MandateV1[] {
       allowedMerchantOwners: [DEMO_ADDRESSES.merchantOwner],
       requiredFeatures: ['api', 'csv'],
       forbiddenFeatures: [],
-      maxAmountAtomic: atomicAmount('4000000'),
+      maxAmountAtomic: atomicAmount('400000'),
       minimumAccessDays: 3,
       allowAutoRenewal: true,
       validUntil: '2030-01-01T00:00:00.000Z',
@@ -62,7 +62,7 @@ function buildMandates(buyerBMaxAtomic: string): MandateV1[] {
       allowedMerchantOwners: [DEMO_ADDRESSES.merchantOwner],
       requiredFeatures: [],
       forbiddenFeatures: [],
-      maxAmountAtomic: atomicAmount('4000000'),
+      maxAmountAtomic: atomicAmount('400000'),
       minimumAccessDays: 7,
       allowAutoRenewal: false,
       validUntil: '2030-01-01T00:00:00.000Z',
@@ -87,6 +87,10 @@ function buildApprovals(mandates: readonly MandateV1[]): HumanApprovalV1[] {
 
 function buildQuote(mandates: readonly MandateV1[]): QuoteV1 {
   const selectedSku = signalDeskSku('signaldesk-team-3');
+  const allocationAmounts = splitAtomicAmount(
+    selectedSku.totalAmountAtomic,
+    mandates.length,
+  );
   const mandateByBuyer = new Map(mandates.map((mandate) => [mandate.buyerId, mandate]));
   const mandateA = mandateByBuyer.get('A');
   const mandateB = mandateByBuyer.get('B');
@@ -101,13 +105,17 @@ function buildQuote(mandates: readonly MandateV1[]): QuoteV1 {
     orderId: 'order-demo-v1',
     clusterGenesisHash: 'EtWTRABZaYq6iMfeYKouRu166VU2xqa1',
     sku: selectedSku,
-    allocations: [mandateA, mandateB, mandateC].map((mandate) => ({
-      buyerId: mandate.buyerId,
-      signerAddress: mandate.signerAddress,
-      sourceAta: mandate.sourceAta,
-      amountAtomic: atomicAmount('3000000'),
-    })),
-    totalAmountAtomic: atomicAmount('9000000'),
+    allocations: [mandateA, mandateB, mandateC].map((mandate, index) => {
+      const amountAtomic = allocationAmounts[index];
+      if (amountAtomic === undefined) throw new Error('Missing fixture allocation');
+      return {
+        buyerId: mandate.buyerId,
+        signerAddress: mandate.signerAddress,
+        sourceAta: mandate.sourceAta,
+        amountAtomic,
+      };
+    }),
+    totalAmountAtomic: selectedSku.totalAmountAtomic,
     mandateHashes: {
       A: mandateHash(mandateA),
       B: mandateHash(mandateB),
@@ -129,11 +137,11 @@ function buildFixture(buyerBMaxAtomic: string): PolicyFixture {
 }
 
 export function createHappyPathFixture(): PolicyFixture {
-  return buildFixture('3000000');
+  return buildFixture('340000');
 }
 
 export function createCapTooLowFixture(): PolicyFixture {
-  return buildFixture('2500000');
+  return buildFixture('300000');
 }
 
 export const HAPPY_PATH_FIXTURE = createHappyPathFixture();

@@ -102,7 +102,8 @@ function makeCoalitionSelector(model: string): LlmAgent {
     model,
     instruction: [
       "Choose exactly one skuId from the supplied canonical catalog, or return skuId NO_BUY.",
-      "A product is eligible only if every buyer's required features, forbidden features, duration, and equal-share budget are satisfied.",
+      "A product is eligible only if every buyer's required features, forbidden features, duration, and budget are satisfied.",
+      "Split integer atomic units in buyer A, B, C order: use floor(total/3), then give one extra base unit to each earliest buyer until the remainder is exhausted.",
       "Never rewrite prices or product facts. Never authorize or initiate payment.",
     ].join(" "),
     outputSchema: coalitionSelectionSchema,

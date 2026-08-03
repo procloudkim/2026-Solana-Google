@@ -37,10 +37,6 @@
 - 이 배포에서 Gemini 제품 흐름, Firestore 쓰기, Solana RPC·서명·거래를 실행하지 않았다.
 - 실제 제출 증거에는 별도의 private live revision, `mode=live`, `onChain=true`, Devnet finalized signature, Gemini/ADK trace가 필요하다.
 
-## 다음 차단점
+## 후속 상태
 
-1. Sponsor, Buyer A/B/C, Merchant의 Devnet 전용 지갑과 ATA 준비
-2. Devnet SOL 및 Buyer별 3 USDC 이상 확보
-3. signer 4개 secret과 merchant 공개 설정을 구성
-4. 비공개 live revision의 `/readyz` 통과
-5. 정상·거부 경로 증거 확보 후 사람 승인으로 공개 전환
+지갑·ATA·Devnet 자금·signer secret과 첫 private live readiness는 이후 모두 완료됐다. 현재 상태는 [환경 런북](../hackathon-environment-codex-runbook.md)과 [private live 배포 영수증](gcp-private-live-deploy-2026-08-03.md)을 따른다. 이 fixture revision은 배포 당시 스냅샷이며, 총 1 Devnet 테스트 USDC 가격을 반영한 새 revision으로 교체되기 전까지 현재 제품 데모로 주장하지 않는다.

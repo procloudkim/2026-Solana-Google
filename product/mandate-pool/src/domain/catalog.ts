@@ -42,9 +42,9 @@ function sku(
 
 /** The fixed demo catalog. Prices are USDC base units (six decimals). */
 export const SIGNAL_DESK_CATALOG: readonly CatalogSkuV1[] = Object.freeze([
-  sku('signaldesk-api-basic', 'SignalDesk API Basic', ['api'], 3, false, '6000000'),
-  sku('signaldesk-team-3', 'SignalDesk Team-3', ['api', 'csv'], 7, false, '9000000'),
-  sku('signaldesk-pro-month', 'SignalDesk Pro Month', ['api', 'csv'], 30, true, '12000000'),
+  sku('signaldesk-api-basic', 'SignalDesk API Basic', ['api'], 3, false, '600000'),
+  sku('signaldesk-team-3', 'SignalDesk Team-3', ['api', 'csv'], 7, false, '1000000'),
+  sku('signaldesk-pro-month', 'SignalDesk Pro Month', ['api', 'csv'], 30, true, '1200000'),
 ]);
 
 export function signalDeskSku(skuId: string): CatalogSkuV1 {

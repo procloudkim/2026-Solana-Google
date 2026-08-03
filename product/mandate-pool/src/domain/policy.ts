@@ -1,4 +1,8 @@
-import {addAtomicAmounts, compareAtomicAmounts} from './atomic.js';
+import {
+  addAtomicAmounts,
+  compareAtomicAmounts,
+  splitAtomicAmount,
+} from './atomic.js';
 import {canonicalJson, mandateHash, quoteHash} from './canonical.js';
 import {SIGNAL_DESK_CATALOG} from './catalog.js';
 import {BUYER_IDS} from './types.js';
@@ -88,20 +92,40 @@ export function evaluatePolicy(input: EvaluatePolicyInput): PolicyProofV1 {
   );
 
   let allocationTotalMatches = false;
+  let allocationSplitCanonical = false;
   let skuTotalMatches = false;
+  const allocationByBuyer = mapByBuyer<QuoteAllocationV1>(input.quote.allocations);
   try {
     allocationTotalMatches =
       addAtomicAmounts(input.quote.allocations.map((allocation) => allocation.amountAtomic)) ===
       input.quote.totalAmountAtomic;
+    const expectedAllocations = splitAtomicAmount(
+      input.quote.totalAmountAtomic,
+      BUYER_IDS.length,
+    );
+    allocationSplitCanonical =
+      input.quote.allocations.every(
+        (allocation, index) => allocation.buyerId === BUYER_IDS[index],
+      ) &&
+      BUYER_IDS.every(
+        (buyerId, index) =>
+          allocationByBuyer.get(buyerId)?.amountAtomic === expectedAllocations[index],
+      );
     skuTotalMatches = input.quote.sku.totalAmountAtomic === input.quote.totalAmountAtomic;
   } catch {
     allocationTotalMatches = false;
+    allocationSplitCanonical = false;
     skuTotalMatches = false;
   }
   addCheck(
     'ALLOCATION_TOTAL_MATCHES',
     allocationTotalMatches,
     'Allocation base units sum exactly to the quoted total',
+  );
+  addCheck(
+    'ALLOCATION_SPLIT_CANONICAL',
+    allocationSplitCanonical,
+    'Allocation order and remainder follow the canonical buyer A, B, C split',
   );
   addCheck(
     'SKU_TOTAL_MATCHES',
@@ -119,7 +143,7 @@ export function evaluatePolicy(input: EvaluatePolicyInput): PolicyProofV1 {
 
   const mandates = mapByBuyer(input.mandates);
   const approvals = mapByBuyer(input.approvals);
-  const allocations = mapByBuyer<QuoteAllocationV1>(input.quote.allocations);
+  const allocations = allocationByBuyer;
 
   for (const buyerId of BUYER_IDS) {
     const mandate = mandates.get(buyerId);
@@ -237,7 +261,7 @@ export function evaluatePolicy(input: EvaluatePolicyInput): PolicyProofV1 {
 
   return {
     schema: 'mandate-pool/policy-proof@1',
-    engineVersion: 'mandate-pool-policy/1',
+    engineVersion: 'mandate-pool-policy/2',
     evaluatedAt: input.evaluatedAt,
     quoteHash: quoteHash(input.quote),
     approved: checks.every((check) => check.passed),

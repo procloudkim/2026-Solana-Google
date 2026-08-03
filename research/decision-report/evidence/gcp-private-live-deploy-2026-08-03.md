@@ -45,7 +45,7 @@
 
 [HTTP routes](../../../product/mandate-pool/src/http/app.ts)의 `/readyz`도 Firestore document `get`, Solana `getBlockHeight`, Vertex `countTokens`만 수행한다. `/health`와 `/api/v1/runtime`은 프로세스 상태와 구성 label만 반환한다. 이 세 GET 경로에는 Firestore write, transaction 서명, `sendTransaction`이 없다.
 
-실제 결제·서명 경로는 `X-Demo-Key`와 `Idempotency-Key`가 모두 필요한 `POST /api/v1/orders/:orderId/run`이다. 이번 배포 검증에서는 주문 생성·승인·실행 POST를 모두 호출하지 않았다.
+온체인 거래·서명 경로는 `X-Demo-Key`와 `Idempotency-Key`가 모두 필요한 `POST /api/v1/orders/:orderId/run`이다. 이번 배포 검증에서는 주문 생성·승인·실행 POST를 모두 호출하지 않았다.
 
 ## 배포 후 온체인 불변 확인
 
@@ -61,4 +61,5 @@
 | 런타임이 전용 identity로 Google API를 호출한다 | 통과 | revision의 service account 설정과 공식 service identity 계약 일치 |
 | secret version이 고정됐다 | 통과 | 여섯 참조 모두 `key=1`; 공식 문서는 env secret의 특정 version 고정을 권고 |
 | readiness가 결제를 만들지 않았다 | 통과 | 코드 경로의 read-only probe와 배포 전후 finalized 잔액 불변을 양방향 확인 |
+| Devnet USDC가 실제 돈이다 | 실패 | Circle은 testnet token에 금전 가치가 없고 실제 달러 담보도 없다고 명시한다. [Circle contract addresses](https://developers.circle.com/stablecoins/usdc-contract-addresses) |
 | 제품 결제가 성공했다 | 아직 주장 불가 | 결제 실행 POST와 finalized 제품 transaction을 아직 만들지 않음 |

@@ -53,8 +53,11 @@ async function fixture(): Promise<{
     tokenProgram,
   });
   const buyers = {A: buyerA, B: buyerB, C: buyerC} as const;
+  const transferAmounts = ['333334', '333333', '333333'] as const;
   const transfers = await Promise.all(
-    (['A', 'B', 'C'] as const).map(async (buyerId) => {
+    (['A', 'B', 'C'] as const).map(async (buyerId, index) => {
+      const amountAtomic = transferAmounts[index];
+      if (amountAtomic === undefined) throw new Error('Missing transfer amount');
       const [sourceAta] = await findAssociatedTokenPda({
         mint,
         owner: buyers[buyerId].address,
@@ -64,7 +67,7 @@ async function fixture(): Promise<{
         buyerId,
         authority: buyers[buyerId].address,
         sourceAta,
-        amountAtomic: '3000000',
+        amountAtomic,
       };
     }),
   );
@@ -138,7 +141,7 @@ function finalizedRecord(
           (BigInt(initialAmounts[index] ?? '0') - BigInt(transfer.amountAtomic)).toString(),
         ),
       ),
-      balance(plan.merchantAta, merchantOwner, '10000000'),
+      balance(plan.merchantAta, merchantOwner, '2000000'),
     ],
   };
 }
@@ -221,11 +224,11 @@ describe('Solana Kit settlement runtime', () => {
     expect(evidence.transactionSignature).toBe(signed.transactionSignature);
     expect(evidence.messageHash).toBe(signed.messageHash);
     expect(evidence.sourceDebits.map((debit) => debit.debitAtomic)).toEqual([
-      '3000000',
-      '3000000',
-      '3000000',
+      '333334',
+      '333333',
+      '333333',
     ]);
-    expect(evidence.destinationCreditAtomic).toBe('9000000');
+    expect(evidence.destinationCreditAtomic).toBe('1000000');
   });
 
   it('rejects finalized wire, signature, message, and intent substitutions', async () => {

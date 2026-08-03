@@ -10,6 +10,7 @@ import {
   formatAtomicAmount,
   settlementKey,
   settlementMemo,
+  splitAtomicAmount,
 } from '../src/domain/index.js';
 
 describe('atomic token amounts', () => {
@@ -19,6 +20,14 @@ describe('atomic token amounts', () => {
     expect(addAtomicAmounts(['1000000', '2000000', '3000000'])).toBe('6000000');
     expect(compareAtomicAmounts('9007199254740993', '9007199254740992')).toBe(1);
     expect(formatAtomicAmount(3_000_000n)).toBe('3000000');
+    expect(splitAtomicAmount('1000000', 3)).toEqual([
+      '333334',
+      '333333',
+      '333333',
+    ]);
+    expect(splitAtomicAmount('999999', 3)).toEqual(['333333', '333333', '333333']);
+    expect(splitAtomicAmount('1000001', 3)).toEqual(['333334', '333334', '333333']);
+    expect(addAtomicAmounts(splitAtomicAmount('1000000', 3))).toBe('1000000');
   });
 
   it.each(['', '-1', '+1', '01', '1.0', '1e6', ' 1', '1 '])('rejects non-canonical value %j', (value) => {
@@ -28,6 +37,8 @@ describe('atomic token amounts', () => {
   it('rejects overflow and arithmetic overflow', () => {
     expect(() => atomicAmount((MAX_U64 + 1n).toString())).toThrow(/u64/u);
     expect(() => addAtomicAmounts([MAX_U64.toString(), '1'])).toThrow(/64-bit/u);
+    expect(() => splitAtomicAmount('2', 3)).toThrow(/one base unit/u);
+    expect(() => splitAtomicAmount('1000000', 0)).toThrow(/part count/u);
   });
 });
 describe('canonical hashes', () => {

@@ -75,7 +75,7 @@ export interface PolicyCheckV1 {
 
 export interface PolicyProofV1 {
   readonly schema: 'mandate-pool/policy-proof@1';
-  readonly engineVersion: 'mandate-pool-policy/1';
+  readonly engineVersion: 'mandate-pool-policy/2';
   readonly evaluatedAt: string;
   readonly quoteHash: string;
   readonly approved: boolean;

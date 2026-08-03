@@ -7,6 +7,7 @@ import {
   settlementKey,
   settlementMemo,
   sha256Hex,
+  splitAtomicAmount,
 } from '../domain/index.js';
 import type {
   AtomicAmount,
@@ -58,7 +59,7 @@ export function deriveExpectedSettlementIntent(
   }
   if (
     input.policyProof.schema !== 'mandate-pool/policy-proof@1' ||
-    input.policyProof.engineVersion !== 'mandate-pool-policy/1' ||
+    input.policyProof.engineVersion !== 'mandate-pool-policy/2' ||
     !input.policyProof.approved ||
     input.policyProof.checks.length === 0 ||
     !input.policyProof.checks.every((check) => check.passed)
@@ -81,6 +82,18 @@ export function deriveExpectedSettlementIntent(
     input.quote.totalAmountAtomic
   ) {
     throw new Error('Quote allocation amounts do not sum to the quoted total');
+  }
+  const expectedAllocationAmounts = splitAtomicAmount(
+    input.quote.totalAmountAtomic,
+    BUYER_IDS.length,
+  );
+  if (
+    allocations.some(
+      (allocation, index) =>
+        allocation.amountAtomic !== expectedAllocationAmounts[index],
+    )
+  ) {
+    throw new Error('Quote allocations do not follow the canonical buyer split');
   }
   if (!Number.isInteger(input.quote.sku.decimals) || input.quote.sku.decimals < 0 || input.quote.sku.decimals > 255) {
     throw new Error('Token decimals must be an unsigned byte');

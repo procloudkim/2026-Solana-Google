@@ -83,7 +83,7 @@ export interface OrderSnapshotView {
     productName: string;
     rationale: string;
     totalAmountAtomic: string;
-    shareAmountAtomic: string;
+    allocations: Array<{buyerId: BuyerId; amountAtomic: string}>;
   };
   policyChecks: PolicyCheckView[];
   timeline: TimelineEventView[];

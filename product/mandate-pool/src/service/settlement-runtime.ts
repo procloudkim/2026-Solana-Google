@@ -1,10 +1,12 @@
 import {createHash} from 'node:crypto';
 
 import {
+  BUYER_IDS,
   canonicalJson,
   policyProofHash,
   quoteHash,
   settlementMemo,
+  splitAtomicAmount,
   type PolicyProofV1,
   type QuoteV1,
 } from '../domain/index.js';
@@ -95,10 +97,49 @@ export function settlementPlanFromQuote(
 ): SolanaSettlementPlan {
   const qHash = quoteHash(quote);
   const pHash = policyProofHash(proof);
-  if (!proof.approved || proof.quoteHash !== qHash) {
+  if (
+    proof.schema !== 'mandate-pool/policy-proof@1' ||
+    proof.engineVersion !== 'mandate-pool-policy/2' ||
+    !proof.approved ||
+    proof.checks.length === 0 ||
+    !proof.checks.every((check) => check.passed) ||
+    proof.quoteHash !== qHash
+  ) {
     throw new SettlementPreparationError(
       'INVALID_PREPARATION',
       'A passing policy proof bound to the quote is required',
+    );
+  }
+  const allocations = BUYER_IDS.map((buyerId) => {
+    const matches = quote.allocations.filter(
+      (allocation) => allocation.buyerId === buyerId,
+    );
+    if (matches.length !== 1) {
+      throw new SettlementPreparationError(
+        'INVALID_PREPARATION',
+        `Quote must contain exactly one allocation for buyer ${buyerId}`,
+      );
+    }
+    return matches[0] as (typeof matches)[number];
+  });
+  if (quote.allocations.length !== BUYER_IDS.length) {
+    throw new SettlementPreparationError(
+      'INVALID_PREPARATION',
+      'Quote must contain only buyers A, B, and C',
+    );
+  }
+  const expectedAmounts = splitAtomicAmount(
+    quote.totalAmountAtomic,
+    BUYER_IDS.length,
+  );
+  if (
+    allocations.some(
+      (allocation, index) => allocation.amountAtomic !== expectedAmounts[index],
+    )
+  ) {
+    throw new SettlementPreparationError(
+      'INVALID_PREPARATION',
+      'Quote allocations do not follow the canonical buyer split',
     );
   }
   return {
@@ -109,7 +150,7 @@ export function settlementPlanFromQuote(
     merchantAta: quote.sku.merchantUsdcAta,
     merchantOwner: quote.sku.merchantOwner,
     sponsorAddress,
-    transfers: quote.allocations.map((allocation) => ({
+    transfers: allocations.map((allocation) => ({
       buyerId: allocation.buyerId,
       authority: allocation.signerAddress,
       sourceAta: allocation.sourceAta,

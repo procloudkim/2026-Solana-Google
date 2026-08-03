@@ -117,7 +117,7 @@ export function createHttpApp(service: MandatePoolHttpService, options: HttpAppO
     cluster: options.settlementMode === "live" ? "solana-devnet" : "fixture",
     onChain: options.settlementMode === "live",
     label: options.settlementMode === "live"
-      ? "LIVE · SOLANA DEVNET"
+      ? "LIVE · SOLANA DEVNET · TEST TOKENS"
       : "FIXTURE · NOT ON-CHAIN",
   }));
   app.get("/readyz", async (context) => {

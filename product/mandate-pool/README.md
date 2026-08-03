@@ -27,7 +27,7 @@ flowchart LR
     F -- 성공 --> E[A/B/C 이용권 3개 발급]
 ```
 
-LLM에는 signer나 RPC 도구가 없습니다. LLM 출력은 결제 권한이 아니라 제안이며, HITL 승인과 순수 함수 정책 검사가 실제 결제 경계입니다.
+LLM에는 signer나 RPC 도구가 없습니다. LLM 출력은 결제 권한이 아니라 제안이며, HITL 승인과 순수 함수 정책 검사가 온체인 거래 경계입니다.
 
 현재 v0의 HITL은 **한 명의 데모 운영자가 A/B/C 역할을 순서대로 확인하는 operator simulation**입니다. 승인 nonce와 mandate hash는 묶이지만 각 구매자의 지갑 서명으로 승인자를 증명하지는 않으며, Devnet buyer key도 서버가 보관합니다. 따라서 실제 다자간 제품으로 확장할 때는 buyer별 domain-separated approval signature와 외부 wallet/co-signer가 필수입니다.
 
@@ -43,14 +43,16 @@ APP_MODE=fixture DEMO_KEY=local-demo-key-1234 npm run dev
 
 `http://localhost:8080`에서 두 시나리오를 실행할 수 있습니다.
 
-- 정상 경로: A/B/C가 각 3 USDC 조건을 승인하고 이용권 3개를 받습니다.
-- 거부 경로: B의 한도를 2.5 USDC로 낮추면 `NO_BUY`가 되고 결제 증거가 생기지 않습니다.
+- 정상 경로: 총 1 Devnet USDC를 A `0.333334`, B/C 각 `0.333333`으로 분담하고 이용권 3개를 받습니다.
+- 거부 경로: B의 한도를 0.3 USDC로 낮추면 `NO_BUY`가 되고 결제 거래가 생기지 않습니다.
 
 fixture 모드는 화면과 API에 `fixture · NOT ON-CHAIN`으로 표시됩니다. fixture signature는 Solana 거래 증거로 취급하지 않습니다.
 
 ## Live Devnet 구성
 
 `.env.example`의 값을 Secret Manager → Cloud Run 환경 변수로 주입한 뒤 `APP_MODE=live`로 실행합니다. 필수 항목은 GCP 프로젝트, Solana Devnet RPC, merchant owner/USDC ATA, sponsor 및 A/B/C signer secret, mutation key, entitlement HMAC secret입니다.
+
+여기서 `live`는 실제 Solana Devnet에 기록된다는 뜻이며 실제 돈을 뜻하지 않습니다. 사용하는 SOL과 USDC는 faucet 테스트 토큰으로 금전 가치가 없고 실제 달러의 담보를 받지 않습니다. [Circle testnet 안내](https://developers.circle.com/stablecoins/usdc-contract-addresses)
 
 현재 해커톤용 Devnet owner 주소와 ATA는 [`devnet-wallets.public.json`](devnet-wallets.public.json)에 있습니다. 개인키는 포함하지 않으며 Secret Manager version 1과의 주소 round-trip 및 ATA 네 개의 finalized 온체인 생성을 검증했습니다. 공개 transaction과 검증 경계는 [Devnet 지갑 프로비저닝 영수증](../../research/decision-report/evidence/devnet-wallet-provisioning-2026-08-03.md)에 있습니다. `npm run wallets:provision -- --execute`는 enabled version이 이미 있으면 회전을 거부하고, `--verify`는 secret payload를 출력하지 않은 채 저장된 키와 manifest 일치만 확인합니다.
 

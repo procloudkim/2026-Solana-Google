@@ -49,6 +49,33 @@ export function addAtomicAmounts(values: readonly (AtomicAmount | string)[]): At
   return formatAtomicAmount(total);
 }
 
+/**
+ * Splits base units deterministically without losing a remainder.
+ *
+ * Earlier indexes receive one extra base unit until the remainder is
+ * exhausted. Callers must provide a canonical order such as buyer A, B, C.
+ */
+export function splitAtomicAmount(
+  total: AtomicAmount | string,
+  partCount: number,
+): readonly AtomicAmount[] {
+  if (!Number.isSafeInteger(partCount) || partCount < 1) {
+    throw new AtomicAmountError('Atomic amount part count must be a positive safe integer');
+  }
+  const value = parseAtomicAmount(total);
+  const count = BigInt(partCount);
+  if (value < count) {
+    throw new AtomicAmountError('Atomic amount must provide at least one base unit per part');
+  }
+  const quotient = value / count;
+  const remainder = value % count;
+  return Object.freeze(
+    Array.from({length: partCount}, (_, index) =>
+      formatAtomicAmount(quotient + (BigInt(index) < remainder ? 1n : 0n)),
+    ),
+  );
+}
+
 export function compareAtomicAmounts(
   left: AtomicAmount | string,
   right: AtomicAmount | string,
