@@ -14,8 +14,11 @@ import {
 import {CachedVertexReadiness} from "./vertex-readiness.js";
 
 const normalizedMandateSchema = z.object({
-  requiredFeatures: z.array(z.string()),
-  forbiddenFeatures: z.array(z.string()),
+  // These are protocol identifiers, not free-form labels. Constraining the
+  // model output keeps equivalent terms such as "API", "auto-renewal", and
+  // "one-time" from becoming false catalog mismatches.
+  requiredFeatures: z.array(z.enum(["api", "csv", "7-day-access"])),
+  forbiddenFeatures: z.array(z.enum(["auto-renew"])),
   maxAmountAtomic: z.string().regex(/^\d+$/u),
   validUntil: z.string(),
   // The explanation is non-authoritative. Accept a bounded model response,
@@ -76,6 +79,8 @@ function normalizationInstruction(buyerId: BuyerId): string {
     `You normalize buyer ${buyerId}'s natural-language purchase mandate into the exact output schema.`,
     "Use only facts supplied in the JSON input. Never invent a budget, duration, or feature.",
     "USDC amounts are integer atomic units with six decimals. Merchant and mint allowlists are bound by the server and are not part of your output.",
+    "Use only these exact requiredFeatures identifiers: api, csv, 7-day-access. Use only auto-renew in forbiddenFeatures.",
+    "A request for 7 days maps to requiredFeatures 7-day-access. One-time or no-renewal wording maps to forbiddenFeatures auto-renew; it is not a required feature.",
     "This is a proposal only. You have no tools and cannot authorize, sign, broadcast, or settle a payment.",
     "If wording is ambiguous, choose the stricter interpretation. Keep rationale to one sentence and at most 200 characters.",
   ].join(" ");
@@ -105,6 +110,7 @@ function makeCoalitionSelector(model: string): LlmAgent {
       "Choose exactly one skuId from the supplied canonical catalog, or return skuId NO_BUY.",
       "A product is eligible only if every buyer's required features, forbidden features, duration, and budget are satisfied.",
       "Split integer atomic units in buyer A, B, C order: use floor(total/3), then give one extra base unit to each earliest buyer until the remainder is exhausted.",
+      "For the budget check, compare each buyer's maxAmountAtomic with that buyer's computed share. Never compare a SKU's full total with one buyer's cap.",
       "Never rewrite prices or product facts. Never authorize or initiate payment.",
       "Keep rationale to one sentence and at most 240 characters.",
     ].join(" "),
