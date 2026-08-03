@@ -274,6 +274,13 @@
       font-weight: 900;
     }
 
+    #slide-1::after { content: "1 / 6"; }
+    #slide-2::after { content: "2 / 6"; }
+    #slide-3::after { content: "3 / 6"; }
+    #slide-4::after { content: "4 / 6"; }
+    #slide-5::after { content: "5 / 6"; }
+    #slide-6::after { content: "6 / 6"; }
+
     .risk-card p { margin-bottom: 0; color: var(--muted); font-size: 16px; line-height: 1.55; }
 
     .principle {
@@ -519,6 +526,10 @@
 
     @page { size: 13.333333in 7.5in; margin: 0; }
 
+    /* A hash URL isolates one slide for deterministic video-frame capture. */
+    body:has(.slide:target) { padding: 0; gap: 0; }
+    body:has(.slide:target) .slide:not(:target) { display: none; }
+
     @media print {
       html, body { width: 1280px; background: white; }
       .slide { margin: 0; box-shadow: none; }
@@ -527,7 +538,7 @@
 </head>
 <body>
   <!-- Slide 1 -->
-  <section class="slide cover">
+  <section class="slide cover" id="slide-1">
     <div class="cover-grid">
       <div>
         <div class="eyebrow">Google Cloud × Solana · Agentic Commerce</div>
@@ -554,7 +565,7 @@
   </section>
 
   <!-- Slide 2 -->
-  <section class="slide">
+  <section class="slide" id="slide-2">
     <div class="eyebrow">Why</div>
     <h1>함께 쓰는 돈은 추천보다 권한 보존이 어렵다</h1>
     <p class="subtitle">세 에이전트가 한 상품을 공동 구매할 때는 “무엇을 살까?”보다 세 가지 실패를 먼저 막아야 합니다.</p>
@@ -586,7 +597,7 @@
   </section>
 
   <!-- Slide 3 -->
-  <section class="slide">
+  <section class="slide" id="slide-3">
     <div class="eyebrow">What</div>
     <h1>세 mandate의 교집합만 공동 구매한다</h1>
     <p class="subtitle">API·CSV 데이터 7일 이용권을 고정 데모 상품으로 삼아, 정상과 한도 초과 반례를 같은 규칙으로 판정합니다.</p>
@@ -621,7 +632,7 @@
   </section>
 
   <!-- Slide 4 -->
-  <section class="slide">
+  <section class="slide" id="slide-4">
     <div class="eyebrow">How</div>
     <h1>AI의 제안과 결제 권한을 분리한다</h1>
     <p class="subtitle">모델은 자연어 작업만 담당하고, 결제 권한은 사람이 확인한 mandate와 결정론적 코드가 통제합니다.</p>
@@ -652,7 +663,7 @@
   </section>
 
   <!-- Slide 5 -->
-  <section class="slide">
+  <section class="slide" id="slide-5">
     <div class="eyebrow">Proof</div>
     <h1>“결제함”과 “결제하지 않음”을 함께 증명한다</h1>
 
@@ -689,7 +700,7 @@
   </section>
 
   <!-- Slide 6 -->
-  <section class="slide">
+  <section class="slide" id="slide-6">
     <div class="eyebrow">Limitations &amp; Links</div>
     <h1>증명한 범위와 아직 증명하지 않은 범위를 함께 공개한다</h1>
 
@@ -711,8 +722,8 @@
           <div class="link-row"><b>GitHub · 배포 소스</b><a href="https://github.com/procloudkim/2026-Solana-Google">github.com/procloudkim/2026-Solana-Google</a><br><span>2ac7eac17ea803b4537b630234ac6507523e5325</span></div>
           <div class="link-row"><b>현재 소스 실행 안내</b><a href="https://github.com/procloudkim/2026-Solana-Google/blob/2ac7eac17ea803b4537b630234ac6507523e5325/product/mandate-pool/README.md">commit 고정 README</a></div>
           <div class="link-row"><b>Cloud Run · 공개 fixture</b><a href="https://mandate-pool-judge-x7id33dnyq-du.a.run.app">mandate-pool-judge</a><br><span>FIXTURE · NOT ON-CHAIN · demo key: judge-fixture-key-v1</span></div>
-          <div class="link-row"><b>정상 거래 · evidence</b><a href="https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet">Solana Devnet Explorer</a><br><a href="https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/evidence/normal-order-2ac7eac.json">redacted receipt</a></div>
-          <div class="link-row"><b>제출 manifest</b><a href="https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/manifest.md">submission-v1 manifest</a></div>
+          <div class="link-row"><b>정상 거래 · evidence</b><a href="https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet">Solana Devnet Explorer</a><br><a href="https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/evidence/normal-order-2ac7eac.json">redacted receipt</a></div>
+          <div class="link-row"><b>제출 manifest</b><a href="https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/manifest.md">submission-v2 manifest</a></div>
           <div class="link-row"><b>공식 행사</b><a href="https://www.gcp-solana-ai-agentic-hacks-kr.xyz/">gcp-solana-ai-agentic-hacks-kr.xyz</a></div>
         </div>
       </article>

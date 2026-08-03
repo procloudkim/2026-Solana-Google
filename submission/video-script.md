@@ -34,7 +34,7 @@
 4. fixture를 보조 화면으로 쓰면 전체 장면에 `FIXTURE · NOT ON-CHAIN`을 유지하고, 실제 Devnet 장면과 컷·자막을 분리한다.
 5. Explorer만으로 제품 성공을 판정하지 않는다. 같은 order의 quote·policy·message hash, decoded transaction, 잔액 delta, entitlement 결과를 receipt로 연결한다.
 6. 거부 UI만으로 no-transaction을 판정하지 않는다. API의 settlement evidence·signature 부재와 전후 잔액 불변을 함께 보여준다.
-7. 최종 영상의 실제 길이와 URL은 업로드 직후 `submission/manifest.md`에 기록한다. `3:00.000`을 넘으면 제출하지 않는다.
+7. 최종 영상은 `2:33.58`이며 [Google Cloud Storage 공개 MP4](https://storage.googleapis.com/project-682bea5f-ac81-4a36-8a1-mandate-pool-video/mandate-pool-demo.mp4?generation=1785769358677446)에 업로드했다. `3:00.000` 이내 조건을 충족한다.
 
 ## 녹화 중 중단 조건
 

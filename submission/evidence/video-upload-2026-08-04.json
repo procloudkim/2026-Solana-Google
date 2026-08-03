@@ -1,0 +1,40 @@
+{
+  "schema": "mandate-pool/video-upload-evidence@1",
+  "createdAt": "2026-08-03T15:00:22Z",
+  "createdAtKst": "2026-08-04T00:00:22+09:00",
+  "updatedAt": "2026-08-03T15:02:38Z",
+  "updatedAtKst": "2026-08-04T00:02:38+09:00",
+  "publicUrl": "https://storage.googleapis.com/project-682bea5f-ac81-4a36-8a1-mandate-pool-video/mandate-pool-demo.mp4?generation=1785769358677446",
+  "storageUrl": "gs://project-682bea5f-ac81-4a36-8a1-mandate-pool-video/mandate-pool-demo.mp4#1785769358677446",
+  "publicHeadStatus": 200,
+  "contentType": "video/mp4",
+  "sizeBytes": 2603713,
+  "sha256": "13f18c032621ffbc1b1ec55703f9f6de7f5b72e9b0921546d4405cce85a9d308",
+  "durationSeconds": 153.58,
+  "video": {
+    "codec": "H.264 High",
+    "width": 1280,
+    "height": 720,
+    "pixelFormat": "yuv420p",
+    "nominalFps": 30
+  },
+  "audio": {
+    "codec": "AAC-LC",
+    "sampleRateHz": 22050,
+    "channels": 1,
+    "language": "ko-KR",
+    "voice": "Microsoft Heami Desktop"
+  },
+  "contentBoundary": {
+    "additionalPaymentExecuted": false,
+    "source": "Stored six-slide evidence deck and previously finalized receipts",
+    "devnetTestTokenNoticePresent": true,
+    "operatorSimulationLimitationPresent": true
+  },
+  "verdict": "PUBLIC_AND_UNDER_3_MINUTES",
+  "limitations": [
+    "The event's authenticated submission form was not available to confirm a required video host; this is a direct public MP4 URL on Google Cloud Storage.",
+    "This is a narrated evidence-deck video, not a new live payment execution.",
+    "Final form submission remains a human action."
+  ]
+}

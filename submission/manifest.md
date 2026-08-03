@@ -5,7 +5,7 @@
 ## 1. 현재 상태
 
 ```text
-STATUS = RUNTIME_EVIDENCE_READY — 영상 업로드·제출 폼 완료 대기
+STATUS = SUBMISSION_ASSETS_READY — 제출 폼 완료 대기
 ```
 
 배포 소스 `2ac7eac17ea803b4537b630234ac6507523e5325`로 만든 private live revision에서 정상·거부 주문을 각각 한 번 검증했다. 정상 주문은 Solana Devnet에서 finalized됐고, 거부 주문에는 settlement evidence·signature·entitlement가 없다. 아래 값은 모두 저장된 redacted receipt와 공개 온체인 식별자로 역검증할 수 있다.
@@ -14,16 +14,16 @@ STATUS = RUNTIME_EVIDENCE_READY — 영상 업로드·제출 폼 완료 대기
 
 | 공식 상위 제출물 | 이 디렉터리의 원고 | 최종 제출값 |
 |---|---|---|
-| 제품 소개서 | [`deck.md`](deck.md) 원고 · [`deck.html`](deck.html) 오프라인 인쇄본, 각각 정확히 6장 | [`deck.pdf`](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/deck.pdf) |
+| 제품 소개서 | [`deck.md`](deck.md) 원고 · [`deck.html`](deck.html) 오프라인 인쇄본, 각각 정확히 6장 | [`deck.pdf`](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/deck.pdf) |
 | GitHub repository | release와 재현 안내 | `https://github.com/procloudkim/2026-Solana-Google` @ source `2ac7eac17ea803b4537b630234ac6507523e5325` |
-| 데모 영상 | [`video-script.md`](video-script.md), 목표 2:50·상한 3:00 | **PENDING:** 녹화·업로드 후 URL과 실제 길이 입력 |
+| 데모 영상 | [`video-script.md`](video-script.md), 상한 3:00 | [공개 MP4](https://storage.googleapis.com/project-682bea5f-ac81-4a36-8a1-mandate-pool-video/mandate-pool-demo.mp4?generation=1785769358677446) · `2:33.58` |
 | 실행 환경 | public fixture + private live evidence | [public fixture](https://mandate-pool-judge-x7id33dnyq-du.a.run.app) · private live `mandate-pool-live-00005-4tb` |
 
 공식 공개 계약은 [행사 계약](../research/official-docs-wiki/sources/event-contract.md)과 [행사 규칙](../research/official-docs-wiki/modules/event-rules.md)을 따른다. 공개 페이지에서 확인된 필수 상위 묶음은 제품 소개서, GitHub repository, 데모 영상이며 live endpoint는 권장이다. 정확한 영상 길이, 소개서 형식, repository 공개성은 로그인 후 제출 폼에서 다시 확인한다.
 
 ## 3. release 식별자
 
-배포 소스와 제출 증거를 혼동하지 않도록 source commit과 evidence release tag를 분리한다. `submission-v1` tag는 최종 증거 commit에 붙이며 자기 자신을 포함한 commit hash를 문서 안에 쓰는 순환 참조를 피한다.
+배포 소스와 제출 증거를 혼동하지 않도록 source commit과 evidence release tag를 분리한다. `submission-v2` tag는 영상까지 포함한 최종 증거 commit에 붙이며 자기 자신을 포함한 commit hash를 문서 안에 쓰는 순환 참조를 피한다.
 
 | 필드 | 실제 값 | 수용 기준 |
 |---|---|---|
@@ -36,7 +36,7 @@ STATUS = RUNTIME_EVIDENCE_READY — 영상 업로드·제출 폼 완료 대기
 | image digest | `sha256:5d22c850b5fb113eaff07d653368b1cfac6e8a00d49b5e1a2ebaa9a586f0b995` | 두 revision이 같은 image를 사용 |
 | private live URL | `https://mandate-pool-live-x7id33dnyq-du.a.run.app` | 무인증 403; 인증 readiness 4/4 true |
 | 심사 접근 | [public fixture](https://mandate-pool-judge-x7id33dnyq-du.a.run.app), demo key `judge-fixture-key-v1` | fixture임을 UI에서 명시; 온체인은 receipt·Explorer로 검증 |
-| evidence manifest | [submission-v1 고정 링크](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/manifest.md) | tag를 최종 증거 commit에 push |
+| evidence manifest | [submission-v2 고정 링크](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/manifest.md) | tag를 최종 증거 commit에 push |
 | 덱 증거 배너 | `검증 완료 · Solana Devnet 테스트 토큰` | 런타임·온체인 gate 통과 뒤 사용 |
 
 ## 4. 정상 Devnet 증거 슬롯
@@ -60,7 +60,7 @@ STATUS = RUNTIME_EVIDENCE_READY — 영상 업로드·제출 폼 완료 대기
 | Explorer | [Solana Devnet transaction](https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet) | `cluster=devnet` |
 | finalized slot | `480936920` | `commitment=finalized`, `metaError=null` |
 | balance receipt | `submission/evidence/devnet-balance-post-normal-2ac7eac.json` | A `-333334`, B `-333333`, C `-333333`, Merchant `+1000000` |
-| redacted receipt | [submission-v1 receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/evidence/normal-order-2ac7eac.json) | order·trace·signature·delta·entitlement count 연결 |
+| redacted receipt | [submission-v2 receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/evidence/normal-order-2ac7eac.json) | order·trace·signature·delta·entitlement count 연결 |
 | proof image | `submission/evidence/normal-devnet-proof-2ac7eac.svg` | 공개 식별자와 exact delta만 포함 |
 
 정상 최종 상태는 `FULFILLED`, entitlement count는 `3`이어야 한다. entitlement token 값 자체는 어떤 제출물에도 넣지 않는다.
@@ -75,7 +75,7 @@ STATUS = RUNTIME_EVIDENCE_READY — 영상 업로드·제출 폼 완료 대기
 | 거부 완료 | `2026-08-03 23:40:20.643 KST` (`2026-08-03T14:40:20.643Z`) | receipt `updatedAt` |
 | API receipt | `submission/evidence/reject-order-2ac7eac.json` | `NO_BUY`, `NO_COMMON_PRODUCT`, evidence 없음, entitlement 0 |
 | 잔액 증명 | `submission/evidence/reject-balance-proof-2ac7eac.json` | A/B/C/Merchant delta 모두 0 |
-| redacted receipt | [submission-v1 receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/evidence/reject-order-2ac7eac.json) | transaction·signature·entitlement 부재 명시 |
+| redacted receipt | [submission-v2 receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/evidence/reject-order-2ac7eac.json) | transaction·signature·entitlement 부재 명시 |
 | proof image | `submission/evidence/reject-proof-2ac7eac.svg` | B cap·NO_BUY·0 tx·0 entitlement 표시 |
 
 UI의 `NO_BUY` 문구만으로 거래 부재를 주장하지 않는다. API response·audit의 부정 필드와 같은 시점의 잔액 불변이 함께 있어야 한다.
@@ -123,7 +123,7 @@ Circle은 testnet USDC와 native test token에 금전 가치가 없고 실제 �
 - [ ] `npm run typecheck`, `npm test`, `npm run build`와 루트 test를 최종 commit에서 통과했다.
 - [ ] 독립 scanner가 현재 tree와 도달 가능한 전체 Git history에서 secret 0건을 보고했다.
 - [ ] `.env`, keypair, service-account JSON, PEM, API key, entitlement token이 Repo·로그·영상에 없다.
-- [ ] 최종 증거 commit 뒤 local HEAD와 origin/main이 같고 `submission-v1` tag가 그 commit을 가리킨다.
+- [ ] 최종 증거 commit 뒤 local HEAD와 origin/main이 같고 `submission-v2` tag가 그 commit을 가리킨다.
 
 ### C. Cloud Run
 
@@ -156,7 +156,7 @@ Circle은 testnet USDC와 native test token에 금전 가치가 없고 실제 �
 ### F. 소개서·영상 일치
 
 - [ ] `deck.md`와 `deck.html`이 각각 정확히 6장이고 placeholder가 0개다.
-- [ ] 영상 길이가 `3:00.000` 이하이며 placeholder·secret·브라우저 자동완성이 없다.
+- [x] 공개 MP4가 `2:33.58`이며 placeholder·secret·브라우저 자동완성이 없다.
 - [ ] 덱·영상·README가 같은 commit, revision, 정상 order, 거부 order, signature를 가리킨다.
 - [ ] fixture 장면에는 `FIXTURE · NOT ON-CHAIN`, live 장면에는 `SOLANA DEVNET · TEST TOKENS`가 보인다.
 - [ ] 정상 1건과 거부 1건을 보여주며, 정상 실행을 영상 때문에 반복하지 않았다.
@@ -165,7 +165,7 @@ Circle은 testnet USDC와 native test token에 금전 가치가 없고 실제 �
 ### G. 접근과 최종 제출
 
 - [ ] 심사자 관점에서 Repo, 소개서, 영상, live URL, evidence permalink를 열어 봤다.
-- [ ] source 링크는 commit에, evidence 링크는 최종 `submission-v1` tag에 고정됐는지 확인했다.
+- [ ] source 링크는 commit에, evidence 링크는 최종 `submission-v2` tag에 고정됐는지 확인했다.
 - [ ] 최종 제출 버튼은 사람이 눌렀다.
 - [ ] 제출 완료 화면을 `submission/evidence/submission-complete.png`로 저장하고 KST 제출 시각을 기록했다.
 
@@ -191,7 +191,7 @@ rg -n '\{\{[A-Z0-9_]+\}\}' submission
 모든 gate가 충족된 시점에만 첫 줄을 다음으로 바꾼다.
 
 ```text
-STATUS = SUBMISSION_READY — source 2ac7eac17ea803b4537b630234ac6507523e5325 / live mandate-pool-live-00005-4tb / evidence submission-v1
+STATUS = SUBMISSION_READY — source 2ac7eac17ea803b4537b630234ac6507523e5325 / live mandate-pool-live-00005-4tb / evidence submission-v2
 ```
 
 ## 9. 최종 참고 링크

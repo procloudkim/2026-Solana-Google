@@ -93,8 +93,8 @@ footer: Mandate Pool · Solana Devnet test tokens
 | `failure.code=NO_COMMON_PRODUCT` | signature `2JMWb2wc4GTt…wDt2jaMy2ZAW` |
 | settlement evidence·signature 없음 | finalized slot `480936920` |
 | entitlement `0`, 전후 잔액 불변 | A/B/C debit 합계 `1000000` |
-| [receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/evidence/reject-order-2ac7eac.json) | Merchant credit `1000000` |
-|  | [Devnet Explorer](https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet) · [receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/evidence/normal-order-2ac7eac.json) |
+| [receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/evidence/reject-order-2ac7eac.json) | Merchant credit `1000000` |
+|  | [Devnet Explorer](https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet) · [receipt](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/evidence/normal-order-2ac7eac.json) |
 
 **판정 규칙:** 두 열의 실제 receipt가 같은 제출 commit·Cloud Run revision과 연결되기 전에는 실행 성공을 주장하지 않습니다.
 
@@ -116,7 +116,7 @@ footer: Mandate Pool · Solana Devnet test tokens
 - [현재 소스의 실행 안내](https://github.com/procloudkim/2026-Solana-Google/blob/2ac7eac17ea803b4537b630234ac6507523e5325/product/mandate-pool/README.md)
 - [Cloud Run 공개 fixture](https://mandate-pool-judge-x7id33dnyq-du.a.run.app) · `FIXTURE · NOT ON-CHAIN` · 데모 키 `judge-fixture-key-v1`
 - [정상 거래 Explorer](https://explorer.solana.com/tx/2JMWb2wc4GTtD2XYsfD3T9F5UdQHkV7k5n88Mno9RDnBd5q7MKKyyziyRSoeQ28woWgvodqsckfuwDt2jaMy2ZAW?cluster=devnet)
-- [제출 증거 manifest](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v1/submission/manifest.md)
+- [제출 증거 manifest](https://github.com/procloudkim/2026-Solana-Google/blob/submission-v2/submission/manifest.md)
 - [공식 행사 페이지](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/)
 
 **한 문장 요약:** 모두의 권한을 만족하면 하나의 거래로, 한 명이라도 벗어나면 거래 없이 끝냅니다.

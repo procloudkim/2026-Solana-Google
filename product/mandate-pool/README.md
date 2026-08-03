@@ -2,7 +2,7 @@
 
 Mandate Pool은 세 구매자의 조건을 하나의 공동 구매로 조정하되, 사람의 확인과 결정론적 정책을 모두 통과한 경우에만 총 1 Devnet 테스트 USDC를 하나의 Solana 거래로 결제하는 해커톤 프로토타입입니다.
 
-**현재 증거 기준은 2026-08-03 KST입니다.** commit `2ac7eac17ea803b4537b630234ac6507523e5325`에서 로컬 검증, Agave 4.1.1 localnet gate, Cloud Run live readiness, 정상 Devnet 결제와 한도 초과 거절을 확인했습니다. 아래 receipt는 제품 릴리스의 실행 증거이지만, 최종 제출 폼이나 데모 영상 제출 완료를 증명하지 않습니다.
+**현재 증거 기준은 2026-08-04 KST입니다.** commit `2ac7eac17ea803b4537b630234ac6507523e5325`에서 로컬 검증, Agave 4.1.1 localnet gate, Cloud Run live readiness, 정상 Devnet 결제와 한도 초과 거절을 확인했습니다. 이 증거를 재사용한 [공개 데모 영상](https://storage.googleapis.com/project-682bea5f-ac81-4a36-8a1-mandate-pool-video/mandate-pool-demo.mp4?generation=1785769358677446)은 `2:33.58`이며, 최종 제출 폼 전송만 사람 작업으로 남아 있습니다.
 
 이 문서는 세 질문에 답합니다.
 
@@ -326,5 +326,5 @@ npm run build
 - 비공개 live revision의 readiness와 정상·거절 주문은 검증했지만, 심사자 접근 방식과 공개 fixture 사용 안내를 최종 제출 링크에서 다시 확인해야 합니다.
 - 추가 정상 경로 실행은 새로운 사람 승인과 새 receipt가 필요한 별도 거래입니다. 영상 촬영이나 UI 재현을 위해 기존 결제를 반복하지 않습니다.
 - 거절 경로의 현재 receipt는 `NO_BUY`, settlement evidence 부재, entitlement 0개를 보존합니다.
-- 최종 제출 폼과 데모 영상은 아직 완료됐다고 주장하지 않습니다.
+- 3분 이내 공개 데모 영상은 업로드했지만 최종 제출 폼 전송은 아직 완료됐다고 주장하지 않습니다.
 - 비공개 live 서비스의 공개 전환, Mainnet, 실제 자산, 최종 제출은 이 프로토타입의 자동 실행 범위가 아닙니다.

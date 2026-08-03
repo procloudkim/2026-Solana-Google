@@ -4,7 +4,7 @@
 
 이 저장소는 Google Cloud × Solana AI Agentic Hackathon 출품작을 구현하고, 그 주장을 재현 가능한 증거로 관리합니다. 처음 방문한 심사자는 이 문서에서 제품의 이유와 현재 증거 수준을 확인할 수 있고, 개발자는 [제품 README](product/mandate-pool/README.md)에서 로컬 실행을 시작할 수 있으며, 운영자는 [제출 런북](research/decision-report/hackathon-environment-codex-runbook.md)에서 남은 작업을 이어갈 수 있습니다.
 
-상태 표기는 **2026-08-03 KST에 고정한 소스 commit과 redacted receipt 기준**입니다. commit `2ac7eac17ea803b4537b630234ac6507523e5325`에서 비공개 live revision의 readiness와 정상·거절 경로를 실행해 검증했습니다. 이는 제품 릴리스의 실행 증거이며, 최종 제출 폼 작성이나 데모 영상 제출 완료를 뜻하지 않습니다.
+상태 표기는 **2026-08-04 KST에 고정한 소스 commit과 redacted receipt 기준**입니다. commit `2ac7eac17ea803b4537b630234ac6507523e5325`에서 비공개 live revision의 readiness와 정상·거절 경로를 실행해 검증했고, 그 증거만 사용한 3분 이내 공개 영상을 만들었습니다. 최종 제출 폼 전송은 아직 사람 작업으로 남아 있습니다.
 
 ## 한눈에 보는 현재 상태
 
@@ -14,7 +14,7 @@
 | Google Cloud | 공개 fixture revision은 `mandate-pool-judge-00004-kxd`, 비공개 live revision은 `mandate-pool-live-00005-4tb`입니다. live image digest는 `sha256:5d22c850b5fb113eaff07d653368b1cfac6e8a00d49b5e1a2ebaa9a586f0b995`이며 readiness 네 항목이 모두 `true`입니다. | 심사자 접근 방식을 최종 확인합니다. |
 | 정상 Devnet | 주문 `ord_b6ab984c23334cb0a3f8480d4c12abf9`가 `FULFILLED`됐습니다. finalized slot `480936920`에서 A/B/C debit `333334/333333/333333`, Merchant credit `1000000`, 이용권 3개를 확인했습니다. | 이 한 건의 receipt를 덱·영상과 동일하게 연결합니다. |
 | 거절 경로 | 주문 `ord_82ac0530d4744e098f181aa5460e6027`가 `NO_BUY`로 끝났고 settlement evidence와 이용권이 생성되지 않았습니다. | 거절 화면과 receipt를 데모 영상에 함께 제시합니다. |
-| 제출 | 최종 폼과 데모 영상 제출은 아직 완료됐다고 주장하지 않습니다. | 로그인 후 제출 조건·링크 접근성을 확인하고 사람이 최종 제출합니다. |
+| 제출 | [공개 데모 영상](https://storage.googleapis.com/project-682bea5f-ac81-4a36-8a1-mandate-pool-video/mandate-pool-demo.mp4?generation=1785769358677446)은 `2:33.58`이며 익명 HTTP 200을 확인했습니다. | 로그인 폼에 PDF·Repo·영상·데모 링크를 입력하고 사람이 최종 제출합니다. |
 
 `Devnet USDC`는 테스트 토큰입니다. 금전 가치가 없고 실제 달러로 담보되지 않습니다. 이 프로젝트는 Mainnet 또는 실제 자산을 사용하지 않습니다. [Circle의 testnet 안내](https://developers.circle.com/stablecoins/usdc-contract-addresses)
 
