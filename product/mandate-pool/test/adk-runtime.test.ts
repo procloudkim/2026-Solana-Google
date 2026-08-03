@@ -1,5 +1,6 @@
 import {describe, expect, it, vi} from 'vitest';
 
+import {boundedAgentRationale} from '../src/agents/contracts.js';
 import {CachedVertexReadiness} from '../src/agents/vertex-readiness.js';
 
 const runtimeOptions = {
@@ -9,6 +10,13 @@ const runtimeOptions = {
 } as const;
 
 describe('Google ADK Vertex readiness', () => {
+  it('clamps non-authoritative model rationale before persistence', () => {
+    expect(boundedAgentRationale(`  ${'x'.repeat(520)}  `, 500)).toBe(
+      'x'.repeat(500),
+    );
+    expect(() => boundedAgentRationale('value', 0)).toThrow(/positive integer/);
+  });
+
   it('fails closed when Vertex access cannot be verified', async () => {
     const runtime = new CachedVertexReadiness({
       ...runtimeOptions,

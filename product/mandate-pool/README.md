@@ -274,7 +274,7 @@ npm run build
 
 | 결과 | 증명하는 것 | 증명하지 않는 것 |
 |---|---|---|
-| typecheck·95 tests·build 통과 | 현재 소스의 정적 계약과 로컬 동작 | Cloud Run 또는 Devnet 실행 |
+| typecheck·96 tests·build 통과 | 현재 소스의 정적 계약과 로컬 동작 | Cloud Run 또는 Devnet 실행 |
 | fixture 정상·거부 | UI/API·정책·workflow 흐름 | 온체인 결제 |
 | `/readyz` 통과 | Vertex·Firestore·Solana 의존성 접근 | 실제 주문 성공 |
 | finalized Devnet receipt | 테스트 네트워크에서 승인된 거래 실행 | Mainnet 가치 이전 |

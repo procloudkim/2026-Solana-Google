@@ -3,6 +3,7 @@ import {z} from "zod";
 
 import {
   BUYER_IDS,
+  boundedAgentRationale,
   type AgentDecisionTrace,
   type AgentPlanInput,
   type AgentRuntime,
@@ -19,12 +20,14 @@ const normalizedMandateSchema = z.object({
   forbiddenFeatures: z.array(z.string()),
   maxAmountAtomic: z.string().regex(/^\d+$/u),
   validUntil: z.string(),
-  rationale: z.string().max(400),
+  // The explanation is non-authoritative. Accept a bounded model response,
+  // then clamp it before it reaches persistence or the public snapshot.
+  rationale: z.string().max(4_000),
 });
 
 const coalitionSelectionSchema = z.object({
   skuId: z.string().min(1),
-  rationale: z.string().max(500),
+  rationale: z.string().max(4_000),
 });
 
 export interface GoogleAdkRuntimeOptions {
@@ -76,7 +79,7 @@ function normalizationInstruction(buyerId: BuyerId): string {
     "Use only facts supplied in the JSON input. Never invent a merchant, mint, budget, duration, or feature.",
     "USDC amounts are integer atomic units with six decimals. Preserve the supplied allowlists exactly.",
     "This is a proposal only. You have no tools and cannot authorize, sign, broadcast, or settle a payment.",
-    "If wording is ambiguous, choose the stricter interpretation and explain it briefly in rationale.",
+    "If wording is ambiguous, choose the stricter interpretation. Keep rationale to one sentence and at most 200 characters.",
   ].join(" ");
 }
 
@@ -105,6 +108,7 @@ function makeCoalitionSelector(model: string): LlmAgent {
       "A product is eligible only if every buyer's required features, forbidden features, duration, and budget are satisfied.",
       "Split integer atomic units in buyer A, B, C order: use floor(total/3), then give one extra base unit to each earliest buyer until the remainder is exhausted.",
       "Never rewrite prices or product facts. Never authorize or initiate payment.",
+      "Keep rationale to one sentence and at most 240 characters.",
     ].join(" "),
     outputSchema: coalitionSelectionSchema,
     tools: [],
@@ -169,7 +173,11 @@ export class GoogleAdkAgentRuntime implements AgentRuntime {
         prompt: mandatePrompt(input, mandate),
         schema: normalizedMandateSchema,
       });
-      return {...proposal, buyerId: mandate.buyerId} satisfies NormalizedMandateProposal;
+      return {
+        ...proposal,
+        rationale: boundedAgentRationale(proposal.rationale, 400),
+        buyerId: mandate.buyerId,
+      } satisfies NormalizedMandateProposal;
     }));
 
     const selector = makeCoalitionSelector(this.#model);
@@ -191,7 +199,10 @@ export class GoogleAdkAgentRuntime implements AgentRuntime {
       startedAt,
       completedAt: new Date().toISOString(),
       normalizedMandates: proposals,
-      selection: {skuId: selection.skuId, rationale: selection.rationale},
+      selection: {
+        skuId: selection.skuId,
+        rationale: boundedAgentRationale(selection.rationale, 500),
+      },
     };
   }
 }

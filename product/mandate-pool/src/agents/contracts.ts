@@ -1,5 +1,12 @@
 export const BUYER_IDS = ["A", "B", "C"] as const;
 
+export function boundedAgentRationale(value: string, maximum: number): string {
+  if (!Number.isInteger(maximum) || maximum < 1) {
+    throw new Error("Rationale maximum must be a positive integer");
+  }
+  return value.trim().slice(0, maximum);
+}
+
 export type BuyerId = (typeof BUYER_IDS)[number];
 
 export interface NaturalLanguageMandate {
