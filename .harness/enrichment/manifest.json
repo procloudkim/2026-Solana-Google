@@ -1,0 +1,150 @@
+{
+  "entries": [
+    {
+      "adapter": "faster-whisper",
+      "artifacts": {
+        "jsonl": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.jsonl",
+        "markdown": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.md",
+        "metadata": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.metadata.json",
+        "srt": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.srt"
+      },
+      "kind": "transcript",
+      "metrics": {
+        "duration_seconds": 2912.811,
+        "processing_seconds": 560.732,
+        "segment_count": 1109
+      },
+      "settings_fingerprint": "d3513c9db403257d",
+      "source_path": "참고레퍼런스/2026-07-21 19-08-24.mp4",
+      "source_sha256": "9862a35a2cbf2f6d99605d649449081d8c2cada90034a88540ff070763624c52",
+      "status": "complete"
+    },
+    {
+      "adapter": "faster-whisper",
+      "artifacts": {
+        "jsonl": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.jsonl",
+        "markdown": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.md",
+        "metadata": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.metadata.json",
+        "srt": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.srt"
+      },
+      "kind": "transcript",
+      "metrics": {
+        "duration_seconds": 2067.285,
+        "processing_seconds": 401.303,
+        "segment_count": 755
+      },
+      "settings_fingerprint": "d3513c9db403257d",
+      "source_path": "참고레퍼런스/2026-07-21 19-56-58.mp4",
+      "source_sha256": "cc050df2696cacb257f63f56a2828664c1ad463c86f92a09a28352c6cfb9cbca",
+      "status": "complete"
+    },
+    {
+      "adapter": "faster-whisper",
+      "artifacts": {
+        "jsonl": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.jsonl",
+        "markdown": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.md",
+        "metadata": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.metadata.json",
+        "srt": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.srt"
+      },
+      "kind": "transcript",
+      "metrics": {
+        "duration_seconds": 1096.427,
+        "processing_seconds": 122.284,
+        "segment_count": 219
+      },
+      "settings_fingerprint": "d3513c9db403257d",
+      "source_path": "참고레퍼런스/2026-07-21 20-31-25.mp4",
+      "source_sha256": "bb5e0c7df458fe340a37d2f05be9e17f18e234cae4320f7fe22aa072e814dfbd",
+      "status": "complete"
+    },
+    {
+      "adapter": "pymupdf+paddleocr+opencv-qrcode",
+      "artifacts": {
+        "markdown": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md",
+        "metadata": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.metadata.json",
+        "ocr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.ocr.json",
+        "qr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.qr.json"
+      },
+      "kind": "pdf_ocr_qr",
+      "metrics": {
+        "ocr_line_count": 336,
+        "page_count": 11,
+        "processing_seconds": 150.095,
+        "qr_payload_count": 3
+      },
+      "settings_fingerprint": "9b95b4be43c06bfe",
+      "source_path": "참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck (1).pdf",
+      "source_sha256": "4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7",
+      "status": "complete"
+    },
+    {
+      "adapter": "pymupdf+paddleocr+opencv-qrcode",
+      "artifacts": {
+        "markdown": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md",
+        "metadata": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.metadata.json",
+        "ocr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.ocr.json",
+        "qr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.qr.json"
+      },
+      "duplicate_of": "참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck (1).pdf",
+      "kind": "pdf_ocr_qr",
+      "metrics": {
+        "ocr_line_count": 336,
+        "page_count": 11,
+        "processing_seconds": 150.095,
+        "qr_payload_count": 3
+      },
+      "settings_fingerprint": "9b95b4be43c06bfe",
+      "source_path": "참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck.pdf",
+      "source_sha256": "4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7",
+      "status": "complete"
+    },
+    {
+      "adapter": "pymupdf+paddleocr+opencv-qrcode",
+      "artifacts": {
+        "markdown": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.md",
+        "metadata": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.metadata.json",
+        "ocr_json": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.ocr.json",
+        "qr_json": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.qr.json"
+      },
+      "kind": "pdf_ocr_qr",
+      "metrics": {
+        "ocr_line_count": 392,
+        "page_count": 18,
+        "processing_seconds": 134.703,
+        "qr_payload_count": 0
+      },
+      "settings_fingerprint": "9b95b4be43c06bfe",
+      "source_path": "참고레퍼런스/Kickoff & Tech Session - 솔라나 - Why Solana for Agentic Commerce.pdf",
+      "source_sha256": "544daa9b0d76a346125b3d76bc90f37454ea7c80cae84605133f0826feba6503",
+      "status": "complete"
+    },
+    {
+      "adapter": "pymupdf+paddleocr+opencv-qrcode",
+      "artifacts": {
+        "markdown": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.md",
+        "metadata": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.metadata.json",
+        "ocr_json": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.ocr.json",
+        "qr_json": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.qr.json"
+      },
+      "kind": "pdf_ocr_qr",
+      "metrics": {
+        "ocr_line_count": 641,
+        "page_count": 31,
+        "processing_seconds": 154.733,
+        "qr_payload_count": 0
+      },
+      "settings_fingerprint": "9b95b4be43c06bfe",
+      "source_path": "참고레퍼런스/The Agentic Commerce Stack_ x402 & mpp.pdf",
+      "source_sha256": "99d0e8852e38f8a2a451fa178ee0a5c7464af31027f2b65a34a7798ddb34cbaf",
+      "status": "complete"
+    }
+  ],
+  "schema_version": 1,
+  "source_root": "참고레퍼런스",
+  "summary": {
+    "complete": 7,
+    "errors": 0,
+    "pdf_ocr_qr": 4,
+    "transcripts": 3
+  }
+}

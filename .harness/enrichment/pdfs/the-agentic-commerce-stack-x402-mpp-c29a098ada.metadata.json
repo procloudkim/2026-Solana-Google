@@ -1,0 +1,19 @@
+{
+  "adapter": "pymupdf+paddleocr+opencv-qrcode",
+  "ocr_line_count": 641,
+  "page_count": 31,
+  "processing_seconds": 154.733,
+  "qr_payload_count": 0,
+  "settings": {
+    "adapter": "pymupdf+paddleocr+opencv-qrcode",
+    "ocr_detection_model": "PP-OCRv5_mobile_det",
+    "ocr_recognition_model": "korean_PP-OCRv5_mobile_rec",
+    "ocr_scale": 2.0,
+    "ocr_score_threshold": 0.45,
+    "onednn": false,
+    "qr_scale": 4.0
+  },
+  "settings_fingerprint": "9b95b4be43c06bfe",
+  "source_path": "참고레퍼런스/The Agentic Commerce Stack_ x402 & mpp.pdf",
+  "source_sha256": "99d0e8852e38f8a2a451fa178ee0a5c7464af31027f2b65a34a7798ddb34cbaf"
+}

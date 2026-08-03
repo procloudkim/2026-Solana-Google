@@ -1,0 +1,42 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+.venv/
+.venv-media/
+venv/
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+coverage/
+.vitest/
+
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Raw recordings stay local. Each exceeds GitHub's regular 100 MiB file limit;
+# derived transcripts and OCR evidence under .harness/ remain trackable.
+참고레퍼런스/*.mp4
+
+# Local duplicate/scratch artifacts; the canonical PDF without " (1)" is tracked.
+참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck (1).pdf
+/1.26
+
+# Auto-research scratch space; durable run ledgers remain trackable.
+.harness/evaluations/tmp/
+.harness/evaluations/candidates/
+
+# Recoverable media checkpoints; completed enrichment evidence stays trackable.
+.harness/enrichment/**/*.partial.jsonl
+
+# Readiness runtime locks and agent handoff input are local-only.
+.harness/control/*.lock
+.harness/control/candidates.input.json

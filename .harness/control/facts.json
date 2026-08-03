@@ -1,0 +1,559 @@
+{
+  "facts": [
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "event",
+      "fact_id": "fact:P1-01",
+      "original_statement": "Demo Day is Aug 21",
+      "source_ref": [
+        "EVENT-SITE",
+        "EVENT-LUMA"
+      ],
+      "statement": "Demo Day is Aug 21",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "reference-only",
+      "confidence": "AMBIGUOUS",
+      "domain": "general",
+      "fact_id": "fact:P1-02",
+      "original_statement": "A demo video must be no longer than three minutes",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "A demo video must be no longer than three minutes",
+      "status": "not_found",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "general",
+      "fact_id": "fact:P1-03",
+      "original_statement": "The required top-level artifacts are product introduction, GitHub, and demo video",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "The required top-level artifacts are product introduction, GitHub, and demo video",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P1-04",
+      "original_statement": "A full on-chain payment demonstration is only a bonus",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "A full on-chain payment demonstration is only a bonus",
+      "status": "version_drift",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "reference-only",
+      "confidence": "AMBIGUOUS",
+      "domain": "gcp",
+      "fact_id": "fact:P1-05",
+      "original_statement": "A personal Gmail account is required to participate",
+      "source_ref": [
+        "EVENT-SITE",
+        "GCP-FREE"
+      ],
+      "statement": "A personal Gmail account is required to participate",
+      "status": "not_found",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "gcp",
+      "fact_id": "fact:P1-06",
+      "original_statement": "Google Cloud USD 300 credit cannot pay for Gemini API use",
+      "source_ref": [
+        "GEMINI-BILLING"
+      ],
+      "statement": "Google Cloud USD 300 credit cannot pay for Gemini API use",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P2-01",
+      "original_statement": "pay.sh requires no signup, account, or API key",
+      "source_ref": [
+        "PAYSH-DOCS",
+        "PAYSH-ACCOUNTS"
+      ],
+      "statement": "pay.sh requires no signup, account, or API key",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "solana",
+      "fact_id": "fact:P2-02",
+      "original_statement": "The command is npx followed separately by @solana/pay",
+      "source_ref": [
+        "PAYSH-INSTALL"
+      ],
+      "statement": "npx @solana/pay",
+      "status": "ocr_error",
+      "supersedes": [
+        "why-solana#page 14"
+      ]
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "solana",
+      "fact_id": "fact:P2-03",
+      "original_statement": "The install command is brew install pay.",
+      "source_ref": [
+        "PAYSH-INSTALL"
+      ],
+      "statement": "brew install pay",
+      "status": "ocr_error",
+      "supersedes": [
+        "why-solana#page 15"
+      ]
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "solana",
+      "fact_id": "fact:P2-04",
+      "original_statement": "Localnet, Testnet, Devnet, and Mainnet have distinct development roles",
+      "source_ref": [
+        "SOLANA-CORE"
+      ],
+      "statement": "Localnet, Testnet, Devnet, and Mainnet have distinct development roles",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "solana",
+      "fact_id": "fact:P2-05",
+      "original_statement": "Mainnet is necessary for the hackathon deployment stage",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "Current event criteria accept localnet, testnet, or devnet live execution",
+      "status": "conflict",
+      "supersedes": [
+        "why-solana#page 17"
+      ]
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "reference-only",
+      "confidence": "AMBIGUOUS",
+      "domain": "solana",
+      "fact_id": "fact:P2-06",
+      "original_statement": "All displayed partner and ecosystem metrics are current",
+      "source_ref": [
+        "SOLANA-CORE",
+        "PAYSH-DOCS"
+      ],
+      "statement": "All displayed partner and ecosystem metrics are current",
+      "status": "not_found",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P3-01",
+      "original_statement": "A2A, commerce protocols, authorization protocols, and payment rails occupy different layers",
+      "source_ref": [
+        "A2A",
+        "AP2",
+        "UCP",
+        "ACP",
+        "X402-WELCOME",
+        "MPP"
+      ],
+      "statement": "A2A, commerce protocols, authorization protocols, and payment rails occupy different layers",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P3-02",
+      "original_statement": "pay.sh supports x402 and MPP with local wallet authorization",
+      "source_ref": [
+        "PAYSH-DOCS",
+        "PAYSH-SCHEMES"
+      ],
+      "statement": "pay.sh supports x402 and MPP with local wallet authorization",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P3-03",
+      "original_statement": "Current x402 uses the X-PAYMENT header",
+      "source_ref": [
+        "X402-V2"
+      ],
+      "statement": "Implement x402 v2 PAYMENT-SIGNATURE and CAIP-2 semantics",
+      "status": "version_drift",
+      "supersedes": [
+        "x402-mpp#page 9"
+      ]
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P3-04",
+      "original_statement": "x402 is community-first while MPP is enterprise-first",
+      "source_ref": [
+        "X402-WELCOME",
+        "MPP",
+        "STRIPE-MPP"
+      ],
+      "statement": "x402 is community-first while MPP is enterprise-first",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P3-05",
+      "original_statement": "N x402 requests always require N on-chain transactions while MPP always requires exactly two",
+      "source_ref": [
+        "PAYSH-SCHEMES",
+        "MPP"
+      ],
+      "statement": "N x402 requests always require N on-chain transactions while MPP always requires exactly two",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:P3-06",
+      "original_statement": "A2A and MCP are complementary agent-agent and agent-tool protocols",
+      "source_ref": [
+        "A2A",
+        "MCP"
+      ],
+      "statement": "A2A and MCP are complementary agent-agent and agent-tool protocols",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "reference-only",
+      "confidence": "AMBIGUOUS",
+      "domain": "payment",
+      "fact_id": "fact:P3-07",
+      "original_statement": "Displayed market transaction metrics are reproducible current facts",
+      "source_ref": [],
+      "statement": "Displayed market transaction metrics are reproducible current facts",
+      "status": "not_found",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "event",
+      "fact_id": "fact:T1-01",
+      "original_statement": "Deadline is Aug 3 23:59 and finalists are announced Aug 7",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "Deadline is Aug 3 23:59 and finalists are announced Aug 7",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "event",
+      "fact_id": "fact:T1-02",
+      "original_statement": "Demo Day is Aug 20",
+      "source_ref": [
+        "EVENT-SITE",
+        "EVENT-LUMA"
+      ],
+      "statement": "Demo Day is Aug 21",
+      "status": "conflict",
+      "supersedes": [
+        "transcript-kickoff-google#01:42-01:52"
+      ]
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "event",
+      "fact_id": "fact:T1-03",
+      "original_statement": "Submission has product introduction, GitHub repository, and demo video",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "Submission has product introduction, GitHub repository, and demo video",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "general",
+      "fact_id": "fact:T1-04",
+      "original_statement": "A live deployment URL is recommended",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "A live deployment URL is recommended",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "gcp",
+      "fact_id": "fact:T1-05",
+      "original_statement": "Participants can use a USD 300 Google Cloud credit",
+      "source_ref": [
+        "GCP-FREE",
+        "GEMINI-BILLING"
+      ],
+      "statement": "Participants can use a USD 300 Google Cloud credit",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:T1-06",
+      "original_statement": "A real agent payment should be shown live",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "A real agent payment should be shown live",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:T2-01",
+      "original_statement": "pay.sh sandbox payment completed",
+      "source_ref": [
+        "PAYSH-SANDBOX"
+      ],
+      "statement": "pay.sh sandbox payment completed",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "solana",
+      "fact_id": "fact:T2-02",
+      "original_statement": "Solana fee is approximately 0.001 cent",
+      "source_ref": [
+        "SOLANA-FEES",
+        "SOLANA-PAY"
+      ],
+      "statement": "Solana fee is approximately 0.001 cent",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:T2-03",
+      "original_statement": "pay.sh needs no signup, account, API key, or subscription",
+      "source_ref": [
+        "PAYSH-DOCS",
+        "PAYSH-ACCOUNTS"
+      ],
+      "statement": "pay.sh needs no signup, account, API key, or subscription",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:T2-04",
+      "original_statement": "pay.sh works without code changes",
+      "source_ref": [
+        "PAYSH-DOCS"
+      ],
+      "statement": "pay.sh works without code changes",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "solana",
+      "fact_id": "fact:T2-05",
+      "original_statement": "Testnet targets validator/client testing while application work uses Localnet or Devnet",
+      "source_ref": [
+        "SOLANA-CORE"
+      ],
+      "statement": "Testnet targets validator/client testing while application work uses Localnet or Devnet",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "reference-only",
+      "confidence": "AMBIGUOUS",
+      "domain": "solana",
+      "fact_id": "fact:T2-06",
+      "original_statement": "Specific partner and market metrics are current",
+      "source_ref": [
+        "PAYSH-DOCS",
+        "SOLANA-CORE"
+      ],
+      "statement": "Specific partner and market metrics are current",
+      "status": "not_found",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "event",
+      "fact_id": "fact:T3-01",
+      "original_statement": "Build week ends Mar 3",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "Submission deadline is Aug 3 23:59 KST",
+      "status": "conflict",
+      "supersedes": [
+        "transcript-qa#01:12-01:17"
+      ]
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "payment",
+      "fact_id": "fact:T3-02",
+      "original_statement": "A custom Solana payment implementation can be used instead of pay.sh, x402, or Solana Pay",
+      "source_ref": [
+        "EVENT-SITE",
+        "SOLANA-ACCEPT"
+      ],
+      "statement": "A custom Solana payment implementation can be used instead of pay.sh, x402, or Solana Pay",
+      "status": "partial",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "reference-only",
+      "confidence": "AMBIGUOUS",
+      "domain": "general",
+      "fact_id": "fact:T3-03",
+      "original_statement": "Existing open-source or existing projects may be extended",
+      "source_ref": [
+        "EVENT-SITE"
+      ],
+      "statement": "Existing open-source or existing projects may be extended",
+      "status": "not_found",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "solana",
+      "fact_id": "fact:T3-04",
+      "original_statement": "Mainnet is not required and Devnet is sufficient",
+      "source_ref": [
+        "EVENT-SITE",
+        "SOLANA-CORE"
+      ],
+      "statement": "Mainnet is not required and Devnet is sufficient",
+      "status": "confirmed",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "reference-only",
+      "confidence": "AMBIGUOUS",
+      "domain": "solana",
+      "fact_id": "fact:T3-05",
+      "original_statement": "Faucet allowance is 0.5 to 5 SOL per day with organizer top-ups",
+      "source_ref": [
+        "SOLANA-CORE",
+        "EVENT-SITE"
+      ],
+      "statement": "Faucet allowance is 0.5 to 5 SOL per day with organizer top-ups",
+      "status": "not_found",
+      "supersedes": []
+    },
+    {
+      "as_of": "2026-07-23",
+      "authority": "official",
+      "confidence": "EXTRACTED",
+      "domain": "general",
+      "fact_id": "fact:T3-06",
+      "original_statement": "Biometric approval prevents prompt injection",
+      "source_ref": [
+        "PAYSH-DOCS"
+      ],
+      "statement": "Biometric approval prevents prompt injection",
+      "status": "partial",
+      "supersedes": []
+    }
+  ],
+  "generated_from": [
+    "research/official-docs-wiki/manifest.json",
+    "research/official-docs-wiki/claim-ledger.json"
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "actions": [
+    "credentialed_external_call",
+    "wallet_signature",
+    "cloud_deployment"
+  ],
+  "approval_id": "approval-unique-id",
+  "approved_at": "2026-07-23T12:00:00+09:00",
+  "approved_by": "human-name-or-role",
+  "expires_at": "2026-08-03T23:59:00+09:00",
+  "scope": "Locked product contract runtime proof on Solana Devnet and Google Cloud."
+}

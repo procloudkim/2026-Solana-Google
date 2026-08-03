@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-23",
+  "scope": "Current official-document comparison for six local transcript/OCR artifacts",
+  "source_policy": "Primary official sources only for verdicts",
+  "artifacts": [
+    ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.md",
+    ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.md",
+    ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.md",
+    ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md",
+    ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.md",
+    ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.md"
+  ],
+  "official_sources": [
+    {"id": "EVENT-SITE", "publisher": "Hackathon organizers", "url": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"},
+    {"id": "EVENT-LUMA", "publisher": "Hackathon organizers", "url": "https://luma.com/gcp-solana-tech-session?locale=ko"},
+    {"id": "GCP-FREE", "publisher": "Google Cloud", "url": "https://docs.cloud.google.com/free/docs/free-cloud-features"},
+    {"id": "GEMINI-BILLING", "publisher": "Google", "url": "https://ai.google.dev/gemini-api/docs/billing/"},
+    {"id": "CLOUD-RUN", "publisher": "Google Cloud", "url": "https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run"},
+    {"id": "GOOGLE-ADK", "publisher": "Google Cloud", "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/build/adk"},
+    {"id": "SOLANA-CORE", "publisher": "Solana", "url": "https://solana.com/docs/core"},
+    {"id": "SOLANA-FEES", "publisher": "Solana", "url": "https://solana.com/docs/core/fees/fee-structure"},
+    {"id": "SOLANA-PAY", "publisher": "Solana", "url": "https://solana.com/docs/tools/solana-pay"},
+    {"id": "SOLANA-ACCEPT", "publisher": "Solana", "url": "https://solana.com/docs/payments/accept-payments"},
+    {"id": "PAYSH-DOCS", "publisher": "pay.sh", "url": "https://pay.sh/docs"},
+    {"id": "PAYSH-INSTALL", "publisher": "pay.sh", "url": "https://pay.sh/docs/get-started/install"},
+    {"id": "PAYSH-ACCOUNTS", "publisher": "pay.sh", "url": "https://pay.sh/docs/pay-for-apis/accounts"},
+    {"id": "PAYSH-SANDBOX", "publisher": "pay.sh", "url": "https://pay.sh/docs/get-started/client-quickstart"},
+    {"id": "PAYSH-SCHEMES", "publisher": "pay.sh", "url": "https://pay.sh/docs/sdk/typescript/schemes"},
+    {"id": "X402-WELCOME", "publisher": "Coinbase Developer Platform", "url": "https://docs.cdp.coinbase.com/x402/welcome"},
+    {"id": "X402-FLOW", "publisher": "Coinbase Developer Platform", "url": "https://docs.cdp.coinbase.com/x402/core-concepts/how-it-works"},
+    {"id": "X402-V2", "publisher": "Coinbase Developer Platform", "url": "https://docs.cdp.coinbase.com/x402/migration-guide"},
+    {"id": "X402-BUYER", "publisher": "Coinbase Developer Platform", "url": "https://docs.cdp.coinbase.com/x402/quickstart-for-buyers"},
+    {"id": "MPP", "publisher": "Machine Payments Protocol", "url": "https://mpp.dev/"},
+    {"id": "STRIPE-MPP", "publisher": "Stripe", "url": "https://stripe.com/blog/machine-payments-protocol"},
+    {"id": "AP2", "publisher": "Google", "url": "https://github.com/google-agentic-commerce/AP2"},
+    {"id": "A2A", "publisher": "A2A Project", "url": "https://a2a-protocol.org/latest/"},
+    {"id": "MCP", "publisher": "Model Context Protocol", "url": "https://modelcontextprotocol.io/specification/2025-11-25/"},
+    {"id": "UCP", "publisher": "Universal Commerce Protocol", "url": "https://ucp.dev/documentation/core-concepts/"},
+    {"id": "ACP", "publisher": "OpenAI and Stripe", "url": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol"}
+  ],
+  "outputs": {
+    "comparison_pages": 6,
+    "source_notes": 7,
+    "topic_modules": 4,
+    "claim_ledger": "claim-ledger.json",
+    "validation_report": "validation-report.md"
+  }
+}

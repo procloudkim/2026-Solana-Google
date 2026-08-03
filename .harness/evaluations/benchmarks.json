@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "score_range": [
+    0.0,
+    1.0
+  ],
+  "benchmarks": [
+    {
+      "id": "python-syntax",
+      "description": "The staged Python artifact compiles without writing to the repository source tree.",
+      "command": [
+        "{python}",
+        "-m",
+        "py_compile",
+        "{candidate}/src/agents/harness_research_agent.py"
+      ],
+      "weight": 1.0,
+      "timeout_seconds": 15,
+      "success_score": 1.0,
+      "failure_score": 0.0
+    },
+    {
+      "id": "local-contract-self-test",
+      "description": "The staged scaffold's dependency-free self-test succeeds.",
+      "command": [
+        "{python}",
+        "{candidate}/src/agents/harness_research_agent.py",
+        "--self-test"
+      ],
+      "weight": 2.0,
+      "timeout_seconds": 15,
+      "success_score": 1.0,
+      "failure_score": 0.0
+    }
+  ]
+}

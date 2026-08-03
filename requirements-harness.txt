@@ -1,0 +1,2 @@
+# Optional full-text PDF extraction used by 01_knowledge_extract.py.
+pypdf>=6.0,<7.0

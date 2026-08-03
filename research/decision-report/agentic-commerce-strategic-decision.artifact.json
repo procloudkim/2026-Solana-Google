@@ -1,0 +1,448 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Agentic Commerce: What to Build Now",
+    "description": "Solana × Google Cloud 해커톤의 7개 후보를 점수 없이 선택·포기·반증 조건으로 좁힌 전략 의사결정 보고서.",
+    "generatedAt": "2026-08-01T07:31:27Z",
+    "charts": [
+      {
+        "id": "timebox_chart",
+        "title": "반증·전환 단계별 최대 작업시간",
+        "subtitle": "후보 점수가 아니라 48시간 실행 계획의 시간 상한이다. 실패 즉시 다음 단계로 이동한다.",
+        "headerMarkdown": "시간을 모두 써야 한다는 뜻이 아니다. 각 kill condition이 먼저 발생하면 즉시 전환한다.",
+        "type": "bar",
+        "dataset": "kill_plan",
+        "sourceId": "timebox_plan_query",
+        "settings": {
+          "orientation": "horizontal"
+        },
+        "encodings": {
+          "x": {
+            "field": "candidate",
+            "type": "nominal",
+            "label": "실행 분기"
+          },
+          "y": {
+            "field": "duration_hours",
+            "type": "quantitative",
+            "label": "최대 허용 시간"
+          },
+          "tooltip": [
+            {
+              "field": "window",
+              "type": "nominal",
+              "label": "시간창"
+            }
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "candidate_decisions_table",
+        "title": "7개 후보의 전략적 처분",
+        "subtitle": "숫자 순위 없이 선두 검증·전환·백업·보류 lane으로 구분한다.",
+        "dataset": "candidate_decisions",
+        "sourceId": "candidate_decisions_query",
+        "defaultSort": {
+          "field": "candidate",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "candidate",
+            "label": "후보",
+            "type": "text"
+          },
+          {
+            "field": "decision",
+            "label": "전략적 처분",
+            "type": "text"
+          },
+          {
+            "field": "fatal_risk",
+            "label": "치명적 리스크",
+            "type": "text"
+          },
+          {
+            "field": "next_gate",
+            "label": "다음 문",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "kill_plan_table",
+        "title": "48시간 단일 전환 계획",
+        "subtitle": "동시에 세 제품을 만들지 않고, 실패할 때만 한 번씩 다음 후보로 이동한다.",
+        "dataset": "kill_plan",
+        "sourceId": "kill_plan_query",
+        "defaultSort": {
+          "field": "window",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "window",
+            "label": "시간창",
+            "type": "text"
+          },
+          {
+            "field": "candidate",
+            "label": "대상",
+            "type": "text"
+          },
+          {
+            "field": "must_prove",
+            "label": "반드시 증명",
+            "type": "text"
+          },
+          {
+            "field": "kill_if",
+            "label": "즉시 탈락",
+            "type": "text"
+          },
+          {
+            "field": "next",
+            "label": "통과/실패 후",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "official_event",
+        "label": "Official Solana × Google Cloud Agentic Hackathon site",
+        "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"
+      },
+      {
+        "id": "decision_ledger",
+        "label": "Candidate evidence and decision ledger",
+        "path": "source-notes.md"
+      },
+      {
+        "id": "quicknode_probe",
+        "label": "QuickNode x402 read-only probe",
+        "path": "evidence/quicknode-x402-probe.md",
+        "href": "https://x402.quicknode.com/solana-mainnet"
+      },
+      {
+        "id": "solana_x402",
+        "label": "Solana x402 documentation",
+        "href": "https://solana.com/x402/what-is-x402"
+      },
+      {
+        "id": "google_blockchain_analytics",
+        "label": "Google Cloud Blockchain Analytics supported datasets",
+        "href": "https://docs.cloud.google.com/blockchain-analytics/docs/supported-datasets"
+      },
+      {
+        "id": "timebox_plan_query",
+        "label": "48-hour kill/switch execution-plan query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT stage_order, candidate, duration_hours FROM artifact_snapshot.kill_plan ORDER BY stage_order",
+          "description": "Reads the pre-committed maximum hours used only by the execution time-box chart; these are planning inputs, not observed outcome measures.",
+          "tables_used": [
+            "artifact_snapshot.kill_plan"
+          ],
+          "language": "sql"
+        }
+      },
+      {
+        "id": "candidate_decisions_query",
+        "label": "Seven-candidate strategic disposition query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT candidate, decision, winning_case, fatal_risk, next_gate FROM artifact_snapshot.candidate_decisions ORDER BY candidate",
+          "description": "Reproduces the reviewed qualitative candidate-disposition rows. Lane labels are strategic statuses, not quality scores.",
+          "tables_used": [
+            "artifact_snapshot.candidate_decisions"
+          ],
+          "language": "sql"
+        }
+      },
+      {
+        "id": "kill_plan_query",
+        "label": "48-hour kill/switch plan query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT stage_order, window, candidate, duration_hours, must_prove, kill_if, next FROM artifact_snapshot.kill_plan ORDER BY stage_order",
+          "description": "Reproduces the pre-committed time-box, proof, kill, and switch rules for the 48-hour execution plan.",
+          "tables_used": [
+            "artifact_snapshot.kill_plan"
+          ],
+          "language": "sql"
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Agentic Commerce: What to Build Now\n\nSolana × Google Cloud 해커톤 7개 후보 전략 의사결정 보고서 · 2026-08-01 KST"
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "body": "## Executive Summary\n\n**결정:** 지금부터 `RPC Lifeboat`에 **6시간짜리 반증 스프린트**를 건다. 제품은 범용 failover가 아니라 **자연어로 위임된 업무 중요도·deadline·요청 method·사고 예산을 typed mandate로 바꾸고, primary free·eligible free alternative·paid RPC 중 정책상 최선의 경로를 선택하는 SLO-constrained RPC procurement agent**로 한정한다. 무료 대안이 조건을 충족하면 올바른 결과는 `no-buy/free fallback`이며, 무료 후보가 모두 사전 요구를 위반할 때만 결제한다.\n\n직접 probe에서 QuickNode가 실제 `HTTP 402`와 Solana Devnet USDC 결제 요구를 반환했다. 따라서 외부 판매자와 상품이 없는 mock 아이디어는 아니다. 반면 이 저장소는 아직 `DISCOVERY`, 후보 gate 미통과, 제품·receipt 없음 상태다. **결제 성공, paid fulfillment, Gemini mandate parsing, GCP-linked trace는 아직 증명되지 않았다.**\n\n선두 gate는 fresh Devnet wallet의 실제 x402 결제, 결제 후 유효한 Solana RPC 응답, free/paid 비교, 사전 정의 mandate scenario, Cloud Run·Vertex AI Gemini·Cloud Monitoring·Cloud Logging을 잇는 trace다. 통과하면 즉시 동결한다. 실패하면 `NeedlePass`로 한 번, 외부 유료 레일까지 실패하면 파트너 독립형 `ReproPay`로 마지막 전환을 한다. 나머지 네 후보는 재개 조건이 충족될 때까지 개발하지 않는다.\n\n**판정 신뢰도:** Share with caveats — 공식 규칙·프로토콜·판매 제안은 확인했지만 사용자 지불의사와 end-to-end 결제는 미검증이다."
+      },
+      {
+        "id": "decision_contract",
+        "type": "markdown",
+        "body": "## 의사결정 계약\n\n이 보고서는 **점수를 쓰지 않는다.** 공식 심사 항목에 공개 가중치가 없고 후보별 사용자·신뢰성·지불의사 데이터도 없기 때문이다. 숫자로 포장하지 않고 다음 hard gate만 적용한다.\n\n1. Agent가 위임된 목표로 `buy`·`no-buy` 또는 거래 변수를 실제 선택한다.\n2. allowlist·spend cap·network·expiry·idempotency는 결정적 정책이 통제한다.\n3. localnet/testnet/Devnet에서 실제 서명과 confirmation이 남는다.\n4. 결제가 상품·서비스 결과를 unlock하거나 상태 전이를 야기한다.\n5. `decision → policy → tx → receipt → result`가 하나의 trace로 재현된다.\n6. 구현하지 않은 프로토콜 이름과 과장된 mock 주장을 제거해도 데모가 이해된다.\n\n공식 페이지의 핵심은 단일 `Solana 기반 Agentic Commerce` 트랙과 live transaction/log 증거다. 네 가지 A–D는 선택적 출발점이며 Mainnet은 필수가 아니다. [공식 행사 페이지](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/)와 [근거 원장](source-notes.md)을 기준으로 했다."
+      },
+      {
+        "id": "candidate_decisions_heading",
+        "type": "markdown",
+        "body": "## 후보 포트폴리오 결정\n\n후보에는 숫자 순위를 매기지 않는다. **선두 검증·첫 전환·최종 백업·보류**라는 action lane만 지정한다. 선두가 증거 문을 넘지 못할 때만 정해진 전환 경로를 사용한다."
+      },
+      {
+        "id": "candidate_decisions",
+        "type": "table",
+        "tableId": "candidate_decisions_table"
+      },
+      {
+        "id": "rpc_lifeboat",
+        "type": "markdown",
+        "body": "## 13. RPC Lifeboat — 조건부 선두\n\n### 전략적 선택\n\n`RPC 장애 감지기`를 만들지 않는다. 사용자가 ‘중요한 Solana 작업은 이 deadline과 사고 예산 안에서 완료하라’고 위임하면 Agent가 **기다림·primary 재시도·eligible free alternative·유료 burst·중단** 중 하나를 고르는 조달 Agent를 만든다. Vertex AI Gemini는 자연어 mandate에서 deadline·method·freshness·max spend·금지 조건을 typed JSON으로 추출한다. endpoint 측정과 buy/no-buy, allowlist, spend cap은 deterministic policy가 결정한다.\n\n### 우승 장면\n\n같은 사전 정의 scenario set을 두 경로로 보여준다. 첫 장면에서는 primary만 provider-specific latency/429를 겪지만 free alternative가 deadline·method·freshness를 만족하므로 Agent가 **돈을 쓰지 않고** 전환한다. 둘째 장면에서는 두 무료 후보가 명시적 요구를 위반할 때만 QuickNode 402를 받아 Devnet USDC로 결제하고 같은 JSON-RPC method를 성공시킨다. Solana network 자체 장애로 표현하지 않는다. 화면에는 raw mandate, Gemini typed intent, endpoint observations, deterministic policy, 402, tx signature, 반환 slot/response hash가 한 timeline으로 나타난다.\n\n### Google Cloud 증거\n\nCloud Run이 Agent API를 실행하고, Vertex AI Gemini가 mandate를 구조화하며, Cloud Monitoring이 세 endpoint의 latency/error/freshness observation을 기록하고, Cloud Logging이 `decision_id`·policy·Solana signature·fulfillment를 연결한다. GCP console 또는 exported log에서 동일 trace를 재현해야 한다.\n\n### 반드시 만들 것 / 버릴 것\n\n한 method, primary free 하나, eligible free alternative 하나, QuickNode paid 하나, spend policy 하나, free-fallback path와 paid path만 만든다. 다중 provider 경매, 예측 ML, 구독, Mainnet 결제, production secret rotation, 범용 routing은 버린다.\n\n### 근거와 반증\n\n2026-08-01 직접 요청에서 QuickNode가 실제 `HTTP 402`, x402 v2, Solana Devnet 결제 옵션, 결제 후 session 발급 정보를 반환했다. [probe 기록](evidence/quicknode-x402-probe.md)과 [QuickNode 가이드](https://www.quicknode.com/guides/solana-development/ai-agents/how-to-access-solana-rpc-with-x402-solana)를 참고한다. 그러나 아직 payment→settlement→RPC fulfillment는 실행하지 않았다.\n\n**즉시 탈락:** 새 지갑으로 non-zero Devnet tx가 생기지 않음, 결제 후 유효한 Solana RPC 응답을 못 받음, paid path가 사전 SLO를 회복하지 못함, free alternative가 충족하는데도 구매함, GCP trace가 끊김, 또는 pre-registered natural-language scenario에서 Gemini가 ground-truth typed mandate를 만들지 못함. 비교 baseline은 이미 구조화된 필드에 latency/price threshold만 적용하는 naive router다. 실패하면 자체 mock RPC seller를 만들지 말고 NeedlePass로 전환한다."
+      },
+      {
+        "id": "needlepass",
+        "type": "markdown",
+        "body": "## 01. NeedlePass — 실패 시 첫 전환안\n\n### 전략적 선택\n\n범용 fact-checker를 버리고 **Solana 과거 이력 claim 한 건의 유료 증거 조달기**로 좁힌다. 예: 현재 RPC snapshot만으로는 답할 수 없는 주소·프로그램의 과거 활동 주장을 검증해야 할 때, Agent가 무료 근거로 충분한지 판단하고 필요할 때만 Google Cloud의 Solana Blockchain Analytics를 대상으로 한 BigQuery 질의 한 건을 구매한다.\n\n### 우승 장면\n\n결제 전 상태는 `insufficient evidence`. Gemini가 자연어 claim을 query contract로 바꾸고, 가격·freshness·출처 범위와 잔여예산을 비교해 `buy/no-buy`를 결정한다. 결제 후 SQL/result hash와 인용 가능한 결과가 들어오고 최종 판단이 `allow` 또는 `block`으로 바뀐다. [Google Cloud는 Solana Blockchain dataset을 지원 목록에 표시한다](https://docs.cloud.google.com/blockchain-analytics/docs/supported-datasets).\n\n### 반드시 만들 것 / 버릴 것\n\nclaim 하나, dataset 하나, paid query 하나, 결제 하나, 결과 hash 하나만 만든다. 범용 웹 검색, 다수 publisher, RAG graph, 장문 자동 보고서, 구독은 버린다.\n\n### 남는 위험과 반증\n\nBigQuery x402 gateway listing은 확인했지만 이 프로젝트의 실제 payment와 원하는 Solana query 결과는 아직 확인하지 않았다. 유료 결과가 무료 근거보다 낫다는 가치 증명도 없다.\n\n**즉시 탈락:** 실제 Solana tx가 없거나, 유료 결과를 제거해도 최종 판단·인용이 같거나, endpoint 선택이 hardcoded이거나, 낮은 불확실성에서 `no-buy`를 못 보임. 그러면 ReproPay로 전환한다."
+      },
+      {
+        "id": "repropay",
+        "type": "markdown",
+        "body": "## 48. ReproPay — 파트너 독립형 최종 백업\n\n### 전략적 선택\n\n버그 수정 bounty가 아니다. maintainer가 특정 commit과 failure contract를 제시하면, 제출자가 **재현 가능한 failing test artifact**를 제공하고 deterministic CI가 검증한 뒤 Agent가 지급한다. 버그의 진위나 수정 품질 전체를 AI가 판정하지 않는다.\n\n### 우승 장면\n\n유효 test는 target commit에서 실패하고 fixed commit에서 통과한다. duplicate와 환경 조작 제출은 차단된다. issue, commit SHA, submitted test hash, workflow run/artifact digest, 지급 tx가 한 trace에 묶인다. Gemini는 모호한 issue를 acceptance contract로 구조화하고 후보 중복을 보조하지만 최종 authority는 CI다.\n\n### 반드시 만들 것 / 버릴 것\n\nallowlisted fixture repo 하나, bug 하나, test 세 종류, verifier 한 번, Devnet payout 한 번만 만든다. 임의 public repo, GitHub OAuth, 복수 언어, open marketplace, dispute, 범용 sandbox는 버린다.\n\n### 남는 위험과 반증\n\n외부 merchant 없이 객관적 fulfillment를 닫을 수 있다는 것이 강점이다. 반대로 사용자가 이미 우려한 bug-bounty 검증 난이도와 untrusted code 위험이 남고, ‘상거래’보다 CI reward로 보일 수 있다.\n\n**즉시 탈락:** duplicate·gaming을 안정적으로 구분하지 못함, allowlisted fixture에서도 실행 격리가 불안정함, 또는 Gemini의 acceptance-contract 추출이 pre-registered issue scenario를 통과하지 못함. 이 최종 백업까지 실패하면 단순 송금 데모로 후퇴하지 않고 **no-go**로 판정한다. parked 후보는 각자의 실제 재개 조건이 먼저 충족될 때만 선택한다."
+      },
+      {
+        "id": "three_way_match",
+        "type": "markdown",
+        "body": "## 26. Three-Way Match Pay — 해커톤 후속 사업 후보\n\n### 전략적 선택\n\n지금은 개발하지 않는다. 장기적으로는 AP 담당자의 명확한 pain과 지급 상태 전이가 장점이지만, 이번 deadline에서는 PO·입고·송장·supplier authority·ERP 상태 대부분이 fixture가 된다. Document AI 추출을 x402로 사는 것과 실제 supplier invoice를 지급하는 것도 서로 다른 거래다.\n\n재개한다면 Gemini는 OCR confidence가 낮은 필드의 재처리·예외 분류·지급 시점을 다루고, deterministic matcher가 중복·허용오차·vendor allowlist를 최종 통제해야 한다. 정상 건 한 건만 Solana로 지급하고 mismatch는 차단한다.\n\n**재개 조건:** 외부 AP 실무자에게 실제 문서 세트와 지급 authority를 받거나, 최소한 ‘지급 rail이 실제 병목’이라는 인터뷰 근거를 확보한다. 그렇지 않으면 AI 문서처리 + Solana 장식으로 보일 가능성이 높다."
+      },
+      {
+        "id": "cliplicense",
+        "type": "markdown",
+        "body": "## 31. ClipLicense — 권리자 확보 전 보류\n\n### 전략적 선택\n\n시각적으로 가장 깨끗한 digital fulfillment 중 하나지만, 실제 권리자가 없으면 만들지 않는다. 직접 소유한 clip을 fixture로 쓸 수는 있어도 marketplace partnership처럼 표현하지 않는다. C2PA는 provenance 신호이고 seller의 법적 title을 자동 보증하지 않는다.\n\n재개하면 brief 하나, 후보 세 개, 권리 조건 하나, 결제 한 번, full-resolution unlock 한 번만 만든다. asset hash, seller-signed license JSON, tx, project manifest를 연결하고 지역·기간·매체 policy 위반 경로를 차단한다.\n\n**재개 조건:** 외부 creator 한 명이 자신의 권리와 wallet-bound machine-readable license를 공개적으로 확인하고 데모 사용에 동의한다. 충족되면 ReproPay보다 시각적 스토리는 강해질 수 있다."
+      },
+      {
+        "id": "expirydeal",
+        "type": "markdown",
+        "body": "## 44. ExpiryDeal Duel — 실제 재고 확보 전 보류\n\n### 전략적 선택\n\nseller/buyer Agent 대화가 화려하다는 이유만으로 만들지 않는다. 합성 재고와 고정 할인곡선이 만나면 multi-agent commerce가 아니라 예정된 계산의 연극이다. 핵심 난제는 협상보다 hold TTL·idempotency·verify-before-consume로 이중판매를 막는 것이다.\n\n재개하면 SKU 하나, buyer 하나, seller 하나, 짧은 hold 하나, structured offer 두 번, 결제 한 번, inventory `SOLD` 전이만 만든다.\n\n**재개 조건:** 팀 밖 merchant가 소유한 실제 소멸성 디지털 slot 또는 예약 한 건과 reserve 조건을 제공한다. 외부 재고가 없거나 협상 결과가 단순 공식과 항상 같으면 보류를 유지한다."
+      },
+      {
+        "id": "sla_refund",
+        "type": "markdown",
+        "body": "## 29. SLA Refund Collector — 판매자 권한 확보 전 보류\n\n### 전략적 선택\n\n‘돈을 쓰는 Agent’가 아니라 ‘돈을 회수하는 Agent’라는 서사는 독특하지만, seller가 사전 동의하지 않으면 collector가 아니라 claim generator다. x402 결제는 자동 reversal이 아니므로 refund는 seller의 새 transfer다.\n\n재개하면 signed SLA 하나, metric window 하나, claim 하나, seller-side 검증 하나, refund tx 하나만 만든다. Gemini는 면책·기한·clause를 mapping하고 계산·지급권한은 deterministic하게 처리한다.\n\n**재개 조건:** 외부 서비스 운영자가 telemetry와 refund 공식에 사전 서명하거나 escrow/mandate를 제공한다. 팀이 buyer와 seller wallet을 모두 통제하는 데모만 가능하면 지금은 만들지 않는다."
+      },
+      {
+        "id": "execution_path_heading",
+        "type": "markdown",
+        "body": "## 48시간 실행 경로\n\n최선의 전략은 옵션을 많이 보유하는 것이 아니라 **전환 규칙을 미리 고정해 sunk-cost를 막는 것**이다. 아래 계획은 외부 의존 후보를 조건부로 유지하되, 확보 실험이 실패하면 즉시 탈락시키는 가정에 따른다."
+      },
+      {
+        "id": "kill_plan",
+        "type": "table",
+        "tableId": "kill_plan_table"
+      },
+      {
+        "id": "timebox_chart_block",
+        "type": "chart",
+        "chartId": "timebox_chart"
+      },
+      {
+        "id": "common_architecture",
+        "type": "markdown",
+        "body": "## 공통 최소 아키텍처\n\n`Cloud Run trigger → Vertex AI Gemini typed mandate → deterministic policy gate → merchant payment challenge → Agent wallet의 Solana Devnet tx → RPC confirmation → 한 개의 fulfillment/state transition → Cloud Logging audit timeline`만 유지한다. 관측값이 필요한 후보는 Cloud Monitoring metric을 같은 `decision_id`로 연결한다.\n\nHITL은 최초 mandate 설정과 예외에만 둔다. 정상 범위의 매 결제마다 승인을 요구하면 Agentic Commerce가 아니다. 반대로 LLM이 지갑 안전정책이나 최종 진위 판정 authority가 되어서도 안 된다.\n\nGemini 호출, Cloud Run request/log, Devnet 서명·confirmation, fulfillment gate는 real이어야 한다. 장애 event·merchant catalog·업무 데이터 fixture는 화면과 README에 명시한다. x402/AP2/A2A를 끝까지 구현하지 않았다면 각각 `HTTP 402-style gate`, `signed mandate`, `structured agent message`라고 정확히 표기한다."
+      },
+      {
+        "id": "recommended_next_steps",
+        "type": "markdown",
+        "body": "## Recommended Next Steps\n\n1. **세 경로를 먼저 고정한다.** primary free, eligible free alternative, QuickNode paid에 같은 JSON-RPC method를 실행하고 method·latency·error·freshness observation schema를 잠근다.\n2. **RPC 결제를 확인한다.** fresh Devnet wallet, test USDC, x402 client/facilitator로 QuickNode payment를 실행하고 signature·confirmation·settlement response·session token·RPC result를 보관한다.\n3. **두 장면으로 반증한다.** free alternative가 요구를 만족하면 반드시 no-buy/free fallback; 두 무료 후보가 사전 요구를 위반할 때만 paid path가 deadline을 회복해야 한다. fault injection은 provider-specific fixture라고 표시한다.\n4. **Gemini 역할을 검증한다.** 자연어 mandate의 paraphrase·negation·deadline·금지조건을 포함한 scenario set과 expected typed JSON을 먼저 고정한다. Gemini parsing 뒤의 router는 naive latency/price threshold baseline과 동일한 deterministic code를 사용한다.\n5. **GCP trace를 닫는다.** Cloud Run request, Vertex AI response metadata, Cloud Monitoring observation, Cloud Logging의 `decision_id`, Solana signature, fulfillment를 연결한다.\n6. 통과하면 기능을 동결하고 한 화면 audit timeline, README 재현 명령, explorer 링크, 데모 영상만 만든다. 실패하면 NeedlePass 한 번, ReproPay 한 번만 전환하며, 최종 백업도 실패하면 no-go로 판정한다."
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## Further Questions\n\n- fresh Devnet wallet이 QuickNode의 free allowance를 우회해 실제 non-zero settlement를 만들 수 있는가?\n- 결제 후 session이 Solana JSON-RPC method를 안정적으로 처리하고 eligible free alternative가 실패한 요구를 회복하는가?\n- pre-registered 자연어 scenario에서 Gemini가 expected typed mandate를 재현하며, 단순 form 입력보다 사용자 위임을 실제로 편하게 만드는가?\n- NeedlePass의 한 claim은 무엇이며, 유료 Solana history 결과가 어떤 실행 결정을 실제로 바꾸는가?\n- 외부 endpoint·partner가 필요한 후보를 조건부로 유지할지, 원칙적으로 제외할지 사용자가 최종 확정할 것인가?\n- 선정안의 실제 사용자 한 명이 ‘이 결제를 Agent에게 위임하겠다’고 말하는가?"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "body": "## Caveats & Assumptions\n\n- 사용자 인터뷰, 지불의사, retention, 시장 크기 데이터는 없다.\n- 직접 확인한 것은 QuickNode의 402 payment requirement까지다. 이 프로젝트가 서명·settle·fulfillment한 증거는 아직 없다.\n- Bazaar/pay.sh listing은 discovery 증거이지 uptime·품질·법적 권리·partnership 증거가 아니다.\n- 저장소의 현재 코드는 research harness와 직렬화 contract이며 Gemini·GCP·Solana runtime을 실행하지 않는다.\n- 외부 의존 후보는 ‘조건부 유지, 확보 실험 실패 시 즉시 탈락’으로 가정했다. 이 정책은 HITL 확정이 남아 있다.\n- 후보 품질의 정량 차트는 의도적으로 생략했다. 유일한 bar chart는 실행 시간 상한이며 score가 아니다. 비교 가능한 관측값 없이 품질 숫자를 만들면 false precision이 된다.\n- 공식 사이트와 제출 폼은 바뀔 수 있으므로 제출 직전에 다시 확인해야 한다."
+      },
+      {
+        "id": "sources_and_traceability",
+        "type": "markdown",
+        "body": "## Sources & Traceability\n\n세부 claim, 링크, 검증/추론 경계, 후보별 미확인 항목은 [source-notes.md](source-notes.md)에 있다. 직접 402 probe의 최소 기록은 [quicknode-x402-probe.md](evidence/quicknode-x402-probe.md)에 있다.\n\n이 보고서의 결론은 ‘RPC Lifeboat이 이미 우승 후보로 검증됐다’가 아니다. **지금 가장 값싸고 결정적으로 반증할 수 있는 선두 가설이 됐다**는 뜻이다."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-01T07:31:27Z",
+    "status": "ready",
+    "datasets": {
+      "candidate_decisions": [
+        {
+          "candidate": "RPC Lifeboat",
+          "decision": "선두 검증 — 6시간 반증 후 확정",
+          "winning_case": "실제 외부 x402 RPC, Solana-native 문제, 전후 효과가 관측 가능",
+          "fatal_risk": "결제 미완료; Gemini가 불필요한 circuit breaker로 보일 수 있음",
+          "next_gate": "primary free + eligible free alternative + paid 비교; Devnet tx; GCP trace"
+        },
+        {
+          "candidate": "NeedlePass",
+          "decision": "첫 전환 — RPC 실패 시 이동",
+          "winning_case": "한 claim의 buy/no-buy와 유료 증거 unlock이 Agentic Commerce에 직결",
+          "fatal_risk": "유료 결과가 무료 결과보다 낫거나 결정을 바꾼다는 증거 없음",
+          "next_gate": "Solana history claim 1개와 실제 paid BigQuery query 1개"
+        },
+        {
+          "candidate": "ReproPay",
+          "decision": "최종 백업 — 외부 레일 실패 시 이동",
+          "winning_case": "파트너 없이 test artifact→검증→지급을 객관적으로 닫을 수 있음",
+          "fatal_risk": "untrusted code, duplicate/gaming, commerce보다 CI reward로 보일 위험",
+          "next_gate": "allowlisted fixture에서 유효·중복·조작 제출을 정확히 분리"
+        },
+        {
+          "candidate": "Three-Way Match Pay",
+          "decision": "보류 — 사업형",
+          "winning_case": "기업 pain과 지급 상태 전이가 명확",
+          "fatal_risk": "ERP·입고·supplier authority가 fixture이고 Solana/Gemini가 장식일 수 있음",
+          "next_gate": "실제 AP 문서·지급권한 또는 사용자 인터뷰 확보"
+        },
+        {
+          "candidate": "ClipLicense",
+          "decision": "보류 — 권리자",
+          "winning_case": "시각적이고 license·asset·tx의 digital fulfillment가 선명",
+          "fatal_risk": "판매자의 법적 권리 provenance와 live merchant 부재",
+          "next_gate": "외부 creator 1명의 권리 확인과 machine-readable license 동의"
+        },
+        {
+          "candidate": "ExpiryDeal Duel",
+          "decision": "보류 — 실재 재고",
+          "winning_case": "multi-agent 협상과 inventory 전이가 화면에서 즉시 이해됨",
+          "fatal_risk": "합성 시장·고정 공식이면 협상 연극; hold/payment 원자성 부담",
+          "next_gate": "외부 merchant의 소멸성 SKU 1개와 reserve 조건"
+        },
+        {
+          "candidate": "SLA Refund Collector",
+          "decision": "보류 — seller mandate",
+          "winning_case": "Agent가 돈을 회수하는 독특한 closed loop",
+          "fatal_risk": "seller 동의 없이는 claim generator; self-refund demo는 자작극",
+          "next_gate": "외부 seller의 signed SLA·telemetry 인정·refund authority"
+        }
+      ],
+      "kill_plan": [
+        {
+          "stage_order": 1,
+          "window": "T+00~06h",
+          "candidate": "RPC Lifeboat",
+          "duration_hours": 6,
+          "must_prove": "primary/free-alt/paid 세 경로, Devnet settlement, paid RPC result, typed mandate, GCP trace",
+          "kill_if": "free-alt 충족에도 구매, tx·fulfillment·SLO 실패, mandate parse 실패, GCP trace 단절",
+          "next": "통과 시 제품 동결; 실패 시 NeedlePass"
+        },
+        {
+          "stage_order": 2,
+          "window": "T+06~18h",
+          "candidate": "NeedlePass",
+          "duration_hours": 12,
+          "must_prove": "한 Solana history claim에 paid query가 필요하고 결론을 변경",
+          "kill_if": "실거래 없음, 결과 차이 없음, hardcoded 선택, no-buy 없음",
+          "next": "통과 시 제품 동결; 실패 시 ReproPay"
+        },
+        {
+          "stage_order": 3,
+          "window": "T+18~36h",
+          "candidate": "ReproPay",
+          "duration_hours": 18,
+          "must_prove": "유효·중복·조작 test 중 유효 artifact 하나에만 지급",
+          "kill_if": "검증 불안정, 실행 격리 실패, Agentic Commerce 설명 붕괴",
+          "next": "통과 시 제품 동결; 실패 시 no-go"
+        },
+        {
+          "stage_order": 4,
+          "window": "T+36~48h",
+          "candidate": "최종 선정안",
+          "duration_hours": 12,
+          "must_prove": "happy path·no-buy/blocked path·explorer tx·GCP trace·receipt·README 재현",
+          "kill_if": "connector·protocol branding이 한 화면 E2E를 방해",
+          "next": "기능 삭제 후 제출 패키징·영상 리허설"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "official_event",
+      "label": "Official Solana × Google Cloud Agentic Hackathon site",
+      "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"
+    },
+    {
+      "id": "decision_ledger",
+      "label": "Candidate evidence and decision ledger",
+      "path": "source-notes.md"
+    },
+    {
+      "id": "quicknode_probe",
+      "label": "QuickNode x402 read-only probe",
+      "path": "evidence/quicknode-x402-probe.md",
+      "href": "https://x402.quicknode.com/solana-mainnet"
+    },
+    {
+      "id": "solana_x402",
+      "label": "Solana x402 documentation",
+      "href": "https://solana.com/x402/what-is-x402"
+    },
+    {
+      "id": "google_blockchain_analytics",
+      "label": "Google Cloud Blockchain Analytics supported datasets",
+      "href": "https://docs.cloud.google.com/blockchain-analytics/docs/supported-datasets"
+    },
+    {
+      "id": "timebox_plan_query",
+      "label": "48-hour kill/switch execution-plan query",
+      "query": {
+        "engine": "sqlite",
+        "sql": "SELECT stage_order, candidate, duration_hours FROM artifact_snapshot.kill_plan ORDER BY stage_order",
+        "description": "Reads the pre-committed maximum hours used only by the execution time-box chart; these are planning inputs, not observed outcome measures.",
+        "tables_used": [
+          "artifact_snapshot.kill_plan"
+        ],
+        "language": "sql"
+      }
+    },
+    {
+      "id": "candidate_decisions_query",
+      "label": "Seven-candidate strategic disposition query",
+      "query": {
+        "engine": "sqlite",
+        "sql": "SELECT candidate, decision, winning_case, fatal_risk, next_gate FROM artifact_snapshot.candidate_decisions ORDER BY candidate",
+        "description": "Reproduces the reviewed qualitative candidate-disposition rows. Lane labels are strategic statuses, not quality scores.",
+        "tables_used": [
+          "artifact_snapshot.candidate_decisions"
+        ],
+        "language": "sql"
+      }
+    },
+    {
+      "id": "kill_plan_query",
+      "label": "48-hour kill/switch plan query",
+      "query": {
+        "engine": "sqlite",
+        "sql": "SELECT stage_order, window, candidate, duration_hours, must_prove, kill_if, next FROM artifact_snapshot.kill_plan ORDER BY stage_order",
+        "description": "Reproduces the pre-committed time-box, proof, kill, and switch rules for the 48-hour execution plan.",
+        "tables_used": [
+          "artifact_snapshot.kill_plan"
+        ],
+        "language": "sql"
+      }
+    }
+  ]
+}

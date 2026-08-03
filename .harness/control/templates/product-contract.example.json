@@ -1,0 +1,29 @@
+{
+  "acceptance_receipts": [
+    "gemini_trace",
+    "solana_devnet_tx",
+    "gcp_runtime_log"
+  ],
+  "agent_decision": "One bounded decision made from explicit inputs.",
+  "candidate_id": "candidate-a",
+  "excluded_features": [
+    "Mainnet",
+    "unbounded autonomous spending"
+  ],
+  "failure_paths": [
+    "insufficient balance",
+    "payment timeout",
+    "duplicate request"
+  ],
+  "gcp_path": "Gemini decision -> Cloud Run -> structured audit log",
+  "happy_path": "Decide, approve, settle once on Devnet, confirm, and log.",
+  "id": "product-contract-v1",
+  "network": "solana-devnet",
+  "payment_protocol": "pay.sh",
+  "persona": "The selected candidate's primary user.",
+  "primary_track": "Agent-Initiated Commerce",
+  "problem": "The selected candidate's measurable problem.",
+  "spending_policy": "Devnet only; one transaction; explicit amount cap; approval required.",
+  "submission_narrative": "Why the agent must decide and pay, and how the receipt proves it.",
+  "title": "Locked product title"
+}

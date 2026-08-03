@@ -1,0 +1,48 @@
+{
+  "constraints": {
+    "each_candidate_must_include": [
+      "title",
+      "primary_track",
+      "persona",
+      "problem",
+      "agent_decision",
+      "paid_action",
+      "solana_transaction",
+      "gcp_audit_path"
+    ],
+    "network": "solana-devnet",
+    "score_fields": [
+      "official_fit",
+      "payment_proof",
+      "solo_feasibility",
+      "user_value",
+      "demo_clarity",
+      "cost_risk"
+    ],
+    "score_range": [
+      0,
+      100
+    ],
+    "team_size": 1
+  },
+  "generator_policy": {
+    "default_input": ".harness/control/candidates.input.json",
+    "mode": "approved-external-input",
+    "note": "Generate exactly three candidates with an approved agents-cli session, then pass the schema-validated JSON to ideate --input."
+  },
+  "output": {
+    "candidate_count": 3,
+    "required": [
+      "candidates"
+    ],
+    "type": "object"
+  },
+  "schema_version": 1,
+  "source_contexts": [
+    ".harness/wiki/operations/01-event-contract.md",
+    "research/official-docs-wiki/modules/event-rules.md",
+    "research/official-docs-wiki/modules/payment-rails.md",
+    "research/official-docs-wiki/modules/agent-protocol-map.md"
+  ],
+  "task": "Generate exactly three distinct hackathon product candidates."
+}

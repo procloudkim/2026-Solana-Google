@@ -1,0 +1,301 @@
+{
+  "categories": [
+    "Solana Engine",
+    "GCP Infrastructure",
+    "AP2/x402 Payment Protocols",
+    "Google ADK"
+  ],
+  "entries": [
+    {
+      "categories": [
+        "Solana Engine",
+        "AP2/x402 Payment Protocols"
+      ],
+      "duplicate_of": null,
+      "enrichment": {
+        "adapter": "faster-whisper",
+        "artifacts": {
+          "jsonl": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.jsonl",
+          "markdown": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.md",
+          "metadata": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.metadata.json",
+          "srt": ".harness/enrichment/transcripts/2026-07-21-19-08-24-044ccd9e02.srt"
+        },
+        "settings_fingerprint": "d3513c9db403257d",
+        "source_sha256": "9862a35a2cbf2f6d99605d649449081d8c2cada90034a88540ff070763624c52",
+        "status": "complete"
+      },
+      "extraction": {
+        "detail": "video decoding and automatic transcription are intentionally out of scope; enrichment_sha256=9862a35a2cbf2f6d99605d649449081d8c2cada90034a88540ff070763624c52",
+        "method": "filesystem_metadata+faster-whisper"
+      },
+      "id": "ref-044ccd9e026a",
+      "kind": "video",
+      "output_path": ".harness/wiki/raw_references/2026-07-21-19-08-24-044ccd9e02.md",
+      "relative_path": "2026-07-21 19-08-24.mp4",
+      "sha256": "9862a35a2cbf2f6d99605d649449081d8c2cada90034a88540ff070763624c52",
+      "size_bytes": 258576993,
+      "source_path": "참고레퍼런스/2026-07-21 19-08-24.mp4",
+      "status": "transcribed",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "GCP Infrastructure",
+        "AP2/x402 Payment Protocols"
+      ],
+      "duplicate_of": null,
+      "enrichment": {
+        "adapter": "faster-whisper",
+        "artifacts": {
+          "jsonl": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.jsonl",
+          "markdown": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.md",
+          "metadata": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.metadata.json",
+          "srt": ".harness/enrichment/transcripts/2026-07-21-19-56-58-c96826ade9.srt"
+        },
+        "settings_fingerprint": "d3513c9db403257d",
+        "source_sha256": "cc050df2696cacb257f63f56a2828664c1ad463c86f92a09a28352c6cfb9cbca",
+        "status": "complete"
+      },
+      "extraction": {
+        "detail": "video decoding and automatic transcription are intentionally out of scope; enrichment_sha256=cc050df2696cacb257f63f56a2828664c1ad463c86f92a09a28352c6cfb9cbca",
+        "method": "filesystem_metadata+faster-whisper"
+      },
+      "id": "ref-c96826ade9a9",
+      "kind": "video",
+      "output_path": ".harness/wiki/raw_references/2026-07-21-19-56-58-c96826ade9.md",
+      "relative_path": "2026-07-21 19-56-58.mp4",
+      "sha256": "cc050df2696cacb257f63f56a2828664c1ad463c86f92a09a28352c6cfb9cbca",
+      "size_bytes": 174135953,
+      "source_path": "참고레퍼런스/2026-07-21 19-56-58.mp4",
+      "status": "transcribed",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "AP2/x402 Payment Protocols"
+      ],
+      "duplicate_of": null,
+      "enrichment": {
+        "adapter": "faster-whisper",
+        "artifacts": {
+          "jsonl": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.jsonl",
+          "markdown": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.md",
+          "metadata": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.metadata.json",
+          "srt": ".harness/enrichment/transcripts/2026-07-21-20-31-25-495a3baab6.srt"
+        },
+        "settings_fingerprint": "d3513c9db403257d",
+        "source_sha256": "bb5e0c7df458fe340a37d2f05be9e17f18e234cae4320f7fe22aa072e814dfbd",
+        "status": "complete"
+      },
+      "extraction": {
+        "detail": "video decoding and automatic transcription are intentionally out of scope; enrichment_sha256=bb5e0c7df458fe340a37d2f05be9e17f18e234cae4320f7fe22aa072e814dfbd",
+        "method": "filesystem_metadata+faster-whisper"
+      },
+      "id": "ref-495a3baab66a",
+      "kind": "video",
+      "output_path": ".harness/wiki/raw_references/2026-07-21-20-31-25-495a3baab6.md",
+      "relative_path": "2026-07-21 20-31-25.mp4",
+      "sha256": "bb5e0c7df458fe340a37d2f05be9e17f18e234cae4320f7fe22aa072e814dfbd",
+      "size_bytes": 175293122,
+      "source_path": "참고레퍼런스/2026-07-21 20-31-25.mp4",
+      "status": "transcribed",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "GCP Infrastructure",
+        "AP2/x402 Payment Protocols",
+        "Google ADK"
+      ],
+      "duplicate_of": null,
+      "enrichment": {
+        "adapter": "pymupdf+paddleocr+opencv-qrcode",
+        "artifacts": {
+          "markdown": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md",
+          "metadata": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.metadata.json",
+          "ocr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.ocr.json",
+          "qr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.qr.json"
+        },
+        "settings_fingerprint": "9b95b4be43c06bfe",
+        "source_sha256": "4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7",
+        "status": "complete"
+      },
+      "extraction": {
+        "detail": "pages=11; extracted_characters=3238; coverage=text_layer_only; ocr=false; enrichment_sha256=4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7",
+        "method": "pypdf+pymupdf+paddleocr+opencv-qrcode"
+      },
+      "id": "ref-e6d4213a04c1",
+      "kind": "pdf",
+      "output_path": ".harness/wiki/raw_references/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md",
+      "relative_path": "Google X Solana AI Agentic Hackathon Intro Deck (1).pdf",
+      "sha256": "4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7",
+      "size_bytes": 5177573,
+      "source_path": "참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck (1).pdf",
+      "status": "enriched",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "GCP Infrastructure",
+        "AP2/x402 Payment Protocols",
+        "Google ADK"
+      ],
+      "duplicate_of": "참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck (1).pdf",
+      "enrichment": {
+        "adapter": "pymupdf+paddleocr+opencv-qrcode",
+        "artifacts": {
+          "markdown": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.md",
+          "metadata": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.metadata.json",
+          "ocr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.ocr.json",
+          "qr_json": ".harness/enrichment/pdfs/google-x-solana-ai-agentic-hackathon-intro-deck-1-e6d4213a04.qr.json"
+        },
+        "settings_fingerprint": "9b95b4be43c06bfe",
+        "source_sha256": "4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7",
+        "status": "complete"
+      },
+      "extraction": {
+        "detail": "canonical_source=참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck (1).pdf",
+        "method": "sha256_duplicate"
+      },
+      "id": "ref-27c7a978bb24",
+      "kind": "pdf",
+      "output_path": ".harness/wiki/raw_references/google-x-solana-ai-agentic-hackathon-intro-deck-27c7a978bb.md",
+      "relative_path": "Google X Solana AI Agentic Hackathon Intro Deck.pdf",
+      "sha256": "4a191c412a4162a1f01a2d19f225ce1a54675aaede4305762555bb4d98ff71e7",
+      "size_bytes": 5177573,
+      "source_path": "참고레퍼런스/Google X Solana AI Agentic Hackathon Intro Deck.pdf",
+      "status": "duplicate",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "GCP Infrastructure",
+        "AP2/x402 Payment Protocols"
+      ],
+      "duplicate_of": null,
+      "enrichment": {
+        "adapter": "pymupdf+paddleocr+opencv-qrcode",
+        "artifacts": {
+          "markdown": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.md",
+          "metadata": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.metadata.json",
+          "ocr_json": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.ocr.json",
+          "qr_json": ".harness/enrichment/pdfs/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.qr.json"
+        },
+        "settings_fingerprint": "9b95b4be43c06bfe",
+        "source_sha256": "544daa9b0d76a346125b3d76bc90f37454ea7c80cae84605133f0826feba6503",
+        "status": "complete"
+      },
+      "extraction": {
+        "detail": "pages=18; extracted_characters=8312; coverage=text_layer_only; ocr=false; enrichment_sha256=544daa9b0d76a346125b3d76bc90f37454ea7c80cae84605133f0826feba6503",
+        "method": "pypdf+pymupdf+paddleocr+opencv-qrcode"
+      },
+      "id": "ref-9037e55496a6",
+      "kind": "pdf",
+      "output_path": ".harness/wiki/raw_references/kickoff-tech-session-솔라나-why-solana-for-agentic-commerce-9037e55496.md",
+      "relative_path": "Kickoff & Tech Session - 솔라나 - Why Solana for Agentic Commerce.pdf",
+      "sha256": "544daa9b0d76a346125b3d76bc90f37454ea7c80cae84605133f0826feba6503",
+      "size_bytes": 2184582,
+      "source_path": "참고레퍼런스/Kickoff & Tech Session - 솔라나 - Why Solana for Agentic Commerce.pdf",
+      "status": "enriched",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "GCP Infrastructure",
+        "AP2/x402 Payment Protocols",
+        "Google ADK"
+      ],
+      "duplicate_of": null,
+      "enrichment": {
+        "adapter": "pymupdf+paddleocr+opencv-qrcode",
+        "artifacts": {
+          "markdown": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.md",
+          "metadata": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.metadata.json",
+          "ocr_json": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.ocr.json",
+          "qr_json": ".harness/enrichment/pdfs/the-agentic-commerce-stack-x402-mpp-c29a098ada.qr.json"
+        },
+        "settings_fingerprint": "9b95b4be43c06bfe",
+        "source_sha256": "99d0e8852e38f8a2a451fa178ee0a5c7464af31027f2b65a34a7798ddb34cbaf",
+        "status": "complete"
+      },
+      "extraction": {
+        "detail": "pages=31; extracted_characters=2414; coverage=text_layer_only; ocr=false; enrichment_sha256=99d0e8852e38f8a2a451fa178ee0a5c7464af31027f2b65a34a7798ddb34cbaf",
+        "method": "pypdf+pymupdf+paddleocr+opencv-qrcode"
+      },
+      "id": "ref-c29a098ada23",
+      "kind": "pdf",
+      "output_path": ".harness/wiki/raw_references/the-agentic-commerce-stack-x402-mpp-c29a098ada.md",
+      "relative_path": "The Agentic Commerce Stack_ x402 & mpp.pdf",
+      "sha256": "99d0e8852e38f8a2a451fa178ee0a5c7464af31027f2b65a34a7798ddb34cbaf",
+      "size_bytes": 2799770,
+      "source_path": "참고레퍼런스/The Agentic Commerce Stack_ x402 & mpp.pdf",
+      "status": "enriched",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "GCP Infrastructure",
+        "AP2/x402 Payment Protocols",
+        "Google ADK"
+      ],
+      "duplicate_of": null,
+      "enrichment": null,
+      "extraction": {
+        "detail": "encoding=utf-8-sig",
+        "method": "text"
+      },
+      "id": "ref-ff5cd18b8ea5",
+      "kind": "text",
+      "output_path": ".harness/wiki/raw_references/개발-관련-레퍼런스-sot-2-ff5cd18b8e.md",
+      "relative_path": "개발 관련 레퍼런스 SoT-2.txt",
+      "sha256": "998351f03541529bee5892d2679d505662b71a99f7355db3bf7875ebbf96f45a",
+      "size_bytes": 5271,
+      "source_path": "참고레퍼런스/개발 관련 레퍼런스 SoT-2.txt",
+      "status": "extracted",
+      "transcript_sidecar": null
+    },
+    {
+      "categories": [
+        "Solana Engine",
+        "GCP Infrastructure",
+        "AP2/x402 Payment Protocols",
+        "Google ADK"
+      ],
+      "duplicate_of": null,
+      "enrichment": null,
+      "extraction": {
+        "detail": "encoding=utf-8-sig",
+        "method": "text"
+      },
+      "id": "ref-95ab2151bdd8",
+      "kind": "text",
+      "output_path": ".harness/wiki/raw_references/개발-관련-레퍼런스-sot-95ab2151bd.md",
+      "relative_path": "개발 관련 레퍼런스 SoT.txt",
+      "sha256": "42e1ba7918bf93f684b4b681962484ca75c5cbad8e8abdb9e28eb80055ad32b5",
+      "size_bytes": 17427,
+      "source_path": "참고레퍼런스/개발 관련 레퍼런스 SoT.txt",
+      "status": "extracted",
+      "transcript_sidecar": null
+    }
+  ],
+  "schema_version": 1,
+  "source_root": "참고레퍼런스",
+  "summary": {
+    "duplicate_sources": 1,
+    "status_counts": {
+      "duplicate": 1,
+      "enriched": 3,
+      "extracted": 2,
+      "transcribed": 3
+    },
+    "total_sources": 9
+  },
+  "wiki_root": ".harness/wiki"
+}

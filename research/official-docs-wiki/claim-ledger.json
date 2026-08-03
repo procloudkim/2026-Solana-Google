@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-07-23",
+  "verdicts": {
+    "confirmed": "Current official source states the same material meaning",
+    "partial": "Core direction is supported but scope, conditions, or exceptions are missing",
+    "conflict": "Current official source directly differs",
+    "version_drift": "The claim reflects an older or unspecified version",
+    "not_found": "Not found in the bounded current primary-source review",
+    "ocr_error": "The machine-extracted text is not a valid reproduction of the official command or term"
+  },
+  "claims": [
+    {"id":"T1-01","document":"transcript-kickoff-google","locator":"01:24-01:36","claim":"Deadline is Aug 3 23:59 and finalists are announced Aug 7","verdict":"confirmed","source_ids":["EVENT-SITE"]},
+    {"id":"T1-02","document":"transcript-kickoff-google","locator":"01:42-01:52","claim":"Demo Day is Aug 20","verdict":"conflict","source_ids":["EVENT-SITE","EVENT-LUMA"],"correction":"Demo Day is Aug 21"},
+    {"id":"T1-03","document":"transcript-kickoff-google","locator":"01:52-02:34","claim":"Submission has product introduction, GitHub repository, and demo video","verdict":"confirmed","source_ids":["EVENT-SITE"]},
+    {"id":"T1-04","document":"transcript-kickoff-google","locator":"02:31-02:44","claim":"A live deployment URL is recommended","verdict":"confirmed","source_ids":["EVENT-SITE"]},
+    {"id":"T1-05","document":"transcript-kickoff-google","locator":"03:40-03:50;08:10-08:18","claim":"Participants can use a USD 300 Google Cloud credit","verdict":"partial","source_ids":["GCP-FREE","GEMINI-BILLING"],"note":"Eligibility, 90-day limit, and Gemini API exclusion apply"},
+    {"id":"T1-06","document":"transcript-kickoff-google","locator":"08:39-08:50","claim":"A real agent payment should be shown live","verdict":"partial","source_ids":["EVENT-SITE"],"note":"Current criteria require an agent-triggered transaction/payment and auditable history"},
+
+    {"id":"T2-01","document":"transcript-solana","locator":"02:36-05:29","claim":"pay.sh sandbox payment completed","verdict":"partial","source_ids":["PAYSH-SANDBOX"],"note":"Sandbox proof is not live-network transaction proof"},
+    {"id":"T2-02","document":"transcript-solana","locator":"25:43-26:37","claim":"Solana fee is approximately 0.001 cent","verdict":"partial","source_ids":["SOLANA-FEES","SOLANA-PAY"],"note":"Fees are formula- and transaction-dependent, not a fixed USD contract"},
+    {"id":"T2-03","document":"transcript-solana","locator":"28:03-28:57","claim":"pay.sh needs no signup, account, API key, or subscription","verdict":"partial","source_ids":["PAYSH-DOCS","PAYSH-ACCOUNTS"],"note":"Provider signup may be avoided; local setup, wallet, funds, and authorization remain"},
+    {"id":"T2-04","document":"transcript-solana","locator":"29:18-30:05","claim":"pay.sh works without code changes","verdict":"partial","source_ids":["PAYSH-DOCS"],"note":"Pass-through wrapping is supported but configuration and authorization remain"},
+    {"id":"T2-05","document":"transcript-solana","locator":"32:41-34:10","claim":"Testnet targets validator/client testing while application work uses Localnet or Devnet","verdict":"confirmed","source_ids":["SOLANA-CORE"]},
+    {"id":"T2-06","document":"transcript-solana","locator":"whole document","claim":"Specific partner and market metrics are current","verdict":"not_found","source_ids":["PAYSH-DOCS","SOLANA-CORE"]},
+
+    {"id":"T3-01","document":"transcript-qa","locator":"01:12-01:17","claim":"Build week ends Mar 3","verdict":"conflict","source_ids":["EVENT-SITE"],"correction":"Submission deadline is Aug 3 23:59 KST"},
+    {"id":"T3-02","document":"transcript-qa","locator":"03:10-03:28","claim":"A custom Solana payment implementation can be used instead of pay.sh, x402, or Solana Pay","verdict":"partial","source_ids":["EVENT-SITE","SOLANA-ACCEPT"],"note":"The current event evaluates Solana payment integration but does not mandate one named rail"},
+    {"id":"T3-03","document":"transcript-qa","locator":"04:01-04:43","claim":"Existing open-source or existing projects may be extended","verdict":"not_found","source_ids":["EVENT-SITE"],"note":"Supported by the oral Q&A only, not the current public event contract"},
+    {"id":"T3-04","document":"transcript-qa","locator":"05:40-05:54;08:38-08:52","claim":"Mainnet is not required and Devnet is sufficient","verdict":"confirmed","source_ids":["EVENT-SITE","SOLANA-CORE"]},
+    {"id":"T3-05","document":"transcript-qa","locator":"00:09-00:38","claim":"Faucet allowance is 0.5 to 5 SOL per day with organizer top-ups","verdict":"not_found","source_ids":["SOLANA-CORE","EVENT-SITE"]},
+    {"id":"T3-06","document":"transcript-qa","locator":"12:36-13:36","claim":"Biometric approval prevents prompt injection","verdict":"partial","source_ids":["PAYSH-DOCS"],"note":"Local user authorization limits spending but is not a general prompt-injection guarantee"},
+
+    {"id":"P1-01","document":"intro-deck","locator":"pages 1 and 4","claim":"Demo Day is Aug 21","verdict":"confirmed","source_ids":["EVENT-SITE","EVENT-LUMA"]},
+    {"id":"P1-02","document":"intro-deck","locator":"page 5","claim":"A demo video must be no longer than three minutes","verdict":"not_found","source_ids":["EVENT-SITE"]},
+    {"id":"P1-03","document":"intro-deck","locator":"page 5","claim":"The required top-level artifacts are product introduction, GitHub, and demo video","verdict":"confirmed","source_ids":["EVENT-SITE"]},
+    {"id":"P1-04","document":"intro-deck","locator":"page 5","claim":"A full on-chain payment demonstration is only a bonus","verdict":"version_drift","source_ids":["EVENT-SITE"],"note":"Current criteria include actual transaction/payment and auditable logs"},
+    {"id":"P1-05","document":"intro-deck","locator":"page 10","claim":"A personal Gmail account is required to participate","verdict":"not_found","source_ids":["EVENT-SITE","GCP-FREE"]},
+    {"id":"P1-06","document":"intro-deck","locator":"page 10","claim":"Google Cloud USD 300 credit cannot pay for Gemini API use","verdict":"confirmed","source_ids":["GEMINI-BILLING"]},
+
+    {"id":"P2-01","document":"why-solana","locator":"page 13","claim":"pay.sh requires no signup, account, or API key","verdict":"partial","source_ids":["PAYSH-DOCS","PAYSH-ACCOUNTS"]},
+    {"id":"P2-02","document":"why-solana","locator":"page 14","claim":"The command is npx followed separately by @solana/pay","verdict":"ocr_error","source_ids":["PAYSH-INSTALL"],"correction":"npx @solana/pay"},
+    {"id":"P2-03","document":"why-solana","locator":"page 15","claim":"The install command is brew install pay.","verdict":"ocr_error","source_ids":["PAYSH-INSTALL"],"correction":"brew install pay"},
+    {"id":"P2-04","document":"why-solana","locator":"page 17","claim":"Localnet, Testnet, Devnet, and Mainnet have distinct development roles","verdict":"confirmed","source_ids":["SOLANA-CORE"]},
+    {"id":"P2-05","document":"why-solana","locator":"page 17","claim":"Mainnet is necessary for the hackathon deployment stage","verdict":"conflict","source_ids":["EVENT-SITE"],"correction":"Current event criteria accept localnet, testnet, or devnet live execution"},
+    {"id":"P2-06","document":"why-solana","locator":"pages 12-13","claim":"All displayed partner and ecosystem metrics are current","verdict":"not_found","source_ids":["SOLANA-CORE","PAYSH-DOCS"]},
+
+    {"id":"P3-01","document":"x402-mpp","locator":"page 6","claim":"A2A, commerce protocols, authorization protocols, and payment rails occupy different layers","verdict":"confirmed","source_ids":["A2A","AP2","UCP","ACP","X402-WELCOME","MPP"]},
+    {"id":"P3-02","document":"x402-mpp","locator":"page 8","claim":"pay.sh supports x402 and MPP with local wallet authorization","verdict":"confirmed","source_ids":["PAYSH-DOCS","PAYSH-SCHEMES"]},
+    {"id":"P3-03","document":"x402-mpp","locator":"page 9","claim":"Current x402 uses the X-PAYMENT header","verdict":"version_drift","source_ids":["X402-V2"],"correction":"Implement x402 v2 PAYMENT-SIGNATURE and CAIP-2 semantics"},
+    {"id":"P3-04","document":"x402-mpp","locator":"pages 10 and 12","claim":"x402 is community-first while MPP is enterprise-first","verdict":"partial","source_ids":["X402-WELCOME","MPP","STRIPE-MPP"],"note":"This is positioning, not a normative protocol capability"},
+    {"id":"P3-05","document":"x402-mpp","locator":"page 11","claim":"N x402 requests always require N on-chain transactions while MPP always requires exactly two","verdict":"partial","source_ids":["PAYSH-SCHEMES","MPP"],"note":"Depends on the selected scheme, rail, and session design"},
+    {"id":"P3-06","document":"x402-mpp","locator":"pages 15-16","claim":"A2A and MCP are complementary agent-agent and agent-tool protocols","verdict":"confirmed","source_ids":["A2A","MCP"]},
+    {"id":"P3-07","document":"x402-mpp","locator":"pages 25-30","claim":"Displayed market transaction metrics are reproducible current facts","verdict":"not_found","source_ids":[],"note":"OCR did not preserve a source dataset, query, and as-of date"}
+  ]
+}

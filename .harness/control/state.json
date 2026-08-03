@@ -1,0 +1,27 @@
+{
+  "approvals": [],
+  "blockers": [
+    "candidate_set"
+  ],
+  "candidate_evaluation": null,
+  "derived_at": "2026-07-23T23:08:29.823105+09:00",
+  "event_count": 1,
+  "gates": {
+    "G0": {
+      "name": "Knowledge",
+      "status": "passed"
+    },
+    "G1": {
+      "name": "Candidate",
+      "status": "pending"
+    }
+  },
+  "next_action": "ideate",
+  "overlay": null,
+  "pivot": null,
+  "product": null,
+  "product_contract": null,
+  "receipts": [],
+  "schema_version": 1,
+  "state": "DISCOVERY"
+}

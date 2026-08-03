@@ -1,0 +1,135 @@
+---
+harness_schema: 1
+source_path: "참고레퍼런스/개발 관련 레퍼런스 SoT-2.txt"
+sha256: "998351f03541529bee5892d2679d505662b71a99f7355db3bf7875ebbf96f45a"
+size_bytes: 5271
+kind: "text"
+status: "extracted"
+duplicate_of: null
+transcript_sidecar: null
+enrichment: null
+categories:
+  - "Solana Engine"
+  - "GCP Infrastructure"
+  - "AP2/x402 Payment Protocols"
+  - "Google ADK"
+---
+
+# 개발 관련 레퍼런스 SoT-2.txt
+
+# Solana & GCP Hackathon Announcement & Reference Guide
+
+## 1. Ideation & Planning Resources
+
+* **BlockChain Hackathon/Ideation Guide**: [Superteam Ideas](https://build.superteam.fun/ideas) - Reference ideas across various categories.
+* **Winning Decks Archive**: [All Winning Decks (Google Sheets)](https://docs.google.com/spreadsheets/d/19BzDy0DoJP3qNlK66qlmzYc8qh4H-zpf3LGialda-a0/edit?gid=0#gid=0)
+* **UX/UI Planning Reference**: [Kaia Hackathon Winning Project Figma](https://reminiscent-cello-2e0.notion.site/kaia-hack?source=copy_link) - Stablecoin hackathon winning project design reference.
+
+## 2. Presentation & Video Production
+
+* **Pitch Deck Guide**: [How to Build a Pitch Deck (Google Slides)](https://docs.google.com/presentation/d/1V9yq8B1nLpF8vPTL2buT_nlmsMwNJ_fRuyADs_k49Sg/edit?slide=id.g20e3e70ec1e_3_0#slide=id.g20e3e70ec1e_3_0)
+* **Demo Video Guide**: [How to Make a Demo Video (Loom)](https://loom.com/share/85574aed295c47cba29b2fba7b2d76da?sid=693a46b9-83a6-4529-a452-deddd2a3dd79)
+
+## 3. Solana Development Tutorials
+
+Korean video lectures covering Solana fundamentals, smart contracts (programs), and dApp development.
+
+* **Solana Developer Bootcamp 2026 (Part 1-7)**: [YouTube Video](https://youtu.be/FcXrWxqzYvA?si=2wczWCXrZBNinjSM)
+* **Solana Developer Bootcamp 2026 (Part 8-14)**: [YouTube Video](https://www.youtube.com/watch?v=lOlZ97--XBI)
+
+## 4. Google AI Agent Frameworks & Tooling
+
+Guides and CLI tools for building and deploying Google AI Agents.
+
+### Google Agents CLI (`agents-cli`)
+
+* **Key Features**:
+1. Scaffolding agent project architecture (supports existing projects).
+2. Automated ADK code generation.
+3. Performance evaluation using custom datasets.
+4. Deployment to Cloud Run and GKE.
+5. Publishing to Gemini Enterprise.
+6. End-to-end workflow automation.
+
+
+* **Installation Command**: `uvx google-agents-cli setup`
+* **GitHub Repository**: [google/agents-cli](https://github.com/google/agents-cli)
+* **Technical Guide**: [Google Startup Technical Guide - AI Agents (Google Drive)](https://drive.google.com/drive/folders/1GhF5w1Cs7-Yw-62v7MCUE39USPqDMQdl?usp=sharing)
+
+## 5. Environment Testing & Testnet SOL Support
+
+* **Testing Environments**:
+* Test on `pay.sh` sandbox or localnet (`solana-local-validator`) first.
+* Verify real transactions on Devnet.
+
+
+* **Devnet SOL Support**:
+* Public Faucet: [Solana Faucet](https://faucet.solana.com/) (Daily limit applies).
+* Additional Devnet SOL support: 0.5 SOL to 10 SOL available upon request.
+* Process: Direct Message (DM) to operational staff (Julia Oh) and mention in the channel.
+
+
+
+---
+
+## 3. JSON 형태 (API 및 Fine-tuning 파싱용)
+
+```json
+{
+  "notice_type": "Hackathon Resource Announcement",
+  "sections": [
+    {
+      "category": "Ideation & Design",
+      "resources": [
+        {"title": "Ideation Reference", "url": "https://build.superteam.fun/ideas", "description": "Category-based blockchain project ideas"},
+        {"title": "All Winning Decks", "url": "https://docs.google.com/spreadsheets/d/19BzDy0DoJP3qNlK66qlmzYc8qh4H-zpf3LGialda-a0/edit?gid=0#gid=0", "description": "Archive of past winning hackathon decks"},
+        {"title": "Product UX/UI Reference", "url": "https://reminiscent-cello-2e0.notion.site/kaia-hack?source=copy_link", "description": "Figma reference from past stablecoin hackathon winner"}
+      ]
+    },
+    {
+      "category": "Presentation Guides",
+      "resources": [
+        {"title": "Pitch Deck Guide", "url": "https://docs.google.com/presentation/d/1V9yq8B1nLpF8vPTL2buT_nlmsMwNJ_fRuyADs_k49Sg/edit?slide=id.g20e3e70ec1e_3_0#slide=id.g20e3e70ec1e_3_0", "type": "Slide"},
+        {"title": "Demo Video Guide", "url": "https://loom.com/share/85574aed295c47cba29b2fba7b2d76da?sid=693a46b9-83a6-4529-a452-deddd2a3dd79", "type": "Video"}
+      ]
+    },
+    {
+      "category": "Solana Developer Bootcamp 2026",
+      "resources": [
+        {"title": "Bootcamp Part 1-7", "url": "https://youtu.be/FcXrWxqzYvA?si=2wczWCXrZBNinjSM", "language": "Korean"},
+        {"title": "Bootcamp Part 8-14", "url": "https://www.youtube.com/watch?v=lOlZ97--XBI", "language": "Korean"}
+      ]
+    },
+    {
+      "category": "Google AI Agent Tools",
+      "tool_name": "agents-cli",
+      "install_command": "uvx google-agents-cli setup",
+      "github_url": "https://github.com/google/agents-cli",
+      "guide_url": "https://drive.google.com/drive/folders/1GhF5w1Cs7-Yw-62v7MCUE39USPqDMQdl?usp=sharing",
+      "features": [
+        "Project scaffolding",
+        "ADK code generation",
+        "Dataset performance evaluation",
+        "Cloud Run and GKE deployment",
+        "Gemini Enterprise publishing",
+        "Workflow integration"
+      ]
+    },
+    {
+      "category": "Testing & Faucet Support",
+      "recommended_flow": ["Sandbox (pay.sh) / Localnet (solana-local-validator)", "Devnet verification"],
+      "faucet": {
+        "official_url": "https://faucet.solana.com/",
+        "support": {
+          "available": true,
+          "min_amount": 0.5,
+          "max_amount": 10.0,
+          "unit": "SOL",
+          "request_method": "DM Julia Oh and mention in main channel"
+        }
+      }
+    }
+  ]
+}
+
+```

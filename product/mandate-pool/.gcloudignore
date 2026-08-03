@@ -1,0 +1,13 @@
+# Keep Cloud Run source uploads minimal and exclude local credentials/secrets.
+node_modules
+dist
+coverage
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+.git
+.github
+test
+docs

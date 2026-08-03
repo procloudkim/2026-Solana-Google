@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "default_iterations": 1,
+  "initial_best_score": 0.0,
+  "generator": {
+    "mode": "local-template",
+    "external": {
+      "argv": [],
+      "note": "Configure argv from the currently installed agents-cli contract before selecting agents-cli mode.",
+      "timeout_seconds": 120
+    }
+  },
+  "promotion_allowlist": [
+    "src/agents/harness_research_agent.py"
+  ],
+  "hypotheses": [
+    {
+      "id": "explicit-agent-contract",
+      "title": "Make generated agent capabilities explicit",
+      "description": "Start from a dependency-free contract that distinguishes a local scaffold from verified ADK, Gemini, Solana, and payment integrations.",
+      "artifact": "src/agents/harness_research_agent.py",
+      "priority": 100,
+      "enabled": true
+    },
+    {
+      "id": "bounded-payment-adapter",
+      "title": "Bound payment protocol integration behind an adapter",
+      "description": "Represent payment work as an explicit future adapter boundary before any credentialed AP2 or x402 execution is attempted.",
+      "artifact": "src/agents/harness_research_agent.py",
+      "priority": 80,
+      "enabled": true
+    },
+    {
+      "id": "event-driven-cloud-boundary",
+      "title": "Keep cloud event handling independently testable",
+      "description": "Preserve a narrow agent contract suitable for later Cloud Run or Eventarc integration without claiming those services are live.",
+      "artifact": "src/agents/harness_research_agent.py",
+      "priority": 60,
+      "enabled": true
+    }
+  ],
+  "paths": {
+    "candidate_root": ".harness/evaluations/candidates",
+    "runs_root": ".harness/evaluations/runs",
+    "ledger": ".harness/evaluations/research_ledger.jsonl",
+    "state": ".harness/evaluations/research_state.json",
+    "lock": ".harness/evaluations/research.lock"
+  }
+}

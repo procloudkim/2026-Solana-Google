@@ -1,0 +1,2906 @@
+{
+  "schema_version": "1.0",
+  "source_generator": "02_graphify_code.py",
+  "query": "product contract implementation Python agent payment cloud event runtime receipt",
+  "query_terms": [
+    "agent",
+    "cloud",
+    "contract",
+    "event",
+    "implementation",
+    "payment",
+    "product",
+    "python",
+    "receipt",
+    "runtime"
+  ],
+  "matched_query": true,
+  "max_nodes": 64,
+  "available_node_count": 458,
+  "selected_node_count": 64,
+  "truncated": true,
+  "nodes": [
+    {
+      "id": "file:.harness/workflows/01_knowledge_extract.py",
+      "type": "python_file",
+      "label": "01_knowledge_extract.py",
+      "path": ".harness/workflows/01_knowledge_extract.py",
+      "module_candidates": [
+        "workflows.01_knowledge_extract"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:.harness/workflows/02_graphify_code.py",
+      "type": "python_file",
+      "label": "02_graphify_code.py",
+      "path": ".harness/workflows/02_graphify_code.py",
+      "module_candidates": [
+        "workflows.02_graphify_code"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:.harness/workflows/03_auto_research.py",
+      "type": "python_file",
+      "label": "03_auto_research.py",
+      "path": ".harness/workflows/03_auto_research.py",
+      "module_candidates": [
+        "workflows.03_auto_research"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:.harness/workflows/04_agent_builder.py",
+      "type": "python_file",
+      "label": "04_agent_builder.py",
+      "path": ".harness/workflows/04_agent_builder.py",
+      "module_candidates": [
+        "workflows.04_agent_builder"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:.harness/workflows/05_media_enrich.py",
+      "type": "python_file",
+      "label": "05_media_enrich.py",
+      "path": ".harness/workflows/05_media_enrich.py",
+      "module_candidates": [
+        "workflows.05_media_enrich"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:.harness/workflows/06_readiness.py",
+      "type": "python_file",
+      "label": "06_readiness.py",
+      "path": ".harness/workflows/06_readiness.py",
+      "module_candidates": [
+        "workflows.06_readiness"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:.harness/workflows/common.py",
+      "type": "python_file",
+      "label": "common.py",
+      "path": ".harness/workflows/common.py",
+      "module_candidates": [
+        "workflows.common"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:src/agents/harness_research_agent.py",
+      "type": "python_file",
+      "label": "harness_research_agent.py",
+      "path": "src/agents/harness_research_agent.py",
+      "module_candidates": [
+        "agents.harness_research_agent",
+        "src.agents.harness_research_agent"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:src/cloud/events.py",
+      "type": "python_file",
+      "label": "events.py",
+      "path": "src/cloud/events.py",
+      "module_candidates": [
+        "cloud.events",
+        "src.cloud.events"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:src/protocols/__init__.py",
+      "type": "python_file",
+      "label": "__init__.py",
+      "path": "src/protocols/__init__.py",
+      "module_candidates": [
+        "protocols",
+        "src.protocols"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:src/protocols/payment.py",
+      "type": "python_file",
+      "label": "payment.py",
+      "path": "src/protocols/payment.py",
+      "module_candidates": [
+        "protocols.payment",
+        "src.protocols.payment"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:tests/test_auto_research.py",
+      "type": "python_file",
+      "label": "test_auto_research.py",
+      "path": "tests/test_auto_research.py",
+      "module_candidates": [
+        "test_auto_research",
+        "tests.test_auto_research"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:tests/test_generated_contracts.py",
+      "type": "python_file",
+      "label": "test_generated_contracts.py",
+      "path": "tests/test_generated_contracts.py",
+      "module_candidates": [
+        "test_generated_contracts",
+        "tests.test_generated_contracts"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:tests/test_graphify_code.py",
+      "type": "python_file",
+      "label": "test_graphify_code.py",
+      "path": "tests/test_graphify_code.py",
+      "module_candidates": [
+        "test_graphify_code",
+        "tests.test_graphify_code"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:tests/test_knowledge_extract.py",
+      "type": "python_file",
+      "label": "test_knowledge_extract.py",
+      "path": "tests/test_knowledge_extract.py",
+      "module_candidates": [
+        "test_knowledge_extract",
+        "tests.test_knowledge_extract"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:tests/test_media_enrich.py",
+      "type": "python_file",
+      "label": "test_media_enrich.py",
+      "path": "tests/test_media_enrich.py",
+      "module_candidates": [
+        "test_media_enrich",
+        "tests.test_media_enrich"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "file:tests/test_readiness.py",
+      "type": "python_file",
+      "label": "test_readiness.py",
+      "path": "tests/test_readiness.py",
+      "module_candidates": [
+        "test_readiness",
+        "tests.test_readiness"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "module:__future__",
+      "type": "python_module",
+      "label": "__future__",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:argparse",
+      "type": "python_module",
+      "label": "argparse",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:collections",
+      "type": "python_module",
+      "label": "collections",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:common",
+      "type": "python_module",
+      "label": "common",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:contextlib",
+      "type": "python_module",
+      "label": "contextlib",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:dataclasses",
+      "type": "python_module",
+      "label": "dataclasses",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:datetime",
+      "type": "python_module",
+      "label": "datetime",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:html.parser",
+      "type": "python_module",
+      "label": "html.parser",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:importlib.util",
+      "type": "python_module",
+      "label": "importlib.util",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:io",
+      "type": "python_module",
+      "label": "io",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:json",
+      "type": "python_module",
+      "label": "json",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:pathlib",
+      "type": "python_module",
+      "label": "pathlib",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:payment",
+      "type": "python_module",
+      "label": "payment",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:pypdf",
+      "type": "python_module",
+      "label": "pypdf",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:re",
+      "type": "python_module",
+      "label": "re",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:src.cloud",
+      "type": "python_module",
+      "label": "src.cloud",
+      "resolution": "internal"
+    },
+    {
+      "id": "module:src.protocols",
+      "type": "python_module",
+      "label": "src.protocols",
+      "resolution": "internal"
+    },
+    {
+      "id": "module:sys",
+      "type": "python_module",
+      "label": "sys",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:tempfile",
+      "type": "python_module",
+      "label": "tempfile",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:typing",
+      "type": "python_module",
+      "label": "typing",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:unittest",
+      "type": "python_module",
+      "label": "unittest",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "type": "official_claim_ledger",
+      "label": "claim-ledger.json",
+      "path": "research/official-docs-wiki/claim-ledger.json",
+      "availability": "present",
+      "as_of": "2026-07-23",
+      "claim_count": 37
+    },
+    {
+      "id": "official-manifest:research/official-docs-wiki/manifest.json",
+      "type": "official_manifest",
+      "label": "manifest.json",
+      "path": "research/official-docs-wiki/manifest.json",
+      "availability": "present",
+      "generated_at": "2026-07-23",
+      "source_count": 26
+    },
+    {
+      "id": "readiness-state:current",
+      "type": "readiness_state",
+      "label": "Hackathon readiness",
+      "path": ".harness/control/state.json",
+      "availability": "present",
+      "state": "DISCOVERY",
+      "next_action": "ideate",
+      "blockers": [
+        "candidate_set"
+      ],
+      "derived_at": "2026-07-23T23:08:29.823105+09:00",
+      "event_count": 1
+    },
+    {
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::Extraction@98",
+      "type": "python_symbol",
+      "label": "Extraction",
+      "symbol_kind": "class",
+      "path": ".harness/workflows/01_knowledge_extract.py",
+      "qualified_name": "Extraction",
+      "line": 98
+    },
+    {
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_VisibleHTML@105",
+      "type": "python_symbol",
+      "label": "_VisibleHTML",
+      "symbol_kind": "class",
+      "path": ".harness/workflows/01_knowledge_extract.py",
+      "qualified_name": "_VisibleHTML",
+      "line": 105
+    },
+    {
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_apply_enrichment@475",
+      "type": "python_symbol",
+      "label": "_apply_enrichment",
+      "symbol_kind": "function",
+      "path": ".harness/workflows/01_knowledge_extract.py",
+      "qualified_name": "_apply_enrichment",
+      "line": 475
+    },
+    {
+      "id": "symbol:.harness/workflows/01_knowledge_extract.py::_classify@525",
+      "type": "python_symbol",
+      "label": "_classify",
+      "symbol_kind": "function",
+      "path": ".harness/workflows/01_knowledge_extract.py",
+      "qualified_name": "_classify",
+      "line": 525
+    },
+    {
+      "id": "symbol:tests/test_generated_contracts.py::CloudEventContractTests.test_dispatch_is_planned_without_invocation@45",
+      "type": "python_symbol",
+      "label": "CloudEventContractTests.test_dispatch_is_planned_without_invocation",
+      "symbol_kind": "function",
+      "path": "tests/test_generated_contracts.py",
+      "qualified_name": "CloudEventContractTests.test_dispatch_is_planned_without_invocation",
+      "line": 45
+    },
+    {
+      "id": "symbol:tests/test_generated_contracts.py::CloudEventContractTests.test_invalid_specversion_is_rejected@76",
+      "type": "python_symbol",
+      "label": "CloudEventContractTests.test_invalid_specversion_is_rejected",
+      "symbol_kind": "function",
+      "path": "tests/test_generated_contracts.py",
+      "qualified_name": "CloudEventContractTests.test_invalid_specversion_is_rejected",
+      "line": 76
+    },
+    {
+      "id": "symbol:tests/test_generated_contracts.py::CloudEventContractTests.test_unmatched_event_has_no_handler@63",
+      "type": "python_symbol",
+      "label": "CloudEventContractTests.test_unmatched_event_has_no_handler",
+      "symbol_kind": "function",
+      "path": "tests/test_generated_contracts.py",
+      "qualified_name": "CloudEventContractTests.test_unmatched_event_has_no_handler",
+      "line": 63
+    },
+    {
+      "id": "symbol:tests/test_generated_contracts.py::CloudEventContractTests@44",
+      "type": "python_symbol",
+      "label": "CloudEventContractTests",
+      "symbol_kind": "class",
+      "path": "tests/test_generated_contracts.py",
+      "qualified_name": "CloudEventContractTests",
+      "line": 44
+    },
+    {
+      "id": "symbol:tests/test_generated_contracts.py::PaymentContractTests@10",
+      "type": "python_symbol",
+      "label": "PaymentContractTests",
+      "symbol_kind": "class",
+      "path": "tests/test_generated_contracts.py",
+      "qualified_name": "PaymentContractTests",
+      "line": 10
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.make_workspace@283",
+      "type": "python_symbol",
+      "label": "ReadinessTests.make_workspace",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.make_workspace",
+      "line": 283
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_candidate_scoring_blocks_ambiguous_result@158",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_candidate_scoring_blocks_ambiguous_result",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_candidate_scoring_blocks_ambiguous_result",
+      "line": 158
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_candidate_scoring_locks_clear_winner@117",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_candidate_scoring_locks_clear_winner",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_candidate_scoring_locks_clear_winner",
+      "line": 117
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@344",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_duplicate_receipt_id_is_rejected",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_duplicate_receipt_id_is_rejected",
+      "line": 344
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_prepare_builds_state_and_operational_wiki@320",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_prepare_builds_state_and_operational_wiki",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_prepare_builds_state_and_operational_wiki",
+      "line": 320
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_receipt_rejects_secret_material@197",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_receipt_rejects_secret_material",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_receipt_rejects_secret_material",
+      "line": 197
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_replay_flags_pivot_after_deadline_without_runtime_proof@265",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_replay_flags_pivot_after_deadline_without_runtime_proof",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_replay_flags_pivot_after_deadline_without_runtime_proof",
+      "line": 265
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_replay_requires_runtime_receipts_instead_of_sandbox@211",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_replay_requires_runtime_receipts_instead_of_sandbox",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_replay_requires_runtime_receipts_instead_of_sandbox",
+      "line": 211
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_runtime_receipt_requires_approval_reference@204",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_runtime_receipt_requires_approval_reference",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_runtime_receipt_requires_approval_reference",
+      "line": 204
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@368",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_status_command_is_read_only",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_status_command_is_read_only",
+      "line": 368
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@405",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation",
+      "line": 405
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@390",
+      "type": "python_symbol",
+      "label": "ReadinessTests.test_submission_pack_refuses_before_hardening",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests.test_submission_pack_refuses_before_hardening",
+      "line": 390
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "type": "python_symbol",
+      "label": "ReadinessTests",
+      "symbol_kind": "class",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests",
+      "line": 116
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::approval@101",
+      "type": "python_symbol",
+      "label": "approval",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "approval",
+      "line": 101
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:38544d7888646633",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::Extraction@98",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 98
+        }
+      ]
+    },
+    {
+      "id": "edge:aa616b0dffa834e6",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_VisibleHTML@105",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 105
+        }
+      ]
+    },
+    {
+      "id": "edge:38cd033fdeb0ddfa",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_apply_enrichment@475",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 475
+        }
+      ]
+    },
+    {
+      "id": "edge:6909c52567175089",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "symbol:.harness/workflows/01_knowledge_extract.py::_classify@525",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 525
+        }
+      ]
+    },
+    {
+      "id": "edge:83a09064208e8381",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 9,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e090cf650c87da8c",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:argparse",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 11,
+          "names": [
+            "argparse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:0d073fb27792b2fa",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:collections",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 15,
+          "names": [
+            "Counter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:87a225aa5833eb69",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:common",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 21,
+          "names": [
+            "atomic_write_json",
+            "atomic_write_text",
+            "ensure_within",
+            "path_for_display",
+            "sha256_file",
+            "slugify",
+            "stable_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:a4a68c79da22ad5c",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:dataclasses",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 16,
+          "names": [
+            "dataclass"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:dae1ec901324e2a1",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:html.parser",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 17,
+          "names": [
+            "HTMLParser"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:85a4a33247ce8204",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 12,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:9adf7ceb711ae4c3",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 18,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:915367ae7a740c14",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:pypdf",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 198,
+          "names": [
+            "PdfReader"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e2a3260470ea10b0",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:re",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 13,
+          "names": [
+            "re"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:17f87ae13113db88",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 14,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:45975c1a9b3cd45c",
+      "source": "file:.harness/workflows/01_knowledge_extract.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/01_knowledge_extract.py",
+          "line": 19,
+          "names": [
+            "Any",
+            "Iterable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:8a3122e758d047dc",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 17,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:21ac2aa6527630f2",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:argparse",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 19,
+          "names": [
+            "argparse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e4b29d16ecc8cf60",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:collections",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 27,
+          "names": [
+            "Counter",
+            "defaultdict",
+            "deque"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:7a078a666c3c2d79",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 22,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:52c0a24c96240d84",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 28,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:229f7bd54927c2e8",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:re",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 24,
+          "names": [
+            "re"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:f0db5e6480ae442c",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 25,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:ab7ae0ae51e20384",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 26,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:a3bb45028bde256f",
+      "source": "file:.harness/workflows/02_graphify_code.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/02_graphify_code.py",
+          "line": 29,
+          "names": [
+            "Any",
+            "Iterable",
+            "Mapping",
+            "Sequence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:dff70f4fdf6011df",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 10,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:9b040d860452fff0",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:argparse",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 12,
+          "names": [
+            "argparse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:5c9fca12f4b93e5a",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:contextlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 13,
+          "names": [
+            "contextmanager"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:99400a9e89d63bd6",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:dataclasses",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 14,
+          "names": [
+            "asdict",
+            "dataclass"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:ac524cce3e876db5",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:datetime",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 15,
+          "names": [
+            "datetime",
+            "timezone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e49448bf0bb8e9dd",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:importlib.util",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 17,
+          "names": [
+            "importlib.util"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:26b89b1fb9442505",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 18,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:c50c60cf6868fb4d",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 20,
+          "names": [
+            "Path",
+            "PurePosixPath"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:11b2b186b3ce66fd",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 23,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:0cf9d4549a6df19e",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 24,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:8d1503e5caa2571b",
+      "source": "file:.harness/workflows/03_auto_research.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/03_auto_research.py",
+          "line": 27,
+          "names": [
+            "Any",
+            "Iterable",
+            "Iterator",
+            "Mapping",
+            "Sequence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:958a2bf0f292a96b",
+      "source": "file:.harness/workflows/04_agent_builder.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/04_agent_builder.py",
+          "line": 10,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e39c98cd76da5df1",
+      "source": "file:.harness/workflows/04_agent_builder.py",
+      "target": "module:argparse",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/04_agent_builder.py",
+          "line": 12,
+          "names": [
+            "argparse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:b67c2c8354d21903",
+      "source": "file:.harness/workflows/04_agent_builder.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/04_agent_builder.py",
+          "line": 13,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:b08e859bd7045e49",
+      "source": "file:.harness/workflows/04_agent_builder.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/04_agent_builder.py",
+          "line": 15,
+          "names": [
+            "Path",
+            "PurePosixPath"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:19951f83b64b9b32",
+      "source": "file:.harness/workflows/04_agent_builder.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/04_agent_builder.py",
+          "line": 17,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:aee96d26459a4dd0",
+      "source": "file:.harness/workflows/04_agent_builder.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/04_agent_builder.py",
+          "line": 18,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:6778fe044bc8286c",
+      "source": "file:.harness/workflows/04_agent_builder.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/04_agent_builder.py",
+          "line": 20,
+          "names": [
+            "Any",
+            "Mapping",
+            "Sequence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:f7d894586d630afd",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 10,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:49d22c29891b2809",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:argparse",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 12,
+          "names": [
+            "argparse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:f8ea5602ef7bd941",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:common",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 21,
+          "names": [
+            "atomic_write_json",
+            "atomic_write_text",
+            "ensure_within",
+            "path_for_display",
+            "sha256_file",
+            "slugify",
+            "stable_id"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:abe22edf01697790",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:dataclasses",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 16,
+          "names": [
+            "dataclass"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:53a8f4408d59d4da",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 13,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:ca4ffbc854908749",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 17,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:a5973a4e49181cab",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 15,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:8438eac7aec40b65",
+      "source": "file:.harness/workflows/05_media_enrich.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/05_media_enrich.py",
+          "line": 19,
+          "names": [
+            "Any",
+            "Iterable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:bcc79a86144be6db",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 11,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:eef265f541f9366e",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:argparse",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 13,
+          "names": [
+            "argparse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:d0d0c23cd34e08fc",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:common",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 31,
+          "names": [
+            "atomic_write_json",
+            "atomic_write_text",
+            "ensure_within"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:4d6fd1c64db08e2a",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:contextlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 14,
+          "names": [
+            "contextmanager"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:d5078cd3675fc211",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:datetime",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 15,
+          "names": [
+            "datetime",
+            "timedelta",
+            "timezone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:c9420e1add4837d0",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 17,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:0d4af56f79d7229d",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 19,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:56d6cdaf20af343a",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:re",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 20,
+          "names": [
+            "re"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:7183122a16e089ba",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 21,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:6a3b10b10c00ff7a",
+      "source": "file:.harness/workflows/06_readiness.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/06_readiness.py",
+          "line": 22,
+          "names": [
+            "Any",
+            "Iterable",
+            "Iterator",
+            "Mapping",
+            "Sequence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:381a6e03ed4e43f1",
+      "source": "file:.harness/workflows/common.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/common.py",
+          "line": 3,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:1a6aef6a387f54fa",
+      "source": "file:.harness/workflows/common.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/common.py",
+          "line": 6,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:88c07bbd1458ab8a",
+      "source": "file:.harness/workflows/common.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/common.py",
+          "line": 10,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:1b09c58336376747",
+      "source": "file:.harness/workflows/common.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/common.py",
+          "line": 8,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:4760357a1ce2b8fc",
+      "source": "file:.harness/workflows/common.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": ".harness/workflows/common.py",
+          "line": 11,
+          "names": [
+            "Any"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:15945a9a36e2f534",
+      "source": "file:src/agents/harness_research_agent.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/agents/harness_research_agent.py",
+          "line": 8,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:bb0fa941bf7137d8",
+      "source": "file:src/agents/harness_research_agent.py",
+      "target": "module:argparse",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/agents/harness_research_agent.py",
+          "line": 10,
+          "names": [
+            "argparse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:ba8ee90fda571ef6",
+      "source": "file:src/agents/harness_research_agent.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/agents/harness_research_agent.py",
+          "line": 11,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:46a4c8ebc96b2172",
+      "source": "file:src/agents/harness_research_agent.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/agents/harness_research_agent.py",
+          "line": 12,
+          "names": [
+            "Any"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:de9a126b9aa08646",
+      "source": "file:src/cloud/events.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/cloud/events.py",
+          "line": 3,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e29525bd33d7e858",
+      "source": "file:src/cloud/events.py",
+      "target": "module:dataclasses",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/cloud/events.py",
+          "line": 5,
+          "names": [
+            "dataclass",
+            "field"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:80d8979d261a5e74",
+      "source": "file:src/cloud/events.py",
+      "target": "module:typing",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/cloud/events.py",
+          "line": 6,
+          "names": [
+            "Mapping"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:34a990df0fc90b81",
+      "source": "file:src/protocols/__init__.py",
+      "target": "module:payment",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/protocols/__init__.py",
+          "line": 3,
+          "names": [
+            "PaymentIntent",
+            "PaymentProtocol",
+            "create_payment_intent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:b2c2d3cfba9b4b1f",
+      "source": "file:src/protocols/payment.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/protocols/payment.py",
+          "line": 8,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:cb32fb15db5c1d07",
+      "source": "file:src/protocols/payment.py",
+      "target": "module:dataclasses",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "src/protocols/payment.py",
+          "line": 10,
+          "names": [
+            "dataclass"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:88b6c7d5fd41f3a4",
+      "source": "file:tests/test_auto_research.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 1,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:626ced8f3b4bf6db",
+      "source": "file:tests/test_auto_research.py",
+      "target": "module:importlib.util",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 3,
+          "names": [
+            "importlib.util"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:f6a0b9ba87f84beb",
+      "source": "file:tests/test_auto_research.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 4,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:61311fc38a6eea9e",
+      "source": "file:tests/test_auto_research.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 5,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:7fa31aab313946ac",
+      "source": "file:tests/test_auto_research.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 7,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:c56cb54b1d39ee8f",
+      "source": "file:tests/test_auto_research.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 8,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:c245cadfd80c3fe5",
+      "source": "file:tests/test_auto_research.py",
+      "target": "module:unittest",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 10,
+          "names": [
+            "mock"
+          ]
+        },
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_auto_research.py",
+          "line": 9,
+          "names": [
+            "unittest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:0031018e7000f83a",
+      "source": "file:tests/test_generated_contracts.py",
+      "target": "symbol:tests/test_generated_contracts.py::CloudEventContractTests@44",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_generated_contracts.py",
+          "line": 44
+        }
+      ]
+    },
+    {
+      "id": "edge:5dc89c208f57b6a2",
+      "source": "file:tests/test_generated_contracts.py",
+      "target": "symbol:tests/test_generated_contracts.py::PaymentContractTests@10",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_generated_contracts.py",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "id": "edge:f13afecd334e2880",
+      "source": "file:tests/test_generated_contracts.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_generated_contracts.py",
+          "line": 1,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:ee2aa33bb221fe5f",
+      "source": "file:tests/test_generated_contracts.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_generated_contracts.py",
+          "line": 3,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:467d1e0c9b84a9eb",
+      "source": "file:tests/test_generated_contracts.py",
+      "target": "module:src.cloud",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_generated_contracts.py",
+          "line": 6,
+          "names": [
+            "CloudEvent",
+            "plan_event_dispatch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:516f9dbf761fe49b",
+      "source": "file:tests/test_generated_contracts.py",
+      "target": "module:src.protocols",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_generated_contracts.py",
+          "line": 7,
+          "names": [
+            "PaymentProtocol",
+            "create_payment_intent"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:d35f40d1df174ff7",
+      "source": "file:tests/test_generated_contracts.py",
+      "target": "module:unittest",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_generated_contracts.py",
+          "line": 4,
+          "names": [
+            "unittest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:3805d55395c7c383",
+      "source": "file:tests/test_graphify_code.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_graphify_code.py",
+          "line": 1,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:d64c1d7ecab1438a",
+      "source": "file:tests/test_graphify_code.py",
+      "target": "module:importlib.util",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_graphify_code.py",
+          "line": 3,
+          "names": [
+            "importlib.util"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:00d2be0306b84279",
+      "source": "file:tests/test_graphify_code.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_graphify_code.py",
+          "line": 4,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:74e502f50c55d2da",
+      "source": "file:tests/test_graphify_code.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_graphify_code.py",
+          "line": 7,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:861e8e110dee2638",
+      "source": "file:tests/test_graphify_code.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_graphify_code.py",
+          "line": 5,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:9303707266434ddd",
+      "source": "file:tests/test_graphify_code.py",
+      "target": "module:unittest",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_graphify_code.py",
+          "line": 6,
+          "names": [
+            "unittest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:1276198d0bfb7b3b",
+      "source": "file:tests/test_knowledge_extract.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 1,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:ae562517610f94ad",
+      "source": "file:tests/test_knowledge_extract.py",
+      "target": "module:importlib.util",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 3,
+          "names": [
+            "importlib.util"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:4ed563fdd0e84696",
+      "source": "file:tests/test_knowledge_extract.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 4,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:5dc1b2046290110c",
+      "source": "file:tests/test_knowledge_extract.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 5,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:c98d3753b885c626",
+      "source": "file:tests/test_knowledge_extract.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 6,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:b1ef79f831e3e2d1",
+      "source": "file:tests/test_knowledge_extract.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 7,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:989bbc5237fb71b9",
+      "source": "file:tests/test_knowledge_extract.py",
+      "target": "module:unittest",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 8,
+          "names": [
+            "unittest"
+          ]
+        },
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_knowledge_extract.py",
+          "line": 9,
+          "names": [
+            "mock"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:804ec483765425c1",
+      "source": "file:tests/test_media_enrich.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_media_enrich.py",
+          "line": 1,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:76ac9ba717516ccb",
+      "source": "file:tests/test_media_enrich.py",
+      "target": "module:importlib.util",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_media_enrich.py",
+          "line": 3,
+          "names": [
+            "importlib.util"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:556ecc86486dcdc9",
+      "source": "file:tests/test_media_enrich.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_media_enrich.py",
+          "line": 4,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:2fdb18ccde59acdb",
+      "source": "file:tests/test_media_enrich.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_media_enrich.py",
+          "line": 5,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:0710d12108988cf1",
+      "source": "file:tests/test_media_enrich.py",
+      "target": "module:sys",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_media_enrich.py",
+          "line": 6,
+          "names": [
+            "sys"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:f1f671e64f50d86d",
+      "source": "file:tests/test_media_enrich.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_media_enrich.py",
+          "line": 7,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:fd75cbbafe3fd1d2",
+      "source": "file:tests/test_media_enrich.py",
+      "target": "module:unittest",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_media_enrich.py",
+          "line": 8,
+          "names": [
+            "unittest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:14149d99e31ecb59",
+      "source": "file:tests/test_readiness.py",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 116
+        }
+      ]
+    },
+    {
+      "id": "edge:afbb185031118cbe",
+      "source": "file:tests/test_readiness.py",
+      "target": "symbol:tests/test_readiness.py::approval@101",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 101
+        }
+      ]
+    },
+    {
+      "id": "edge:4620c9c6c566189b",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 1,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e3258526bdac5361",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:contextlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 8,
+          "names": [
+            "redirect_stdout"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:9c833e9a4cd7bf40",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:datetime",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 9,
+          "names": [
+            "datetime",
+            "timezone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:769476b8c2a64ee1",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:importlib.util",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 3,
+          "names": [
+            "importlib.util"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:6b5914627f271d8a",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:io",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 4,
+          "names": [
+            "io"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:7bf2a37ff6d6fed8",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 5,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:79755dc1e5172bfc",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 10,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e53bc203338fe440",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 6,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:2c3088fa3dc55892",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:unittest",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 7,
+          "names": [
+            "unittest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:741241828a09e29d",
+      "source": "module:src.protocols",
+      "target": "file:src/protocols/__init__.py",
+      "relationship": "resolves_to",
+      "status": "derived",
+      "evidence": [
+        {
+          "kind": "repository_module_resolution",
+          "module": "src.protocols",
+          "path": "src/protocols/__init__.py"
+        }
+      ]
+    },
+    {
+      "id": "edge:320d5872d26c67c4",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "relationship": "governs",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_research_manifest",
+          "path": "research/official-docs-wiki/manifest.json"
+        }
+      ]
+    },
+    {
+      "id": "edge:1f7d920a934a5d72",
+      "source": "symbol:tests/test_generated_contracts.py::CloudEventContractTests@44",
+      "target": "symbol:tests/test_generated_contracts.py::CloudEventContractTests.test_dispatch_is_planned_without_invocation@45",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_generated_contracts.py",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "id": "edge:9f488b26df789a24",
+      "source": "symbol:tests/test_generated_contracts.py::CloudEventContractTests@44",
+      "target": "symbol:tests/test_generated_contracts.py::CloudEventContractTests.test_invalid_specversion_is_rejected@76",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_generated_contracts.py",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "id": "edge:c747fe561f388749",
+      "source": "symbol:tests/test_generated_contracts.py::CloudEventContractTests@44",
+      "target": "symbol:tests/test_generated_contracts.py::CloudEventContractTests.test_unmatched_event_has_no_handler@63",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_generated_contracts.py",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "id": "edge:045f01722992be4f",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.make_workspace@283",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 283
+        }
+      ]
+    },
+    {
+      "id": "edge:573efad096bd9a4b",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_candidate_scoring_blocks_ambiguous_result@158",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 158
+        }
+      ]
+    },
+    {
+      "id": "edge:55ca96100b7c9147",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_candidate_scoring_locks_clear_winner@117",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 117
+        }
+      ]
+    },
+    {
+      "id": "edge:499627a46e867575",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_duplicate_receipt_id_is_rejected@344",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 344
+        }
+      ]
+    },
+    {
+      "id": "edge:92444cea2aec7c68",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_prepare_builds_state_and_operational_wiki@320",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 320
+        }
+      ]
+    },
+    {
+      "id": "edge:bbbaf9276a5b871e",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_receipt_rejects_secret_material@197",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 197
+        }
+      ]
+    },
+    {
+      "id": "edge:657973a4c20a5037",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_replay_flags_pivot_after_deadline_without_runtime_proof@265",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 265
+        }
+      ]
+    },
+    {
+      "id": "edge:62756ba392228b15",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_replay_requires_runtime_receipts_instead_of_sandbox@211",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 211
+        }
+      ]
+    },
+    {
+      "id": "edge:246258b2c9a3b3f8",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_runtime_receipt_requires_approval_reference@204",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 204
+        }
+      ]
+    },
+    {
+      "id": "edge:736cdb95ef3c2735",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_status_command_is_read_only@368",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 368
+        }
+      ]
+    },
+    {
+      "id": "edge:2f9d06e2d3934369",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_is_generated_but_does_not_fake_validation@405",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 405
+        }
+      ]
+    },
+    {
+      "id": "edge:d18547911efa61d3",
+      "source": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests.test_submission_pack_refuses_before_hardening@390",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 390
+        }
+      ]
+    }
+  ],
+  "role": "implementation",
+  "pinned_node_ids": [
+    "official-claims:research/official-docs-wiki/claim-ledger.json",
+    "official-manifest:research/official-docs-wiki/manifest.json",
+    "readiness-state:current"
+  ]
+}

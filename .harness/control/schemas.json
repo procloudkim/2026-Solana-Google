@@ -1,0 +1,82 @@
+{
+  "approval": {
+    "required": [
+      "approval_id",
+      "actions",
+      "scope",
+      "approved_by",
+      "approved_at"
+    ],
+    "secrets_allowed": false
+  },
+  "candidate": {
+    "required": [
+      "id",
+      "title",
+      "primary_track",
+      "persona",
+      "problem",
+      "agent_decision",
+      "paid_action",
+      "solana_transaction",
+      "gcp_audit_path",
+      "scores"
+    ],
+    "score_fields": [
+      "official_fit",
+      "payment_proof",
+      "solo_feasibility",
+      "user_value",
+      "demo_clarity",
+      "cost_risk"
+    ],
+    "score_range": [
+      0,
+      100
+    ]
+  },
+  "evidence_receipt": {
+    "required": [
+      "receipt_id",
+      "gate_id",
+      "kind",
+      "environment",
+      "timestamp",
+      "result",
+      "artifact_hashes",
+      "external_refs",
+      "verifier",
+      "redactions"
+    ],
+    "result_values": [
+      "pass",
+      "fail",
+      "blocked"
+    ],
+    "runtime_kinds_require_external_refs": [
+      "approval_id"
+    ],
+    "secrets_allowed": false
+  },
+  "product_contract": {
+    "required": [
+      "id",
+      "candidate_id",
+      "title",
+      "persona",
+      "problem",
+      "primary_track",
+      "agent_decision",
+      "spending_policy",
+      "payment_protocol",
+      "network",
+      "gcp_path",
+      "happy_path",
+      "failure_paths",
+      "acceptance_receipts",
+      "excluded_features",
+      "submission_narrative"
+    ]
+  },
+  "schema_version": 1
+}

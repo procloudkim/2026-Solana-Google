@@ -1,0 +1,9 @@
+# Validated on Windows with the repository-local Python 3.12 environment.
+# These pins avoid Windows DLL/oneDNN regressions observed in newer wheels.
+faster-whisper==1.2.1
+av==16.0.1
+ctranslate2==4.6.0
+setuptools==80.9.0
+paddlepaddle==3.3.1
+paddleocr==3.7.0
+PyMuPDF==1.28.0

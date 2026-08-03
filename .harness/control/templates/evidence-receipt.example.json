@@ -1,0 +1,16 @@
+{
+  "artifact_hashes": {
+    "path/to/redacted-artifact.json": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "environment": "local",
+  "external_refs": {
+    "opaque_reference": "non-secret-value"
+  },
+  "gate_id": "G3",
+  "kind": "local_agent_test",
+  "receipt_id": "receipt-unique-id",
+  "redactions": [],
+  "result": "pass",
+  "timestamp": "2026-07-23T12:00:00+09:00",
+  "verifier": "named test or independent reviewer"
+}

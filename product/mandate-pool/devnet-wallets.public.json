@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-08-03T19:04:19+09:00",
+  "network": "solana-devnet-only",
+  "rpc": "https://api.devnet.solana.com",
+  "usdcMint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+  "wallets": {
+    "sponsor": {
+      "address": "2X68YFE7Q3hfgBgmascc8RD4BZKyRpMYqEKnWonijTz5",
+      "secretResource": "mandate-pool-fee-sponsor",
+      "runtimeAccessRequired": true
+    },
+    "buyerA": {
+      "address": "JALfr8bHAMYtQwkpiZgMnrKbnEebDb314GP8kJipTDGF",
+      "usdcAta": "7EQmXHZbgDvib1ETZqPr4zipGvwDGMTxnPKpoGdTteMY",
+      "secretResource": "mandate-pool-buyer-a",
+      "runtimeAccessRequired": true
+    },
+    "buyerB": {
+      "address": "G1TkMqd46vDZu7ihniXy8DRtmJp143PsunNUy6fZAPM7",
+      "usdcAta": "7vQVj92mQ3u1w3jEUTb9YsEAX1Ct3Qz3AmMq6xGPkc33",
+      "secretResource": "mandate-pool-buyer-b",
+      "runtimeAccessRequired": true
+    },
+    "buyerC": {
+      "address": "FDgsdSgXQbWSgL3MeB99zVzZWQcMqtYgbbjjubTRbM3R",
+      "usdcAta": "Fzqkcx731vFpDPHXW9wrqkYRqfRMcWokjAMWCmToesVE",
+      "secretResource": "mandate-pool-buyer-c",
+      "runtimeAccessRequired": true
+    },
+    "merchant": {
+      "address": "9CiapLgCdeYhsxDCcxcAGp9q4PcyfmrzfuaQBj2pTj7p",
+      "usdcAta": "5UeNvj4JGQrB4fDmJgZ9q9yMgary6Kom8yDwSbs1XgKN",
+      "secretResource": "mandate-pool-merchant",
+      "runtimeAccessRequired": false
+    }
+  }
+}

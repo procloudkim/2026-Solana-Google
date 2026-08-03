@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="세 AI 구매자가 각자의 승인 조건 교집합 안에서 하나의 Solana 결제로 공동 구매하는 Mandate Pool 데모">
+    <title>Mandate Pool · Agentic Commerce on Solana</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Mandate Pool 홈">
+        <span class="brand-mark">MP</span>
+        <span>MANDATE POOL</span>
+      </a>
+      <div id="runtime-pill" class="network-pill"><span class="pulse"></span> Runtime 확인 중</div>
+    </header>
+
+    <div id="runtime-banner" class="runtime-banner runtime-unknown" role="status" aria-live="polite">
+      RUNTIME UNKNOWN · 결제 증거로 사용하지 마세요
+    </div>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">AGENTIC COMMERCE · ATOMIC SETTLEMENT</p>
+          <h1>세 명의 조건이 만나는 순간,<br><em>한 번에 결제됩니다.</em></h1>
+          <p class="hero-copy">AI는 제안하고, 코드는 검증하고, 사람은 승인합니다. Live 모드에서는 구매자 A·B·C의 USDC 전송이 하나의 Solana 트랜잭션으로 모두 성공하거나 모두 취소됩니다.</p>
+        </div>
+        <div class="integrity-card">
+          <span>INTEGRITY PROMISE</span>
+          <strong>Live contract · 3 transfers · 1 transaction</strong>
+          <p>LLM에는 지갑·서명·RPC 도구가 제공되지 않습니다.</p>
+        </div>
+      </section>
+
+      <section class="flow-strip" aria-label="결제 흐름">
+        <div class="flow-step active"><b>01</b><span>조건 입력</span></div>
+        <i></i>
+        <div class="flow-step"><b>02</b><span>개별 승인</span></div>
+        <i></i>
+        <div class="flow-step"><b>03</b><span>정책 검증</span></div>
+        <i></i>
+        <div class="flow-step"><b>04</b><span id="payment-step-label">결제 검증</span></div>
+        <i></i>
+        <div class="flow-step"><b>05</b><span>이용권 발급</span></div>
+      </section>
+
+      <section class="workspace">
+        <aside class="control-panel panel">
+          <div class="section-heading">
+            <div><span class="section-no">01</span><h2>데모 제어</h2></div>
+            <span class="badge badge-neutral">OPERATOR</span>
+          </div>
+          <label class="field">
+            <span>데모 운영 키</span>
+            <input id="demo-key" type="password" autocomplete="off" placeholder="16자 이상 · 저장되지 않음">
+          </label>
+          <p class="field-note">키는 소스나 브라우저 저장소에 기록되지 않고 요청 헤더에만 사용됩니다. v0는 한 명의 데모 운영자가 A/B/C를 순차 확인하며, buyer별 지갑 승인 증명은 아닙니다.</p>
+
+          <div class="scenario-list">
+            <button class="scenario selected" data-scenario="happy" type="button">
+              <span class="scenario-icon good">✓</span>
+              <span><strong>정상 결제</strong><small>각 3 USDC · 모든 조건 통과</small></span>
+            </button>
+            <button class="scenario" data-scenario="cap-low" type="button">
+              <span class="scenario-icon stop">×</span>
+              <span><strong>한도 초과 거부</strong><small>B 한도 2.5 · RPC 호출 없음</small></span>
+            </button>
+          </div>
+
+          <button id="create-order" class="primary-button" type="button">새 주문 만들기 <span>→</span></button>
+          <button id="run-order" class="secondary-button" type="button" disabled>검증 및 결제 실행</button>
+          <div id="operator-message" class="operator-message" role="status" aria-live="polite">시나리오를 선택하고 주문을 만드세요.</div>
+        </aside>
+
+        <div class="main-stage">
+          <section class="panel mandate-section">
+            <div class="section-heading">
+              <div><span class="section-no">02</span><h2>구매 Mandate</h2></div>
+              <span id="approval-summary" class="badge badge-neutral">0 / 3 승인</span>
+            </div>
+            <div id="mandate-grid" class="mandate-grid">
+              <div class="empty-state wide"><span>⎔</span><p>주문을 만들면 세 구매자의 조건과 승인 hash가 표시됩니다.</p></div>
+            </div>
+          </section>
+
+          <div class="result-grid">
+            <section class="panel">
+              <div class="section-heading compact">
+                <div><span class="section-no">03</span><h2>정책 증명</h2></div>
+                <span id="policy-status" class="badge badge-neutral">대기</span>
+              </div>
+              <div id="selection" class="selection-card muted">
+                <span>SELECTED PRODUCT</span>
+                <strong>아직 선택되지 않음</strong>
+                <p>AI의 선택 뒤에 결정론적 검사가 다시 실행됩니다.</p>
+              </div>
+              <ul id="policy-checks" class="check-list">
+                <li class="placeholder-line"></li>
+                <li class="placeholder-line short"></li>
+                <li class="placeholder-line"></li>
+              </ul>
+            </section>
+
+            <section class="panel evidence-panel">
+              <div class="section-heading compact">
+                <div><span class="section-no">04</span><h2 id="evidence-heading">결제 증거</h2></div>
+                <span id="chain-status" class="badge badge-neutral">미제출</span>
+              </div>
+              <dl id="evidence" class="evidence-list">
+                <div><dt>TransferChecked</dt><dd>— / 3</dd></div>
+                <div><dt>Required signers</dt><dd>— / 4</dd></div>
+                <div><dt>Finality</dt><dd>—</dd></div>
+                <div><dt>Message hash</dt><dd class="mono">—</dd></div>
+              </dl>
+              <a id="explorer-link" class="explorer-link disabled" href="#" rel="noreferrer" target="_blank">Solana Explorer에서 검증 <span>↗</span></a>
+            </section>
+          </div>
+
+          <section class="panel timeline-panel">
+            <div class="section-heading compact">
+              <div><span class="section-no">05</span><h2>감사 타임라인</h2></div>
+              <span id="order-state" class="state-label">NO ORDER</span>
+            </div>
+            <ol id="timeline" class="timeline">
+              <li class="empty-state"><p>모든 결정과 상태 전이는 순서대로 기록됩니다.</p></li>
+            </ol>
+          </section>
+
+          <section class="panel access-panel">
+            <div>
+              <span class="section-no">06</span>
+              <h2>결제로 잠금 해제되는 SignalDesk 리포트</h2>
+              <p id="access-proof-copy">검증된 결제 완료 상태에서 발급된 이용권만 보호 리소스를 열 수 있습니다.</p>
+            </div>
+            <div class="access-actions">
+              <input id="entitlement-token" type="password" autocomplete="off" placeholder="이용권 토큰 입력">
+              <button id="check-access" class="secondary-button" type="button">접근 확인</button>
+            </div>
+            <pre id="resource-preview" class="resource-preview">HTTP 403 · ENTITLEMENT_REQUIRED</pre>
+          </section>
+        </div>
+      </section>
+
+      <section class="catalog-section">
+        <div class="catalog-heading"><span>CANONICAL CATALOG</span><h2>AI가 바꿀 수 없는 상품 원장</h2></div>
+        <div id="catalog" class="catalog-grid"><div class="catalog-skeleton"></div><div class="catalog-skeleton"></div><div class="catalog-skeleton"></div></div>
+      </section>
+    </main>
+
+    <footer><span>MANDATE POOL v0</span><span>Google ADK × Gemini × Solana</span><span id="runtime-footer">RUNTIME MODE LOADING</span></footer>
+  </body>
+</html>

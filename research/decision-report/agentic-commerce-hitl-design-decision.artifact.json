@@ -1,0 +1,392 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "한 번 묻고, 그다음은 자율 실행",
+    "description": "필수 HITL을 권한·판단·감독·차단으로 구분하고 Stanford d.school 디자인씽킹으로 Agentic Commerce 기회를 다시 선별한 의사결정 보고서.",
+    "generatedAt": "2026-08-02T05:17:36Z",
+    "charts": [
+      {
+        "id": "prompt_contract_chart",
+        "title": "데모 경로별 허용 인간 prompt",
+        "subtitle": "사전 등록 acceptance contract이며 실행 관측값이 아니다. 네 경로 가운데 권한 필드가 실제로 누락된 경우만 1회 prompt를 허용한다.",
+        "type": "bar",
+        "dataset": "demo_prompt_contract",
+        "sourceId": "prompt_contract_query",
+        "settings": {
+          "orientation": "horizontal"
+        },
+        "encodings": {
+          "x": {
+            "field": "scenario",
+            "type": "nominal",
+            "label": "데모 경로"
+          },
+          "y": {
+            "field": "human_prompts",
+            "type": "quantitative",
+            "label": "허용 prompt 수"
+          },
+          "tooltip": [
+            {"field": "expected_tx", "type": "quantitative", "label": "예상 tx 수"},
+            {"field": "decision_path", "type": "nominal", "label": "정상 판정"}
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "opportunities_table",
+        "title": "새로 발굴하거나 더 좁힌 기회",
+        "subtitle": "기존 로컬 50개와 비교한 16개 기회. 숫자 점수가 아니라 제품에 흡수·전환·보류할 행동으로 구분한다.",
+        "dataset": "opportunities",
+        "sourceId": "opportunities_query",
+        "defaultSort": {
+          "field": "opportunity",
+          "direction": "asc"
+        },
+        "columns": [
+          {"field": "opportunity", "label": "기회", "type": "text"},
+          {"field": "origin", "label": "기존 50개 대비", "type": "text"},
+          {"field": "job_and_decision", "label": "사용자 순간과 경제적 결정", "type": "text"},
+          {"field": "essential_hitl", "label": "필수 HITL", "type": "text"},
+          {"field": "decision", "label": "전략적 처분", "type": "text"}
+        ]
+      },
+      {
+        "id": "hitl_modes_table",
+        "title": "인간 개입과 기계 차단의 정확한 경계",
+        "subtitle": "정상 경로의 반복 승인, 예외 HITL, 사후 감독, 우회 불가능한 deny를 분리한다.",
+        "dataset": "hitl_modes",
+        "sourceId": "hitl_modes_query",
+        "defaultSort": {
+          "field": "mode",
+          "direction": "asc"
+        },
+        "columns": [
+          {"field": "mode", "label": "모드", "type": "text"},
+          {"field": "human_role", "label": "인간 역할", "type": "text"},
+          {"field": "runtime_blocking", "label": "실행 중 승인", "type": "text"},
+          {"field": "trigger", "label": "발동 조건", "type": "text"},
+          {"field": "action", "label": "정확한 처리", "type": "text"}
+        ]
+      },
+      {
+        "id": "prism_table",
+        "title": "독립 렌즈 판정",
+        "subtitle": "평균이나 점수 없이 각 렌즈의 pass·fail·unclear와 한 가지 결정적 이유만 남긴다.",
+        "dataset": "prism_verdicts",
+        "sourceId": "prism_query",
+        "defaultSort": {
+          "field": "lens",
+          "direction": "asc"
+        },
+        "columns": [
+          {"field": "lens", "label": "렌즈", "type": "text"},
+          {"field": "verdict", "label": "판정", "type": "text"},
+          {"field": "load_bearing_reason", "label": "결정적 이유", "type": "text"}
+        ]
+      },
+      {
+        "id": "shortlist_table",
+        "title": "다시 선별한 실행 포트폴리오",
+        "subtitle": "하나를 먼저 반증하고 실패할 때만 한 번 전환한다. 보류 후보는 외부 조건이 먼저다.",
+        "dataset": "shortlist",
+        "sourceId": "shortlist_query",
+        "defaultSort": {
+          "field": "role",
+          "direction": "asc"
+        },
+        "columns": [
+          {"field": "role", "label": "역할", "type": "text"},
+          {"field": "candidate", "label": "후보", "type": "text"},
+          {"field": "why", "label": "살아남은 이유", "type": "text"},
+          {"field": "kill_or_resume", "label": "탈락·재개 조건", "type": "text"}
+        ]
+      },
+      {
+        "id": "tests_table",
+        "title": "필수 HITL acceptance tests",
+        "subtitle": "모든 경로는 tx 개수, 인간 prompt, 이유코드, receipt와 fulfillment로 판정한다.",
+        "dataset": "acceptance_tests",
+        "sourceId": "tests_query",
+        "defaultSort": {
+          "field": "test_id",
+          "direction": "asc"
+        },
+        "columns": [
+          {"field": "test_id", "label": "Test", "type": "text"},
+          {"field": "input", "label": "입력", "type": "text"},
+          {"field": "expected", "label": "통과 조건", "type": "text"},
+          {"field": "failure", "label": "실패 판정", "type": "text"}
+        ]
+      }
+    ],
+    "sources": [
+      {"id": "official_event", "label": "Official Solana × Google Cloud Agentic Hackathon site", "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"},
+      {"id": "stanford_bootleg", "label": "Stanford d.school Design Thinking Bootleg", "href": "https://dschool.stanford.edu/tools/design-thinking-bootleg"},
+      {"id": "stanford_method_cards", "label": "Stanford d.school Method Cards", "href": "https://dschool.stanford.edu/s/METHODCARDS-v3-slim.pdf"},
+      {"id": "ap2_spec", "label": "AP2 v0.2 specification", "href": "https://ap2-protocol.org/ap2/specification/"},
+      {"id": "ap2_flows", "label": "AP2 Human Present and Human Not Present flows", "href": "https://ap2-protocol.org/ap2/flows/"},
+      {"id": "nist_human_ai", "label": "NIST AI RMF Appendix C — Human–AI Interaction", "href": "https://airc.nist.gov/airmf-resources/airmf/appendices/app-c-ai-risk-management-and-human-ai-interaction/"},
+      {"id": "solana_x402", "label": "Solana x402 documentation", "href": "https://solana.com/x402/what-is-x402"},
+      {"id": "pay_bigquery", "label": "pay.sh BigQuery service listing", "href": "https://pay.sh/services/solana-foundation/google/bigquery"},
+      {"id": "pay_documentai", "label": "pay.sh Document AI service listing", "href": "https://pay.sh/services/solana-foundation/google/documentai"},
+      {"id": "documentai_processors", "label": "Google Cloud Document AI processor list", "href": "https://docs.cloud.google.com/document-ai/docs/processors-list"},
+      {"id": "live_probes", "label": "Read-only event, readiness, and payment-offer observations", "path": "evidence/hitl-opportunity-probes-2026-08-02.md"},
+      {"id": "decision_memo", "label": "Full HITL and design-thinking decision memo", "path": "agentic-commerce-hitl-design-decision.md"},
+      {
+        "id": "opportunities_query",
+        "label": "Sixteen-opportunity disposition query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT opportunity, origin, job_and_decision, essential_hitl, decision FROM artifact_snapshot.opportunities ORDER BY sequence",
+          "description": "Reproduces the reviewed opportunity rows in design-thinking reading order. The sequence is presentation order, not a score.",
+          "tables_used": ["artifact_snapshot.opportunities"],
+          "language": "sql"
+        }
+      },
+      {
+        "id": "hitl_modes_query",
+        "label": "HITL control-mode query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT mode, human_role, runtime_blocking, trigger, action FROM artifact_snapshot.hitl_modes ORDER BY sequence",
+          "description": "Reproduces the human-in-command, autonomous, exception, oversight, hard-deny, and no-go control taxonomy.",
+          "tables_used": ["artifact_snapshot.hitl_modes"],
+          "language": "sql"
+        }
+      },
+      {
+        "id": "prism_query",
+        "label": "Independent-lens verdict query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT lens, verdict, load_bearing_reason FROM artifact_snapshot.prism_verdicts ORDER BY sequence",
+          "description": "Reproduces independent pass, fail, or unclear verdicts without averaging them.",
+          "tables_used": ["artifact_snapshot.prism_verdicts"],
+          "language": "sql"
+        }
+      },
+      {
+        "id": "shortlist_query",
+        "label": "Reselected opportunity portfolio query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT role, candidate, why, kill_or_resume FROM artifact_snapshot.shortlist ORDER BY sequence",
+          "description": "Reproduces the lead, switch, and parked candidate actions. These are decision lanes, not quality scores.",
+          "tables_used": ["artifact_snapshot.shortlist"],
+          "language": "sql"
+        }
+      },
+      {
+        "id": "tests_query",
+        "label": "HITL acceptance-test query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT test_id, input, expected, failure FROM artifact_snapshot.acceptance_tests ORDER BY test_id",
+          "description": "Reproduces pre-registered runtime tests for authorization, autonomy, exception, deny, retry, and audit paths.",
+          "tables_used": ["artifact_snapshot.acceptance_tests"],
+          "language": "sql"
+        }
+      },
+      {
+        "id": "prompt_contract_query",
+        "label": "Four-path human-prompt contract query",
+        "query": {
+          "engine": "sqlite",
+          "sql": "SELECT scenario, human_prompts, expected_tx, decision_path FROM artifact_snapshot.demo_prompt_contract ORDER BY sequence",
+          "description": "Reads the pre-registered maximum human prompts and expected transaction count for the four demo paths. These are acceptance-contract inputs, not observed performance.",
+          "tables_used": ["artifact_snapshot.demo_prompt_contract"],
+          "language": "sql"
+        }
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# 한 번 묻고, 그다음은 자율 실행"
+      },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "body": "## Executive Summary\n\n- **추천:** 기존 `RPC Lifeboat`을 **Just-Enough RPC Rescue**로 재정의한다. 완전한 mandate 안에서는 Agent가 질문 없이 `free fallback / no-buy / paid`를 고르고, 인간만 제공할 수 있는 권한 필드가 빠졌을 때만 한 번 묻는다.\n- **HITL 경계:** 최초 mandate는 human-in-command, 권한·자격 판단 공백은 조건부 runtime HITL, 사후 감사는 human-on-the-loop다. invalid signature·hash·replay·만료는 사람에게 묻지 않는 hard deny이고, 외부 권리·재고·seller authority 부재는 no-go다.\n- **포트폴리오 변경:** `Query-to-Act`를 한 번의 전환안으로 남기고, `Invoice Line Rescue`는 현재 gateway 500 때문에 보류한다. `ReproPay`는 검증·격리 부담과 CI bounty로 보일 위험 때문에 백업에서 제거한다.\n- **증거 상태:** 2026년 8월 2일 QuickNode는 Solana Devnet 옵션이 든 실제 HTTP 402를 반환했다. 그러나 payment→settlement→RPC fulfillment와 target-user 인터뷰는 아직 없다. 현재 저장소도 `DISCOVERY / PIVOT_REQUIRED`다. 따라서 선두는 우승이 검증된 제품이 아니라 지금 가장 싸게 반증할 가설이다."
+      },
+      {
+        "id": "why_changed",
+        "type": "markdown",
+        "body": "## 강한 인프라 아이디어에 인간 문제를 결합해야 한다\n\n공식 행사는 **정해진 한도 안에서 매 단계 승인 없이 결제를 처리하는 Agent**를 명시하고, 혁신·UX, Gemini/GCP AI, Solana·프로토콜 통합, live 거래·로그를 본다. [공식 사이트](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/)\n\n기존 RPC Lifeboat은 현재 402를 반환하는 외부 상품과 Solana-native pain이 있다는 장점이 있지만, 그대로면 유료 circuit breaker로 보인다. 반대로 Mandate Repair만 만들면 approval middleware다. 둘을 합치면 사용자가 실제로 겪는 긴장, 즉 **blank check는 싫고 정상 거래마다 불려 나오는 것도 싫다**는 문제를 한 화면에서 보여 줄 수 있다.\n\n승부 장면은 기능 수가 아니다. `질문 0회·결제 0회`, `질문 0회·실결제 1회`, `질문 1회·narrow patch·자율 실행`, `질문 없이 hard deny`의 네 대비다."
+      },
+      {
+        "id": "stanford_method",
+        "type": "markdown",
+        "body": "## 디자인씽킹은 선형 점수표가 아니라 되돌아가는 학습 루프다\n\nStanford d.school은 Empathize, Define, Ideate, Prototype, Test를 다섯 **모드**로 제시하고 어디서든 시작할 수 있다고 설명한다. Define의 POV는 사용자·필요·인사이트를 구체화하고, HMW는 발산 가능하면서도 구체적 행동이 나올 만큼 좁아야 한다. Prototype은 화면 완성이 아니라 한 변수를 싸게 반증하는 경험이어야 한다. [Design Thinking Bootleg](https://dschool.stanford.edu/tools/design-thinking-bootleg), [Method Cards](https://dschool.stanford.edu/s/METHODCARDS-v3-slim.pdf)\n\n현재 Empathize 증거는 프로젝트 대화와 desk research뿐이다. target user가 ‘자동화가 돈을 써야 해서 멈춘 마지막 순간’을 보여 준 인터뷰는 없다. 따라서 아래 POV와 기회는 **사용자 검증 전 가설**이며, Stanford의 `Who says?` 질문을 통과했다고 주장하지 않는다."
+      },
+      {
+        "id": "provisional_povs",
+        "type": "markdown",
+        "body": "## 세 POV가 기술이 아니라 사용자 순간을 좁힌다\n\n1. **1인 온콜 개발자:** 새벽 장애 중 통제권을 잃지 않으면서 복구를 계속해야 한다. 필요한 것은 매 결제 승인도 blank check도 아닌, 빠진 권한 한 개의 보충이다.\n2. **지급·리서치 운영자:** 무료 근거가 부족할 때 유료 증거 한 건만 사고 싶다. 그 결과는 장문 보고서가 아니라 실제 `allow / block` 행동을 바꿔야 한다.\n3. **AP 운영자:** 전체 송장을 재검토하지 않고 불명확 필드 하나만 재처리하고 싶다. 다만 실제 문서·지급 authority·작동하는 gateway가 없으면 fixture가 된다.\n\n이 POV에서 나온 HMW는 ‘어떻게 결제를 승인받을까?’가 아니라 **‘어떻게 거래 승인이 아니라 빠진 권한만 물을까?’**, **‘어떻게 지불 가치가 있을 때만 살까?’**, **‘어떻게 보안 실패를 인간 클릭으로 우회하지 않을까?’**다."
+      },
+      {
+        "id": "opportunities_heading",
+        "type": "markdown",
+        "body": "## 16개 기회 중 독립 제품은 적고, 좋은 통제 패턴은 선두에 흡수된다\n\n신작은 전 세계 최초라는 주장이 아니라 기존 로컬 50개 목록에서 중심 사용자 문제나 control moment가 달라졌다는 뜻이다. `ApprovalDelta`, `ConstraintPing`, `ProofBeforePay`, `DuplicatePay Sentinel`, `CanaryPay`는 별도 제품을 늘리는 대신 선두의 한 장면 또는 안전계층으로 흡수한다. 실제 외부 조건이 없는 아이디어는 HITL로 숨기지 않고 보류한다."
+      },
+      {
+        "id": "opportunities",
+        "type": "table",
+        "tableId": "opportunities_table"
+      },
+      {
+        "id": "hitl_heading",
+        "type": "markdown",
+        "body": "## 필수 HITL은 빠진 권한을 공급하고, 빠진 기술을 가리지 않는다\n\n[AP2](https://ap2-protocol.org/ap2/specification/)는 사용자가 open mandate 제약을 승인한 뒤 Agent가 autonomous checkout을 만들 수 있게 하며, 검증·처리를 deterministic code로 요구한다. [AP2 flows](https://ap2-protocol.org/ap2/flows/)는 unresolved constraint가 있을 때 human-present 흐름으로 돌아갈 수 있음을 보여 준다. [NIST](https://airc.nist.gov/airmf-resources/airmf/appendices/app-c-ai-risk-management-and-human-ai-interaction/)도 모든 AI에 같은 감독을 요구하지 않고 역할·책임을 구분한다.\n\n따라서 정상 범위의 저액 구매, free fallback, no-buy, deterministic fulfillment 검증에는 동기 승인이 없어야 한다. 인간은 `H1 authority gap`, `H2 high impact`, `H3 evidence gap`, `H4 data consent`, `H5 rights/authority`, `H6 dispute`에서만 등장한다. `D1 integrity`, `D2 replay/duplicate`, `D3 unknown constraint`, `D4 expired/revoked`는 승인 대상이 아니라 차단이다."
+      },
+      {
+        "id": "hitl_modes",
+        "type": "table",
+        "tableId": "hitl_modes_table"
+      },
+      {
+        "id": "prompt_contract_explanation",
+        "type": "markdown",
+        "body": "## 사람을 부르는 유일한 정상 예외는 authority gap이다\n\n아래 차트는 성과를 측정한 결과가 아니라 데모 전에 고정하는 acceptance contract다. 무료 대안, mandate 안의 유료 구매, 보안·만료 실패에서는 prompt가 없어야 한다. `max_spend`처럼 인간만 제공할 수 있는 권한 필드가 빠졌을 때만 정확히 한 번 질문한다. 막대가 하나 더 생기면 HITL이 과잉이거나 실패를 사람에게 떠넘긴 것이다."
+      },
+      {
+        "id": "prompt_contract_chart_block",
+        "type": "chart",
+        "chartId": "prompt_contract_chart"
+      },
+      {
+        "id": "prism_heading",
+        "type": "markdown",
+        "body": "## 렌즈들은 standalone 승인 제품의 탈락에는 합의하고, 사용자 수요에서는 갈린다\n\n사용자·심사위원·라이브 운영·안전·판매자 관점을 평균내지 않았다. 심사 장면과 권한 설계는 조건부로 강하지만, 실제 incident micro-payment 수요와 end-to-end fulfillment는 아직 모른다. 이 불일치를 해소하는 질문은 하나다.\n\n> 사람이 정확히 하나의 누락 권한만 보충한 뒤, Agent가 provider 선택을 떠넘기지 않고 `free/no-buy/paid`를 결정해 실제 QuickNode Solana Devnet 결제와 유효 RPC 결과까지 만들 수 있는가?"
+      },
+      {
+        "id": "prism",
+        "type": "table",
+        "tableId": "prism_table"
+      },
+      {
+        "id": "decision_heading",
+        "type": "markdown",
+        "body": "## 지금은 Just-Enough RPC Rescue 하나만 반증한다\n\n한 method, free endpoint 두 개, QuickNode paid 한 개, short-lived mandate 하나, one-field patch 하나만 만든다. Gemini는 자연어 incident mandate를 typed intent로 만들고 사람이 이해할 최소 질문과 diff를 제안한다. policy evaluation, endpoint eligibility, cap, expiry, signature·hash, idempotency는 deterministic code가 담당한다. Cloud Run이 실행하고 Cloud Logging이 `decision_id`, `mandate_hash`, `reason_code`, `human_mode`, `tx_signature`, `receipt_hash`, `fulfillment_hash`를 잇는다.\n\n`Query-to-Act`는 QuickNode paid fulfillment가 실패할 때만 확인한다. 2026년 8월 2일 BigQuery gateway의 402는 직접 확인했지만 결제 후 query는 아직 없다. Document AI는 listing과 달리 직접 probe가 HTTP 500 `challenge_generation_failed`였으므로 보류다."
+      },
+      {
+        "id": "shortlist",
+        "type": "table",
+        "tableId": "shortlist_table"
+      },
+      {
+        "id": "tests_heading",
+        "type": "markdown",
+        "body": "## HITL은 UI 존재가 아니라 경로별 불변식으로 검증한다\n\n통과 기준은 사람이 ‘좋다’고 말하는 것이 아니다. signed mandate가 없을 때 tx가 없고, 정상 free·paid 경로에는 prompt가 없으며, 빠진 한 필드만 patch되고, 보안 실패에는 승인 버튼이 없어야 한다. 결제 뒤 응답이 끊겨도 중복 tx 없이 복구되어야 한다."
+      },
+      {
+        "id": "tests",
+        "type": "table",
+        "tableId": "tests_table"
+      },
+      {
+        "id": "recommended_next_steps",
+        "type": "markdown",
+        "body": "## Recommended Next Steps\n\n1. **사용자 행동을 먼저 확인한다.** ‘자동화가 돈을 써야 해서 멈춘 마지막 순간’을 보여 달라고 하고, 실제 사례를 `묻지 말고 실행 / 반드시 질문 / 무조건 차단` 카드로 분류하게 한다.\n2. **네 장면을 동결한다.** free-no-buy, in-mandate paid, one-field patch, hard deny 이외 기능은 만들지 않는다.\n3. **QuickNode 폐쇄루프를 닫는다.** Devnet payment→settlement→session→동일 JSON-RPC method 결과를 한 trace로 보관한다.\n4. **두 검증이 모두 통과하면 제품을 동결한다.** 인터뷰가 약하거나 paid fulfillment가 실패하면 standalone approval UI나 mock seller로 후퇴하지 않는다.\n5. **한 번만 전환한다.** BigQuery `Query-to-Act`가 실제 결제·결과·행동 변화를 만들 수 있는지 확인하고, 그것도 실패하면 기능을 줄인 송금 데모가 아니라 no-go로 판정한다."
+      },
+      {
+        "id": "further_questions",
+        "type": "markdown",
+        "body": "## Further Questions\n\n- target user가 실제 최근 사건에서 결제마다 확인한 것은 금액, seller, 결과 중 무엇이었는가?\n- one-field patch 뒤 사용자가 무엇을 새로 위임했는지 정확히 설명할 수 있는가?\n- QuickNode Devnet settlement가 session과 유효한 Solana RPC 결과를 안정적으로 반환하는가?\n- free alternative가 요구를 충족할 때 Agent가 정말 질문도 결제도 하지 않는가?\n- Query-to-Act의 유료 Solana 이력은 어떤 지급 `allow / block`을 실제로 바꾸는가?"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "body": "## Caveats & Assumptions\n\n- 대상 사용자 인터뷰, 지불의사, 반복 빈도 데이터가 없다. POV는 provisional이다.\n- QuickNode와 BigQuery는 payment challenge까지만 직접 확인했으며 프로젝트 wallet의 결제·fulfillment는 없다.\n- Document AI 500은 일시 장애나 요청 계약 문제일 수 있지만 원인 확인 전에는 이용 가능하다고 간주하지 않는다.\n- AP2 원칙을 참고했지만 full conformance를 구현하거나 주장하지 않는다. 구현이 signed local mandate와 deterministic verifier라면 그대로 표기한다.\n- 신작 판정은 기존 로컬 50개 대비이며 글로벌 신규성 주장이 아니다.\n- 기존 48시간 kill plan은 현재 deadline과 맞지 않아 이 보고서로 대체한다. 공식 사이트와 endpoint는 제출 직전에 다시 확인해야 한다.\n- 전체 주장·probe·Mermaid 흐름·후보 상세는 `agentic-commerce-hitl-design-decision.md`와 `evidence/hitl-opportunity-probes-2026-08-02.md`에 보존했다."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-02T05:17:36Z",
+    "status": "ready",
+    "datasets": {
+      "opportunities": [
+        {"sequence": 1, "opportunity": "Just-Enough RPC Rescue", "origin": "#13 + 신작 control UX", "job_and_decision": "장애 중 free/no-buy/ask/paid/block을 고르고 실제 authority field 하나만 빠졌을 때 질문", "essential_hitl": "H-PRE; 실제 H1 patch만", "decision": "지금 선두"},
+        {"sequence": 2, "opportunity": "Shadow-to-Live", "origin": "신작", "job_and_decision": "첫 Agent wallet 전에 과거 요청을 shadow 판정하고 불일치만 질문한 뒤 첫 구매", "essential_hitl": "policy 활성화", "decision": "사용자 인터뷰 후 연구"},
+        {"sequence": 3, "opportunity": "ApprovalDelta", "origin": "신작", "job_and_decision": "기존 mandate에서 달라진 권한 필드만 설명하고 서명", "essential_hitl": "scope 확대 때 H1", "decision": "선두 UI에 흡수"},
+        {"sequence": 4, "opportunity": "ConstraintPing", "origin": "신작", "job_and_decision": "merchant unresolved constraint 중 인간만 답할 한 조건만 질문", "essential_hitl": "의미·권한 조건의 H1", "decision": "선두 예외 패턴에 흡수"},
+        {"sequence": 5, "opportunity": "ProofBeforePay", "origin": "신작", "job_and_decision": "결제 전 schema·freshness·성공 계약이 없으면 no-buy", "essential_hitl": "validator 불가능 때 H3", "decision": "선두 구매 gate에 흡수"},
+        {"sequence": 6, "opportunity": "DuplicatePay Sentinel", "origin": "신작", "job_and_decision": "tx 뒤 HTTP 단절 시 resource-only retry, 새 결제, 중단 중 선택", "essential_hitl": "seller 분쟁 때 H6", "decision": "공통 안전계층"},
+        {"sequence": 7, "opportunity": "Session Stop-Loss", "origin": "신작", "job_and_decision": "반복 유료 호출 중 완료 조건 충족 시 다음 호출을 사지 않음", "essential_hitl": "scope·cap 확대 때 H1", "decision": "MPP 수요 인터뷰 후 연구"},
+        {"sequence": 8, "opportunity": "PrivacyBid Checkout", "origin": "신작", "job_and_decision": "seller별 가격과 disclosure를 비교해 최소 공개 seller 또는 no-buy", "essential_hitl": "새 민감정보 공개 때 H4", "decision": "기업 인터뷰 전 보류"},
+        {"sequence": 9, "opportunity": "Address Cutoff Rescue", "origin": "신작", "job_and_decision": "배송 cutoff 직전 주소 오류만 유료 검증하고 의미 변경이면 고객 질문", "essential_hitl": "수취인·주소 의미 변경 H1/H4", "decision": "gateway·상점 검증 전 보류"},
+        {"sequence": 10, "opportunity": "DisputeReady", "origin": "신작", "job_and_decision": "결제 후 빈 결과면 evidence capsule을 만들고 redelivery/refund/switch 선택", "essential_hitl": "remedy 분쟁 H6", "decision": "공통 recovery 패턴"},
+        {"sequence": 11, "opportunity": "CanaryPay", "origin": "신작", "job_and_decision": "낯선 seller에 최소 유료 call 한 건만 사고 검증 후 후속 예산 개방", "essential_hitl": "결과 모호할 때 H3", "decision": "선두 실험 gate에 흡수"},
+        {"sequence": 12, "opportunity": "SimBeforeSign", "origin": "#13 재정의", "job_and_decision": "큰 Solana tx 전 무료 simulation이 부족할 때 premium simulation 한 번 구매", "essential_hitl": "최종 고액 tx H2", "decision": "RPC 시나리오로 흡수"},
+        {"sequence": 13, "opportunity": "Query-to-Act", "origin": "#01/#04 결합", "job_and_decision": "과거 Solana 이력 query를 사고 결과가 지급 allow/block을 변경", "essential_hitl": "고액·모호 결과 H2/H3", "decision": "선두 실패 시 전환안"},
+        {"sequence": 14, "opportunity": "Invoice Line Rescue", "origin": "#08/#26 결합", "job_and_decision": "불명확 필드만 premium OCR로 사고 deterministic match 갱신", "essential_hitl": "충돌 H3; 공개 H4", "decision": "gateway 복구 전 보류"},
+        {"sequence": 15, "opportunity": "Scope-Sealed Delegation", "origin": "#20/#46 재정의", "job_and_decision": "specialist에는 task만 주고 wallet authority 없이 결과 검증 뒤 지급", "essential_hitl": "subtask scope 확대 H1", "decision": "공통 보안계층"},
+        {"sequence": 16, "opportunity": "Reversible Hold Checkout", "origin": "신작", "job_and_decision": "불확실하면 최종 송금 대신 refundable hold를 만들고 조건 충족 시 capture", "essential_hitl": "capture 범위 밖 H1/H2", "decision": "deadline상 구현 보류"}
+      ],
+      "hitl_modes": [
+        {"sequence": 1, "mode": "H-PRE", "human_role": "human-in-command", "runtime_blocking": "실행 전 1회", "trigger": "autonomous spend 전", "action": "목적·payee·상품·network·asset·상한·만료·retry·data disclosure를 인증"},
+        {"sequence": 2, "mode": "A-NORMAL", "human_role": "autonomous", "runtime_blocking": "없음", "trigger": "signed mandate 범위 안", "action": "Agent가 buy/no-buy/free fallback 실행; 정상 승인창은 실패"},
+        {"sequence": 3, "mode": "H-EXC", "human_role": "runtime HITL", "runtime_blocking": "조건부", "trigger": "인간만 제공할 권한 필드 누락·scope 확대", "action": "빠진 필드만 새 mandate 또는 narrow patch로 서명"},
+        {"sequence": 4, "mode": "H-DOMAIN", "human_role": "qualified HITL", "runtime_blocking": "조건부", "trigger": "권리·고영향·주관적 수락·분쟁", "action": "지정된 권한자·도메인 담당자가 판단"},
+        {"sequence": 5, "mode": "H-POST", "human_role": "human-on-the-loop", "runtime_blocking": "없음", "trigger": "거래 후", "action": "receipt·override·tx 감사와 mandate revocation"},
+        {"sequence": 6, "mode": "D-DENY", "human_role": "machine-only deny", "runtime_blocking": "승인 불가", "trigger": "invalid signature/hash, unknown constraint, replay, expiry", "action": "deterministic hard block; approve-anyway 금지"},
+        {"sequence": 7, "mode": "X-NOGO", "human_role": "external authority required", "runtime_blocking": "승인으로 해결 불가", "trigger": "권리자·seller authority·재고·oracle 부재", "action": "일반 사용자 클릭으로 진실을 만들지 않고 후보 중단"}
+      ],
+      "demo_prompt_contract": [
+        {"sequence": 1, "scenario": "무료 대안 충족", "human_prompts": 0, "expected_tx": 0, "decision_path": "free fallback / no-buy"},
+        {"sequence": 2, "scenario": "mandate 안의 유료 필요", "human_prompts": 0, "expected_tx": 1, "decision_path": "autonomous paid"},
+        {"sequence": 3, "scenario": "max_spend 누락 후 patch", "human_prompts": 1, "expected_tx": 1, "decision_path": "H1 patch 뒤 autonomous choice"},
+        {"sequence": 4, "scenario": "보안·만료 실패", "human_prompts": 0, "expected_tx": 0, "decision_path": "hard deny"}
+      ],
+      "prism_verdicts": [
+        {"sequence": 1, "lens": "사용자 가치", "verdict": "Unclear", "load_bearing_reason": "승인 피로와 blank check의 긴장은 있으나 target user의 마지막 실제 사건이 없다."},
+        {"sequence": 2, "lens": "심사위원", "verdict": "Pass", "load_bearing_reason": "질문 0회·1회·hard block 대비가 혁신·UX와 실제 거래 로그를 묶는다."},
+        {"sequence": 3, "lens": "운영·라이브 데모", "verdict": "Unclear", "load_bearing_reason": "QuickNode 402는 live지만 settlement→session→유효 RPC 결과가 없다."},
+        {"sequence": 4, "lens": "안전·권한", "verdict": "Pass if bounded", "load_bearing_reason": "사람이 missing authority만 공급하고 deterministic deny를 우회하지 않을 때만 안전하다."},
+        {"sequence": 5, "lens": "사업·판매자", "verdict": "Unclear", "load_bearing_reason": "incident micro-payment 반복 빈도와 지불의사가 인터뷰되지 않았다."}
+      ],
+      "shortlist": [
+        {"sequence": 1, "role": "선두", "candidate": "Just-Enough RPC Rescue", "why": "현재 live 402·Solana Devnet offer·명확한 0/1-question UX·관측 가능한 결과를 한 vertical에 결합", "kill_or_resume": "실제 settlement/fulfillment 실패, provider 선택을 사람에게 전가, patch가 다른 권한까지 확대하면 즉시 탈락"},
+        {"sequence": 2, "role": "한 번의 전환", "candidate": "Query-to-Act", "why": "직접 확인된 BigQuery 402와 Solana 이력 query가 실제 지급 allow/block을 바꾸는 좁은 장면", "kill_or_resume": "유료 결과를 빼도 행동이 같거나 paid query 결과·Solana 거래가 없으면 no-go"},
+        {"sequence": 3, "role": "보류", "candidate": "Invoice Line Rescue", "why": "한 필드 재처리와 예외 HITL은 human-centered하지만 gateway와 실문서 authority가 없다", "kill_or_resume": "Document AI challenge 복구와 실제 AP 문서·authority 확보 뒤에만 재개"}
+      ],
+      "acceptance_tests": [
+        {"test_id": "AUDIT-01", "input": "성공 또는 예외 거래", "expected": "mandate·reason·actor·tx·result 한 trace; revoke 후 차단", "failure": "UI receipt만 있고 원장·로그 연결 없음"},
+        {"test_id": "AUTO-01", "input": "free alternative가 SLO 충족", "expected": "prompt 0회, tx 0건, free fallback", "failure": "유료 전환 승인 요청 또는 결제"},
+        {"test_id": "AUTO-02", "input": "두 free 후보가 요구 위반, paid는 충족", "expected": "prompt 0회, tx 1건, fulfillment 확인", "failure": "사람에게 provider 선택 요청"},
+        {"test_id": "DENY-01", "input": "invalid signature/hash, replay, revoked mandate", "expected": "tx 0건, 승인 버튼 없음", "failure": "approve anyway 제공"},
+        {"test_id": "EXC-01", "input": "max_spend만 누락", "expected": "tx 0건, H1, one-field signed patch", "failure": "seller·network 등 다른 권한까지 확대"},
+        {"test_id": "FAIL-01", "input": "결제 뒤 fulfillment timeout", "expected": "허용된 idempotent retry, 중복 tx 0건", "failure": "두 번째 지급 발생"},
+        {"test_id": "LLM-01", "input": "Gemini가 cap 초과 구매 추천", "expected": "deterministic policy block", "failure": "LLM 권고가 wallet authority가 됨"},
+        {"test_id": "OVER-HITL-01", "input": "정상 시나리오 전체", "expected": "동기 인간 승인 0회", "failure": "정상 결제마다 승인 요구"},
+        {"test_id": "PREAUTH-01", "input": "signed mandate 없음", "expected": "tx 0건, pre-authorization 요청", "failure": "자연어 채팅만으로 wallet 실행"}
+      ]
+    }
+  },
+  "sources": [
+    {"id": "official_event", "label": "Official Solana × Google Cloud Agentic Hackathon site", "href": "https://www.gcp-solana-ai-agentic-hacks-kr.xyz/"},
+    {"id": "stanford_bootleg", "label": "Stanford d.school Design Thinking Bootleg", "href": "https://dschool.stanford.edu/tools/design-thinking-bootleg"},
+    {"id": "stanford_method_cards", "label": "Stanford d.school Method Cards", "href": "https://dschool.stanford.edu/s/METHODCARDS-v3-slim.pdf"},
+    {"id": "ap2_spec", "label": "AP2 v0.2 specification", "href": "https://ap2-protocol.org/ap2/specification/"},
+    {"id": "ap2_flows", "label": "AP2 Human Present and Human Not Present flows", "href": "https://ap2-protocol.org/ap2/flows/"},
+    {"id": "nist_human_ai", "label": "NIST AI RMF Appendix C — Human–AI Interaction", "href": "https://airc.nist.gov/airmf-resources/airmf/appendices/app-c-ai-risk-management-and-human-ai-interaction/"},
+    {"id": "solana_x402", "label": "Solana x402 documentation", "href": "https://solana.com/x402/what-is-x402"},
+    {"id": "pay_bigquery", "label": "pay.sh BigQuery service listing", "href": "https://pay.sh/services/solana-foundation/google/bigquery"},
+    {"id": "pay_documentai", "label": "pay.sh Document AI service listing", "href": "https://pay.sh/services/solana-foundation/google/documentai"},
+    {"id": "documentai_processors", "label": "Google Cloud Document AI processor list", "href": "https://docs.cloud.google.com/document-ai/docs/processors-list"},
+    {"id": "live_probes", "label": "Read-only event, readiness, and payment-offer observations", "path": "evidence/hitl-opportunity-probes-2026-08-02.md"},
+    {"id": "decision_memo", "label": "Full HITL and design-thinking decision memo", "path": "agentic-commerce-hitl-design-decision.md"},
+    {"id": "opportunities_query", "label": "Sixteen-opportunity disposition query", "query": {"engine": "sqlite", "sql": "SELECT opportunity, origin, job_and_decision, essential_hitl, decision FROM artifact_snapshot.opportunities ORDER BY sequence", "description": "Reproduces the reviewed opportunity rows in design-thinking reading order. The sequence is presentation order, not a score.", "tables_used": ["artifact_snapshot.opportunities"], "language": "sql"}},
+    {"id": "hitl_modes_query", "label": "HITL control-mode query", "query": {"engine": "sqlite", "sql": "SELECT mode, human_role, runtime_blocking, trigger, action FROM artifact_snapshot.hitl_modes ORDER BY sequence", "description": "Reproduces the human-in-command, autonomous, exception, oversight, hard-deny, and no-go control taxonomy.", "tables_used": ["artifact_snapshot.hitl_modes"], "language": "sql"}},
+    {"id": "prism_query", "label": "Independent-lens verdict query", "query": {"engine": "sqlite", "sql": "SELECT lens, verdict, load_bearing_reason FROM artifact_snapshot.prism_verdicts ORDER BY sequence", "description": "Reproduces independent pass, fail, or unclear verdicts without averaging them.", "tables_used": ["artifact_snapshot.prism_verdicts"], "language": "sql"}},
+    {"id": "shortlist_query", "label": "Reselected opportunity portfolio query", "query": {"engine": "sqlite", "sql": "SELECT role, candidate, why, kill_or_resume FROM artifact_snapshot.shortlist ORDER BY sequence", "description": "Reproduces the lead, switch, and parked candidate actions. These are decision lanes, not quality scores.", "tables_used": ["artifact_snapshot.shortlist"], "language": "sql"}},
+    {"id": "tests_query", "label": "HITL acceptance-test query", "query": {"engine": "sqlite", "sql": "SELECT test_id, input, expected, failure FROM artifact_snapshot.acceptance_tests ORDER BY test_id", "description": "Reproduces pre-registered runtime tests for authorization, autonomy, exception, deny, retry, and audit paths.", "tables_used": ["artifact_snapshot.acceptance_tests"], "language": "sql"}},
+    {"id": "prompt_contract_query", "label": "Four-path human-prompt contract query", "query": {"engine": "sqlite", "sql": "SELECT scenario, human_prompts, expected_tx, decision_path FROM artifact_snapshot.demo_prompt_contract ORDER BY sequence", "description": "Reads the pre-registered maximum human prompts and expected transaction count for the four demo paths. These are acceptance-contract inputs, not observed performance.", "tables_used": ["artifact_snapshot.demo_prompt_contract"], "language": "sql"}}
+  ]
+}

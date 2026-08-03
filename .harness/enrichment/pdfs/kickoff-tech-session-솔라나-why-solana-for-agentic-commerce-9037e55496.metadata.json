@@ -1,0 +1,19 @@
+{
+  "adapter": "pymupdf+paddleocr+opencv-qrcode",
+  "ocr_line_count": 392,
+  "page_count": 18,
+  "processing_seconds": 134.703,
+  "qr_payload_count": 0,
+  "settings": {
+    "adapter": "pymupdf+paddleocr+opencv-qrcode",
+    "ocr_detection_model": "PP-OCRv5_mobile_det",
+    "ocr_recognition_model": "korean_PP-OCRv5_mobile_rec",
+    "ocr_scale": 2.0,
+    "ocr_score_threshold": 0.45,
+    "onednn": false,
+    "qr_scale": 4.0
+  },
+  "settings_fingerprint": "9b95b4be43c06bfe",
+  "source_path": "참고레퍼런스/Kickoff & Tech Session - 솔라나 - Why Solana for Agentic Commerce.pdf",
+  "source_sha256": "544daa9b0d76a346125b3d76bc90f37454ea7c80cae84605133f0826feba6503"
+}

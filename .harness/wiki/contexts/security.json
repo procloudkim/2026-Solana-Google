@@ -1,0 +1,2006 @@
+{
+  "schema_version": "1.0",
+  "source_generator": "02_graphify_code.py",
+  "query": "security budget approval idempotency prompt injection retry timeout wallet authorization",
+  "query_terms": [
+    "approval",
+    "authorization",
+    "budget",
+    "idempotency",
+    "injection",
+    "prompt",
+    "retry",
+    "security",
+    "timeout",
+    "wallet"
+  ],
+  "matched_query": true,
+  "max_nodes": 64,
+  "available_node_count": 458,
+  "selected_node_count": 64,
+  "truncated": true,
+  "nodes": [
+    {
+      "id": "domain:protocol-ap2",
+      "type": "architecture_domain",
+      "label": "AP2",
+      "layer": "agent_protocol",
+      "implementation_status": "unverified"
+    },
+    {
+      "id": "domain:protocol-x402",
+      "type": "architecture_domain",
+      "label": "x402",
+      "layer": "agent_protocol",
+      "implementation_status": "unverified"
+    },
+    {
+      "id": "file:tests/test_readiness.py",
+      "type": "python_file",
+      "label": "test_readiness.py",
+      "path": "tests/test_readiness.py",
+      "module_candidates": [
+        "test_readiness",
+        "tests.test_readiness"
+      ],
+      "parse_status": "parsed"
+    },
+    {
+      "id": "module:__future__",
+      "type": "python_module",
+      "label": "__future__",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:contextlib",
+      "type": "python_module",
+      "label": "contextlib",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:datetime",
+      "type": "python_module",
+      "label": "datetime",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:importlib.util",
+      "type": "python_module",
+      "label": "importlib.util",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:io",
+      "type": "python_module",
+      "label": "io",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:json",
+      "type": "python_module",
+      "label": "json",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:pathlib",
+      "type": "python_module",
+      "label": "pathlib",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:tempfile",
+      "type": "python_module",
+      "label": "tempfile",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "module:unittest",
+      "type": "python_module",
+      "label": "unittest",
+      "resolution": "external_or_unresolved"
+    },
+    {
+      "id": "official-claim:p1-01",
+      "type": "official_claim",
+      "label": "Demo Day is Aug 21",
+      "claim_id": "P1-01",
+      "document": "intro-deck",
+      "locator": "pages 1 and 4",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p1-02",
+      "type": "official_claim",
+      "label": "A demo video must be no longer than three minutes",
+      "claim_id": "P1-02",
+      "document": "intro-deck",
+      "locator": "page 5",
+      "verdict": "not_found",
+      "confidence": "AMBIGUOUS",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p1-03",
+      "type": "official_claim",
+      "label": "The required top-level artifacts are product introduction, GitHub, and demo video",
+      "claim_id": "P1-03",
+      "document": "intro-deck",
+      "locator": "page 5",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p1-04",
+      "type": "official_claim",
+      "label": "A full on-chain payment demonstration is only a bonus",
+      "claim_id": "P1-04",
+      "document": "intro-deck",
+      "locator": "page 5",
+      "verdict": "version_drift",
+      "confidence": "EXTRACTED",
+      "note": "Current criteria include actual transaction/payment and auditable logs",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p1-05",
+      "type": "official_claim",
+      "label": "A personal Gmail account is required to participate",
+      "claim_id": "P1-05",
+      "document": "intro-deck",
+      "locator": "page 10",
+      "verdict": "not_found",
+      "confidence": "AMBIGUOUS",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p1-06",
+      "type": "official_claim",
+      "label": "Google Cloud USD 300 credit cannot pay for Gemini API use",
+      "claim_id": "P1-06",
+      "document": "intro-deck",
+      "locator": "page 10",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p2-01",
+      "type": "official_claim",
+      "label": "pay.sh requires no signup, account, or API key",
+      "claim_id": "P2-01",
+      "document": "why-solana",
+      "locator": "page 13",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p2-02",
+      "type": "official_claim",
+      "label": "The command is npx followed separately by @solana/pay",
+      "claim_id": "P2-02",
+      "document": "why-solana",
+      "locator": "page 14",
+      "verdict": "ocr_error",
+      "confidence": "EXTRACTED",
+      "correction": "npx @solana/pay",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p2-03",
+      "type": "official_claim",
+      "label": "The install command is brew install pay.",
+      "claim_id": "P2-03",
+      "document": "why-solana",
+      "locator": "page 15",
+      "verdict": "ocr_error",
+      "confidence": "EXTRACTED",
+      "correction": "brew install pay",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p2-04",
+      "type": "official_claim",
+      "label": "Localnet, Testnet, Devnet, and Mainnet have distinct development roles",
+      "claim_id": "P2-04",
+      "document": "why-solana",
+      "locator": "page 17",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p2-05",
+      "type": "official_claim",
+      "label": "Mainnet is necessary for the hackathon deployment stage",
+      "claim_id": "P2-05",
+      "document": "why-solana",
+      "locator": "page 17",
+      "verdict": "conflict",
+      "confidence": "EXTRACTED",
+      "correction": "Current event criteria accept localnet, testnet, or devnet live execution",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p2-06",
+      "type": "official_claim",
+      "label": "All displayed partner and ecosystem metrics are current",
+      "claim_id": "P2-06",
+      "document": "why-solana",
+      "locator": "pages 12-13",
+      "verdict": "not_found",
+      "confidence": "AMBIGUOUS",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p3-01",
+      "type": "official_claim",
+      "label": "A2A, commerce protocols, authorization protocols, and payment rails occupy different layers",
+      "claim_id": "P3-01",
+      "document": "x402-mpp",
+      "locator": "page 6",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p3-02",
+      "type": "official_claim",
+      "label": "pay.sh supports x402 and MPP with local wallet authorization",
+      "claim_id": "P3-02",
+      "document": "x402-mpp",
+      "locator": "page 8",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p3-03",
+      "type": "official_claim",
+      "label": "Current x402 uses the X-PAYMENT header",
+      "claim_id": "P3-03",
+      "document": "x402-mpp",
+      "locator": "page 9",
+      "verdict": "version_drift",
+      "confidence": "EXTRACTED",
+      "correction": "Implement x402 v2 PAYMENT-SIGNATURE and CAIP-2 semantics",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p3-04",
+      "type": "official_claim",
+      "label": "x402 is community-first while MPP is enterprise-first",
+      "claim_id": "P3-04",
+      "document": "x402-mpp",
+      "locator": "pages 10 and 12",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "This is positioning, not a normative protocol capability",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p3-05",
+      "type": "official_claim",
+      "label": "N x402 requests always require N on-chain transactions while MPP always requires exactly two",
+      "claim_id": "P3-05",
+      "document": "x402-mpp",
+      "locator": "page 11",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Depends on the selected scheme, rail, and session design",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p3-06",
+      "type": "official_claim",
+      "label": "A2A and MCP are complementary agent-agent and agent-tool protocols",
+      "claim_id": "P3-06",
+      "document": "x402-mpp",
+      "locator": "pages 15-16",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:p3-07",
+      "type": "official_claim",
+      "label": "Displayed market transaction metrics are reproducible current facts",
+      "claim_id": "P3-07",
+      "document": "x402-mpp",
+      "locator": "pages 25-30",
+      "verdict": "not_found",
+      "confidence": "AMBIGUOUS",
+      "note": "OCR did not preserve a source dataset, query, and as-of date",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t1-01",
+      "type": "official_claim",
+      "label": "Deadline is Aug 3 23:59 and finalists are announced Aug 7",
+      "claim_id": "T1-01",
+      "document": "transcript-kickoff-google",
+      "locator": "01:24-01:36",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t1-02",
+      "type": "official_claim",
+      "label": "Demo Day is Aug 20",
+      "claim_id": "T1-02",
+      "document": "transcript-kickoff-google",
+      "locator": "01:42-01:52",
+      "verdict": "conflict",
+      "confidence": "EXTRACTED",
+      "correction": "Demo Day is Aug 21",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t1-03",
+      "type": "official_claim",
+      "label": "Submission has product introduction, GitHub repository, and demo video",
+      "claim_id": "T1-03",
+      "document": "transcript-kickoff-google",
+      "locator": "01:52-02:34",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t1-04",
+      "type": "official_claim",
+      "label": "A live deployment URL is recommended",
+      "claim_id": "T1-04",
+      "document": "transcript-kickoff-google",
+      "locator": "02:31-02:44",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t1-05",
+      "type": "official_claim",
+      "label": "Participants can use a USD 300 Google Cloud credit",
+      "claim_id": "T1-05",
+      "document": "transcript-kickoff-google",
+      "locator": "03:40-03:50;08:10-08:18",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Eligibility, 90-day limit, and Gemini API exclusion apply",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t1-06",
+      "type": "official_claim",
+      "label": "A real agent payment should be shown live",
+      "claim_id": "T1-06",
+      "document": "transcript-kickoff-google",
+      "locator": "08:39-08:50",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Current criteria require an agent-triggered transaction/payment and auditable history",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t2-01",
+      "type": "official_claim",
+      "label": "pay.sh sandbox payment completed",
+      "claim_id": "T2-01",
+      "document": "transcript-solana",
+      "locator": "02:36-05:29",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Sandbox proof is not live-network transaction proof",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t2-02",
+      "type": "official_claim",
+      "label": "Solana fee is approximately 0.001 cent",
+      "claim_id": "T2-02",
+      "document": "transcript-solana",
+      "locator": "25:43-26:37",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Fees are formula- and transaction-dependent, not a fixed USD contract",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t2-03",
+      "type": "official_claim",
+      "label": "pay.sh needs no signup, account, API key, or subscription",
+      "claim_id": "T2-03",
+      "document": "transcript-solana",
+      "locator": "28:03-28:57",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Provider signup may be avoided; local setup, wallet, funds, and authorization remain",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t2-04",
+      "type": "official_claim",
+      "label": "pay.sh works without code changes",
+      "claim_id": "T2-04",
+      "document": "transcript-solana",
+      "locator": "29:18-30:05",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Pass-through wrapping is supported but configuration and authorization remain",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t2-05",
+      "type": "official_claim",
+      "label": "Testnet targets validator/client testing while application work uses Localnet or Devnet",
+      "claim_id": "T2-05",
+      "document": "transcript-solana",
+      "locator": "32:41-34:10",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t2-06",
+      "type": "official_claim",
+      "label": "Specific partner and market metrics are current",
+      "claim_id": "T2-06",
+      "document": "transcript-solana",
+      "locator": "whole document",
+      "verdict": "not_found",
+      "confidence": "AMBIGUOUS",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t3-01",
+      "type": "official_claim",
+      "label": "Build week ends Mar 3",
+      "claim_id": "T3-01",
+      "document": "transcript-qa",
+      "locator": "01:12-01:17",
+      "verdict": "conflict",
+      "confidence": "EXTRACTED",
+      "correction": "Submission deadline is Aug 3 23:59 KST",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t3-02",
+      "type": "official_claim",
+      "label": "A custom Solana payment implementation can be used instead of pay.sh, x402, or Solana Pay",
+      "claim_id": "T3-02",
+      "document": "transcript-qa",
+      "locator": "03:10-03:28",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "The current event evaluates Solana payment integration but does not mandate one named rail",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t3-03",
+      "type": "official_claim",
+      "label": "Existing open-source or existing projects may be extended",
+      "claim_id": "T3-03",
+      "document": "transcript-qa",
+      "locator": "04:01-04:43",
+      "verdict": "not_found",
+      "confidence": "AMBIGUOUS",
+      "note": "Supported by the oral Q&A only, not the current public event contract",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t3-04",
+      "type": "official_claim",
+      "label": "Mainnet is not required and Devnet is sufficient",
+      "claim_id": "T3-04",
+      "document": "transcript-qa",
+      "locator": "05:40-05:54;08:38-08:52",
+      "verdict": "confirmed",
+      "confidence": "EXTRACTED",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claim:t3-06",
+      "type": "official_claim",
+      "label": "Biometric approval prevents prompt injection",
+      "claim_id": "T3-06",
+      "document": "transcript-qa",
+      "locator": "12:36-13:36",
+      "verdict": "partial",
+      "confidence": "EXTRACTED",
+      "note": "Local user authorization limits spending but is not a general prompt-injection guarantee",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "type": "official_claim_ledger",
+      "label": "claim-ledger.json",
+      "path": "research/official-docs-wiki/claim-ledger.json",
+      "availability": "present",
+      "as_of": "2026-07-23",
+      "claim_count": 37
+    },
+    {
+      "id": "official-manifest:research/official-docs-wiki/manifest.json",
+      "type": "official_manifest",
+      "label": "manifest.json",
+      "path": "research/official-docs-wiki/manifest.json",
+      "availability": "present",
+      "generated_at": "2026-07-23",
+      "source_count": 26
+    },
+    {
+      "id": "official-source:a2a",
+      "type": "official_source",
+      "label": "A2A",
+      "publisher": "A2A Project",
+      "url": "https://a2a-protocol.org/latest/",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-source:acp",
+      "type": "official_source",
+      "label": "ACP",
+      "publisher": "OpenAI and Stripe",
+      "url": "https://github.com/agentic-commerce-protocol/agentic-commerce-protocol",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-source:ap2",
+      "type": "official_source",
+      "label": "AP2",
+      "publisher": "Google",
+      "url": "https://github.com/google-agentic-commerce/AP2",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-source:mpp",
+      "type": "official_source",
+      "label": "MPP",
+      "publisher": "Machine Payments Protocol",
+      "url": "https://mpp.dev/",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-source:paysh-docs",
+      "type": "official_source",
+      "label": "PAYSH-DOCS",
+      "publisher": "pay.sh",
+      "url": "https://pay.sh/docs",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-source:paysh-schemes",
+      "type": "official_source",
+      "label": "PAYSH-SCHEMES",
+      "publisher": "pay.sh",
+      "url": "https://pay.sh/docs/sdk/typescript/schemes",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-source:ucp",
+      "type": "official_source",
+      "label": "UCP",
+      "publisher": "Universal Commerce Protocol",
+      "url": "https://ucp.dev/documentation/core-concepts/",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "official-source:x402-welcome",
+      "type": "official_source",
+      "label": "X402-WELCOME",
+      "publisher": "Coinbase Developer Platform",
+      "url": "https://docs.cdp.coinbase.com/x402/welcome",
+      "authority": "official",
+      "as_of": "2026-07-23"
+    },
+    {
+      "id": "operational-wiki:harness-wiki-operations-05-security-budget-md",
+      "type": "operational_wiki",
+      "label": "05-security-budget",
+      "path": ".harness/wiki/operations/05-security-budget.md"
+    },
+    {
+      "id": "readiness-state:current",
+      "type": "readiness_state",
+      "label": "Hackathon readiness",
+      "path": ".harness/control/state.json",
+      "availability": "present",
+      "state": "DISCOVERY",
+      "next_action": "ideate",
+      "blockers": [
+        "candidate_set"
+      ],
+      "derived_at": "2026-07-23T23:08:29.823105+09:00",
+      "event_count": 1
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "type": "python_symbol",
+      "label": "ReadinessTests",
+      "symbol_kind": "class",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "ReadinessTests",
+      "line": 116
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::approval@101",
+      "type": "python_symbol",
+      "label": "approval",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "approval",
+      "line": 101
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::candidate@22",
+      "type": "python_symbol",
+      "label": "candidate",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "candidate",
+      "line": 22
+    },
+    {
+      "id": "symbol:tests/test_readiness.py::product_contract@76",
+      "type": "python_symbol",
+      "label": "product_contract",
+      "symbol_kind": "function",
+      "path": "tests/test_readiness.py",
+      "qualified_name": "product_contract",
+      "line": 76
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:ecb17e9fb065d288",
+      "source": "domain:protocol-ap2",
+      "target": "domain:protocol-x402",
+      "relationship": "candidate_payment_bridge",
+      "status": "proposed",
+      "evidence": [
+        {
+          "kind": "requested_design_mapping",
+          "reference": "hackathon_harness_architecture_brief",
+          "note": "Architecture seed only; validate against source specs and implementation evidence."
+        }
+      ]
+    },
+    {
+      "id": "edge:14149d99e31ecb59",
+      "source": "file:tests/test_readiness.py",
+      "target": "symbol:tests/test_readiness.py::ReadinessTests@116",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 116
+        }
+      ]
+    },
+    {
+      "id": "edge:afbb185031118cbe",
+      "source": "file:tests/test_readiness.py",
+      "target": "symbol:tests/test_readiness.py::approval@101",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 101
+        }
+      ]
+    },
+    {
+      "id": "edge:8d614e7787c15da7",
+      "source": "file:tests/test_readiness.py",
+      "target": "symbol:tests/test_readiness.py::candidate@22",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "id": "edge:174abc6a36806279",
+      "source": "file:tests/test_readiness.py",
+      "target": "symbol:tests/test_readiness.py::product_contract@76",
+      "relationship": "declares",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast",
+          "path": "tests/test_readiness.py",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "id": "edge:4620c9c6c566189b",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:__future__",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 1,
+          "names": [
+            "annotations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e3258526bdac5361",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:contextlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 8,
+          "names": [
+            "redirect_stdout"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:9c833e9a4cd7bf40",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:datetime",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 9,
+          "names": [
+            "datetime",
+            "timezone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:769476b8c2a64ee1",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:importlib.util",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 3,
+          "names": [
+            "importlib.util"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:6b5914627f271d8a",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:io",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 4,
+          "names": [
+            "io"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:7bf2a37ff6d6fed8",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:json",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 5,
+          "names": [
+            "json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:79755dc1e5172bfc",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:pathlib",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 10,
+          "names": [
+            "Path"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:e53bc203338fe440",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:tempfile",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 6,
+          "names": [
+            "tempfile"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:2c3088fa3dc55892",
+      "source": "file:tests/test_readiness.py",
+      "target": "module:unittest",
+      "relationship": "imports",
+      "status": "observed",
+      "evidence": [
+        {
+          "kind": "python_ast_import",
+          "path": "tests/test_readiness.py",
+          "line": 7,
+          "names": [
+            "unittest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "edge:ae12dc62a178c92f",
+      "source": "official-claim:p2-01",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:711d4938d8677e55",
+      "source": "official-claim:p2-01",
+      "target": "official-source:paysh-docs",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-01",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:127faa4ef38792d0",
+      "source": "official-claim:p2-06",
+      "target": "official-source:paysh-docs",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-06",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:c8b8f2e1e260aec7",
+      "source": "official-claim:p3-01",
+      "target": "domain:protocol-ap2",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:d6d8f52b83479589",
+      "source": "official-claim:p3-01",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:1ef813354ea2fa93",
+      "source": "official-claim:p3-01",
+      "target": "official-source:a2a",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01",
+          "source_id": "A2A"
+        }
+      ]
+    },
+    {
+      "id": "edge:b1023a1e05318eeb",
+      "source": "official-claim:p3-01",
+      "target": "official-source:acp",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01",
+          "source_id": "ACP"
+        }
+      ]
+    },
+    {
+      "id": "edge:75c32b5ff0d90eca",
+      "source": "official-claim:p3-01",
+      "target": "official-source:ap2",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01",
+          "source_id": "AP2"
+        }
+      ]
+    },
+    {
+      "id": "edge:6c21e053b2f5621a",
+      "source": "official-claim:p3-01",
+      "target": "official-source:mpp",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01",
+          "source_id": "MPP"
+        }
+      ]
+    },
+    {
+      "id": "edge:ca69f594c333db21",
+      "source": "official-claim:p3-01",
+      "target": "official-source:ucp",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01",
+          "source_id": "UCP"
+        }
+      ]
+    },
+    {
+      "id": "edge:aeb1e78274a57d8d",
+      "source": "official-claim:p3-01",
+      "target": "official-source:x402-welcome",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01",
+          "source_id": "X402-WELCOME"
+        }
+      ]
+    },
+    {
+      "id": "edge:3a13341bd5fcf5ba",
+      "source": "official-claim:p3-02",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:861c0066f2fe973b",
+      "source": "official-claim:p3-02",
+      "target": "official-source:paysh-docs",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-02",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:70e2e13f0e35e95b",
+      "source": "official-claim:p3-02",
+      "target": "official-source:paysh-schemes",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-02",
+          "source_id": "PAYSH-SCHEMES"
+        }
+      ]
+    },
+    {
+      "id": "edge:087e460c71139ab5",
+      "source": "official-claim:p3-03",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:10bfef2509eaaa3b",
+      "source": "official-claim:p3-04",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:ade189d82978e5d1",
+      "source": "official-claim:p3-04",
+      "target": "official-source:mpp",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-04",
+          "source_id": "MPP"
+        }
+      ]
+    },
+    {
+      "id": "edge:153652221dedce20",
+      "source": "official-claim:p3-04",
+      "target": "official-source:x402-welcome",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-04",
+          "source_id": "X402-WELCOME"
+        }
+      ]
+    },
+    {
+      "id": "edge:496f98dba50977d9",
+      "source": "official-claim:p3-05",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-05"
+        }
+      ]
+    },
+    {
+      "id": "edge:a4e33c7f45a27e58",
+      "source": "official-claim:p3-05",
+      "target": "official-source:mpp",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-05",
+          "source_id": "MPP"
+        }
+      ]
+    },
+    {
+      "id": "edge:a1a7b02ccb62feeb",
+      "source": "official-claim:p3-05",
+      "target": "official-source:paysh-schemes",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-05",
+          "source_id": "PAYSH-SCHEMES"
+        }
+      ]
+    },
+    {
+      "id": "edge:ddc8c9552da32a17",
+      "source": "official-claim:p3-06",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-06"
+        }
+      ]
+    },
+    {
+      "id": "edge:fba131de1a5da39f",
+      "source": "official-claim:p3-06",
+      "target": "official-source:a2a",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-06",
+          "source_id": "A2A"
+        }
+      ]
+    },
+    {
+      "id": "edge:94a49e4a2f002b43",
+      "source": "official-claim:p3-07",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-07"
+        }
+      ]
+    },
+    {
+      "id": "edge:220a35a10121abad",
+      "source": "official-claim:t2-01",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:230f1bbe289cfa03",
+      "source": "official-claim:t2-03",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:d1d166c32346342b",
+      "source": "official-claim:t2-03",
+      "target": "official-source:paysh-docs",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-03",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:f9ed04c5b9d2aa30",
+      "source": "official-claim:t2-04",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:a225fafd7df2140f",
+      "source": "official-claim:t2-04",
+      "target": "official-source:paysh-docs",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-04",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:cfe0079dc177985c",
+      "source": "official-claim:t2-06",
+      "target": "official-source:paysh-docs",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-06",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:1e57d7889523ee4f",
+      "source": "official-claim:t3-02",
+      "target": "domain:protocol-x402",
+      "relationship": "concerns",
+      "status": "inferred",
+      "evidence": [
+        {
+          "kind": "keyword_domain_mapping",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T3-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:7f0696dcb4c50409",
+      "source": "official-claim:t3-06",
+      "target": "official-source:paysh-docs",
+      "relationship": "grounded_by",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_source",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T3-06",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:1d8eb4d5954635d1",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p1-01",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P1-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:1beb9a20c80a64da",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p1-02",
+      "relationship": "indexes",
+      "status": "ambiguous",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P1-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:703e4e121a0e05b0",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p1-03",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P1-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:316589d070ad5768",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p1-04",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P1-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:83acf99e8aa787ac",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p1-05",
+      "relationship": "indexes",
+      "status": "ambiguous",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P1-05"
+        }
+      ]
+    },
+    {
+      "id": "edge:c29102f624fbd1d1",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p1-06",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P1-06"
+        }
+      ]
+    },
+    {
+      "id": "edge:93580e996b0355c4",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p2-01",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:711347eda7c00623",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p2-02",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:4e28b9972d2b5c65",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p2-03",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:a9ffba013d650e6b",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p2-04",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:f46c2a21557e31c7",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p2-05",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-05"
+        }
+      ]
+    },
+    {
+      "id": "edge:f1b6811d56f1e2e3",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p2-06",
+      "relationship": "indexes",
+      "status": "ambiguous",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P2-06"
+        }
+      ]
+    },
+    {
+      "id": "edge:138041183a24529a",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p3-01",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:52e359b53fc773bc",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p3-02",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:ec51ea26684ea208",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p3-03",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:2de3623f06777af7",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p3-04",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:88b7b1c4dd463e4e",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p3-05",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-05"
+        }
+      ]
+    },
+    {
+      "id": "edge:4446f08f97973c71",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p3-06",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-06"
+        }
+      ]
+    },
+    {
+      "id": "edge:502987d8cef8022c",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:p3-07",
+      "relationship": "indexes",
+      "status": "ambiguous",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "P3-07"
+        }
+      ]
+    },
+    {
+      "id": "edge:50000fa4483c1ad2",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t1-01",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T1-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:d59da390f48e01de",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t1-02",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T1-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:acbbe2d8e1a0cd78",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t1-03",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T1-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:4261b13170e02f01",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t1-04",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T1-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:8541ce72521a6679",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t1-05",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T1-05"
+        }
+      ]
+    },
+    {
+      "id": "edge:1b66b9ac8d3577ac",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t1-06",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T1-06"
+        }
+      ]
+    },
+    {
+      "id": "edge:a2e5a1e7b533e547",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t2-01",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:4230699d7f614e87",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t2-02",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:6910c16371ed91b0",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t2-03",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:490102111f79d47b",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t2-04",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:3c515b5480f2a772",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t2-05",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-05"
+        }
+      ]
+    },
+    {
+      "id": "edge:a54c6718cc34efce",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t2-06",
+      "relationship": "indexes",
+      "status": "ambiguous",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T2-06"
+        }
+      ]
+    },
+    {
+      "id": "edge:4bf48689bb6bb7e8",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t3-01",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T3-01"
+        }
+      ]
+    },
+    {
+      "id": "edge:1f1edceedf314857",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t3-02",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T3-02"
+        }
+      ]
+    },
+    {
+      "id": "edge:8583f8d16ec1b2e5",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t3-03",
+      "relationship": "indexes",
+      "status": "ambiguous",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T3-03"
+        }
+      ]
+    },
+    {
+      "id": "edge:b97a3eb9640d78a1",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t3-04",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T3-04"
+        }
+      ]
+    },
+    {
+      "id": "edge:e2e3218e10c51f93",
+      "source": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "target": "official-claim:t3-06",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_claim_entry",
+          "path": "research/official-docs-wiki/claim-ledger.json",
+          "claim_id": "T3-06"
+        }
+      ]
+    },
+    {
+      "id": "edge:320d5872d26c67c4",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-claims:research/official-docs-wiki/claim-ledger.json",
+      "relationship": "governs",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_research_manifest",
+          "path": "research/official-docs-wiki/manifest.json"
+        }
+      ]
+    },
+    {
+      "id": "edge:345f70412b88cfbf",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:a2a",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "A2A"
+        }
+      ]
+    },
+    {
+      "id": "edge:5fc3ca7de73e9a2e",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:acp",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "ACP"
+        }
+      ]
+    },
+    {
+      "id": "edge:f27df02a345ee1d1",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:ap2",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "AP2"
+        }
+      ]
+    },
+    {
+      "id": "edge:296b8660cc59ed18",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:mpp",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "MPP"
+        }
+      ]
+    },
+    {
+      "id": "edge:1648a4ff13c40a85",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:paysh-docs",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "PAYSH-DOCS"
+        }
+      ]
+    },
+    {
+      "id": "edge:19733ad3ada306eb",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:paysh-schemes",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "PAYSH-SCHEMES"
+        }
+      ]
+    },
+    {
+      "id": "edge:ab33a1e4cd3c0910",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:ucp",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "UCP"
+        }
+      ]
+    },
+    {
+      "id": "edge:3819014d11951e85",
+      "source": "official-manifest:research/official-docs-wiki/manifest.json",
+      "target": "official-source:x402-welcome",
+      "relationship": "indexes",
+      "status": "extracted",
+      "evidence": [
+        {
+          "kind": "official_source_entry",
+          "path": "research/official-docs-wiki/manifest.json",
+          "source_id": "X402-WELCOME"
+        }
+      ]
+    },
+    {
+      "id": "edge:fa3d1a8b347b487f",
+      "source": "readiness-state:current",
+      "target": "operational-wiki:harness-wiki-operations-05-security-budget-md",
+      "relationship": "projects_to",
+      "status": "derived",
+      "evidence": [
+        {
+          "kind": "readiness_wiki_projection",
+          "state_path": ".harness/control/state.json",
+          "page_path": ".harness/wiki/operations/05-security-budget.md"
+        }
+      ]
+    }
+  ],
+  "role": "security",
+  "pinned_node_ids": [
+    "official-claims:research/official-docs-wiki/claim-ledger.json",
+    "official-manifest:research/official-docs-wiki/manifest.json",
+    "readiness-state:current"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "candidates": [
+    {
+      "agent_decision": "Choose whether and how much to purchase within a fixed policy.",
+      "gcp_audit_path": "Gemini decision to Cloud Run structured log.",
+      "id": "candidate-a",
+      "paid_action": "Purchase one paid API result.",
+      "persona": "One clearly named user role.",
+      "primary_track": "Agent-Initiated Commerce",
+      "problem": "One measurable user problem.",
+      "scores": {
+        "cost_risk": 0,
+        "demo_clarity": 0,
+        "official_fit": 0,
+        "payment_proof": 0,
+        "solo_feasibility": 0,
+        "user_value": 0
+      },
+      "solana_transaction": "One bounded Solana Devnet settlement.",
+      "title": "Candidate A"
+    },
+    {
+      "agent_decision": "Choose whether a settlement condition is satisfied.",
+      "gcp_audit_path": "Gemini decision to Cloud Run structured log.",
+      "id": "candidate-b",
+      "paid_action": "Settle one approved obligation.",
+      "persona": "One clearly named user role.",
+      "primary_track": "Autonomous On-chain Settlement",
+      "problem": "One measurable user problem.",
+      "scores": {
+        "cost_risk": 0,
+        "demo_clarity": 0,
+        "official_fit": 0,
+        "payment_proof": 0,
+        "solo_feasibility": 0,
+        "user_value": 0
+      },
+      "solana_transaction": "One bounded Solana Devnet settlement.",
+      "title": "Candidate B"
+    },
+    {
+      "agent_decision": "Choose an offer produced by another agent.",
+      "gcp_audit_path": "Gemini decision to Cloud Run structured log.",
+      "id": "candidate-c",
+      "paid_action": "Pay the selected counterparty once.",
+      "persona": "One clearly named user role.",
+      "primary_track": "Multi-Agent Commerce",
+      "problem": "One measurable user problem.",
+      "scores": {
+        "cost_risk": 0,
+        "demo_clarity": 0,
+        "official_fit": 0,
+        "payment_proof": 0,
+        "solo_feasibility": 0,
+        "user_value": 0
+      },
+      "solana_transaction": "One bounded Solana Devnet settlement.",
+      "title": "Candidate C"
+    }
+  ]
+}

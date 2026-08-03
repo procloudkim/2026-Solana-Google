@@ -1,0 +1,22 @@
+{
+  "adapter": "faster-whisper",
+  "compute_type": "int8",
+  "detected_language": "ko",
+  "detected_language_probability": 1.0,
+  "duration_seconds": 2067.285,
+  "model": "small",
+  "processing_seconds": 401.303,
+  "segment_count": 755,
+  "settings": {
+    "adapter": "faster-whisper",
+    "beam_size": 5,
+    "compute_type": "int8",
+    "cpu_threads": 12,
+    "language": "ko",
+    "model": "small",
+    "vad_filter": true
+  },
+  "settings_fingerprint": "d3513c9db403257d",
+  "source_path": "참고레퍼런스/2026-07-21 19-56-58.mp4",
+  "source_sha256": "cc050df2696cacb257f63f56a2828664c1ad463c86f92a09a28352c6cfb9cbca"
+}

@@ -1,0 +1,41 @@
+{
+  "candidate_selection": {
+    "minimum_margin": 5.0,
+    "minimum_score": 75.0,
+    "required_count": 3,
+    "weights": {
+      "cost_risk": 0.05,
+      "demo_clarity": 0.1,
+      "official_fit": 0.25,
+      "payment_proof": 0.25,
+      "solo_feasibility": 0.2,
+      "user_value": 0.15
+    }
+  },
+  "event": {
+    "deadline": "2026-08-03T23:59:00+09:00",
+    "demo_day": "2026-08-21",
+    "official_freshness_hours": 24,
+    "pivot_deadline": "2026-07-30T23:59:00+09:00"
+  },
+  "ideation": {
+    "default_input": ".harness/control/candidates.input.json",
+    "mode": "approved-external-input",
+    "note": "Generate exactly three candidates with an approved agents-cli session, then pass the schema-validated JSON to ideate --input."
+  },
+  "runtime_policy": {
+    "approval_required": [
+      "credential_access",
+      "credentialed_external_call",
+      "wallet_signature",
+      "cloud_deployment",
+      "paid_usage",
+      "public_publish",
+      "hackathon_submission"
+    ],
+    "default_network": "solana-devnet",
+    "mainnet_enabled": false,
+    "team_size": 1
+  },
+  "schema_version": 1
+}
