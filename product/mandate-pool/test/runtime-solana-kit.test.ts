@@ -120,7 +120,8 @@ function finalizedRecord(
   const initialAmounts = ['10000000', '9000000', '8000000'] as const;
   return {
     slot: '12345',
-    version: 0,
+    // @solana/kit decodes the RPC transaction version as a bigint.
+    version: 0n,
     rawTransactionBase64: signed.rawTransactionBase64,
     metaError: null,
     preTokenBalances: [
@@ -469,6 +470,15 @@ describe('Solana Kit settlement runtime', () => {
       await vi.advanceTimersByTimeAsync(1_000);
       const result = await resultPromise;
       expect(result.status).toBe('success');
+      if (result.status !== 'success' || result.cluster !== 'devnet') {
+        throw new Error('Expected verified Devnet success');
+      }
+      expect(result.finalizedEvidence).toMatchObject({
+        slot: '12345',
+        transactionSignature: signed.transactionSignature,
+        messageHash: signed.messageHash,
+        destinationCreditAtomic: '1000000',
+      });
       expect(verificationAttempts).toBe(2);
       expect(sendIdentical).toHaveBeenCalledTimes(1);
       expect(sendIdentical).toHaveBeenCalledWith(prepared);

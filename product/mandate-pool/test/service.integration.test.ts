@@ -55,12 +55,34 @@ class RecoveringSettlementRuntime extends FixtureSettlementRuntime {
   ): Promise<SettlementFinalization> {
     this.reconcileCalls += 1;
     this.reconciledSponsor = prepared.plan.sponsorAddress;
+    const sourceDebits = prepared.plan.transfers.map((transfer) => ({
+      buyerId: transfer.buyerId,
+      sourceAta: transfer.sourceAta,
+      preAmountAtomic: (1_000_000n + BigInt(transfer.amountAtomic)).toString(),
+      postAmountAtomic: '1000000',
+      debitAtomic: transfer.amountAtomic,
+    }));
+    const destinationCreditAtomic = prepared.plan.transfers
+      .reduce((total, transfer) => total + BigInt(transfer.amountAtomic), 0n)
+      .toString();
     return {
       status: 'success',
       cluster: 'devnet',
       commitment: 'finalized',
       transactionSignature: prepared.transactionSignature,
       metaError: null,
+      finalizedEvidence: {
+        slot: '12345',
+        transactionSignature: prepared.transactionSignature,
+        messageHash: prepared.messageHash,
+        rawTransactionHash: prepared.rawTransactionHash,
+        mint: prepared.plan.mint,
+        sourceDebits,
+        destinationAta: prepared.plan.merchantAta,
+        destinationPreAmountAtomic: '0',
+        destinationPostAmountAtomic: destinationCreditAtomic,
+        destinationCreditAtomic,
+      },
     };
   }
 }
@@ -135,6 +157,13 @@ describe('Mandate Pool service integration', () => {
       mandates: happyMandates,
     });
     expect(created.state).toBe('AWAITING_APPROVAL');
+    expect(created.agent).toEqual({
+      provider: 'fixture',
+      model: 'deterministic-fixture-v1',
+      startedAt: '2026-08-02T12:00:00.000Z',
+      completedAt: '2026-08-02T12:00:00.000Z',
+      selectedSkuId: 'signaldesk-team-3',
+    });
 
     const approved = await approveAll(service, created);
     expect(approved.state).toBe('APPROVED');
@@ -154,6 +183,9 @@ describe('Mandate Pool service integration', () => {
     expect(fulfilled.evidence?.cluster).toMatch(/NOT ON-CHAIN/);
     expect(fulfilled.evidence?.transferCount).toBe(3);
     expect(fulfilled.evidence?.requiredSignerCount).toBe(4);
+    expect(fulfilled.evidence?.slot).toBeUndefined();
+    expect(fulfilled.evidence?.rawTransactionHash).toBeUndefined();
+    expect(fulfilled.evidence?.sourceDebits).toBeUndefined();
     expect(fulfilled.selection).toEqual(approved.selection);
 
     const publicSnapshot = await service.getOrder(created.orderId);
@@ -179,6 +211,7 @@ describe('Mandate Pool service integration', () => {
     await approveAll(service, created);
     const result = await service.runOrder(created.orderId);
     expect(result.state).toBe('NO_BUY');
+    expect(result.agent.selectedSkuId).toBe('NO_BUY');
     expect(result.evidence).toBeUndefined();
     expect(result.entitlementCount).toBe(0);
   });
@@ -418,5 +451,17 @@ describe('Mandate Pool service integration', () => {
     expect(settlement.reconcileCalls).toBe(0);
     expect(rotatedSettlement.reconcileCalls).toBe(1);
     expect(rotatedSettlement.reconciledSponsor).toBe(DEMO_ADDRESSES.sponsor);
+    expect(fulfilled.evidence).toMatchObject({
+      cluster: 'solana-devnet',
+      commitment: 'finalized',
+      slot: '12345',
+      rawTransactionHash: expect.any(String),
+      destinationCreditAtomic: '1000000',
+      sourceDebits: [
+        {buyerId: 'A', debitAtomic: '333334'},
+        {buyerId: 'B', debitAtomic: '333333'},
+        {buyerId: 'C', debitAtomic: '333333'},
+      ],
+    });
   });
 });

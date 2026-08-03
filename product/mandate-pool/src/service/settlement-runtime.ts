@@ -14,6 +14,7 @@ import {
   buildAndSignSettlement,
   FinalizedSettlementVerificationError,
   SolanaRpcSettlementClient,
+  type FinalizedSettlementEvidence,
   type SettlementSignerSet,
   type SolanaSettlementPlan,
 } from '../runtime/solana-kit.js';
@@ -36,10 +37,19 @@ export interface PreparedSettlement {
 export type SettlementFinalization =
   | {
       readonly status: 'success';
-      readonly cluster: 'fixture' | 'devnet';
-      readonly commitment: 'fixture' | 'finalized';
-      readonly transactionSignature: string | null;
+      readonly cluster: 'fixture';
+      readonly commitment: 'fixture';
+      readonly transactionSignature: null;
       readonly metaError: null;
+    }
+  | {
+      readonly status: 'success';
+      readonly cluster: 'devnet';
+      readonly commitment: 'finalized';
+      readonly transactionSignature: string;
+      readonly metaError: null;
+      /** Output returned by the finalized wire and token-balance verifier. */
+      readonly finalizedEvidence: FinalizedSettlementEvidence;
     }
   | {
       readonly status: 'failed';
@@ -315,8 +325,12 @@ export class LiveSolanaSettlementRuntime implements SettlementRuntime {
             metaError: JSON.stringify(status.error),
           };
         }
+        let finalizedEvidence: FinalizedSettlementEvidence;
         try {
-          await this.#client.verifyFinalizedSettlement(prepared.plan, prepared);
+          finalizedEvidence = await this.#client.verifyFinalizedSettlement(
+            prepared.plan,
+            prepared,
+          );
         } catch (error) {
           const retryable =
             !(error instanceof FinalizedSettlementVerificationError) ||
@@ -350,8 +364,9 @@ export class LiveSolanaSettlementRuntime implements SettlementRuntime {
           status: 'success',
           cluster: 'devnet',
           commitment: 'finalized',
-          transactionSignature: prepared.transactionSignature,
+          transactionSignature: finalizedEvidence.transactionSignature,
           metaError: null,
+          finalizedEvidence,
         };
       }
       let height: bigint;

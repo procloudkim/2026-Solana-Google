@@ -2,7 +2,7 @@
 
 Mandate Pool은 세 구매자의 조건을 하나의 공동 구매로 조정하되, 사람의 확인과 결정론적 정책을 모두 통과한 경우에만 총 1 Devnet 테스트 USDC를 하나의 Solana 거래로 결제하는 해커톤 프로토타입입니다.
 
-**현재 증거 기준은 2026-08-03 KST입니다.** 로컬 fixture와 코드 검증, 비공개 Cloud Run 의존성 readiness, Devnet 지갑 준비는 끝났습니다. `solana-test-validator` localnet smoke, 현재 1 USDC 소스의 새 Cloud Run revision, 실제 제품 Devnet transaction은 아직 없으므로 구현 상태와 end-to-end 실행 증거를 구분해야 합니다.
+**현재 증거 기준은 2026-08-03 KST입니다.** 로컬 fixture와 코드 검증, Agave 4.1.1 localnet 정상·거부 smoke, 비공개 Cloud Run 의존성 readiness, Devnet 지갑 준비는 끝났습니다. 현재 1 USDC 소스의 새 Cloud Run revision과 실제 제품 Devnet transaction은 아직 없으므로 구현 상태와 end-to-end 실행 증거를 구분해야 합니다.
 
 이 문서는 세 질문에 답합니다.
 
@@ -144,11 +144,23 @@ Fixture는 실제 Gemini, Vertex AI, Firestore, Solana RPC를 호출하지 않�
 
 브라우저는 거부 결과에 transaction evidence와 이용권이 없음을 보여주지만, 내부 settlement plan·raw bytes·예산 예약의 부재를 모두 노출하지는 않습니다. 이 세 부정 조건은 자동화된 service integration test와 제출용 redacted API receipt를 함께 사용해 판정합니다.
 
+## Localnet settlement gate
+
+Fixture 다음에는 실제 `solana-test-validator`에 일회용 mint와 일회용 signer만 사용해 settlement 원문을 제출합니다. 이 하네스는 Devnet RPC, Circle Devnet mint, Secret Manager, 저장된 Devnet key를 읽지 않습니다. 출력 파일이 이미 있으면 덮어쓰지 않습니다.
+
+```bash
+SOLANA_TEST_VALIDATOR_BIN=/path/to/solana-test-validator \
+  npm run localnet:smoke -- \
+  --output=../../submission/evidence/localnet-smoke-2026-08-03.json
+```
+
+현재 receipt는 [localnet-smoke-2026-08-03.json](../../submission/evidence/localnet-smoke-2026-08-03.json)입니다. Agave 4.1.1에서 B cap `300000` 거부가 transaction 생성 전에 멈췄고, 정상 경로는 v0 transaction 한 건에 `[333334, 333333, 333333]` 세 `TransferChecked`와 memo를 담아 finalized slot에서 원문·signature·잔액 증감을 다시 검증했습니다. 이 signature는 폐기된 local ledger에만 존재하므로 Devnet Explorer 증거가 아닙니다.
+
 ## Live Devnet 실행
 
 Live는 실제 Solana **Devnet**에 기록된다는 뜻이지 실제 돈을 쓴다는 뜻이 아닙니다. Circle은 testnet USDC와 native test token에 금전 가치가 없고 실제 달러 담보도 없다고 명시합니다. [Circle USDC testnet 안내](https://developers.circle.com/stablecoins/usdc-contract-addresses)
 
-운영진 전달본은 pay.sh 사용 경로에는 pay.sh sandbox, 직접 Solana blockchain을 사용하는 경로에는 localnet을 먼저 권장한 뒤 Devnet 확인으로 진행하라고 안내합니다. Mandate Pool은 pay.sh가 아니라 custom Solana settlement이므로 적용되는 선행 경로는 `solana-test-validator` localnet입니다. Fixture는 localnet이 아니며 현재 localnet 증거는 아직 없습니다. [운영진 안내 기록](../../research/decision-report/evidence/organizer-devnet-guidance-2026-08-03.md)
+운영진 전달본은 pay.sh 사용 경로에는 pay.sh sandbox, 직접 Solana blockchain을 사용하는 경로에는 localnet을 먼저 권장한 뒤 Devnet 확인으로 진행하라고 안내합니다. Mandate Pool은 pay.sh가 아니라 custom Solana settlement이므로 적용되는 선행 경로는 `solana-test-validator` localnet입니다. Fixture는 localnet이 아니며, 위 receipt가 이 선행 gate의 현재 증거입니다. [운영진 안내 기록](../../research/decision-report/evidence/organizer-devnet-guidance-2026-08-03.md)
 
 계정·IAM·지갑·배포의 정확한 현재 상태와 순서별 명령은 [해커톤 실행 런북](../../research/decision-report/hackathon-environment-codex-runbook.md)을 따릅니다. 이 절은 애플리케이션이 요구하는 계약만 설명합니다.
 
@@ -231,6 +243,21 @@ Live runtime은 최초 제출 뒤 최대 45초 동안 1초 간격으로 같은 s
 
 거부 receipt는 `NO_BUY` reason code, settlement evidence·signature·entitlement의 부재, 같은 시점의 잔액 불변을 기록합니다. 실행 명령과 중단 조건은 [해커톤 실행 런북](../../research/decision-report/hackathon-environment-codex-runbook.md#p5-hitl-뒤-정상거부-증거-확보)을 따릅니다.
 
+배포 뒤의 공개 snapshot은 mutation endpoint를 호출하지 않는 exporter로 보존합니다. private Cloud Run에서는 identity token을 환경변수로만 전달하고, 출력 JSON에는 포함하지 않습니다.
+
+```bash
+EVIDENCE_BASE_URL=https://SERVICE.run.app \
+EVIDENCE_ID_TOKEN="$(gcloud auth print-identity-token)" \
+  npm run evidence:export -- \
+  --mode=preflight --output=../../submission/evidence/live-preflight.json
+
+npm run evidence:export -- \
+  --mode=reject --base-url=https://SERVICE.run.app \
+  --order-id=ORDER_ID --output=../../submission/evidence/reject.json
+```
+
+Exporter는 `/health`, `/readyz`, `/api/v1/runtime`, `/api/v1/orders/{id}`에 `GET`만 보내며 `X-Demo-Key`와 `Idempotency-Key`를 생성하지 않습니다. 정상 receipt는 finalized verifier의 exact 1,000,000 atomic contract가 모두 있을 때만 `PASS`가 됩니다.
+
 ## x402를 v0 결제 rail로 쓰지 않은 이유
 
 Mandate Pool은 **x402 표준 구현이라고 주장하지 않습니다.** x402 reference client의 `exact` 흐름은 한 client wallet이 광고된 고정 가격의 payment payload를 만드는 구조입니다. 이 데모가 별도로 증명해야 하는 세 구매자의 독립 한도, 세 source account, 네 signer 계약을 직접 표현하지는 않습니다. 그래서 v0는 custom Solana atomic settlement를 사용합니다. x402는 이후 단일 payer 구매나 facilitator adapter가 필요할 때 별도 호환 계층으로 검토합니다. [x402 buyer flow](https://docs.cdp.coinbase.com/x402/quickstart-for-buyers)
@@ -247,7 +274,7 @@ npm run build
 
 | 결과 | 증명하는 것 | 증명하지 않는 것 |
 |---|---|---|
-| typecheck·87 tests·build 통과 | 현재 소스의 정적 계약과 로컬 동작 | Cloud Run 또는 Devnet 실행 |
+| typecheck·95 tests·build 통과 | 현재 소스의 정적 계약과 로컬 동작 | Cloud Run 또는 Devnet 실행 |
 | fixture 정상·거부 | UI/API·정책·workflow 흐름 | 온체인 결제 |
 | `/readyz` 통과 | Vertex·Firestore·Solana 의존성 접근 | 실제 주문 성공 |
 | finalized Devnet receipt | 테스트 네트워크에서 승인된 거래 실행 | Mainnet 가치 이전 |
@@ -262,6 +289,8 @@ npm run build
 - `src/solana/`: 승인 quote에서 거래 의도를 파생하고 원문을 검증
 - `src/runtime/`: Solana Kit build/sign/RPC/finalized verifier
 - `src/service/`: 주문·HITL·결제·fulfillment orchestration
+- `src/evidence/`, `src/cli/`: mutation 권한이 없는 제출 증거 validator·exporter
+- `scripts/localnet-smoke.ts`: 일회용 validator·mint·signer 기반의 정상/거부 settlement gate
 - `src/http/`, `public/`: Cloud Run HTTP API와 한국어 데모 UI
 
 ## 용어와 식별자
@@ -277,7 +306,7 @@ npm run build
 ## 알려진 한계와 제출 전 행동
 
 - 실제 사용자 세 명의 독립 승인이 아니라 operator simulation입니다.
-- fixture와 transaction build/verify test는 통과했지만 local validator에 제출한 실제 localnet transaction은 아직 없습니다.
+- fixture, transaction build/verify test, 실제 local validator 정상·거부 receipt가 통과했습니다. 이는 Devnet 실행 증거를 대체하지 않습니다.
 - 현재 Cloud Run 서비스는 비공개이며, 총 1 USDC 코드가 반영된 새 revision과 실제 제품 transaction receipt가 아직 필요합니다.
 - 정상 경로 실행은 사람의 명시적 HITL 뒤 한 번만 수행하고, 전후 잔액·signature·Explorer·ADK trace를 함께 보존합니다.
 - 거부 경로에서는 signature가 없다는 사실과 정책 reason code를 함께 보존합니다.

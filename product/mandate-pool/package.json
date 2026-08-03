@@ -8,6 +8,8 @@
     "dev": "tsx watch src/main.ts",
     "build": "tsc -p tsconfig.build.json",
     "devnet:create-atas": "node scripts/create-devnet-atas.mjs",
+    "evidence:export": "node dist/cli/evidence-export.js",
+    "localnet:smoke": "tsx scripts/localnet-smoke.ts",
     "wallets:provision": "node scripts/provision-devnet-wallets.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

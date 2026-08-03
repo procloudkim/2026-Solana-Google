@@ -68,6 +68,22 @@ export interface SettlementEvidenceView {
   requiredSignerCount?: number;
   commitment?: string;
   metaError?: string | null;
+  /** Present only after the finalized RPC record passed the independent verifier. */
+  slot?: string;
+  /** SHA-256 of the finalized wire bytes returned by RPC, not merely prepared bytes. */
+  rawTransactionHash?: string;
+  mint?: string;
+  sourceDebits?: Array<{
+    buyerId: BuyerId;
+    sourceAta: string;
+    preAmountAtomic: string;
+    postAmountAtomic: string;
+    debitAtomic: string;
+  }>;
+  destinationAta?: string;
+  destinationPreAmountAtomic?: string;
+  destinationPostAmountAtomic?: string;
+  destinationCreditAtomic?: string;
 }
 
 export interface OrderSnapshotView {
@@ -77,6 +93,13 @@ export interface OrderSnapshotView {
   createdAt: string;
   updatedAt: string;
   scenarioLabel?: string;
+  agent: {
+    provider: "google-adk" | "fixture";
+    model: string;
+    startedAt: string;
+    completedAt: string;
+    selectedSkuId: string | "NO_BUY";
+  };
   mandates: MandateView[];
   selection?: {
     skuId: string;

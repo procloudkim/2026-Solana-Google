@@ -34,6 +34,8 @@ const ui = {
   evidence: document.querySelector("#evidence"),
   explorer: document.querySelector("#explorer-link"),
   orderState: document.querySelector("#order-state"),
+  orderId: document.querySelector("#order-id"),
+  copyOrderId: document.querySelector("#copy-order-id"),
   timeline: document.querySelector("#timeline"),
   catalog: document.querySelector("#catalog"),
   entitlementToken: document.querySelector("#entitlement-token"),
@@ -119,15 +121,18 @@ function renderMandates(mandates = []) {
 }
 
 function renderPolicy(order) {
+  const agentTrace = order.agent
+    ? `<div class="agent-trace"><span>AGENT TRACE</span><strong>${text(order.agent.provider)} · ${text(order.agent.model)}</strong><code>START ${text(order.agent.startedAt)}<br>END ${text(order.agent.completedAt)}<br>SELECTED SKU ${text(order.agent.selectedSkuId)}</code></div>`
+    : "";
   if (order.selection) {
     const allocationText = order.selection.allocations
       .map((allocation) => `${allocation.buyerId} ${displayUsdc(allocation.amountAtomic)}`)
       .join(" · ");
     ui.selection.className = "selection-card";
-    ui.selection.innerHTML = `<span>SELECTED PRODUCT</span><strong>${text(order.selection.productName)}</strong><p>${text(order.selection.rationale)} · 총 ${text(displayUsdc(order.selection.totalAmountAtomic))} · 분담 ${text(allocationText)}</p>`;
+    ui.selection.innerHTML = `<span>SELECTED PRODUCT</span><strong>${text(order.selection.productName)}</strong><p>${text(order.selection.rationale)} · 총 ${text(displayUsdc(order.selection.totalAmountAtomic))} · 분담 ${text(allocationText)}</p>${agentTrace}`;
   } else {
     ui.selection.className = "selection-card muted";
-    ui.selection.innerHTML = `<span>SELECTED PRODUCT</span><strong>선택 없음</strong><p>${text(order.failure?.message || "정책 판단을 기다리고 있습니다.")}</p>`;
+    ui.selection.innerHTML = `<span>SELECTED PRODUCT</span><strong>선택 없음</strong><p>${text(order.failure?.message || "정책 판단을 기다리고 있습니다.")}</p>${agentTrace}`;
   }
   if (!order.policyChecks?.length) {
     ui.policyChecks.innerHTML = '<li class="placeholder-line"></li><li class="placeholder-line short"></li><li class="placeholder-line"></li>';
@@ -142,11 +147,29 @@ function renderPolicy(order) {
 }
 
 function renderEvidence(evidence) {
-  if (!evidence) return;
+  ui.explorer.href = "#";
+  ui.explorer.classList.add("disabled");
+  if (!evidence) {
+    ui.chainStatus.textContent = "미제출";
+    ui.chainStatus.className = "badge badge-neutral";
+    ui.evidence.innerHTML = `
+      <div><dt>TransferChecked</dt><dd>— / 3</dd></div>
+      <div><dt>Required signers</dt><dd>— / 4</dd></div>
+      <div><dt>Finality</dt><dd>—</dd></div>
+      <div><dt>Message hash</dt><dd class="mono">—</dd></div>`;
+    return;
+  }
   const fixtureOnly = state.runtimeMode === "fixture" || evidence.cluster?.includes("NOT ON-CHAIN");
   const finalized = evidence.commitment === "finalized" && evidence.metaError == null;
   ui.chainStatus.textContent = fixtureOnly ? "FIXTURE ONLY" : finalized ? "FINALIZED" : evidence.commitment || "준비 중";
   ui.chainStatus.className = `badge ${finalized ? "badge-good" : fixtureOnly ? "badge-stop" : "badge-neutral"}`;
+  const finalizedRows = evidence.slot
+    ? `<div><dt>Finalized slot</dt><dd class="mono">${text(evidence.slot)}</dd></div>
+       <div><dt>Raw tx hash</dt><dd class="mono" title="${text(evidence.rawTransactionHash)}">${text(shorten(evidence.rawTransactionHash))}</dd></div>
+       <div><dt>Verified mint</dt><dd class="mono" title="${text(evidence.mint)}">${text(shorten(evidence.mint))}</dd></div>
+       ${(evidence.sourceDebits || []).map((debit) => `<div class="evidence-detail"><dt>Source ${text(debit.buyerId)}</dt><dd><code title="${text(debit.sourceAta)}">${text(shorten(debit.sourceAta))}</code><small>${text(displayUsdc(debit.preAmountAtomic))} → ${text(displayUsdc(debit.postAmountAtomic))} · debit ${text(displayUsdc(debit.debitAtomic))}</small></dd></div>`).join("")}
+       <div class="evidence-detail"><dt>Destination</dt><dd><code title="${text(evidence.destinationAta)}">${text(shorten(evidence.destinationAta))}</code><small>${text(displayUsdc(evidence.destinationPreAmountAtomic))} → ${text(displayUsdc(evidence.destinationPostAmountAtomic))} · credit ${text(displayUsdc(evidence.destinationCreditAtomic))}</small></dd></div>`
+    : "";
   ui.evidence.innerHTML = `
     <div><dt>Cluster</dt><dd>${text(evidence.cluster)}</dd></div>
     <div><dt>TransferChecked</dt><dd>${text(evidence.transferCount ?? "—")} / 3</dd></div>
@@ -154,7 +177,8 @@ function renderEvidence(evidence) {
     <div><dt>Finality</dt><dd>${text(evidence.commitment || "—")}</dd></div>
     <div><dt>Quote hash</dt><dd class="mono" title="${text(evidence.quoteHash)}">${text(shorten(evidence.quoteHash))}</dd></div>
     <div><dt>Policy proof</dt><dd class="mono" title="${text(evidence.policyProofHash)}">${text(shorten(evidence.policyProofHash))}</dd></div>
-    <div><dt>Message hash</dt><dd class="mono" title="${text(evidence.messageHash)}">${text(shorten(evidence.messageHash))}</dd></div>`;
+    <div><dt>Message hash</dt><dd class="mono" title="${text(evidence.messageHash)}">${text(shorten(evidence.messageHash))}</dd></div>
+    ${finalizedRows}`;
   if (evidence.explorerUrl) {
     ui.explorer.href = evidence.explorerUrl;
     ui.explorer.classList.remove("disabled");
@@ -163,8 +187,34 @@ function renderEvidence(evidence) {
 
 function renderTimeline(order) {
   ui.orderState.textContent = order.state;
+  ui.orderId.textContent = order.orderId;
+  ui.copyOrderId.disabled = false;
   if (!order.timeline?.length) return;
   ui.timeline.innerHTML = order.timeline.map((event) => `<li class="timeline-event ${text(event.status)}"><strong>${text(event.state)}</strong><small>${text(event.label)}<br>${text(new Date(event.at).toLocaleTimeString("ko-KR", {hour12: false}))}</small></li>`).join("");
+}
+
+async function copyOrderId() {
+  const orderId = state.order?.orderId;
+  if (!orderId) return;
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(orderId);
+    } else {
+      const input = document.createElement("textarea");
+      input.value = orderId;
+      input.setAttribute("readonly", "");
+      input.style.position = "fixed";
+      input.style.opacity = "0";
+      document.body.append(input);
+      input.select();
+      const copied = document.execCommand("copy");
+      input.remove();
+      if (!copied) throw new Error("clipboard unavailable");
+    }
+    setMessage(`주문 ID를 복사했습니다: ${orderId}`, "success");
+  } catch {
+    setMessage("주문 ID를 복사하지 못했습니다. 화면의 전체 ID를 직접 선택하세요.", "error");
+  }
 }
 
 function render(order) {
@@ -357,6 +407,7 @@ document.querySelectorAll("[data-scenario]").forEach((button) => button.addEvent
 }));
 ui.create.addEventListener("click", createOrder);
 ui.run.addEventListener("click", runOrder);
+ui.copyOrderId.addEventListener("click", copyOrderId);
 ui.checkAccess.addEventListener("click", checkAccess);
 loadRuntime();
 loadCatalog();

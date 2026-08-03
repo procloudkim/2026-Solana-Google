@@ -1115,6 +1115,10 @@ export class MandatePoolService implements MandatePoolHttpService {
     prepared: PreparedSettlement,
     finalization: SettlementFinalization,
   ): SettlementEvidenceView {
+    const finalizedEvidence =
+      finalization.status === 'success' && finalization.cluster === 'devnet'
+        ? finalization.finalizedEvidence
+        : undefined;
     return {
       cluster:
         finalization.cluster === 'fixture'
@@ -1128,7 +1132,7 @@ export class MandatePoolService implements MandatePoolHttpService {
           }),
       quoteHash: prepared.plan.quoteHash,
       policyProofHash: prepared.plan.policyProofHash,
-      messageHash: prepared.messageHash,
+      messageHash: finalizedEvidence?.messageHash ?? prepared.messageHash,
       memo: prepared.memo,
       transferCount: prepared.plan.transfers.length,
       requiredSignerCount: prepared.plan.transfers.length + 1,
@@ -1136,6 +1140,22 @@ export class MandatePoolService implements MandatePoolHttpService {
         ? {}
         : {commitment: finalization.commitment}),
       metaError: finalization.metaError,
+      ...(finalizedEvidence === undefined
+        ? {}
+        : {
+            slot: finalizedEvidence.slot,
+            rawTransactionHash: finalizedEvidence.rawTransactionHash,
+            mint: finalizedEvidence.mint,
+            sourceDebits: finalizedEvidence.sourceDebits.map((debit) => ({
+              ...debit,
+            })),
+            destinationAta: finalizedEvidence.destinationAta,
+            destinationPreAmountAtomic:
+              finalizedEvidence.destinationPreAmountAtomic,
+            destinationPostAmountAtomic:
+              finalizedEvidence.destinationPostAmountAtomic,
+            destinationCreditAtomic: finalizedEvidence.destinationCreditAtomic,
+          }),
     };
   }
 
@@ -1284,6 +1304,13 @@ export class MandatePoolService implements MandatePoolHttpService {
       ...(context.scenarioLabel === null
         ? {}
         : {scenarioLabel: context.scenarioLabel}),
+      agent: {
+        provider: context.agentTrace.provider,
+        model: context.agentTrace.model,
+        startedAt: context.agentTrace.startedAt,
+        completedAt: context.agentTrace.completedAt,
+        selectedSkuId: context.agentTrace.selection.skuId,
+      },
       mandates: context.naturalMandates.map((natural) => {
         const mandate = context.mandates.find(
           (candidate) => candidate.buyerId === natural.buyerId,

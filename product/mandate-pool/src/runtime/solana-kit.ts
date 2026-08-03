@@ -112,7 +112,8 @@ export interface ObservedTokenBalance {
 
 export interface FinalizedTransactionRecord {
   readonly slot: string;
-  readonly version: 'legacy' | number;
+  /** Solana RPC numeric scalars are decoded as bigint by @solana/kit at runtime. */
+  readonly version: 'legacy' | number | bigint;
   readonly rawTransactionBase64: string;
   readonly metaError: unknown | null;
   readonly preTokenBalances: readonly ObservedTokenBalance[];
@@ -436,7 +437,7 @@ export function verifyFinalizedSettlementRecord(
       `Finalized transaction failed: ${JSON.stringify(record.metaError)}`,
     );
   }
-  if (record.version !== 0) {
+  if (record.version !== 0 && record.version !== 0n) {
     throw new FinalizedSettlementVerificationError(
       'VERSION_MISMATCH',
       'Finalized settlement must be a version-0 transaction',
