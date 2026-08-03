@@ -1,12 +1,12 @@
 # 인프라와 과금: 데모를 안전하게 운영하는 최소 구조
 
-이 모듈은 “Google 기술을 얼마나 많이 썼는가”가 아니라, **에이전트 판단부터 Devnet 거래 검증까지 재현 가능한 최소 런타임을 어떻게 운영할지** 정한다. 근거는 [Google Cloud·ADK·크레딧 노트](../sources/google-cloud-and-adk.md)와 [행사 계약](../sources/event-contract.md)이다.
+이 모듈은 “Google 기술을 얼마나 많이 썼는가”가 아니라, **에이전트 판단부터 Devnet 거래 검증까지 재현 가능한 최소 런타임을 어떻게 운영할지** 정한다. 근거는 [Google Cloud·ADK·크레딧 노트](../sources/google-cloud-and-adk.md)와 [행사 계약](../sources/event-contract.md)이다. 여기의 비용·운영 기준은 2026-08-03 snapshot이며, Mandate Pool release의 실제 revision·receipt는 [제출 manifest](../../../submission/manifest.md)가 관리한다.
 
 ## 현재 제품의 최소 아키텍처
 
 ```text
 browser/operator
-  -> private Cloud Run API
+  -> private Cloud Run live API
   -> ADK/Gemini: 자연어 조건 정규화·후보 제안
   -> deterministic policy: 승인·한도·상품·만료 검사
   -> Firestore: 상태·idempotency·감사 기록
@@ -15,6 +15,8 @@ browser/operator
 
 Secret Manager -> Cloud Run runtime identity only
 ```
+
+심사용으로는 별도의 public zero-role fixture가 있으며, 이는 signer·Gemini·Firestore·Solana RPC를 사용하지 않고 `FIXTURE · NOT ON-CHAIN`을 표시한다. private live와 fixture의 현재 증거 경계는 [제품 README](../../../product/mandate-pool/README.md)와 [deployment receipt](../../../submission/evidence/deployment-2ac7eac.json)를 따른다.
 
 Cloud Run은 완전 관리형 application platform이며 소스 또는 컨테이너를 실행할 수 있다. 공식 행사 페이지가 Pub/Sub, Eventarc, Workflows, Firestore, BigQuery 조합을 권장하지만, 모든 구성 요소를 사용해야 한다는 규칙은 아니다.
 
@@ -39,7 +41,7 @@ Mandate Pool에서는 ADK/Gemini가 비결정적 언어 작업만 담당한다. 
 
 ## 배포 수용 기준
 
-- Cloud Run service는 전용 service account로 실행하고 unauthenticated access를 열지 않는다.
+- private live Cloud Run service는 전용 service account로 실행하고 unauthenticated access를 열지 않는다. public fixture는 signer·live credential 없이 별도 service로만 공개한다.
 - 비밀값은 Secret Manager에서 주입하며 저장소·빌드 로그·환경 덤프에 남기지 않는다.
 - `/health`는 process liveness, `/readyz`는 Firestore·Vertex·Solana read-only readiness만 검사한다.
 - readiness probe는 거래를 만들거나 signer를 호출하지 않는다.
@@ -47,7 +49,7 @@ Mandate Pool에서는 ADK/Gemini가 비결정적 언어 작업만 담당한다. 
 - 배포 후 정상 경로 실행 전 unauthenticated 403, authenticated health, runtime label, catalog 금액을 읽기 전용으로 확인한다.
 - Cloud Run revision, container digest, commit SHA를 receipt에 묶는다.
 
-## 다음 행동
+## 새 revision 전 재확인
 
 1. GCP와 Gemini 예산을 분리해 현재 잔액·한도·alert를 확인한다.
 2. 배포 revision이 제출 commit을 가리키는지 확인한다.

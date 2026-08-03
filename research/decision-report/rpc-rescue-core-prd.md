@@ -109,10 +109,10 @@ fresh 402 requirement
 | 핵심 사용자 결과 | 기존 payout의 중복 재생성 방지 | 세 구매 조건의 교집합 상품을 일부 결제 없이 공동 구매 |
 | 외부 의존성 | 유료 RPC merchant와 post-payment fulfillment | 고정 데모 catalog와 자체 entitlement verifier |
 | 온체인 증명 | RPC 서비스 결제 한 건 | 한 v0 거래의 세 `TransferChecked`와 네 signer |
-| 현재 증거 상태 | 과거 unsigned 402 관측만 보존 | 코드·테스트·private Cloud Run 준비 완료, 1 Devnet 테스트 USDC 실행 증거는 런북상 미완료 |
+| 현재 증거 상태 | 과거 unsigned 402 관측만 보존 | source `2ac7eac…`에서 정상 1 Devnet 테스트 USDC와 cap 거부 0 tx를 [제출 manifest](../../submission/manifest.md)에 고정 |
 | 처분 | 보류 | 제출 제품 |
 
-Mandate Pool을 선택한 이유는 RPC 아이디어가 나빠서가 아니다. 외부 유료 fulfillment에 의존하지 않고도 `의도 → HITL → 정책 → 원자적 거래 → finalized 검증 → entitlement`를 한 제품 경계 안에서 더 정직하게 증명할 수 있기 때문이다.
+Mandate Pool을 선택한 이유는 RPC 아이디어가 나빠서가 아니다. 외부 유료 fulfillment에 의존하지 않고도 `의도 → HITL → 정책 → 원자적 거래 → finalized 검증 → entitlement`를 한 제품 경계 안에서 더 정직하게 증명할 수 있었고, 이후 [정상 receipt](../../submission/evidence/normal-order-2ac7eac.json)와 [거부 receipt](../../submission/evidence/reject-order-2ac7eac.json)로 그 제한된 시나리오를 닫았기 때문이다. 이 후속 증거가 RPC 후보 자체의 사용자 수요나 유료 fulfillment를 검증한 것은 아니다.
 
 ## 재개 조건
 

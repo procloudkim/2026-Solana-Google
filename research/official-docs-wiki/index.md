@@ -1,6 +1,6 @@
 # Official Docs Wiki: 의사결정 인덱스
 
-비교 데이터 기준일은 2026-07-23이며, 행사 규칙·과금·Solana·pay.sh·x402·MPP·에이전트 프로토콜의 고영향 사실은 2026-08-03에 공식 원문으로 다시 확인했다. 이 페이지는 조사 결과를 나열하지 않고 **Mandate Pool을 제출 가능한 제품으로 만드는 결정 순서**로 정리한다.
+비교 데이터 기준일은 2026-07-23이며, 행사 규칙·과금·Solana·pay.sh·x402·MPP·에이전트 프로토콜의 고영향 사실은 2026-08-03에 공식 원문으로 다시 확인했다. 이 페이지는 당시 조사 결과를 **Mandate Pool의 제품 결정으로 번역한 지식 인덱스**다. 현재 release·실행 결과·공개 링크는 [제출 manifest](../../submission/manifest.md)를 우선한다.
 
 ## 지금 고정할 결정
 
@@ -15,7 +15,7 @@
 
 - 평가 문구는 localnet·testnet·Devnet에서 에이전트가 트랜잭션을 발생시키고 결제를 완료하며, 로그나 이력으로 이를 확인할 수 있어야 한다는 취지다.
 - fixture 응답, sandbox 영수증, UI 애니메이션, 임의의 transaction ID는 온체인 증거가 아니다.
-- 최소 증거는 `에이전트 판단 → 승인·정책 판정 → 서명된 거래 → Solana signature → finalized 검증 → 애플리케이션 결과`를 같은 주문 ID로 연결해야 한다.
+- 최소 증거는 `에이전트 판단 → 승인·정책 판정 → 서명된 거래 → Solana signature → finalized 검증 → 애플리케이션 결과`를 같은 주문 ID로 연결해야 한다. 현재 release는 [정상 order receipt](../../submission/evidence/normal-order-2ac7eac.json)와 [거부 order receipt](../../submission/evidence/reject-order-2ac7eac.json)로 이 경계를 분리해 기록한다.
 
 ### 3. 어떤 기술만 선택하는가
 
@@ -39,7 +39,7 @@
 2. Mainnet은 제출 필수가 아니다. Mainnet 자산과 키를 데모에 도입하지 않는다.
 3. Google Cloud Free Trial의 USD 300·90일 조건과 Gemini API 과금은 분리한다. 2026-03-02 이후 개설 계정의 Welcome credit은 Gemini API·AI Studio 비용에 사용할 수 없다.
 4. pay.sh sandbox는 임시 로컬 계정을 사용하는 테스트 경로다. Devnet 거래 증거를 별도로 남긴다.
-5. fixture는 localnet이 아니다. 직접 Solana transaction을 쓰는 Mandate Pool에는 `solana-test-validator` smoke가 권장 선행 단계이며, 실행하지 않았다면 그 공백을 명시한다.
+5. fixture는 localnet이 아니다. Mandate Pool은 `solana-test-validator` 선행 단계를 [localnet smoke receipt](../../submission/evidence/localnet-smoke-2026-08-03.json)로 별도 보존했고, 공개 fixture는 계속 `NOT ON-CHAIN`으로 표시한다.
 6. pay.sh의 간편 결제 메시지는 공급자별 가입을 줄인다는 뜻이다. 로컬 wallet·setup·funding·authorization까지 사라지는 것은 아니다.
 7. x402 신규 구현은 v2 header와 CAIP-2 network ID를 사용한다. v1의 `X-PAYMENT` 예제를 복사하지 않는다.
 8. 생체 인증이나 wallet approval 하나만으로 prompt injection 전체를 막았다고 주장하지 않는다. 한도, allowlist, 원문 검증, 일회성 권한, 감사 로그가 별도로 필요하다.
@@ -63,11 +63,12 @@
 - [MPP](sources/mpp.md)
 - [에이전트·상거래 프로토콜](sources/agent-protocols.md)
 
-## 다음 행동
+## 현재 적용 결과
 
-1. 제출 폼에서 영상 길이와 제품 소개 형식을 최종 확인한다.
-2. Devnet 정상 경로 1건과 정책 거부 경로 1건의 redacted receipt를 보존한다.
-3. 제품 설명에서 `fixture`, `Devnet`, `custom settlement`, `operator-simulated HITL`을 정확히 표기한다.
-4. 구현하지 않은 프로토콜 로고와 호환성 주장을 제거한다.
+1. Devnet 정상 경로 한 건과 한도 초과 `NO_BUY` 경로 한 건의 redacted receipt를 `submission-v2` evidence release에 보존했다.
+2. 제품 설명은 `fixture`, `Devnet 테스트 토큰`, `custom settlement`, `operator-simulated HITL`을 구분한다.
+3. x402·AP2·Solana Pay처럼 구현하지 않은 프로토콜의 호환성을 주장하지 않는다.
+4. 행사 폼과 공개 접근의 실제 상태는 이 지식 인덱스가 아니라 [제출 manifest](../../submission/manifest.md)에서 관리한다.
+5. 프로토콜·과금·행사 규칙을 이후 재사용할 때는 위 기준일의 snapshot을 현재 공식 문서와 다시 대조한다.
 
 `일치`는 문서 표현의 일치일 뿐이다. 실제 배포·온체인 거래·심사 통과는 별도 증거로만 주장한다.

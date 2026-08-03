@@ -7,10 +7,10 @@ footer: Mandate Pool · Solana Devnet test tokens
 ---
 
 <!--
-사용법
-- 이 파일은 정확히 6장으로 구성한다.
-- slide 5의 증거 슬롯과 slide 6의 링크를 submission/manifest.md 기준으로 교체한다.
-- 증거 슬롯이 하나라도 남아 있으면 외부 제출용 PDF로 내보내지 않는다.
+상태
+- submission-v2에 고정한 최종 6장 원고다.
+- deck.html과 deck.pdf는 같은 evidence release의 표시본이다.
+- 내용을 바꾸면 HTML·PDF를 함께 다시 만들고 모든 링크와 증거 식별자를 재검증한다.
 -->
 
 # Mandate Pool

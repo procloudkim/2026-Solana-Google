@@ -24,7 +24,7 @@
     <rect x="64" y="46" width="148" height="32" rx="16" fill="#ff6f91" opacity="0.14" stroke="#ff87a2" stroke-opacity="0.55"/>
     <text x="138" y="67" fill="#ffacc0" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1.4">REJECT PATH</text>
     <text x="64" y="124" fill="#ffffff" font-size="42" font-weight="760">NO_BUY before settlement</text>
-    <text x="64" y="158" fill="#aebbd0" font-size="18">Three people approved their own mandates. One hard budget constraint still stopped the purchase.</text>
+    <text x="64" y="158" fill="#aebbd0" font-size="18">One demo operator confirmed the A/B/C role mandates. One hard budget constraint still stopped the purchase.</text>
 
     <g filter="url(#shadow)">
       <rect x="64" y="197" width="320" height="132" rx="18" fill="#111e31" stroke="#30405a"/>
@@ -33,13 +33,13 @@
     </g>
     <text x="88" y="229" fill="#90a1bc" font-size="14" font-weight="650" letter-spacing="0.8">BUYER B MAXIMUM</text>
     <text x="88" y="279" fill="#ffffff" font-size="36" font-weight="760">300000</text>
-    <text x="88" y="306" fill="#91a5c1" font-size="14">atomic units · approved by B</text>
+    <text x="88" y="306" fill="#91a5c1" font-size="14">atomic units · B-role cap</text>
 
     <text x="432" y="229" fill="#90a1bc" font-size="14" font-weight="650" letter-spacing="0.8">REQUIRED B SHARE</text>
     <text x="432" y="279" fill="#ffffff" font-size="36" font-weight="760">333333</text>
     <text x="432" y="306" fill="#91a5c1" font-size="14">atomic units · canonical split</text>
 
-    <text x="776" y="229" fill="#ffacc0" font-size="14" font-weight="700" letter-spacing="0.8">POLICY RESULT</text>
+    <text x="776" y="229" fill="#ffacc0" font-size="14" font-weight="700" letter-spacing="0.8">AGENT SELECTION</text>
     <text x="776" y="278" fill="url(#accent)" font-size="36" font-weight="800">300000 &lt; 333333</text>
     <text x="776" y="306" fill="#efb7c5" font-size="14">NO_COMMON_PRODUCT · state NO_BUY</text>
 
@@ -47,12 +47,12 @@
     <text x="88" y="391" fill="#90a1bc" font-size="13" font-weight="700" letter-spacing="1.1">OBSERVED WORKFLOW</text>
     <g font-size="17" font-weight="650">
       <text x="88" y="439" fill="#ffffff">Natural-language mandates</text>
-      <text x="303" y="439" fill="#657792">→</text>
-      <text x="343" y="439" fill="#ffffff">A/B/C HITL approved</text>
-      <text x="536" y="439" fill="#657792">→</text>
-      <text x="576" y="439" fill="#ffffff">Gemini selected NO_BUY</text>
-      <text x="800" y="439" fill="#657792">→</text>
-      <text x="840" y="439" fill="#ffacc0">0 entitlements</text>
+      <text x="292" y="439" fill="#657792">→</text>
+      <text x="325" y="439" fill="#ffffff">Gemini proposed NO_BUY</text>
+      <text x="548" y="439" fill="#657792">→</text>
+      <text x="581" y="439" fill="#ffffff">Operator confirmed roles</text>
+      <text x="790" y="439" fill="#657792">→</text>
+      <text x="824" y="439" fill="#ffacc0">0 tx · 0 entitlements</text>
     </g>
     <text x="88" y="469" fill="#aebbd0" font-size="15">Receipt contains no settlement evidence or transaction signature. The payment path was never entered.</text>
 

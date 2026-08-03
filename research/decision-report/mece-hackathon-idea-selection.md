@@ -16,16 +16,16 @@ Mandate Pool은 세 구매자 Agent가 서로 다른 예산·기능·기간 조�
 
 ```text
 자연어 조건 3개
-  → Gemini/ADK 구조화
+  → 주문 생성 시 Gemini/ADK가 mandate와 SKU/NO_BUY 계획 생성
   → 역할별 HITL 확인
-  → Agent의 상품/NO_BUY 제안
-  → 결정론적 정책
+  → NO_BUY면 policy check 없이 거래 0건
+  → SKU 후보면 결정론적 정책
   → 한 Solana 원자 거래
   → finalized·잔액 변화 검증
-  → 이용권 3개 또는 거래 0건
+  → 이용권 3개
 ```
 
-현재 실행 완료 상태는 [환경·실행 런북](hackathon-environment-codex-runbook.md)이 단일 source of truth다.
+이 문서는 **왜 Mandate Pool을 선택했는지** 설명하는 의사결정 기록이다. 선택 뒤 확보한 실행 결과와 공개 링크는 [제출 manifest](../../submission/manifest.md), 이후 운영 행동은 [환경·실행 런북](hackathon-environment-codex-runbook.md)을 따른다.
 
 ## 공식 해커톤 계약을 제품 언어로 번역하기
 
@@ -85,12 +85,12 @@ Mandate Pool은 세 구매자 Agent가 서로 다른 예산·기능·기간 조�
 | G1 한 사용자 순간 | 세 사람이 공동 이용권을 사려 하지만 조건이 다름 | 문제 문장과 정상·거부 fixture가 고정됨; 실제 사용자 인터뷰는 미완료 |
 | G2 Agentic decision | Agent가 후보 또는 `NO_BUY`를 제안 | ADK/Gemini runtime과 typed trace 구현 |
 | G3 권한 분리 | LLM과 signer를 분리하고 모든 조건을 코드가 재검사 | policy engine, transaction verifier, signer guard 구현 |
-| G4 Solana 인과성 | 다자 분담이 한 원자 거래로 전부 성공 또는 전부 실패 | v0 message, 세 `TransferChecked`, 네 signer 계약과 테스트 |
-| G5 fulfillment | finalized 거래 뒤에만 상품을 제공 | transaction·balance verifier 뒤 entitlement 발급 |
-| G6 실패 안전 | cap 위반 0 tx, 재시도 중복 없음, 불명 결과 정지 | 상태 머신·CAS·idempotency·reconciliation 구현과 테스트 |
-| G7 제출 증거 | live Devnet tx와 linked trace | private readiness까지 완료; 총 1 Devnet 테스트 USDC receipt는 런북상 남음 |
+| G4 Solana 인과성 | 다자 분담이 한 원자 거래로 전부 성공 또는 전부 실패 | [정상 receipt](../../submission/evidence/normal-order-2ac7eac.json)의 v0 message, 세 `TransferChecked`, 네 signer, exact token delta |
+| G5 fulfillment | finalized 거래 뒤에만 상품을 제공 | 정상 receipt에서 finalized 검증 뒤 entitlement 3개 발급 |
+| G6 실패 안전 | cap 위반 0 tx, 재시도 중복 없음, 불명 결과 정지 | [거부 receipt](../../submission/evidence/reject-order-2ac7eac.json)의 0 settlement·0 signature·0 entitlement, 상태 머신과 replay 테스트 |
+| G7 제출 증거 | live Devnet tx와 linked trace | source `2ac7eac…`, finalized transaction, 정상·거부·잔액 receipt를 [제출 manifest](../../submission/manifest.md)에 연결 |
 
-“구현돼 있다”와 “live로 증명됐다”를 같은 열에 두지 않았다. G7이 닫히기 전에는 온체인 제품 검증 완료라고 표현하지 않는다.
+“구현돼 있다”와 “live로 증명됐다”는 계속 구분한다. G7은 한 정상 주문과 한 거부 주문의 제한된 Devnet 증거로 닫혔지만, 실제 사용자 승인·상용 custody·Mainnet 안전성까지 통과했다는 뜻은 아니다.
 
 ## 실제 선택 경로
 
@@ -106,7 +106,7 @@ flowchart TD
     H -->|예| I["Mandate Pool 선택"]
     I --> J["fixture·정책·거래 verifier 구현"]
     J --> K["private Cloud Run·Devnet 준비"]
-    K --> L["남은 gate<br/>총 1 Devnet 테스트 USDC + 거부 receipt"]
+    K --> L["검증 완료<br/>정상 Devnet receipt + 거부 0 tx"]
 ```
 
 이 흐름은 RPC 후보가 기술적으로 틀렸다는 뜻이 아니다. 현재 마감과 증거에서 외부 유료 fulfillment 의존성을 감수할 이유가 부족했다는 뜻이다.
@@ -130,11 +130,12 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    A["A/B/C 자연어 조건"] --> N["Gemini/ADK 정규화"]
+    A["A/B/C 자연어 조건"] --> N["주문 생성: Gemini/ADK가<br/>mandate와 SKU/NO_BUY 계획 생성"]
     N --> H{"역할별 HITL 3건"}
     H -->|미완료| X["거래 금지"]
-    H -->|완료| S["SKU 또는 NO_BUY 제안"]
-    S --> P{"결정론적 정책"}
+    H -->|완료| S{"저장된 Agent 결과"}
+    S -->|NO_BUY| B["NO_BUY 확정<br/>policy checks 없음·거래 0건"]
+    S -->|SKU 후보| P{"결정론적 정책"}
     P -->|거부| X
     P -->|통과| T["하나의 Solana v0 거래"]
     T --> V{"finalized·원문·잔액 검증"}
@@ -159,17 +160,17 @@ Google의 역할은 자연어를 구조화하고 의사결정 trace를 만드는
 
 “제외”는 아이디어의 영구 가치 판정이 아니다. 이번 제출에서 핵심 진실을 정직하게 증명하지 못한다는 뜻이다.
 
-## 제출 전 실행·검증
+## 선택 뒤 확보한 검증
 
-1. 최신 source에서 typecheck·test·build를 통과한다.
-2. fixture 정상·cap 거부·승인 누락·변조 경로를 실행하고 `NOT ON-CHAIN` 라벨을 확인한다.
-3. private live revision의 read-only readiness와 Devnet wallet·ATA·mint를 확인한다.
-4. 명시적 HITL 뒤 정상 경로를 한 번 실행해 총 1 Devnet 테스트 USDC의 finalized transaction을 만든다.
-5. 같은 revision에서 B cap 0.3 거부 경로가 transaction을 만들지 않았음을 확인한다.
-6. order ID로 agent trace, mandate hash, policy proof, message hash, transaction signature, entitlement receipt를 연결한다.
-7. 영상과 소개서에서 operator simulation, fixture, live Devnet, x402 비적용을 명시한다.
+1. 최신 제품 source에서 typecheck·96 tests·build를 통과했다.
+2. fixture 정상·cap 거부·승인 누락·변조 경로를 검증하고 `NOT ON-CHAIN` 라벨을 유지했다.
+3. [localnet smoke](../../submission/evidence/localnet-smoke-2026-08-03.json)와 비공개 live [readiness](../../submission/evidence/live-preflight-2ac7eac.json)를 확보했다.
+4. 명시적 operator-simulated HITL 뒤 [정상 경로](../../submission/evidence/normal-order-2ac7eac.json)를 한 번 실행해 총 1 Devnet 테스트 USDC의 finalized transaction을 만들었다.
+5. 같은 source revision의 [B cap 0.3 `NO_BUY` 경로](../../submission/evidence/reject-order-2ac7eac.json)에서 policy check·transaction·signature·entitlement가 없음을 확인했다.
+6. order ID로 agent trace, mandate hash, policy proof, message hash, transaction signature, token delta, entitlement count를 연결했다.
+7. 영상과 소개서에 operator simulation, fixture, live Devnet 테스트 토큰, x402 비적용을 명시했다.
 
-정확한 명령과 현재 체크박스는 [실행 런북](hackathon-environment-codex-runbook.md)을 따른다.
+이 목록은 완료된 선택 검증을 설명하며 추가 결제나 재배포를 지시하지 않는다. 재현 명령과 현재 운영 중단 조건은 [제품 README](../../product/mandate-pool/README.md)와 [실행 런북](hackathon-environment-codex-runbook.md)을 따른다.
 
 ## 남는 한계
 
@@ -179,12 +180,13 @@ Google의 역할은 자연어를 구조화하고 의사결정 trace를 만드는
 - buyer별 외부 wallet approval과 production custody를 구현하지 않았다.
 - 현재 rail은 custom Solana atomic settlement이며 x402/AP2 적합성을 주장하지 않는다.
 - Devnet USDC는 금전 가치가 없다. [Circle testnet 안내](https://developers.circle.com/stablecoins/usdc-contract-addresses)
-- 공식 페이지와 제출 폼은 바뀔 수 있으므로 제출 직전에 다시 확인한다.
+- 행사 규칙 판정은 2026-08-03 공개 페이지 snapshot에 고정돼 있다. 이후 폼·일정 상태는 [제출 manifest](../../submission/manifest.md)에서 별도로 기록한다.
 
 ## 읽기 순서
 
 1. [Mandate Pool README](../../product/mandate-pool/README.md): 현재 제품 계약.
 2. [HITL 설계](agentic-commerce-hitl-design-decision.md): 사람·Agent·정책·signer의 역할.
-3. [실행 런북](hackathon-environment-codex-runbook.md): 현재 상태와 다음 명령.
-4. [50개 아이디어 지도](../agentic-commerce-50-ideas.md): 탐색 공간과 계보.
-5. [RPC 보류 PRD](rpc-rescue-core-prd.md): 과거 후보와 재개 gate.
+3. [제출 manifest](../../submission/manifest.md): 고정 release와 정상·거부 증거.
+4. [실행 런북](hackathon-environment-codex-runbook.md): 이후 운영 상태와 안전한 다음 행동.
+5. [50개 아이디어 지도](../agentic-commerce-50-ideas.md): 탐색 공간과 계보.
+6. [RPC 보류 PRD](rpc-rescue-core-prd.md): 과거 후보와 재개 gate.

@@ -1,6 +1,7 @@
 # Agentic Commerce 의사결정 근거 장부
 
-- 기준일: 2026-08-03 KST
+- 외부 사실 기준일: 2026-08-03 KST
+- 로컬 실행 증거 반영: 2026-08-04 KST
 - 독자: 제출 자료의 주장을 검증하는 팀원·심사자·후속 구현자.
 - 목적: 외부 사실, 로컬 관측, 제품 판단, 미검증 가설을 한 문서에서 구분한다.
 - 현재 제품: **Mandate Pool**. 이전 RPC·Query 후보의 자료는 역사적 의사결정 근거다.
@@ -22,7 +23,7 @@
 
 **질문:** 공식 심사 계약을 만족하면서, LLM의 제안과 돈을 움직이는 권한을 분리하고, 짧은 데모에서 정상·거부·복구 경계를 증명할 수 있는 제품은 무엇인가?
 
-**답:** Mandate Pool을 제출 제품으로 구현한다. 세 구매자의 자연어 조건을 Gemini/ADK로 구조화하고 역할별 HITL 확인과 결정론적 정책을 거친 뒤, 총 1 Devnet 테스트 USDC의 A/B/C 전송을 하나의 Solana v0 거래에 묶는다. finalized 거래와 예상 token 증감을 확인한 뒤에만 이용권 세 개를 발급한다.
+**답:** Mandate Pool을 제출 제품으로 구현했다. 세 구매자의 자연어 조건을 Gemini/ADK로 구조화하고 역할별 HITL 확인과 결정론적 정책을 거친 뒤, 총 1 Devnet 테스트 USDC의 A/B/C 전송을 하나의 Solana v0 거래에 묶었다. finalized 거래와 예상 token 증감을 확인한 뒤에만 이용권 세 개를 발급했다.
 
 RPC Rescue와 Query-to-Act는 사용자 필요와 결제 후 외부 fulfillment를 닫지 못해 보류한다. 이 처분은 장기 사업성 평가가 아니라 현재 해커톤 증거 경계에 대한 판단이다.
 
@@ -48,16 +49,16 @@ RPC Rescue와 Query-to-Act는 사용자 필요와 결제 후 외부 fulfillment�
 | 정상 가격은 총 1 Devnet 테스트 USDC이고 canonical split은 `333334/333333/333333` base units다. | 로컬 직접 확인 | [catalog](../../product/mandate-pool/src/domain/catalog.ts), [atomic split](../../product/mandate-pool/src/domain/atomic.ts), 정책·테스트 | “구현 계약”; 실제 거래 성공과 구분 |
 | v0 HITL은 한 운영자가 A/B/C 역할을 순서대로 확인한다. | 로컬 직접 확인 | [`demo_operator` 승인 계약](../../product/mandate-pool/src/domain/types.ts), [서비스 승인 경로](../../product/mandate-pool/src/service/mandate-pool-service.ts) | “operator simulation”; 실제 세 사용자 승인이라고 하지 않음 |
 | LLM에 signer·RPC 권한이 없다. | 로컬 직접 확인 | [agent runtime](../../product/mandate-pool/src/agents/adk-runtime.ts), [service/runtime 경계](../../product/mandate-pool/src/service/mandate-pool-service.ts) | “제안과 권한 분리” |
-| live runtime은 private Cloud Run readiness까지 확보했다. | 로컬 직접 확인 | [private live 배포 영수증](evidence/gcp-private-live-deploy-2026-08-03.md) | read-only readiness와 실제 결제를 구분 |
+| 고정 source의 private Cloud Run live runtime이 readiness를 통과했다. | 로컬 직접 확인 | [deployment receipt](../../submission/evidence/deployment-2ac7eac.json), [live preflight](../../submission/evidence/live-preflight-2ac7eac.json) | read-only readiness와 제품 주문 성공을 구분 |
 | 전용 Devnet wallet과 ATA가 준비됐다. | 로컬 직접 확인 | [지갑 프로비저닝 영수증](evidence/devnet-wallet-provisioning-2026-08-03.md), 공개 manifest | 공개주소·ATA만 문서화; 개인키는 제외 |
-| 총 1 Devnet 테스트 USDC 제품 거래와 정상·거부 receipt는 남은 작업이다. | 로컬 직접 확인 | [실행 런북](hackathon-environment-codex-runbook.md) | 완료 전 “온체인 검증 완료” 금지 |
+| 총 1 Devnet 테스트 USDC 정상 주문은 finalized됐고, 별도 cap 거부 주문은 거래 없이 끝났다. | 로컬 직접 확인 | [normal receipt](../../submission/evidence/normal-order-2ac7eac.json), [balance snapshot](../../submission/evidence/devnet-balance-post-normal-2ac7eac.json), [reject receipt](../../submission/evidence/reject-order-2ac7eac.json) | “한 정상·한 거부 Devnet 시나리오 검증”; 상용·Mainnet으로 확대 금지 |
 | QuickNode exact Devnet 요청은 2026-08-02 unsigned HTTP 402를 반환했다. | 과거 로컬 직접 확인 | [QuickNode probe](evidence/quicknode-x402-probe.md) | 당시 offer 관측만 주장; 현재 가용성·결제 성공은 주장하지 않음 |
 
 ## 아이디어 계보와 처분
 
 | 계보 | 당시 검토 이유 | 현재 처분 | 다시 열 조건 |
 |---|---|---|---|
-| `#45 Threshold Cart` + mandate 통제 패턴 → **Mandate Pool** | 여러 buyer의 조건 보존과 atomic settlement를 한 trace에서 증명 가능 | 현재 구현·제출 제품 | 정상 1 Devnet 테스트 USDC, 거부 0 tx, linked trace 확보 |
+| `#45 Threshold Cart` + mandate 통제 패턴 → **Mandate Pool** | 여러 buyer의 조건 보존과 atomic settlement를 한 trace에서 증명 가능 | 구현·증거 release 완료 | 실제 공동구매 사용자와 buyer별 독립 승인 검증 |
 | `#13 RPC Lifeboat` → Just-Enough RPC Rescue → Duplicate Payout Guard | 유료 RPC 결과가 중복 payout 생성을 막는 좁은 인과관계 | 보류 | 실제 운영자 사건 + payment→valid result→job refusal |
 | `#01 NeedlePass + #04 Onchain Risk Buyer` → Query-to-Act | 유료 이력 query가 payout allow/block을 바꾸는 구조 | 보류 | exact claim, 유료 result, 달라진 downstream action |
 | `#08 OCR Escalator + #26 Three-Way Match Pay` → Invoice Line Rescue | 한 송장 필드만 재처리해 지급 판단을 갱신 | 보류 | 동작하는 endpoint, 실제 문서·supplier·지급 authority |
@@ -69,14 +70,14 @@ RPC Rescue와 Query-to-Act는 사용자 필요와 결제 후 외부 fulfillment�
 
 ```text
 natural-language conditions A/B/C
-  → Gemini/ADK normalized mandate proposals
+  → order creation: Gemini/ADK normalized mandates + SKU/NO_BUY plan
   → operator-simulated approval × 3
-  → deterministic policy proof
-  → exact quote and canonical allocation
-  → one Solana v0 message and four signatures
-  → finalized transaction and token-delta verification
-  → entitlement × 3
-  → one order trace
+  → NO_BUY: policy checks 0 + transaction 0 + entitlement 0
+  → SKU: deterministic policy proof
+        → exact quote and canonical allocation
+        → one Solana v0 message and four signatures
+        → finalized transaction and token-delta verification
+        → entitlement × 3
 ```
 
 반드시 함께 보여 줄 대조 경로는 B cap `0.3`으로 거래가 0건인 거부 시나리오다. fixture 결과에는 `NOT ON-CHAIN`을 표시하고, live proof에는 transaction signature와 Explorer를 붙인다.
@@ -97,6 +98,8 @@ natural-language conditions A/B/C
 - 실제 공동구매 사용자의 반복 문제와 지불의사를 검증하지 않았다.
 - merchant와 SignalDesk entitlement는 데모 경계다.
 - buyer별 실제 신원·wallet approval을 구현하지 않았다.
-- 총 1 Devnet 테스트 USDC live transaction과 거부 receipt는 아직 제출 증거로 확보해야 한다.
-- 공식 페이지, 제출 폼, 외부 endpoint는 바뀔 수 있다. 제출 직전에 다시 확인한다.
+- live fault injection과 `RECONCILIATION_REQUIRED`의 운영 증거는 확보하지 않았다. 현재 근거는 코드·테스트와 한 정상·한 거부 Devnet 실행이다.
+- 공식 페이지, 제출 폼, 외부 endpoint는 바뀔 수 있다. 이 장부는 기준일 당시 사실만 보존하며 현재 상태는 별도 확인한다.
 - 이 의사결정은 해커톤 증거와 마감에 최적화한 것이며 장기 사업의 우열을 증명하지 않는다.
+
+고정 release 식별자와 공개 접근 상태는 [제출 manifest](../../submission/manifest.md)를 따른다. 이 장부의 외부 사실은 위 기준일의 snapshot이며, 현재 서비스 가용성이나 행사 폼 상태를 자동으로 갱신하지 않는다.

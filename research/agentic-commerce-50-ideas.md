@@ -1,7 +1,7 @@
 # Agentic Commerce 아이디어 지도: 50개 가설에서 Mandate Pool까지
 
 - 최초 작성: 2026-08-01 KST
-- 현재화: 2026-08-03 KST
+- 현재화: 2026-08-04 KST
 - 독자: 탐색 범위, 아이디어 계보, 선택 근거를 빠르게 이해하려는 제품·기술·심사 담당자.
 - 문서 역할: 50개 가설을 보존하는 발산 지도다. 현재 구현 백로그나 후보 순위가 아니다.
 - 현재 제품: **Mandate Pool**. `#45 Threshold Cart`의 다중 구매자 구조를 mandate 교집합과 원자적 정산 문제로 다시 정의한 후속안이다.
@@ -12,7 +12,7 @@
 
 현재 제출 제품은 목록에 원래 이름으로 없던 **Mandate Pool**이다. 세 구매자 Agent의 자연어 조건을 Gemini/ADK로 구조화하고 역할별 HITL 확인과 결정론적 정책을 거친 뒤, 공통 조건을 만족할 때만 총 1 Devnet 테스트 USDC를 하나의 Solana v0 거래로 공동 결제한다. A는 `0.333334`, B/C는 각각 `0.333333`을 부담한다. 한 명의 cap이라도 부족하면 거래를 만들지 않는다.
 
-선택 과정에서 `RPC Lifeboat → Duplicate Payout Guard`, `NeedlePass/Onchain Risk Buyer → Query-to-Act`도 검토했지만 사용자 사건과 결제 후 외부 fulfillment가 닫히지 않아 보류했다. 상세 처분은 [아이디어 선택 보고서](decision-report/mece-hackathon-idea-selection.md), 현재 구현은 [Mandate Pool README](../product/mandate-pool/README.md), 실행 상태는 [환경 런북](decision-report/hackathon-environment-codex-runbook.md)을 따른다.
+선택 과정에서 `RPC Lifeboat → Duplicate Payout Guard`, `NeedlePass/Onchain Risk Buyer → Query-to-Act`도 검토했지만 사용자 사건과 결제 후 외부 fulfillment가 닫히지 않아 보류했다. 상세 처분은 [아이디어 선택 보고서](decision-report/mece-hackathon-idea-selection.md), 현재 구현은 [Mandate Pool README](../product/mandate-pool/README.md), 고정된 정상·거부 실행 증거는 [제출 manifest](../submission/manifest.md), 이후 운영 상태는 [환경 런북](decision-report/hackathon-environment-codex-runbook.md)을 따른다.
 
 이 문서의 50개 항목은 모두 시장·사용자 검증 전 가설이다. 번호와 표의 위치는 순위나 우승 확률이 아니다.
 

@@ -1,6 +1,6 @@
 # 행사 규칙: 제출 계약을 제품 수용 기준으로 바꾸기
 
-이 문서는 발표 자료의 기억이 아니라 [공식 행사 페이지와 Luma에서 확인한 계약](../sources/event-contract.md)을 기준으로, 제출 책임자가 오늘 무엇을 닫아야 하는지 설명한다.
+이 문서는 발표 자료의 기억이 아니라 [공식 행사 페이지와 Luma에서 확인한 계약](../sources/event-contract.md)을 기준으로 만든 **2026-08-03 마감 전 snapshot**이다. 현재 제출 폼·접근 링크·release 상태는 이 문서가 아니라 [제출 manifest](../../../submission/manifest.md)와 [운영 런북](../../decision-report/hackathon-environment-codex-runbook.md)을 따른다.
 
 ## 행사 주제
 
@@ -17,7 +17,7 @@
 
 Mandate Pool은 첫 세 범주의 교차점에 있다. 세 구매자의 조건을 합의하고, 각 한도를 보존한 하나의 원자적 Solana 거래를 실행한다. 범주 이름보다 이 인과관계를 데모로 증명해야 한다.
 
-## 현재 제출 계약
+## 2026-08-03 공개 제출 계약 snapshot
 
 | 항목 | 공식 페이지의 현재 상태 | 실행 기준 |
 |---|---|---|
@@ -57,7 +57,7 @@ Mandate Pool은 첫 세 범주의 교차점에 있다. 세 구매자의 조건�
 
 이 항목은 제출 폼·약관·주최자의 서면 공지가 추가되면 확인한다. 확인 전에는 구두 Q&A나 OCR 문구만으로 하드 게이트를 만들지 않는다.
 
-## 제출 직전 행동
+## 역사적 제출 전 체크리스트
 
 1. 공식 페이지와 실제 제출 폼의 필드·파일 제한을 대조한다.
 2. GitHub commit SHA, Cloud Run revision, 데모 URL, Devnet transaction receipt를 같은 제출 버전으로 고정한다.
@@ -65,4 +65,4 @@ Mandate Pool은 첫 세 범주의 교차점에 있다. 세 구매자의 조건�
 4. 영상에서 에이전트 판단과 실제 transaction 사이의 HITL·정책 검사를 생략하지 않는다.
 5. 제출 완료 화면과 시각을 캡처한다.
 
-출처가 바뀔 수 있으므로 이 모듈만 믿고 제출하지 말고 [공식 행사 페이지](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/)를 마지막으로 다시 확인한다.
+이 체크리스트는 당시의 판단 기준을 보존한다. 출처가 바뀔 수 있으므로 새 제출이나 재사용 시에는 [공식 행사 페이지](https://www.gcp-solana-ai-agentic-hacks-kr.xyz/)와 실제 폼을 다시 확인한다.
