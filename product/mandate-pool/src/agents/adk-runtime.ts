@@ -14,8 +14,6 @@ import {
 import {CachedVertexReadiness} from "./vertex-readiness.js";
 
 const normalizedMandateSchema = z.object({
-  allowedMint: z.string().min(32),
-  allowedMerchantOwners: z.array(z.string().min(32)).min(1),
   requiredFeatures: z.array(z.string()),
   forbiddenFeatures: z.array(z.string()),
   maxAmountAtomic: z.string().regex(/^\d+$/u),
@@ -76,8 +74,8 @@ async function runStructuredAgent<T>(params: {
 function normalizationInstruction(buyerId: BuyerId): string {
   return [
     `You normalize buyer ${buyerId}'s natural-language purchase mandate into the exact output schema.`,
-    "Use only facts supplied in the JSON input. Never invent a merchant, mint, budget, duration, or feature.",
-    "USDC amounts are integer atomic units with six decimals. Preserve the supplied allowlists exactly.",
+    "Use only facts supplied in the JSON input. Never invent a budget, duration, or feature.",
+    "USDC amounts are integer atomic units with six decimals. Merchant and mint allowlists are bound by the server and are not part of your output.",
     "This is a proposal only. You have no tools and cannot authorize, sign, broadcast, or settle a payment.",
     "If wording is ambiguous, choose the stricter interpretation. Keep rationale to one sentence and at most 200 characters.",
   ].join(" ");
@@ -123,8 +121,6 @@ function mandatePrompt(input: AgentPlanInput, mandate: NaturalLanguageMandate): 
   return JSON.stringify({
     buyerId: mandate.buyerId,
     naturalLanguage: mandate.naturalLanguage,
-    allowedMint: input.allowedMint,
-    allowedMerchantOwners: input.allowedMerchantOwners,
     currentTime: (input.now ?? new Date()).toISOString(),
     defaultValidityMinutes: 15,
   });
@@ -175,6 +171,10 @@ export class GoogleAdkAgentRuntime implements AgentRuntime {
       });
       return {
         ...proposal,
+        // Payment destinations are authoritative server configuration, never
+        // values copied or selected by the model.
+        allowedMint: input.allowedMint,
+        allowedMerchantOwners: [...input.allowedMerchantOwners],
         rationale: boundedAgentRationale(proposal.rationale, 400),
         buyerId: mandate.buyerId,
       } satisfies NormalizedMandateProposal;
